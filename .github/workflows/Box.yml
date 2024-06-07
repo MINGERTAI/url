@@ -1,0 +1,50 @@
+name: Box URLs
+
+# 触发条件: 可以按您的需要调整
+on:
+  schedule:
+    - cron: '0 21 2-30/2 * *' # 每个月的偶数日的 21:00 (UTC)
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  update-urls:
+    runs-on: ubuntu-latest
+    steps:
+    - name: 读取TV源数据
+      uses: actions/checkout@v4
+      with:
+        repository: ne7359/url    #  用户名/仓库名
+        ref: main                                 # 代码所在仓库的分支
+        path: code                                # 读取到代码 code
+        token: ${{ secrets.MY_TOKEN }}            # gh_token = 您的token
+      
+    - name: Set up Python 3.8
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.8'
+    - name: Install dependencies
+      run: |
+        pip install requests
+
+    - name: Check URLs and Update JSON
+      working-directory: code
+      run: python tv/script.py   # 运行code工作目录下，tv文件夹下的script.py
+
+    - name: Commit and push if changes
+      working-directory: code
+      run: |
+        git config --global user.name "GitHub Actions"
+        git config --global user.email "actions@github.com"
+        git add -A
+        git commit -m "Update tvbox.json file" -a || echo "No changes to commit"   # 推送到仓库的tv文件夹下tvbox.jsontvbox.json
+        git push
+
+    - name: 删除旧的GitHub-workflow
+      uses: Mattraks/delete-workflow-runs@main
+      with:
+        repository: ${{ github.repository }}
+        retain_days: 1
+        keep_minimum_runs: 3    #保留多少个workflow不删除
