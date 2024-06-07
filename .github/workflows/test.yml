@@ -150,7 +150,8 @@ jobs:
           git add 0825.json
           git add 9918.json
           commit_msg="更新并删除删除无效节点"
-          git commit -a -m "$commit_msg"
+          git commit -a --allow-empty -m "$commit_msg"
+          # git commit -a -m "$commit_msg"
 
       - name: Push NodelJS Config Changes To Github
         uses: ad-m/github-push-action@master
