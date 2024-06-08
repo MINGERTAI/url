@@ -167,18 +167,6 @@ jobs:
         env:
           GITHUB_ACTOR: ne7359
 
-      - name: Push Config To Gitee
-        uses: ad-m/github-push-action@master
-        with:
-          github_token: ${{ secrets.GE_TOKEN }}
-          repository: ${{ secrets.GE_PATH }}
-          directory: .
-          branch: master
-          force: true
-          github_url: https://gitee.com
-        env:
-          GITHUB_ACTOR: ne7359
-
       - name: Delete Workflow Runs
         uses: Mattraks/delete-workflow-runs@main
         continue-on-error: true
