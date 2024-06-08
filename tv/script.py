@@ -33,13 +33,13 @@ try:
             print(f"链接 {name} 无法访问，错误：{e}。")
 
     # 准备保存的新 JSON 结构，包含 "urls"
-    new_data = {"urls": valid_links}
+    new_data = {"urls": tvbox}
 
     # 保存所有有效链接到新的 JSON 文件
-    valid_links_file_path = os.path.join(current_dir, 'box', 'valid_links.json')
-    with open(valid_links_file_path, 'w', encoding='utf-8') as f:
+    valid_links_file_path = os.path.join(current_dir, 'box', 'tvbox.json')
+    with open(tvbox_file_path, 'w', encoding='utf-8') as f:
         json.dump(new_data, f, indent=4, ensure_ascii=False)
 
-    print(f"所有有效链接已经保存到 {valid_links_file_path} 文件。")
+    print(f"所有有效链接已经保存到 {tvbox_file_path} 文件。")
 except Exception as e:
     print(f"读取或处理 JSON 数据时发生错误：{e}")
