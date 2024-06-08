@@ -7,7 +7,7 @@ current_dir = os.path.dirname(os.path.abspath(__file__))
 data_file_path = os.path.join(current_dir, 'box', 'urlsA.json')
 
 # 用于存储有效链接的列表
-valid_links = []
+tvbox = []
 
 try:
     # 读取 JSON 数据
@@ -25,7 +25,7 @@ try:
             # 检查响应状态码，如果为 200 则认为链接有效
             if response.status_code == 200:
                 print(f"链接 {name} 有效。")
-                valid_links.append(item)
+                tvbox.append(item)
             else:
                 print(f"链接 {name} 无效，状态码：{response.status_code}。")
         except Exception as e:
@@ -33,13 +33,13 @@ try:
             print(f"链接 {name} 无法访问，错误：{e}。")
 
     # 准备保存的新 JSON 结构，包含 "urls"
-    new_data = {"urls": valid_links}
+    new_data = {"urls": tvbox}
 
     # 保存所有有效链接到新的 JSON 文件
-    valid_links_file_path = os.path.join(current_dir, 'valid_links.json')
-    with open(valid_links_file_path, 'w', encoding='utf-8') as f:
+    tvbox_file_path = os.path.join(current_dir, 'tvbox.json')
+    with open(tvbox_file_path, 'w', encoding='utf-8') as f:
         json.dump(new_data, f, indent=4, ensure_ascii=False)
 
-    print(f"所有有效链接已经保存到 {valid_links_file_path} 文件。")
+    print(f"所有有效链接已经保存到 {tvbox_file_path} 文件。")
 except Exception as e:
     print(f"读取或处理 JSON 数据时发生错误：{e}")
