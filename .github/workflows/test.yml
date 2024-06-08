@@ -161,9 +161,9 @@ jobs:
         uses: ad-m/github-push-action@master
         with:
           github_token: ${{ secrets.MY_TOKEN }}
-          repository: ne7359/url
-          directory: ./json/
-          branch: main
+          #repository: ne7359/url
+          #directory: .
+          #branch: main
           force: true
         env:
           GITHUB_ACTOR: ne7359
