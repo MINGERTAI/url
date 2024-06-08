@@ -1,10 +1,8 @@
-## 多仓可用站点检测，去除无效站点
+## 多仓可用源检测，去除无效源
 python script.py
 
-只检查sites部分
-
-### 输入
-urls.json 
+### 输入 源文件夹box
+urls.json
 
 ### 输出
-`out/all.txt` 可用站点
+`tv/tvbox.json` 可用源
