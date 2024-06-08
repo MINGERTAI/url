@@ -153,17 +153,16 @@ jobs:
           git add 0825.json
           git add 9918.json
           commit_msg="更新并删除删除无效节点"
-          git commit -a -m "Add changes"
-          #git commit -a --allow-empty -m "$commit_msg"
+          git commit -a --allow-empty -m "$commit_msg"
           # git commit -a -m "$commit_msg"
 
       - name: Push Config To Github
         uses: ad-m/github-push-action@master
         with:
           github_token: ${{ secrets.MY_TOKEN }}
-          #repository: ne7359/url
-          #directory: .
-          #branch: main
+          repository: ne7359/url
+          directory: ./json/
+          branch: main
           force: true
         env:
           GITHUB_ACTOR: ne7359
