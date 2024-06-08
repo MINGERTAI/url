@@ -4,7 +4,7 @@ import os
 
 # 构建 urls.json 文件的完整路径
 current_dir = os.path.dirname(os.path.abspath(__file__))
-data_file_path = os.path.join(current_dir, 'tv', 'urls.json')
+data_file_path = os.path.join(current_dir, 'box', 'urls.json')
 
 # 用于存储有效链接的列表
 valid_links = []
@@ -36,7 +36,7 @@ try:
     new_data = {"urls": valid_links}
 
     # 保存所有有效链接到新的 JSON 文件
-    valid_links_file_path = os.path.join(current_dir, 'tv', 'valid_links.json')
+    valid_links_file_path = os.path.join(current_dir, 'box', 'valid_links.json')
     with open(valid_links_file_path, 'w', encoding='utf-8') as f:
         json.dump(new_data, f, indent=4, ensure_ascii=False)
 
