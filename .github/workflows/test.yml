@@ -40,12 +40,12 @@ jobs:
       - name: Run Python script
         working-directory: ${{ github.workspace }}
         run: |
-          python ./TVUrl-check/py/0821-A.py
+          python ./${{ secrets.PY_PATH }}/0821-A.py
 
       - name: Run Python script
         working-directory: ${{ github.workspace }}
         run: |
-          python ./TVUrl-check/py/0821-B.py
+          python ./${{ secrets.PY_PATH }}/0821-B.py
 
       - name: Upload 0821-A result as artifact
         uses: actions/upload-artifact@v4
@@ -72,12 +72,12 @@ jobs:
       - name: Run Python script
         working-directory: ${{ github.workspace }}
         run: |
-          python ./TVUrl-check/py/0825-A.py
+          python ./${{ secrets.PY_PATH }}/0825-A.py
 
       - name: Run Python script
         working-directory: ${{ github.workspace }}
         run: |
-          python ./TVUrl-check/py/0825-B.py
+          python ./${{ secrets.PY_PATH }}/0825-B.py
 
       - name: Upload 0825-A result as artifact
         uses: actions/upload-artifact@v4
@@ -104,12 +104,12 @@ jobs:
       - name: Run Python script
         working-directory: ${{ github.workspace }}
         run: |
-          python ./TVUrl-check/py/9918-A.py
+          python ./${{ secrets.PY_PATH }}/9918-A.py
 
       - name: Run Python script
         working-directory: ${{ github.workspace }}
         run: |
-          python ./TVUrl-check/py/9918-B.py
+          python ./${{ secrets.PY_PATH }}/9918-B.py
 
       - name: Upload 0825-A result as artifact
         uses: actions/upload-artifact@v4
@@ -156,7 +156,7 @@ jobs:
           git commit -a --allow-empty -m "$commit_msg"
           # git commit -a -m "$commit_msg"
 
-      - name: Push NodelJS Config Changes To Github
+      - name: Push Config To Github
         uses: ad-m/github-push-action@master
         with:
           github_token: ${{ secrets.MY_TOKEN }}
@@ -164,6 +164,18 @@ jobs:
           directory: .
           branch: main
           force: true
+        env:
+          GITHUB_ACTOR: ne7359
+
+      - name: Push Config To Gitee
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.GE_TOKEN }}
+          repository: ${{ secrets.GE_PATH }}
+          directory: .
+          branch: master
+          force: true
+          github_url: https://gitee.com
         env:
           GITHUB_ACTOR: ne7359
 
