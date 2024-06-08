@@ -1,4 +1,4 @@
-name: Fetch Fan
+name: tv-box
 
 on:
   workflow_dispatch:
