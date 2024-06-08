@@ -22,7 +22,7 @@ jobs:
       run: pip install requests
 
     - name: Run Python script
-      run: python ./tv/box/script.py
+      run: python ./tv/script.py
 
     - name: Run ls
       run: ls -l tv/box
