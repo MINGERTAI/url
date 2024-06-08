@@ -33,10 +33,10 @@ try:
             print(f"链接 {name} 无法访问，错误：{e}。")
 
     # 准备保存的新 JSON 结构，包含 "urls"
-    new_data = {"urls": valid_links}
+    new_data = {"urls": tvbox}
 
     # 保存所有有效链接到新的 JSON 文件
-    valid_links_file_path = os.path.join(current_dir, 'box', 'valid_links.json')
+    valid_links_file_path = os.path.join(current_dir, 'tvbox.json')
     with open(valid_links_file_path, 'w', encoding='utf-8') as f:
         json.dump(new_data, f, indent=4, ensure_ascii=False)
 
