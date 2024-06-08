@@ -345,14 +345,6 @@
             "filterable": 1
         },
         {
-            "key": "haosezyw.com",
-            "name": "💕好色(直连)",
-            "type": 1,
-            "api": "https://haosezyw.com/api.php/provide/vod/?ac=list",
-            "searchable": 1,
-            "filterable": 1
-        },
-        {
             "key": "vnzyz.com",
             "name": "💕越南(直连)",
             "type": 1,
