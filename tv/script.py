@@ -36,7 +36,7 @@ try:
     new_data = {"urls": valid_links}
 
     # 保存所有有效链接到新的 JSON 文件
-    valid_links_file_path = os.path.join(current_dir, 'box', 'valid_links.json')
+    valid_links_file_path = os.path.join(current_dir, 'valid_links.json')
     with open(valid_links_file_path, 'w', encoding='utf-8') as f:
         json.dump(new_data, f, indent=4, ensure_ascii=False)
 
