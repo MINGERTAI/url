@@ -4,7 +4,7 @@ import os
 
 # 构建 urls.json 文件的完整路径
 current_dir = os.path.dirname(os.path.abspath(__file__))
-data_file_path = os.path.join(current_dir, 'box', 'urls.json')
+data_file_path = os.path.join(current_dir, 'box', 'urlsA.json')
 
 # 用于存储有效链接的列表
 valid_links = []
