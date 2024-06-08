@@ -25,7 +25,7 @@ jobs:
       run: python ./tv/script.py
 
     - name: Run ls
-      run: ls -l
+      run: ls -l tv/box
 
     - id: check
       name: Check for changes
