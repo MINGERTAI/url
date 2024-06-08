@@ -2,6 +2,9 @@ name: test
 on:
   workflow_dispatch:
 
+  schedule:
+    - cron: '5 */4 * * *'
+
 jobs:
   setup:
     runs-on: ubuntu-latest
