@@ -42,3 +42,4 @@ try:
 
     print(f"所有有效链接已经保存到 {valid_links_file_path} 文件。")
 except Exception as e:
+    print(f"读取或处理 JSON 数据时发生错误：{e}")
