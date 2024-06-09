@@ -1,7 +1,7 @@
 {
     "urls": [
         {
-            "name": "🪐王二小放牛娃推荐",
+            "name": "🪐放牛线路-龒蜗牛D推荐",
             "url": "http://tvbox.王二小放牛娃.xyz"
         },
         {
@@ -21,8 +21,8 @@
             "url": "https://ghproxy.net/https://raw.githubusercontent.com/ne7359/url/main/fan/xo.json"
         },
         {
-            "name": "🏡自用合集",
-            "url": "https://ghproxy.net/https://raw.githubusercontent.com/qist/tvbox/master/jsm.json"
+            "name": "🐕二哈",
+            "url": "https://ghproxy.net/https://raw.githubusercontent.com/2hacc/TVBox/main/tvbox.json"
         },
         {
             "name": "🚚运输车",
@@ -37,8 +37,16 @@
             "url": "http://rihou.cc:88/荷城茶秀"
         },
         {
+            "name": "🍀俊宇",
+            "url": "http://home.jundie.top:81/top98.json"
+        },
+        {
             "name": "💦巧技",
             "url": "http://pandown.pro/tvbox/tvbox.json"
+        },
+        {
+            "name": "🍭甜蜜",
+            "url": "https://raw.iqiq.io/kebedd69/TVbox-interface/main/甜蜜.json"
         }
     ]
 }
