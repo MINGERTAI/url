@@ -1,5 +1,5 @@
 # 设置工作流名称
-name: Publish-TvBox-Url-Live-2024
+name: TvBox-Url
 
 # 设置触发工作流的条件
 on:
@@ -64,7 +64,7 @@ jobs:
           RESURL: ${{ secrets.RESURL }}
         if: steps.upexpire.outputs.status == 'success' && !cancelled()
         run: |
-          python main.py uptvbox
+          python ./tvurl/main.py uptvbox
           echo "status=success" >> $GITHUB_OUTPUT
 
       - name: '合并 tvurl'
@@ -73,7 +73,7 @@ jobs:
           RESURL: ${{ secrets.RESURL }}
         if: steps.uptvbox.outputs.status == 'success' && !cancelled()
         run: |
-          python main.py check
+          python /tvurl/main.py check
           echo "status=success" >> $GITHUB_OUTPUT
 
       - name: '将新文件与旧文件用 MD5 进行比较' # 通过 MD5 检查新旧文件是否有变动，有变动则替换旧文件，并设置输出状态标记
