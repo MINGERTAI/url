@@ -1,7 +1,7 @@
 {
-//Update:2024-06-09 09:49:14.671516
+//Update:2024-06-09 11:47:15.362058
 
-"spider":"https://raw.githubusercontent.com/ne7359/url/main/jar/ustom.PNG;md5;112dd3396623b4bebbad3ebd67fb2929",
+"spider":"https://ghproxy.net/https://raw.githubusercontent.com/ne7359/url/main/boxurl/jar/ustom.PNG;md5;112dd3396623b4bebbad3ebd67fb2929",
 
 
 "lives":[{"group":"redirect","channels":[{"name":"live","urls":["proxy://do=live&type=txt&ext=aHR0cHM6Ly9jZG4uanNkZWxpdnIubmV0L2doL0N5cmlsMDU2My9sYW5qaW5nX2xpdmVAbWFpbi9UVmJveF9GcmVlL0xJVkUvRnJlZS90dmJveF9saXZlLnR4dA=="]}]}],
