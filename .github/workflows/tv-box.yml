@@ -1,4 +1,4 @@
-name: tv-box
+name: 多仓for影视
 
 on:
   workflow_dispatch:
