@@ -36,12 +36,8 @@ jobs:
         fi
         git config --global user.name "GitHub Actions"
         git config --global user.email "actions@github.com"
-        git add xo.json
-        git add xo1.json
-        git add a.json
-        git add a1.json
-        #git add .
-        git commit -m "update"
+        git add .
+        git commit -m "更新"
         #commit_msg="更新并删除删除无效节点"
         #git commit -a --allow-empty -m "$commit_msg"
 
