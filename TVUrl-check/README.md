@@ -4,10 +4,14 @@ python main.py
 只检查sites部分
 
 ### 输入
-`res/all.txt` sites部分
+`./code/0821.json`
+`./code/0825.json`
+`./code/9918.json`
 
 ### 输出
-`out/all.txt` 可用站点
+`0821.json`
+`0825.json`
+`9918.json`
 
 
 ## https://github.com/loopool/fan
