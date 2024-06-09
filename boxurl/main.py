@@ -97,8 +97,8 @@ print('menu: ' + menu)
 # 下载Node.json中的所有Url订阅链接将其合并，生成本地vpei-new.txt，同步至Github后改名为vpei.txt文件
 # 本菜单暂时无效
 if(menu == 'update'):
-    oldexpire = LocalFile.read_LocalFile("./res/r_sites_err.txt")
-    nettvexpire = LocalFile.read_LocalFile("./res/expire.txt")
+    oldexpire = LocalFile.read_LocalFile("./boxurl/res/r_sites_err.txt")
+    nettvexpire = LocalFile.read_LocalFile("./boxurl/res/expire.txt")
     # 本地所有失效链接合并去重存储至expires.txt
     allexpire = oldexpire.strip('\n') + '\n' + nettvexpire.strip('\n')
     expires = ''
@@ -108,10 +108,10 @@ if(menu == 'update'):
         if(expires.find(i) == -1):
             expires = expires + i + '\n'
     if(len(expires) > len(oldexpire)):
-        LocalFile.write_LocalFile('./res/r_sites_err.txt', expires.strip('\n')) 
+        LocalFile.write_LocalFile('./boxurl/res/r_sites_err.txt', expires.strip('\n')) 
     print('Get-expire.txt: \n' + str(len(expires)))
 
-    tvlist = LocalFile.read_LocalFile("./res/tvlist.json")
+    tvlist = LocalFile.read_LocalFile("./boxurl/res/tvlist.json")
     list1 = tvlist.split('\n')
     list1 = ListFile.get_list_sort(list1)
     print('Get-tvbox.json: \n' + str(len(list1)))
@@ -213,7 +213,7 @@ if(menu == 'update'):
                                         print(str(obj))
                                         print(type(obj))
                                         # dictinfo = json.loads(obj)
-                                        fjson = './res/tvlist.json'
+                                        fjson = './boxurl/res/tvlist.json'
                                         with open(fjson, 'r') as f:
                                             content = json.load(f)     
                                                                 
@@ -232,14 +232,14 @@ if(menu == 'update'):
     # write_json()
     # 将节点更新时间等写入配置文件
     if (boxurl.find('uptime') > -1):
-        LocalFile.write_LocalFile('./res/list.json', boxurl.strip('\n'))
+        LocalFile.write_LocalFile('./boxurl/res/list.json', boxurl.strip('\n'))
     print('Line-238:tvbox.json已更新，共更新网址[' + str(iii) + ']。')
     #print('Url-All-Clash-To-Mixed-Nodes:\n' + allonesite)
 
     # 读取所有节点到allonesite新记录后面。
-    alltypename = LocalFile.read_LocalFile("./res/typename.txt").replace('\r','')
+    alltypename = LocalFile.read_LocalFile("./boxurl/res/typename.txt").replace('\r','')
     tvlists = []
-    with open('./res/tvlist.json', 'r', encoding='utf-8') as f:
+    with open('./boxurl/res/tvlist.json', 'r', encoding='utf-8') as f:
         tvlists = json.load(f)
     num_item = len(tvlists)
     alltv = ''
@@ -262,17 +262,17 @@ if(menu == 'update'):
                 LocalFile.write_LogFile('Main-Line-264-Exception:' + str(ex) + '\nonesite:' + i)
     alltv = alltv.strip('\n').encode('utf-8')
     # allboxs.json = base64.b64encode(boxsites.strip('\n').encode('utf-8')).decode('utf-8')
-    LocalFile.write_LocalFile('./out/all', alltv)
+    LocalFile.write_LocalFile('./boxurl/out/all', alltv)
     print('Line-293-Node整理成功，共有记录' + str(iii) + '条。')
 
 
 # 下载Node.json中的所有Url订阅链接将其合并，生成本地vpei-new.txt，同步至Github后改名为vpei.txt文件
 if(menu == 'upexpire'):
-    r_sites_err = LocalFile.read_LocalFile("./res/r_sites_err.txt")
-    nettvexpire = LocalFile.read_LocalFile("./res/expire.txt")
+    r_sites_err = LocalFile.read_LocalFile("./boxurl/res/r_sites_err.txt")
+    nettvexpire = LocalFile.read_LocalFile("./boxurl/res/expire.txt")
     nettvexpire = nettvexpire.strip('\n')
     # 处理临时数据和网络失效数据中vmess同一IP和端口过滤列表
-    fakeip = LocalFile.read_LocalFile("./res/fakeip.txt")
+    fakeip = LocalFile.read_LocalFile("./boxurl/res/fakeip.txt")
     newallexpire = ''
     for i in nettvexpire.split('\n'):
         try:
@@ -282,7 +282,7 @@ if(menu == 'upexpire'):
                     newallexpire = newallexpire + '\n' + i
         except Exception as ex:
             LocalFile.write_LogFile('Main-Line-324-Exception:' + str(ex) + '\nexpire:' + i)
-    # LocalFile.write_LocalFile('./res/fakeip.txt', fakeip)
+    # LocalFile.write_LocalFile('./boxurl/res/fakeip.txt', fakeip)
     
     # 本地所有失效链接合并去重存储至expires.txt
     allexpire = r_sites_err.strip('\n') + '\n' + newallexpire.strip('\n')
@@ -293,11 +293,11 @@ if(menu == 'upexpire'):
         if(expires.find(i) == -1):
             expires = expires + i + '\n'
     if(len(expires) > len(r_sites_err)):
-        LocalFile.write_LocalFile('./res/r_sites_err.txt', expires.strip('\n')) 
+        LocalFile.write_LocalFile('./boxurl/res/r_sites_err.txt', expires.strip('\n')) 
     print('Get-expire.txt: \n' + str(len(expires)))
 
 if(menu == 'uptvbox'):
-    tvlist = LocalFile.read_LocalFile("./res/tvlist.json")
+    tvlist = LocalFile.read_LocalFile("./boxurl/res/tvlist.json")
     print('Get-tvbox.json: \n' + str(len(tvlist.split('\n'))))
     #sub_link = []
     #for i in range(len(sub_url)):
@@ -310,10 +310,10 @@ if(menu == 'uptvbox'):
     ii = 0
     iii = 0
     # 获取默认值再添加后重写
-    alllive = LocalFile.read_LocalFile("./res/live.txt")
-    r_parses = LocalFile.read_LocalFile("./res/r_parses.txt")
-    r_parses_err = LocalFile.read_LocalFile("./res/r_parses_err.txt")
-    tvlist = LocalFile.read_LocalFile("./res/all")
+    alllive = LocalFile.read_LocalFile("./boxurl/res/live.txt")
+    r_parses = LocalFile.read_LocalFile("./boxurl/res/r_parses.txt")
+    r_parses_err = LocalFile.read_LocalFile("./boxurl/res/r_parses_err.txt")
+    tvlist = LocalFile.read_LocalFile("./boxurl/res/all")
     if(tvlist.find('"sites":[')>-1):
         tvlist = StrText.get_str_btw(tvlist, '"sites":[', '],', 0) + ','
     tvjar = ''
@@ -395,7 +395,7 @@ if(menu == 'uptvbox'):
                                         print(str(obj))
                                         print(type(obj))
                                         # dictinfo = json.loads(obj)
-                                        fjson = './res/tvlist.json'
+                                        fjson = './boxurl/res/tvlist.json'
                                         with open(fjson, 'r') as f:
                                             content = json.load(f)     
                                                                 
@@ -465,19 +465,19 @@ if(menu == 'uptvbox'):
     tvlist = tvlist.replace(',"jar":"http://freed.yuanhsing.cf/TVBox/MaooXB2/XBiubiuLA4.jar"','')
     #tvlist = tvlist.replace(',"jar":"http://121.46.250.130:8080/ipfs/QmZFDWsm15DiH3WLb2WwgPb136tKPibvMoGKDT41aEpwfa?filename=XBiubiuLA4.jar"','')
     # 我添加
-    tvlist = tvlist.replace(',"jar":"https://raw.githubusercontent.com/MINGERTAI/iurl/main/jar/XBiubiuLA4.jar"','')
+    tvlist = tvlist.replace(',"jar":"https://raw.githubusercontent.com/ne7359/url/main/boxurl/jar/XBiubiuLA4.jar"','')
     tvlist = tvlist.replace(',"jar":"http://iurl.leertai.top/jar/XBiubiuLA4.jar"','')
-    tvlist = tvlist.replace(',"jar":"https://raw.iqiq.io/vpei/Free-TVUrl-Merge/main/res/XBiubiuLA4.PNG"','')
+    tvlist = tvlist.replace(',"jar":"https://raw.githubusercontent.com/ne7359/url/main/boxurl/jar/XBiubiuLA4.PNG"','')
     # 去除重复项目
     # write_json()
     # 将节点更新时间等写入配置文件
     if (boxurl.find('uptime') > -1):
-        LocalFile.write_LocalFile('./res/tvlist.json', boxurl.strip('\r\n'))
+        LocalFile.write_LocalFile('./boxurl/res/tvlist.json', boxurl.strip('\r\n'))
         print('Line-532:TvList.json已更新，共更新网址[' + str(iii) + ']。')
 
-    LocalFile.write_LocalFile('./out/all', tvlist.strip('\r\n'))
-    LocalFile.write_LocalFile('./res/live.txt', alllive)
-    print('Line-535:/res/live.txt已更新。')
+    LocalFile.write_LocalFile('./boxurl/out/all', tvlist.strip('\r\n'))
+    LocalFile.write_LocalFile('./boxurl/res/live.txt', alllive)
+    print('Line-535:/boxurl/res/live.txt已更新。')
 
     # 检测parses url 是否能正常访问
     parses = r_parses.replace(' ','').replace('\r','').replace('\n','').replace('//{','{').strip('{').strip('}')
@@ -497,20 +497,20 @@ if(menu == 'uptvbox'):
                         r_parses += '\r\n' + oneparse + ','
         except Exception as ex:
             LocalFile.write_LogFile('Main-Line-496-Exception:\n' + str(ex) + '\n' + oneparse)
-    LocalFile.write_LocalFile('./res/r_parses.txt', r_parses.strip('\r\n'))
-    print('Line-561:/res/r_parses.txt已更新。')
-    LocalFile.write_LocalFile('./res/r_parses_err.txt', r_parses_err.strip('\r\n'))
-    print('Line-563:/res/r_parses_err.txt已更新。')
+    LocalFile.write_LocalFile('./boxurl/res/r_parses.txt', r_parses.strip('\r\n'))
+    print('Line-561:/boxurl/res/r_parses.txt已更新。')
+    LocalFile.write_LocalFile('./boxurl/res/r_parses_err.txt', r_parses_err.strip('\r\n'))
+    print('Line-563:/boxurl/res/r_parses_err.txt已更新。')
 
 # 下载Node.json中的所有Url订阅链接将其合并，生成本地vpei-new.txt，同步至Github后改名为vpei.txt文件
 if(menu == 'check'):
     try:
-        rename = LocalFile.read_LocalFile('./res/rename.txt').replace('\r','').replace('\n\n','\n')
-        if(os.path.exists('./out/all')):
-            tvbox = LocalFile.read_LocalFile('./out/all').replace('\r','').replace('\n\n','\n')
+        rename = LocalFile.read_LocalFile('./boxurl/res/rename.txt').replace('\r','').replace('\n\n','\n')
+        if(os.path.exists('./boxurl/out/all')):
+            tvbox = LocalFile.read_LocalFile('./boxurl/out/all').replace('\r','').replace('\n\n','\n')
         else:
-            tvbox = LocalFile.read_LocalFile('./res/all').replace('\r','').replace('\n\n','\n')
-        r_sites_err = LocalFile.read_LocalFile("./res/r_sites_err.txt")
+            tvbox = LocalFile.read_LocalFile('./boxurl/res/all').replace('\r','').replace('\n\n','\n')
+        r_sites_err = LocalFile.read_LocalFile("./boxurl/res/r_sites_err.txt")
         addtv = ''
         nsfw = ''
         spare = ''
@@ -582,28 +582,28 @@ if(menu == 'check'):
             except Exception as ex:
                 LocalFile.write_LogFile('Main-Line-614-Exception:' + str(ex) + '\ntvsite:' + j)
         
-        LocalFile.write_LocalFile('./res/r_sites_err.txt', r_sites_err.strip('\r\n'))
-        print('Line-563:/res/r_sites_err.txt已更新。')
+        LocalFile.write_LocalFile('./boxurl/res/r_sites_err.txt', r_sites_err.strip('\r\n'))
+        print('Line-563:/boxurl/res/r_sites_err.txt已更新。')
 
-        r_spider = LocalFile.read_LocalFile("./res/r_spider.txt")
+        r_spider = LocalFile.read_LocalFile("./boxurl/res/r_spider.txt")
         r_spider = '{\r\n//Update:' + str(datetime.datetime.now()) + '\r\n\r\n' + r_spider
-        r_lives = LocalFile.read_LocalFile("./res/r_lives.txt")
-        r_parses = LocalFile.read_LocalFile("./res/r_parses.txt")
+        r_lives = LocalFile.read_LocalFile("./boxurl/res/r_lives.txt")
+        r_parses = LocalFile.read_LocalFile("./boxurl/res/r_parses.txt")
         r_parses = '\r\n\r\n"parses":[\r\n' + r_parses.replace('},\n{','},\r\n{').strip(',') + '\r\n],'
-        r_flags = LocalFile.read_LocalFile("./res/r_flags.txt")
+        r_flags = LocalFile.read_LocalFile("./boxurl/res/r_flags.txt")
         r_flags = '\r\n\r\n' + r_flags
-        r_ijk = LocalFile.read_LocalFile("./res/r_ijk.txt").replace('},{','},\r\n{').replace('[{','[\r\n{')
+        r_ijk = LocalFile.read_LocalFile("./boxurl/res/r_ijk.txt").replace('},{','},\r\n{').replace('[{','[\r\n{')
         r_ijk = '\r\n\r\n' + r_ijk
         r_ijk = r_ijk.replace('\r','').replace('\n','\r\n')
-        r_ads = LocalFile.read_LocalFile("./res/r_ads.txt")
+        r_ads = LocalFile.read_LocalFile("./boxurl/res/r_ads.txt")
         r_ads = '\r\n\r\n' + r_ads + '\r\n}'
 
-        r_pushagent = LocalFile.read_LocalFile("./res/r_pushagent.txt")
+        r_pushagent = LocalFile.read_LocalFile("./boxurl/res/r_pushagent.txt")
 
-        LocalFile.write_LocalFile('./out/tvbox.txt', r_spider + '\r\n\r\n' + r_lives + '\r\n\r\n"sites":[' + addtv + '\r\n' + r_pushagent + '\r\n],'
+        LocalFile.write_LocalFile('./boxurl/out/tvbox.txt', r_spider + '\r\n\r\n' + r_lives + '\r\n\r\n"sites":[' + addtv + '\r\n' + r_pushagent + '\r\n],'
             + r_parses + r_flags + r_ijk + r_ads)
-        LocalFile.write_LocalFile('./out/nsfw.txt', r_spider + '\r\n\r\n' + r_lives + '\r\n\r\n"sites":[' + nsfw + '\r\n' + r_pushagent + '\r\n],'
+        LocalFile.write_LocalFile('./boxurl/out/nsfw.txt', r_spider + '\r\n\r\n' + r_lives + '\r\n\r\n"sites":[' + nsfw + '\r\n' + r_pushagent + '\r\n],'
             + r_parses + r_flags + r_ijk + r_ads)
-        LocalFile.write_LocalFile('./out/all', '"sites":[\r\n//Update:' + str(datetime.datetime.now()) + '\r\n' + addtv + '\r\n' + nsfw + '\r\n' + spare + '\r\n' + r_pushagent + '\r\n],')
+        LocalFile.write_LocalFile('./boxurl/out/all', '"sites":[\r\n//Update:' + str(datetime.datetime.now()) + '\r\n' + addtv + '\r\n' + nsfw + '\r\n' + spare + '\r\n' + r_pushagent + '\r\n],')
     except Exception as ex:
         LocalFile.write_LogFile('Main-Line-623-Exception:' + str(ex))
