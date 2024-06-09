@@ -24,6 +24,9 @@ jobs:
     - name: Run Python script
       run: python ./fan/fan.py
 
+    - name: Run Python script
+      run: python ./fan/fan2.py
+
     - id: check
       name: Check for changes
       run: |
