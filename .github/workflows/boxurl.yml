@@ -55,7 +55,7 @@ jobs:
         env:
           RESURL: ${{ secrets.RESURL }}
         run: |
-          python main.py upexpire
+          python ./boxurl/main.py upexpire
           echo "status=success" >> $GITHUB_OUTPUT
 
       - name: 'Update tvurl from listurl'
@@ -64,7 +64,7 @@ jobs:
           RESURL: ${{ secrets.RESURL }}
         if: steps.upexpire.outputs.status == 'success' && !cancelled()
         run: |
-          python .//boxurl/main.py uptvbox
+          python ./boxurl/main.py uptvbox
           echo "status=success" >> $GITHUB_OUTPUT
 
       - name: '合并 tvurl'
