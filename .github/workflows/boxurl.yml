@@ -1,5 +1,5 @@
 # 设置工作流名称
-name: TvBox-Url
+name: boxurl
 
 # 设置触发工作流的条件
 on:
@@ -47,7 +47,7 @@ jobs:
           #pip install qqwry-py3
           sudo -E apt-get -qq update
           sudo -E apt-get -qq install inetutils-ping
-          pip install -r ./tvurl/res/requirements.txt
+          pip install -r ./boxurl/res/requirements.txt
 
       # 以下为一系列 Python 脚本的运行，并使用环境变量，某些步骤的运行会根据前一个步骤的状态来判断是否需要运行
       - name: '更新过期 Url'
@@ -64,7 +64,7 @@ jobs:
           RESURL: ${{ secrets.RESURL }}
         if: steps.upexpire.outputs.status == 'success' && !cancelled()
         run: |
-          python ./tvurl/main.py uptvbox
+          python .//boxurl/main.py uptvbox
           echo "status=success" >> $GITHUB_OUTPUT
 
       - name: '合并 tvurl'
@@ -73,14 +73,14 @@ jobs:
           RESURL: ${{ secrets.RESURL }}
         if: steps.uptvbox.outputs.status == 'success' && !cancelled()
         run: |
-          python /tvurl/main.py check
+          python ./boxurl/main.py check
           echo "status=success" >> $GITHUB_OUTPUT
 
       - name: '将新文件与旧文件用 MD5 进行比较' # 通过 MD5 检查新旧文件是否有变动，有变动则替换旧文件，并设置输出状态标记
         id: diff
         run: |
-          file1=./out/all
-          file2=./res/all
+          file1=./boxurl/out/all
+          file2=./boxurl/res/all
           dataline1=$(md5sum $file1|cut -d ' ' -f1)
           dataline2=$(md5sum $file2|cut -d ' ' -f1)
           if [ "$dataline1" == "$dataline2" ];then
@@ -109,7 +109,7 @@ jobs:
       - name: 'Commit files first' # 提交新的文件到代码库
         if: steps.diff.outputs.status == 'success' && !cancelled()
         run: |
-          rm -rf ./cls/__pycache__
+          rm -rf ./boxurl/cls/__pycache__
           git config --global user.email actions@github.com
           git config --global user.name "GitHub Actions"
           git pull
