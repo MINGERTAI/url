@@ -47,7 +47,7 @@ jobs:
           #pip install qqwry-py3
           sudo -E apt-get -qq update
           sudo -E apt-get -qq install inetutils-ping
-          pip install -r ./res/requirements.txt
+          pip install -r ./tvurl/res/requirements.txt
 
       # 以下为一系列 Python 脚本的运行，并使用环境变量，某些步骤的运行会根据前一个步骤的状态来判断是否需要运行
       - name: '更新过期 Url'
