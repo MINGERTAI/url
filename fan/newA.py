@@ -66,7 +66,8 @@ def modify_content(content):   # 从这里添加自己的
     
     # Delete lines starting with //
     #content = re.sub(r'//.*\n?', '', content)
-    content = re.sub(r'^\s*//\{"key":.*\n', '', content)
+    content = re.sub(r'^\s*//\{"key":.*\n', '', content, flags=re.MULTILINE)
+    print(content)
 
 def diy_conf(content):
     #content = content.replace('https://fanty.run.goorm.site/ext/js/drpy2.min.js', './fan/JS/lib/drpy2.min.js')
