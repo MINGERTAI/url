@@ -33,7 +33,7 @@ def get_fan_conf():
     url = re.search(r'spider"\:"(.*);md5;', content).group(1)
     content = content.replace(url, './fan/JAR/fan.txt')
     content = diy_conf(content)
-    content = modify_content(content)
+    content = modify_content(content)     # 从这里添加自己的
 
     with open('xo.json', 'w', newline='', encoding='utf-8') as f:
         f.write(content)
@@ -65,9 +65,12 @@ def modify_content(content):   # 从这里添加自己的
     content = re.sub(r'{"key":"豆豆","name":"全接口智能过滤广告",', r'{"key":"豆豆","name":"智能过滤广告",', content)
     
     # Delete lines starting with //
-    #content = re.sub(r'//.*\n?', '', content)
     content = re.sub(r'^\s*//\{"key":.*\n', '', content, flags=re.MULTILINE)
     print(content)
+
+    # 替换"logo"URL
+    new_logo_url = "https://avatars.githubusercontent.com/u/58679624?v=4"
+    content = re.sub(r'"logo":"[^"]+"', f'"logo":"{new_logo_url}"', content)
 
     return content
 
