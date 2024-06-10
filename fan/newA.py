@@ -74,7 +74,8 @@ def modify_content(content):   # 从这里添加自己的
     print(content)
     
     # 删除 //{"key":  整行
-    content = re.sub(r'^\s*"logo":.*\n', content)
+    content = re.sub(r'^\s*"logo":.*\n', '', content, flags=re.MULTILINE)
+    print(content)
 
     # 替换"logo"URL
     #new_logo_url = "https://ghproxy.net/https://raw.githubusercontent.com/ne7359/url/main/fan/AW1.gif"
