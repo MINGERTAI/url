@@ -69,6 +69,8 @@ def modify_content(content):   # 从这里添加自己的
     content = re.sub(r'^\s*//\{"key":.*\n', '', content, flags=re.MULTILINE)
     print(content)
 
+    return content
+
 def diy_conf(content):
     #content = content.replace('https://fanty.run.goorm.site/ext/js/drpy2.min.js', './fan/JS/lib/drpy2.min.js')
     #content = content.replace('公众号【神秘的哥哥们】', '豆瓣')
