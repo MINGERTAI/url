@@ -65,30 +65,8 @@ def modify_content(content):   # 从这里添加自己的
     content = re.sub(r'{"key":"豆豆","name":"全接口智能过滤广告",', r'{"key":"豆豆","name":"智能过滤广告",', content)
     
     # Delete lines starting with //
-    content = re.sub(r'//.*\n?', '', content)
-    
-    # Delete empty lines
-    #content = re.sub(r'\n\s*\n', '\n', content)
-
-    # Delete lines starting with //
-    #content = re.sub(r'"logo": "[^"]+",\n', '', content)
-    
-    # Replace any logo URL with new logo URL
-    old_logo_url_pattern = r'"logo":"https://fs-im-kefu\.7moor-fs1\.com/[^"]+"'
-    new_logo_url = "https://avatars.githubusercontent.com/u/58679624?v=4"
-    content = re.sub(old_logo_url_pattern, f'"logo":"{new_logo_url}"', content)
-    return content
-
-def add_logo_if_not_exists(content):     # 这是检查如果没有logo添加logo 在"spider"行后添加logo
-    # Define the new logo URL
-    new_logo_url = "https://avatars.githubusercontent.com/u/58679624?v=4"
-    # Check if 'logo' line exists
-    if 'logo":' not in content:
-        # Construct the logo line to add
-        logo_line = f'    "logo": "{new_logo_url}",\n'
-        # Insert the logo line after "spider": line
-        content = re.sub(r'("spider": "[^"]+",\n)', fr'\1{logo_line}', content)
-    return content
+    #content = re.sub(r'//.*\n?', '', content)
+    content = re.sub(r'^\s*//\{"key":.*\n', '', content)
 
 def diy_conf(content):
     #content = content.replace('https://fanty.run.goorm.site/ext/js/drpy2.min.js', './fan/JS/lib/drpy2.min.js')
