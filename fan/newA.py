@@ -34,7 +34,6 @@ def get_fan_conf():
     content = content.replace(url, './fan/JAR/fan.txt')
     content = diy_conf(content)           # 从这里diy_conf添加自己的
     content = modify_content(content)     # 从这里diy_conf添加自己的
-    content = add_logo_if_not_exists(content)
 
     with open('xo.json', 'w', newline='', encoding='utf-8') as f:
         f.write(content)
@@ -72,28 +71,13 @@ def modify_content(content):   # 从这里添加自己的
     # 删除 //{"key":  整行
     content = re.sub(r'^\s*//\{"key":.*\n', '', content, flags=re.MULTILINE)
     print(content)
-    
-    # 删除 //{"key":  整行
-    content = re.sub(r'^\s*"logo":.*\n', '', content, flags=re.MULTILINE)
-    print(content)
 
     # 替换"logo"URL
-    #new_logo_url = "https://ghproxy.net/https://raw.githubusercontent.com/ne7359/url/main/fan/AW1.gif"
-    #content = re.sub(r'"logo":"[^"]+"', f'"logo":"{new_logo_url}"', content)
-
-    return content
-
-def add_logo_if_not_exists(content):     # 这是检查如果没有logo添加logo 在"spider"行后添加logo
-    # Define the new logo URL
     new_logo_url = "https://ghproxy.net/https://raw.githubusercontent.com/ne7359/url/main/fan/AW1.gif"
-    # Check if 'logo' line exists
-    if 'logo":' not in content:
-        # Construct the logo line to add
-        logo_line = f'    "logo": "{new_logo_url}",\n'
-        # Insert the logo line after "spider": line
-        content = re.sub(r'("spider": "[^"]+",\n)', fr'\1{logo_line}', content)
-    return content
+    content = re.sub(r'"logo":"[^"]+"', f'"logo":"{new_logo_url}"', content)
 
+    return content
+    
 def diy_conf(content):
     #content = content.replace('https://fanty.run.goorm.site/ext/js/drpy2.min.js', './fan/JS/lib/drpy2.min.js')
     #content = content.replace('公众号【神秘的哥哥们】', '豆瓣')
