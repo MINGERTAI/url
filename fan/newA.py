@@ -33,7 +33,7 @@ def get_fan_conf():
     url = re.search(r'spider"\:"(.*);md5;', content).group(1)
     content = content.replace(url, './fan/JAR/fan.txt')
     content = diy_conf(content)
-    content = modify_content
+    content = modify_content(content)
 
     with open('xo.json', 'w', newline='', encoding='utf-8') as f:
         f.write(content)
