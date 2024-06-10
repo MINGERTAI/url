@@ -28,6 +28,14 @@ with open(replacement_file_path, 'r', encoding='utf-8') as file:
 # 替换 "sites" 部分
 original_data['sites'] = replacement_sites
 
+new_logo_url = "https://ghproxy.net/https://raw.githubusercontent.com/ne7359/url/main/fan/AW1.gif"
+# Check if 'logo' line exists
+if 'logo":' not in content:
+    # Construct the logo line to add
+    logo_line = f'    "logo": "{new_logo_url}",\n'
+    # Insert the logo line after "spider": line
+    content = re.sub(r'("spider": "[^"]+",\n)', fr'\1{logo_line}', content)
+
 # 保存更新后的数据到新文件
 with open(output_file_path, 'w', encoding='utf-8') as file:
     json.dump(original_data, file, ensure_ascii=False, indent=4)
