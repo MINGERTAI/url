@@ -34,7 +34,6 @@ def get_fan_conf():
     content = content.replace(url, './fan/JAR/fan.txt')
     content = diy_conf(content)
     content = modify_content(content)
-    content = add_logo_if_not_exists(content)
 
     with open('xo.json', 'w', newline='', encoding='utf-8') as f:
         f.write(content)
@@ -72,11 +71,12 @@ def modify_content(content):   # 从这里添加自己的
     #content = re.sub(r'\n\s*\n', '\n', content)
 
     # Delete lines starting with //
-    content = re.sub(r'"logo": "[^"]+",\n', '', content)
+    #content = re.sub(r'"logo": "[^"]+",\n', '', content)
     
     # Replace any logo URL with new logo URL
-    #new_logo_url = "https://avatars.githubusercontent.com/u/58679624?v=4"
-    #content = re.sub(r'"logo":"https://fs-im-kefu\.7moor-fs1\.com/[^"]+"', r'"logo":"new_logo_url"', content)
+    old_logo_url_pattern = r'"logo":"https://fs-im-kefu\.7moor-fs1\.com/[^"]+"'
+    new_logo_url = "https://avatars.githubusercontent.com/u/58679624?v=4"
+    content = re.sub(old_logo_url_pattern, f'"logo":"{new_logo_url}"', content)
     return content
 
 def add_logo_if_not_exists(content):     # 这是检查如果没有logo添加logo 在"spider"行后添加logo
