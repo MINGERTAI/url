@@ -9,7 +9,7 @@ def get_fan_conf():
     config = configparser.ConfigParser()
     config.read("fan/config.ini")
 
-    url = 'http://饭太硬.com/tv'
+    url = 'http://xn--z7x900a.com/'
     response = requests.get(url, headers=headers)
     match = re.search(r'[A-Za-z0]{8}\*\*(.*)', response.text)
 
@@ -31,15 +31,15 @@ def get_fan_conf():
 
     content = base64.b64decode(result).decode('utf-8')
     url = re.search(r'spider"\:"(.*);md5;', content).group(1)
-    content = content.replace(url, './fan/JAR/fan.txt')
-    content = diy_conf(content)
+    #content = content.replace(url, './fan/JAR/fan.txt')
+    #content = diy_conf(content)
 
-    with open('xo.json', 'w', newline='', encoding='utf-8') as f:
+    with open('XN.json', 'w', newline='', encoding='utf-8') as f:
         f.write(content)
     # 本地包
-    local_content = local_conf(content)
-    with open('a.json', 'w', newline='', encoding='utf-8') as f:
-        f.write(local_content)
+    #local_content = local_conf(content)
+    #with open('a.json', 'w', newline='', encoding='utf-8') as f:
+        #f.write(local_content)
 
     # Update conf.md5
     config.set("md5", "conf", md5)
