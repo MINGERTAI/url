@@ -64,7 +64,7 @@ def get_fan_conf():
         with open("./fan/JAR/fan.txt", "wb") as f:
             f.write(response.content)
 
-def modify_content(content):   # 从这里添加自己的
+def modify_content(content):   # 更改自定义
     # Replace specified key and name  替换"key":"豆豆","name":"全接口智能过滤广告" 为"key":"豆豆","name":"AI广告过滤"
     content = re.sub(r'{"key":"豆豆","name":"全接口智能过滤广告",', r'{"key":"豆豆","name":"AI广告过滤",', content)
     
