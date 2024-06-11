@@ -98,6 +98,15 @@ def local_myconf(content):                                             # diy 修
     pattern = r'{"key":"88js"(.|\n)*?(?={"key":"dr_兔小贝")'            # 从{"key":"88js"开始到{"key":"dr_兔小贝"之前的所有内容，替换为replacement
     replacement = read_local_file("./fan/res/replace.txt")             # replacement 从而./fan/res/replace.txt 加载内容
     content = re.sub(pattern, replacement, content, flags=re.DOTALL)
+    
+    with open("yourfile.txt", "r") as f:
+        lines = f.readlines()
+
+    with open("yourfile.txt", "w") as f:
+        for line in lines:
+        # 这里使用strip()方法移除每行两端的空白字符（包括换行符）
+            if line.strip():
+                f.write(line)
     return content
 
 def local_conf(content):                                       # diy 修改后，生成a.json  写命令在# 本地包 local_content = local_conf(content)
