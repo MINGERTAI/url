@@ -21,3 +21,7 @@ tvsite:{"key":"PanSearch","name":"盘Se┃搜索","type":3,"api":"csp_PanSearch"
 
 [2024-06-11 11:45:19] Main-Line-614-Exception:must be str, not dict
 tvsite:{"key":"push_agent","name":"手机┃推送","type":3,"api":"csp_Push","searchable":0,"quickSearch":0,"ext": {"aliToken":"tvfan/token.txt","quarkCookie":"tvfan/cookie.txt","from":"4k|auto|fhd"}}
+
+[2024-06-11 12:18:17] Main-Line-496-Exception:
+Expecting ',' delimiter: line 1 column 250 (char 249)
+{"name":"巧技二","type":1,"url":"http://pan.qiaoji8.com/tvbox/gouzi.php?url=","ext":{"flag":["qq","腾讯","qiyi","爱奇艺","奇艺","youku","优酷","sohu","搜狐","letv","乐视","mgtv","芒果","tnmb","seven","bilibili","1905","NetFilx"],"header":{"User-Agent":"okhttp/4.9.1"}
