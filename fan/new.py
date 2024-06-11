@@ -9,7 +9,7 @@ def get_fan_conf():
     config = configparser.ConfigParser()
     config.read("fan/config.ini")
 
-    url = 'http://饭太硬.com/tv'
+    url = 'https://github.com/ne7359/tvurl/blob/main/0826.json'
     response = requests.get(url, headers=headers)
     match = re.search(r'[A-Za-z0]{8}\*\*(.*)', response.text)
 
