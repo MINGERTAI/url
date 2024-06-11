@@ -37,14 +37,18 @@ def get_fan_conf():
 
     with open('xo.json', 'w', newline='', encoding='utf-8') as f:
         f.write(content)
-    # 本地包
+        
+    # DIY添加自定义接口，写入a.json
     local_content = local_conf(content)
     with open('a.json', 'w', newline='', encoding='utf-8') as f:
         f.write(local_content)
-    # 本地包
+        
+    # DIY添加自定义接口，写入b.json
     local_content = local_myconf(content)
-    with open('b.json', 'w', newline='', encoding='utf-8') as f:
-        f.write(local_content)
+    with open('b.json', 'w', encoding='utf-8') as f:
+        for line in local_content.split('\n'):  # 将内容按行分割
+            if line.strip():  # 如果该行非空（移除空白字符后有内容）
+                f.write(line + '\n')  # 将非空行写入到文件中，记得在最后加上 '\n' 以保持原有的行分割
 
     # Update conf.md5
     config.set("md5", "conf", md5)
@@ -64,7 +68,7 @@ def get_fan_conf():
         with open("./fan/JAR/fan.txt", "wb") as f:
             f.write(response.content)
 
-def modify_content(content):   # 从这里添加自己的
+def modify_content(content):   # 更改自定义
     # Replace specified key and name  替换"key":"豆豆","name":"全接口智能过滤广告" 为"key":"豆豆","name":"AI广告过滤"
     content = re.sub(r'{"key":"豆豆","name":"全接口智能过滤广告",', r'{"key":"豆豆","name":"AI广告过滤",', content)
     
@@ -90,10 +94,14 @@ def diy_conf(content):
 
     return content
 
-def local_myconf(content):                                           # diy 修改后，生成b.json  写命令在# 本地包 local_content = local_myconf(content)
-    pattern = r'{"key":"88js"(.|\n)*(?={"key":"dr_兔小贝")'          # 用于删除{"key":"88js"  到"key":"dr_兔小贝"前一行
-    replacement = r'{"key":"量子","name":"量子┃采集","type":0,"api":"https://cj.lziapi.com/api.php/provide/vod/at/xml/","searchable":1,"changeable":1,"categories":["国产动漫","日韩动漫","国产剧","韩国剧","日本剧","综艺片","动漫片","动作片","喜剧片","爱情片","科幻片","恐怖片","剧情片","战争片","台湾剧","香港剧","欧美剧","记录片","海外剧","泰国剧","大陆综艺","港台综艺","日韩综艺","欧美综艺","欧美动漫","港台动漫","海外动漫","体育","足球","篮球","网球","斯诺克"]},\n{"key":"非凡","name":"非凡┃采集","type":0,"api":"http://cj.ffzyapi.com/api.php/provide/vod/at/xml/","searchable":1,"changeable":1,"categories":["国产动漫","日韩动漫","国产剧","韩国剧","日本剧","动漫片","动作片","喜剧片","爱情片","科幻片","恐怖片","剧情片","战争片","香港剧","欧美剧","记录片","台湾剧","海外剧","泰国剧","大陆综艺","港台综艺","日韩综艺","欧美综艺","欧美动漫","港台动漫","海外动漫"]},\n{"key":"haiwaikan","name":"海外看┃采集","type":1,"api":"https://haiwaikan.com/api.php/provide/vod","searchable":1,"changeable":1},\n{"key":"暴風","name":"暴風┃采集","type":1,"api":"https://bfzyapi.com/api.php/provide/vod","searchable":1,"changeable":1},\n{"key":"索尼","name":"索尼┃采集","type":1,"api":"https://suoniapi.com/api.php/provide/vod","searchable":1,"changeable":1},\n{"key":"drpy_js_360影视","name":"官源┃360","type":3,"api":"./fan/JS/lib/drpy2.min.js","ext":"./fan/JS/js/360影视.js"},\n{"key":"drpy_js_奇珍异兽","name":"官源┃爱奇艺","type":3,"api":"./fan/JS/lib/drpy2.min.js","ext":"./fan/JS/js/奇珍异兽.js"},\n{"key":"drpy_js_百忙无果","name":"官源┃芒果","type":3,"api":"./fan/JS/lib/drpy2.min.js","ext":"./fan/JS/js/百忙无果.js"},\n{"key":"drpy_js_腾云驾雾","name":"官源┃腾讯","type":3,"api":"./fan/JS/lib/drpy2.min.js","ext":"./fan/JS/js/腾云驾雾.js"},\n{"key":"drpy_js_菜狗","name":"官源┃搜狗","type":3,"api":"./fan/JS/lib/drpy2.min.js","ext":"./fan/JS/js/菜狗.js"},\n{"key":"drpy_js_优酷","name":"官源┃优酷","type":3,"api":"./fan/JS/lib/drpy2.min.js","ext":"./fan/JS/js/优酷.js"},\n{"key":"Aid","name":"🚑急救┃教学","type":3,"api":"csp_FirstAid","searchable":0,"quickSearch":0,"changeable":0,"style": { "type": "rect", "ratio":3.8}},\n'
-    content = re.sub(pattern, replacement, content)
+def read_local_file(file_path):                                       # 用于加载read_local_file("./fan/res/replace.txt") 函数
+    with open(file_path, 'r', encoding='utf-8') as file:
+        return file.read()
+
+def local_myconf(content):                                             # diy 修改后，生成b.json  写命令在# 本地包 local_content = local_myconf(content)
+    pattern = r'{"key":"88js"(.|\n)*?(?={"key":"dr_兔小贝")'            # 从{"key":"88js"开始到{"key":"dr_兔小贝"之前的所有内容，替换为replacement
+    replacement = read_local_file("./fan/res/replace.txt")             # replacement 从而./fan/res/replace.txt 加载内容
+    content = re.sub(pattern, replacement, content, flags=re.DOTALL)
     return content
 
 def local_conf(content):                                       # diy 修改后，生成a.json  写命令在# 本地包 local_content = local_conf(content)
