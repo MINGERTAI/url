@@ -1,1 +1,2 @@
-"spider":"https://ghproxy.net/https://raw.githubusercontent.com/ne7359/url/main/boxurl/jar/custom.PNG;md5;112dd3396623b4bebbad3ebd67fb2929",
+"spider": "./jar/fan.txt;md5;d8f21fa84abb5ff61d7f1a0b7a78ec26",
+"logo": "https://avatars.githubusercontent.com/u/58679624?v=4",
