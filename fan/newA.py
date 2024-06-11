@@ -74,18 +74,16 @@ def modify_content(content):   # 更改自定义
     
     # 删除 //{"key":  整行
     content = re.sub(r'^\s*//\{"key":.*\n', '', content, flags=re.MULTILINE)
-    print(content)
 
     # 替换"logo"URL
     new_logo_url = "https://ghproxy.net/https://raw.githubusercontent.com/ne7359/url/main/fan/AW1.gif"
     content = re.sub(r'"logo":"[^"]+"', f'"logo":"{new_logo_url}"', content)
-    
+
     # 替换"live"URL
-    original_string = '{"name":"live","type":0,"url":"https://www.huichunniao.cn/xh/lib/live.txt","playerType":1},'
+    original_url = "https://www.huichunniao.cn/xh/lib/live.txt"
     replacement_url = "https://ghproxy.net/https://raw.githubusercontent.com/kimwang1978/collect-tv-txt/main/merged_output.txt"
-    modified_string = original_string.replace("https://www.huichunniao.cn/xh/lib/live.txt", replacement_url)
-    print(modified_string)
-    
+    content = content.replace(original_url, replacement_url)
+
     return content
     
 def diy_conf(content):
