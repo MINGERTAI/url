@@ -9,15 +9,31 @@ def get_fan_conf():
     config = configparser.ConfigParser()
     config.read("fan/config.ini")
 
-    url = 'https://github.com/ne7359/url/blob/main/0825.json/'
+    url = 'http://饭太硬.com/tv'
     response = requests.get(url, headers=headers)
     match = re.search(r'[A-Za-z0]{8}\*\*(.*)', response.text)
 
+    if not match:
+        return
+    result = match.group(1)
+
+    m = hashlib.md5()
+    m.update(result.encode('utf-8'))
+    md5 = m.hexdigest()
+
+    try:
+        old_md5 = config.get("md5", "conf")
+        if md5 == old_md5:
+            print("No update needed")
+            return
+    except:
+        pass
 
     content = base64.b64decode(result).decode('utf-8')
     url = re.search(r'spider"\:"(.*);md5;', content).group(1)
-    #content = content.replace(url, './fan/JAR/fan.txt')
-    #content = diy_conf(content)
+    content = content.replace(url, './fan/JAR/fan.txt')
+    #content = diy_conf(content)           # 从这里diy_conf添加自己的
+    #content = modify_content(content)     # 从这里diy_conf添加自己的
 
     with open('XN.json', 'w', newline='', encoding='utf-8') as f:
         f.write(content)
