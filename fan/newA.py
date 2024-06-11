@@ -69,7 +69,7 @@ def get_fan_conf():
             f.write(response.content)
 
 def modify_content(content):   # 更改自定义
-    # Replace specified key and name  替换"key":"豆豆","name":"全接口智能过滤广告" 为"key":"豆豆","name":"AI广告过滤"
+    # Replace specified key and name  替换"key":"豆豆","name":"全接口智能过滤广告" 为"key":"豆豆","name":"智能AI广告过滤"
     content = re.sub(r'{"key":"豆豆","name":"全接口智能过滤广告",', r'{"key":"豆豆","name":"AI广告过滤",', content)
     
     # 删除 //{"key":  整行
