@@ -94,10 +94,14 @@ def diy_conf(content):
 
     return content
 
+def read_local_file(file_path):
+    with open(file_path, 'r', encoding='utf-8') as file:
+        return file.read()
+
 def local_newconf(content):
-    pattern = r'{"key":"88js"(.|\n)*(?={"key":"dr_兔小贝")'
-    replacement = LocalFile.read_LocalFile("./fan/res/pushagent.txt")
-    content = re.sub(pattern, replacement, content)
+    pattern = r'{"key":"88js"(.|\n)*?(?={"key":"dr_兔小贝")'
+    replacement = read_local_file("./fan/res/pushagent.txt")
+    content = re.sub(pattern, replacement, content, flags=re.DOTALL)
     return content
 
 def local_myconf(content):                                           # diy 修改后，生成b.json  写命令在# 本地包 local_content = local_myconf(content)
