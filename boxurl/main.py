@@ -592,10 +592,10 @@ if(menu == 'check'):
         r_parses = '\r\n\r\n"parses":[\r\n' + r_parses.replace('},\n{','},\r\n{').strip(',') + '\r\n],'
         r_flags = LocalFile.read_LocalFile("./boxurl/res/r_flags.txt")
         r_flags = '\r\n\r\n' + r_flags
-        r_ijk = LocalFile.read_LocalFile("./boxurl/res/r_ijk.txt").replace('},{','},\r\n{').replace('[{','[\r\n{')
+        r_ijk = LocalFile.read_LocalFile("./boxurl/res/r_rules.txt").replace('},{','},\r\n{').replace('[{','[\r\n{')
         r_ijk = '\r\n\r\n' + r_ijk
         r_ijk = r_ijk.replace('\r','').replace('\n','\r\n')
-        r_ads = LocalFile.read_LocalFile("./boxurl/res/r_ads.txt")
+        r_ads = LocalFile.read_LocalFile("./boxurl/res/r_doh.txt")
         r_ads = '\r\n\r\n' + r_ads + '\r\n}'
 
         r_pushagent = LocalFile.read_LocalFile("./boxurl/res/r_pushagent.txt")
