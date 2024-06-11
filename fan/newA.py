@@ -105,8 +105,7 @@ def local_myconf(content):                                             # diy 修
     original_string = '{"name":"live","type":0,"url":"https://www.huichunniao.cn/xh/lib/live.txt","playerType":1},'
     replacement_url = "https://ghproxy.net/https://raw.githubusercontent.com/kimwang1978/collect-tv-txt/main/merged_output.txt"
     modified_string = original_string.replace("https://www.huichunniao.cn/xh/lib/live.txt", replacement_url)
-
-print(modified_string)
+    print(modified_string)
     return content
 
 def local_conf(content):                                       # diy 修改后，生成a.json  写命令在# 本地包 local_content = local_conf(content)
