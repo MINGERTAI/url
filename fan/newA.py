@@ -103,7 +103,7 @@ def local_myconf(content):                                             # diy 修
     replacement = read_local_file("./fan/res/replace.txt")             # replacement 从而./fan/res/replace.txt 加载内容
     content = re.sub(pattern, replacement, content, flags=re.DOTALL)
     original_string = '{"name":"live","type":0,"url":"https://www.huichunniao.cn/xh/lib/live.txt","playerType":1},'
-    replacement_url = "https://raw.githubusercontent.com/kimwang1978/collect-tv-txt/main/merged_output.txt"
+    replacement_url = "https://ghproxy.net/https://raw.githubusercontent.com/kimwang1978/collect-tv-txt/main/merged_output.txt"
     modified_string = original_string.replace("https://www.huichunniao.cn/xh/lib/live.txt", replacement_url)
 
 print(modified_string)
