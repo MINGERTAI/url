@@ -46,6 +46,10 @@ def get_fan_conf():
     with open('b.json', 'w', newline='', encoding='utf-8') as f:
         f.write(local_content)
 
+    local_content = local_newconf(content)
+    with open('c.json', 'w', newline='', encoding='utf-8') as f:
+        f.write(local_content)
+
     # Update conf.md5
     config.set("md5", "conf", md5)
     with open("fan/config.ini", "w") as f:
@@ -88,6 +92,12 @@ def diy_conf(content):
     replacement = ''
     content = re.sub(pattern, replacement, content)
 
+    return content
+
+def local_newconf(content):
+    pattern = r'{"key":"88js"(.|\n)*(?={"key":"dr_兔小贝")'
+    replacement = ocalFile.read_LocalFile("./fan/res/pushagent.txt")
+    content = re.sub(pattern, replacement, content)
     return content
 
 def local_myconf(content):                                           # diy 修改后，生成b.json  写命令在# 本地包 local_content = local_myconf(content)
