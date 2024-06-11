@@ -1,6 +1,4 @@
 "sites":[
-//Update:2024-06-11 11:45:31.814229
-
 {"key":"豆豆","name":"豆瓣┃搜索","type": 3, "api": "csp_DouDou","searchable": 0,"quickSearch": 0,"filterable": 0},
 {"key":"csp_YGP","name":"预告片┃新片","type":3,"api":"csp_YGP","searchable":1,"quickSearch":1,"changeable":0},
 {"key":"csp_Aid","name":"急救┃指南","type":3,"api":"csp_FirstAid","searchable":1,"quickSearch":1,"changeable":0,"style": { "type": "rect", "ratio":3.8}},
@@ -31,8 +29,5 @@
 {"key":"haiwaikan","name":"海外看┃采集","type":1,"api":"https://haiwaikan.com/api.php/provide/vod","searchable":1,"changeable":1},
 {"key":"暴風","name":"暴風┃采集","type":1,"api":"https://bfzyapi.com/api.php/provide/vod","searchable":1,"changeable":1},
 {"key":"索尼","name":"索尼┃采集","type":1,"api":"https://suoniapi.com/api.php/provide/vod","searchable":1,"changeable":1},
-
-
 {"key":"新6V","name":"新6V磁力┃慎用","type":3,"api":"csp_SixV","searchable":1,"quickSearch":1,"changeable":0,"ext": "http://www.xb6v.com/","timeout":60},
-
 ],
