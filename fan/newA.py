@@ -96,7 +96,7 @@ def diy_conf(content):
 
 def local_newconf(content):
     pattern = r'{"key":"88js"(.|\n)*(?={"key":"dr_兔小贝")'
-    replacement = ocalFile.read_LocalFile("./fan/res/pushagent.txt")
+    replacement = LocalFile.read_LocalFile("./fan/res/pushagent.txt")
     content = re.sub(pattern, replacement, content)
     return content
 
