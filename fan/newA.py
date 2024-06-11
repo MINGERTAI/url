@@ -102,6 +102,11 @@ def local_myconf(content):                                             # diy 修
     pattern = r'{"key":"88js"(.|\n)*?(?={"key":"dr_兔小贝")'            # 从{"key":"88js"开始到{"key":"dr_兔小贝"之前的所有内容，替换为replacement
     replacement = read_local_file("./fan/res/replace.txt")             # replacement 从而./fan/res/replace.txt 加载内容
     content = re.sub(pattern, replacement, content, flags=re.DOTALL)
+    original_string = '{"name":"live","type":0,"url":"https://www.huichunniao.cn/xh/lib/live.txt","playerType":1},'
+    replacement_url = "https://raw.githubusercontent.com/kimwang1978/collect-tv-txt/main/merged_output.txt"
+    modified_string = original_string.replace("https://www.huichunniao.cn/xh/lib/live.txt", replacement_url)
+
+print(modified_string)
     return content
 
 def local_conf(content):                                       # diy 修改后，生成a.json  写命令在# 本地包 local_content = local_conf(content)
