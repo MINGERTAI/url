@@ -37,14 +37,18 @@ def get_fan_conf():
 
     with open('xo.json', 'w', newline='', encoding='utf-8') as f:
         f.write(content)
+        
     # DIY添加自定义接口，写入a.json
     local_content = local_conf(content)
     with open('a.json', 'w', newline='', encoding='utf-8') as f:
         f.write(local_content)
+        
     # DIY添加自定义接口，写入b.json
     local_content = local_myconf(content)
-    with open('b.json', 'w', newline='', encoding='utf-8') as f:
-        f.write(local_content)
+    with open('b.json', 'w', encoding='utf-8') as f:
+        for line in local_content.split('\n'):  # 将内容按行分割
+            if line.strip():  # 如果该行非空（移除空白字符后有内容）
+                f.write(line + '\n')  # 将非空行写入到文件中，记得在最后加上 '\n' 以保持原有的行分割
 
     # Update conf.md5
     config.set("md5", "conf", md5)
@@ -98,15 +102,6 @@ def local_myconf(content):                                             # diy 修
     pattern = r'{"key":"88js"(.|\n)*?(?={"key":"dr_兔小贝")'            # 从{"key":"88js"开始到{"key":"dr_兔小贝"之前的所有内容，替换为replacement
     replacement = read_local_file("./fan/res/replace.txt")             # replacement 从而./fan/res/replace.txt 加载内容
     content = re.sub(pattern, replacement, content, flags=re.DOTALL)
-    
-    with open("yourfile.txt", "r") as f:
-        lines = f.readlines()
-
-    with open("yourfile.txt", "w") as f:
-        for line in lines:
-        # 这里使用strip()方法移除每行两端的空白字符（包括换行符）
-            if line.strip():
-                f.write(line)
     return content
 
 def local_conf(content):                                       # diy 修改后，生成a.json  写命令在# 本地包 local_content = local_conf(content)
