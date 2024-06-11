@@ -44,7 +44,7 @@
 {"key":"泥巴","name":"泥巴","type":3,"api":"csp_NiNi","searchable":1,"changeable":1},
 {"key":"星星","name":"星星","type":3,"api":"csp_Star","searchable":1,"changeable":1},
 {"key":"影视","name":"影视","type":3,"api":"csp_YingShi","searchable":1,"changeable":1},
-{"key":"櫻花","name":"櫻花","type":3,"api":"csp_Ying","searchable":1,"changeable":1},
+{"key":"櫻花","name":"櫻花","type":3,"api":"csp_Ying","searchable":1,"changeable":1}
 
 ],
 
