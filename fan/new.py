@@ -13,21 +13,6 @@ def get_fan_conf():
     response = requests.get(url, headers=headers)
     match = re.search(r'[A-Za-z0]{8}\*\*(.*)', response.text)
 
-    if not match:
-        return
-    result = match.group(1)
-
-    m = hashlib.md5()
-    m.update(result.encode('utf-8'))
-    md5 = m.hexdigest()
-
-    try:
-        old_md5 = config.get("md5", "conf")
-        if md5 == old_md5:
-            print("No update needed")
-            return
-    except:
-        pass
 
     content = base64.b64decode(result).decode('utf-8')
     url = re.search(r'spider"\:"(.*);md5;', content).group(1)
