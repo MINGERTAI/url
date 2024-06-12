@@ -98,7 +98,7 @@ def diy_conf(content):
 
     return content
 
-def read_local_file(file_path):                                       # 用于加载read_local_file("./fan/res/replace.txt") 函数
+def read_local_file(file_path):   # 用于加载read_local_file("./fan/res/replace.txt") 函数
     with open(file_path, 'r', encoding='utf-8') as file:
         return file.read()
 
@@ -109,6 +109,9 @@ def local_myconf(content):
     pattern = r'{"key":"88js"(.|\n)*?(?={"key":"dr_兔小贝")'
     replacement = read_local_file("./fan/res/replace.txt")
     content = re.sub(pattern, replacement, content, flags=re.DOTALL)
+    pattern = r'{"key":"cc"(.)*\n'
+    replacement = r'{"key":"cc","name":"请勿相信视频中广告","type":3,"api":"./fan/JS/lib/drpy2.min.js","ext":"./fan/JS/js/drpy.js"}\n'
+    content = re.sub(pattern, replacement, content)
     # 查找并添加新内容
     lines = content.split('\n')
     new_lines = []
