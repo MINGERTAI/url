@@ -110,6 +110,20 @@ def local_myconf(content):                                             # diy 修
     replacement = read_local_file("./fan/res/replace.txt")             # replacement 从而./fan/res/replace.txt 加载内容
     content = re.sub(pattern, replacement, content, flags=re.DOTALL)
     return content
+def append_after_logo_http(content):
+    # 从文件加载要添加的新内容
+    new_content = read_local_file("./fan/res/parses_flags_rules.txt")
+    # 将内容按行分割
+    lines = content.split('\n')
+    new_lines = []
+    for line in lines:
+        new_lines.append(line)
+        # 查找包含"logo":"http的行
+        if '"logo":"http' in line:
+            # 在该行之后添加新内容
+            new_lines.append(new_content)
+    # 将修改后的行合并成一个字符串
+    return '\n'.join(new_lines)
 
 def local_conf(content):                                       # diy 修改后，生成a.json  写命令在# 本地包 local_content = local_conf(content)
     pattern = r'{"key":"88js"(.|\n)*(?={"key":"YiSo")'         # 用于删除{"key":"88js"  到"key":"YiSo"前一行
