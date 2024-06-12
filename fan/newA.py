@@ -33,6 +33,7 @@ def get_fan_conf():
     url = re.search(r'spider"\:"(.*);md5;', content).group(1)
     content = content.replace(url, './fan/JAR/fan.txt')
     content = diy_conf(content)             # 这里添加diy_conf
+    content = modify_content(content)
 
     with open('xo.json', 'w', newline='', encoding='utf-8') as f:
         f.write(content)
@@ -66,6 +67,23 @@ def get_fan_conf():
         response = requests.get(url)
         with open("./fan/JAR/fan.txt", "wb") as f:
             f.write(response.content)
+
+def modify_content(content):   # 更改自定义
+    # Replace specified key and name  替换"key":"豆豆","name":"全接口智能过滤广告" 为"key":"豆豆","name":"智能AI广告过滤"
+    content = re.sub(r'{"key":"豆豆","name":"全接口智能过滤广告",', r'{"key":"豆豆","name":"智能AI广告过滤",', content)
+    
+    # 删除 //{"key":  整行
+    content = re.sub(r'^\s*//\{"key":.*\n', '', content, flags=re.MULTILINE)
+
+    # 替换"logo"URL
+    new_logo_url = "https://ghproxy.net/https://raw.githubusercontent.com/ne7359/url/main/fan/AW1.gif"
+    content = re.sub(r'"logo":"[^"]+"', f'"logo":"{new_logo_url}"', content)
+
+    # 替换"live"URL
+    original_url = "https://www.huichunniao.cn/xh/lib/live.txt"
+    replacement_url = "https://ghproxy.net/https://raw.githubusercontent.com/kimwang1978/collect-tv-txt/main/merged_output.txt"
+    content = content.replace(original_url, replacement_url)
+    return content
     
 def diy_conf(content):
     #content = content.replace('https://fanty.run.goorm.site/ext/js/drpy2.min.js', './fan/JS/lib/drpy2.min.js')
@@ -103,23 +121,6 @@ def local_myconf(content):
             # 在找到的行之后添加新内容
             new_lines.append(new_content)
     return '\n'.join(new_lines)
-
-def modify_content(content):   # 更改自定义
-    # Replace specified key and name  替换"key":"豆豆","name":"全接口智能过滤广告" 为"key":"豆豆","name":"智能AI广告过滤"
-    content = re.sub(r'{"key":"豆豆","name":"全接口智能过滤广告",', r'{"key":"豆豆","name":"智能AI广告过滤",', content)
-    
-    # 删除 //{"key":  整行
-    content = re.sub(r'^\s*//\{"key":.*\n', '', content, flags=re.MULTILINE)
-
-    # 替换"logo"URL
-    new_logo_url = "https://ghproxy.net/https://raw.githubusercontent.com/ne7359/url/main/fan/AW1.gif"
-    content = re.sub(r'"logo":"[^"]+"', f'"logo":"{new_logo_url}"', content)
-
-    # 替换"live"URL
-    original_url = "https://www.huichunniao.cn/xh/lib/live.txt"
-    replacement_url = "https://ghproxy.net/https://raw.githubusercontent.com/kimwang1978/collect-tv-txt/main/merged_output.txt"
-    content = content.replace(original_url, replacement_url)
-    return content
 
 def local_conf(content):                                       # diy 修改后，生成a.json  写命令在# 本地包 local_content = local_conf(content)
     pattern = r'{"key":"88js"(.|\n)*(?={"key":"YiSo")'         # 用于删除{"key":"88js"  到"key":"YiSo"前一行
