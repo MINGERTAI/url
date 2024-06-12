@@ -105,10 +105,11 @@ def read_local_file(file_path):   # 用于加载read_local_file("./fan/res/repla
 def local_myconf(content):
     # 从文件加载要添加的新内容
     new_content = read_local_file("./fan/res/parses_flags_rules.txt")
-    # 替换指定模式的内容
+    # 替换指定模式的内容，从{"key":"88js"到{"key":"dr_兔小贝"前的内容
     pattern = r'{"key":"88js"(.|\n)*?(?={"key":"dr_兔小贝")'
     replacement = read_local_file("./fan/res/replace.txt")
     content = re.sub(pattern, replacement, content, flags=re.DOTALL)
+    # 替换指定{"key":"cc"行内容
     pattern = r'{"key":"cc"(.)*\n'
     replacement = r'{"key":"cc","name":"请勿相信视频中广告","type":3,"api":"./fan/JS/lib/drpy2.min.js","ext":"./fan/JS/js/drpy.js"}\n'
     content = re.sub(pattern, replacement, content)
