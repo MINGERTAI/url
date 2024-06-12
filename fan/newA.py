@@ -34,6 +34,7 @@ def get_fan_conf():
     content = content.replace(url, './fan/JAR/fan.txt')
     content = diy_conf(content)           # 从这里diy_conf添加自己的
     content = modify_content(content)     # 从这里diy_conf添加自己的
+    content = append_after_logo_http(content)
 
     with open('xo.json', 'w', newline='', encoding='utf-8') as f:
         f.write(content)
