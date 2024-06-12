@@ -33,9 +33,7 @@ def get_fan_conf():
     url = re.search(r'spider"\:"(.*);md5;', content).group(1)
     content = content.replace(url, './fan/JAR/fan.txt')
     content = diy_conf(content)             # 从这里diy_conf添加自己的
-    content = local_newmyconf(content)      # 使用新的加入查找"logo":"http在行后添加parses_flags_rules.txt
-    # content = modify_content(content)     # 不运行
-    # content = append_after_logo_http(content)  #不运行全局添加parses_flags_rules.txt
+    content = modify_content(content)
 
     with open('xo.json', 'w', newline='', encoding='utf-8') as f:
         f.write(content)
@@ -104,7 +102,7 @@ def read_local_file(file_path):                                       # 用于�
     with open(file_path, 'r', encoding='utf-8') as file:
         return file.read()
 
-def local_newmyconf(content):
+def local_myconf(content):
     # 从文件加载要添加的新内容
     new_content = read_local_file("./fan/res/parses_flags_rules.txt")
     # 替换指定模式的内容
@@ -120,27 +118,7 @@ def local_newmyconf(content):
             # 在找到的行之后添加新内容
             new_lines.append(new_content)
     return '\n'.join(new_lines)
-####
-def local_myconf(content):                                             # diy 修改后，生成b.json  写命令在# 本地包 local_content = local_myconf(content)
-    pattern = r'{"key":"88js"(.|\n)*?(?={"key":"dr_兔小贝")'            # 从{"key":"88js"开始到{"key":"dr_兔小贝"之前的所有内容，替换为replacement
-    replacement = read_local_file("./fan/res/replace.txt")             # replacement 从而./fan/res/replace.txt 加载内容
-    content = re.sub(pattern, replacement, content, flags=re.DOTALL)
-    return content
-def append_after_logo_http(content):
-    print("开始添加新内容。")  # 打印确认信息
-    new_content = read_local_file("./fan/res/parses_flags_rules.txt")
-    lines = content.split('\n')
-    new_lines = []
-    found_logo_http = False  # 用于跟踪是否找到符合条件的行
-    for line in lines:
-        new_lines.append(line)
-        if '"logo":"http' in line:
-            found_logo_http = True
-            new_lines.append(new_content)
-            print("已添加新内容。")  # 打印确认信息
-    print(f"查找'\"logo\":\"http'的行：{'找到并处理' if found_logo_http else '未找到'}。")  # 打印是否找到的结果
-    return '\n'.join(new_lines)
-####
+
 def local_conf(content):                                       # diy 修改后，生成a.json  写命令在# 本地包 local_content = local_conf(content)
     pattern = r'{"key":"88js"(.|\n)*(?={"key":"YiSo")'         # 用于删除{"key":"88js"  到"key":"YiSo"前一行
     replacement = r'{"key":"drpy_js_爱看","name":"影视 | 爱看[js]","type":3,"api":"./fan/JS/lib/drpy2.min.js","ext":"./fan/JS/js/爱看.js"},\n{"key":"drpy_js_美剧网","name":"影视 | 美剧网[js]","type":3,"api":"./fan/JS/lib/drpy2.min.js","ext":"./fan/JS/js/美剧网.js"},\n{"key":"百度","name":"百度┃采集","type":1,"api":"https://api.apibdzy.com/api.php/provide/vod?ac=list","searchable":1,"filterable":0},\n{"key":"量子","name":"量子┃采集","type":0,"api":"https://cj.lziapi.com/api.php/provide/vod/at/xml/","searchable":1,"changeable":1},\n{"key":"非凡","name":"非凡┃采集","type":0,"api":"http://cj.ffzyapi.com/api.php/provide/vod/at/xml/","searchable":1,"changeable":1},\n{"key":"暴風","name":"暴風┃采集","type":1,"api":"https://bfzyapi.com/api.php/provide/vod/?ac=list","searchable":1,"changeable":1},\n{"key":"yaya","name":"鸭鸭┃App","type":3,"api":"csp_AppYsV2","searchable":1,"quickSearch":1,"ext":"https://yayayaaapp.ynf.icu/api.php/app/"},\n{"key":"tiantang","name":"天堂┃App","type":3,"api":"csp_AppYsV2","searchable":1,"quickSearch":1,"ext":"http://dytt996.com/api.php/app/"},\n{"key":"探探","name":"探探","type":3,"api":"csp_AppYsV2","searchable":1,"quickSearch":1,"filterable":1,"ext":"http://ytcms.lyyytv.cn/api.php/app/"},\n{"key":"明帝","name":"明帝","type":3,"api":"csp_AppYsV2","searchable":1,"quickSearch":1,"filterable":1,"ext":"https://ys.md214.cn/api.php/app/"},\n'
