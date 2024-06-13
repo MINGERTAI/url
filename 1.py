@@ -1,4 +1,5 @@
 import requests
+import json  # 确保导入json模块
 
 def save_website_content_as_json(url, file_name):
     headers = {'User-Agent': 'okhttp/3.15'}
@@ -14,7 +15,7 @@ def save_website_content_as_json(url, file_name):
                 data = response.json()
                 # 如果成功，以JSON格式保存
                 with open(file_name + '.json', 'w', encoding='utf-8') as file:
-                    file.write(json.dumps(data, indent=4, ensure_ascii=False))
+                    json.dump(data, file, indent=4, ensure_ascii=False)
                 print(f"数据已以JSON格式保存到{file_name}.json")
             except ValueError:
                 # 如果响应内容不是有效的JSON格式，保存为文本文件
