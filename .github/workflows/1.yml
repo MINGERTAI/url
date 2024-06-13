@@ -1,4 +1,4 @@
-name: Fetch Fan
+name: 1
 
 on:
   workflow_dispatch:
