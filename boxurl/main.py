@@ -330,7 +330,7 @@ if(menu == 'uptvbox'):
             osite_upmd5 = osite['upmd5']
             osite_tvurl = osite['tvurl']
             osite_size = osite['size']
-        osite_tvurl = 'http://vpei.vmess.com/368a78117708e614f481b0f9ecb5642d.txt'
+        # osite_tvurl = 'http://vpei.vmess.com/368a78117708e614f481b0f9ecb5642d.txt'   取消vpn检测
         if(boxurl.find(osite_tvurl) == -1):
             try:
                 newboxurl = osite_tvurl.replace('<yyyy>', datetime.datetime.now().strftime('%Y'))
