@@ -1,5 +1,5 @@
 {
-//Update:2024-06-13 12:57:25.237224
+//Update:2024-06-13 13:01:01.583976
 "spider": "./fan/JAR/fan.txt;md5;d8f21fa84abb5ff61d7f1a0b7a78ec26",
 "logo": "https://ghproxy.net/https://raw.githubusercontent.com/ne7359/url/main/fan/AW1.gif",
 
@@ -52,7 +52,6 @@
 {"key":"drpy_js_评书随身听","name":"评书┃评书随身听[js]","type":3,"api":"./fan/JS/lib/drpy2.min.js","changeable":0,"ext":"./fan/JS/js/评书随身听.js"},
 {"key":"drpy_js_相声随身听","name":"相声┃相声随身听[js]","type":3,"api":"./fan/JS/lib/drpy2.min.js","changeable":0,"ext":"./fan/JS/js/相声随身听.js"},
 {"key":"drpy_js_DJ音乐","name":"音频┃DJ音乐[js]","type":3,"api":"./fan/JS/lib/drpy2.min.js","changeable":0,"ext":"./fan/JS/js/DJ音乐.js"}
-
 ],
 
 "parses":[

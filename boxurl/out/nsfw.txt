@@ -1,5 +1,5 @@
 {
-//Update:2024-06-13 12:57:25.237224
+//Update:2024-06-13 13:01:01.583976
 "spider": "./fan/JAR/fan.txt;md5;d8f21fa84abb5ff61d7f1a0b7a78ec26",
 "logo": "https://ghproxy.net/https://raw.githubusercontent.com/ne7359/url/main/fan/AW1.gif",
 
