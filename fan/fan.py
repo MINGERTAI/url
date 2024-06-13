@@ -9,7 +9,7 @@ def get_fan_conf():
     config = configparser.ConfigParser()
     config.read("fan/config.ini")
 
-    url = 'http://饭太硬.com/tv'
+    url = 'http://lige.unaux.com/?url=http://%E8%82%A5%E7%8C%AB.com&i=1'
     response = requests.get(url, headers=headers)
     match = re.search(r'[A-Za-z0]{8}\*\*(.*)', response.text)
 
