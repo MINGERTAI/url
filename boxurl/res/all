@@ -1,5 +1,5 @@
 "sites":[
-//Update:2024-06-13 09:47:56.461980
+//Update:2024-06-13 10:01:06.110428
 
 {"key":"豆豆","name":"豆瓣┃搜索","type": 3, "api": "csp_DouDou","searchable": 0,"quickSearch": 0,"filterable": 0},
 {"key":"csp_YGP","name":"预告片┃新片","type":3,"api":"csp_YGP","searchable":1,"quickSearch":1,"changeable":0},
