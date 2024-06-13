@@ -67,23 +67,6 @@ def modify_content(content):   # 更改自定义
     
     # 删除 //{"key":  整行
     content = re.sub(r'^\s*//\{"key":.*\n', '', content, flags=re.MULTILINE)
-
-    # 尝试解析修改后的字符串为Python字典
-    try:
-        data = json.loads(content)
-    except json.JSONDecodeError as e:
-        print(f"解析JSON时出错：{e}")
-        return
-
-    # 删除 "lives" 键及其所有内容
-    if "lives" in data:
-        del data["lives"]
-
-    # 将修改后的字典转换回JSON字符串
-    modified_json_content = json.dumps(data, indent=4)
-
-    # 返回修改后的JSON字符串
-    return modified_json_content
     
 def diy_conf(content):
     #content = content.replace('https://fanty.run.goorm.site/ext/js/drpy2.min.js', './fan/JS/lib/drpy2.min.js')
@@ -103,11 +86,13 @@ def read_local_file(file_path):   # 用于加载read_local_file("./fan/res/repla
 
 def local_myconf(content):
     # 从文件加载要添加的新内容
-    lives_content = read_local_file("./fan/res/lives.txt")
     new_content = read_local_file("./fan/res/parses_flags_rules.txt")
     # 替换指定模式的内容，从{"key":"88js"到{"key":"dr_兔小贝"前的内容
     pattern = r'{"key":"88js"(.|\n)*?(?={"key":"dr_兔小贝")'
     replacement = read_local_file("./fan/res/replace.txt")
+    content = re.sub(pattern, replacement, content, flags=re.DOTALL)
+    pattern = r'{"name":"live","type"(.)*\n'
+    replacement = read_local_file("./fan/res/lives.txt")
     content = re.sub(pattern, replacement, content, flags=re.DOTALL)
     # 替换指定{"key":"cc"行内容
     pattern = r'{"key":"cc"(.)*\n'
