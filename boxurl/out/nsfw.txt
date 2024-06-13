@@ -1,5 +1,5 @@
 {
-//Update:2024-06-13 18:30:08.476196
+//Update:2024-06-13 18:44:59.979755
 "spider": "./fan/JAR/fan.txt;md5;d8f21fa84abb5ff61d7f1a0b7a78ec26",
 "logo": "https://ghproxy.net/https://raw.githubusercontent.com/ne7359/url/main/fan/AW1.gif",
 "wallpaper":"http://api.btstu.cn/sjbz/?lx=meizi/",
