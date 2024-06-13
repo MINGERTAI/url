@@ -91,7 +91,7 @@ def local_myconf(content):
     replacement = read_local_file("./fan/res/replace.txt")
     content = re.sub(pattern, replacement, content, flags=re.DOTALL)
     pattern = r'{"name":"live"(.)*\n'
-    replacement = read_local_file("./fan/res/lives.txt")
+    replacement = ''
     content = re.sub(pattern, replacement, content, flags=re.DOTALL)
     # 替换指定{"key":"cc"行内容
     pattern = r'{"key":"cc"(.)*\n'
