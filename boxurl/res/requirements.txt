@@ -1,7 +1,7 @@
 geoip2
 requests
-PyYAML
 wheel
+PyYAML
 qqwry-py3
 tcping
 ping3
