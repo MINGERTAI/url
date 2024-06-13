@@ -600,11 +600,11 @@ if(menu == 'check'):
 
         r_pushagent = LocalFile.read_LocalFile("./boxurl/res/r_pushagent.txt")
 
-        LocalFile.write_LocalFile('./boxurl/out/tvbox.json', r_spider + '\r\n' + r_lives + '\r\n"sites":[' + addtv + '\r\n' + r_pushagent + '],'
+        LocalFile.write_LocalFile('./tvbox.json', r_spider + '\r\n' + r_lives + '\r\n"sites":[' + addtv + '\r\n' + r_pushagent + '],'
             + r_parses + r_flags + r_rules + r_doh)
 
-        #LocalFile.write_LocalFile('./boxurl/out/tvbox.json', r_spider + '\r\n\r\n' + r_lives + '\r\n\r\n"sites":[' + addtv + '\r\n' + r_pushagent + '\r\n],'
-            #+ r_parses + r_flags + r_rules + r_doh)
+        LocalFile.write_LocalFile('./boxurl/out/tvbox.json', r_spider + '\r\n\r\n' + r_lives + '\r\n\r\n"sites":[' + addtv + '\r\n' + r_pushagent + '\r\n],'
+            + r_parses + r_flags + r_rules + r_doh)
         LocalFile.write_LocalFile('./boxurl/out/nsfw.txt', r_spider + '\r\n\r\n' + r_lives + '\r\n\r\n"sites":[' + nsfw + '\r\n' + r_pushagent + '\r\n],'
             + r_parses + r_flags + r_rules + r_doh)
         LocalFile.write_LocalFile('./boxurl/out/all', '"sites":[\r\n//Update:' + str(datetime.datetime.now()) + '\r\n' + addtv + '\r\n' + nsfw + '\r\n' + spare + '\r\n' + r_pushagent + '\r\n],')
