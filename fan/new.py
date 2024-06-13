@@ -81,7 +81,7 @@ def modify_content(content):   # 更改自定义
 
     # 替换"live"URL
     original_url = "https://www.huichunniao.cn/xh/lib/live.txt"
-    replacement_url = "https://ghproxy.net/https://raw.githubusercontent.com/kimwang1978/collect-tv-txt/main/merged_output.txt"
+    replacement_url = "https://fs-im-kefu.7moor-fs1.com/ly/4d2c3f00-7d4c-11e5-af15-41bf63ae4ea0/1715581924111/live1.txt"
     content = content.replace(original_url, replacement_url)
 
     return content
