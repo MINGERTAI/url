@@ -1,5 +1,5 @@
 {
-//Update:2024-06-11 13:52:38.742524
+//Update:2024-06-13 09:47:56.461597
 
 "spider": "./fan/JAR/fan.txt;md5;d8f21fa84abb5ff61d7f1a0b7a78ec26",
 "logo": "https://ghproxy.net/https://raw.githubusercontent.com/ne7359/url/main/fan/AW1.gif",
@@ -12,7 +12,7 @@
 {"key":"泥巴","name":"泥巴","type":3,"api":"csp_NiNi","searchable":1,"changeable":1},
 {"key":"星星","name":"星星","type":3,"api":"csp_Star","searchable":1,"changeable":1},
 {"key":"影视","name":"影视","type":3,"api":"csp_YingShi","searchable":1,"changeable":1},
-{"key":"櫻花","name":"櫻花","type":3,"api":"csp_Ying","searchable":1,"changeable":1},
+{"key":"櫻花","name":"櫻花","type":3,"api":"csp_Ying","searchable":1,"changeable":1}
 
 ],
 
