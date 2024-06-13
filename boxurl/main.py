@@ -586,12 +586,12 @@ if(menu == 'check'):
         print('Line-563:/boxurl/res/r_sites_err.txt已更新。')
 
         r_spider = LocalFile.read_LocalFile("./boxurl/res/r_spider.txt")
-        r_spider = '{\r\n//Update:' + str(datetime.datetime.now()) + '\r\n\r\n' + r_spider
+        r_spider = '{\r\n//Update:' + str(datetime.datetime.now()) + '\r\n' + r_spider
         r_lives = LocalFile.read_LocalFile("./boxurl/res/r_lives.txt")
         r_parses = LocalFile.read_LocalFile("./boxurl/res/r_parses.txt")
-        r_parses = '\r\n"parses":[\r\n' + r_parses.replace('},\n{','},\r\n{').strip(',') + '\r\n],'
+        r_parses = '\r\n\r\n"parses":[\r\n' + r_parses.replace('},\n{','},\r\n{').strip(',') + '\r\n],'
         r_flags = LocalFile.read_LocalFile("./boxurl/res/r_flags.txt")
-        r_flags = '\r\n' + r_flags
+        r_flags = '\r\n\r\n' + r_flags
         r_rules = LocalFile.read_LocalFile("./boxurl/res/r_rules.txt").replace('},{','},\r\n{').replace('[{','[\r\n{')
         r_rules = '\r\n' + r_rules
         r_rules = r_rules.replace('\r','').replace('\n','\r\n')
