@@ -589,19 +589,22 @@ if(menu == 'check'):
         r_spider = '{\r\n//Update:' + str(datetime.datetime.now()) + '\r\n\r\n' + r_spider
         r_lives = LocalFile.read_LocalFile("./boxurl/res/r_lives.txt")
         r_parses = LocalFile.read_LocalFile("./boxurl/res/r_parses.txt")
-        r_parses = '\r\n\r\n"parses":[\r\n' + r_parses.replace('},\n{','},\r\n{').strip(',') + '\r\n],'
+        r_parses = '\r\n"parses":[\r\n' + r_parses.replace('},\n{','},\r\n{').strip(',') + '\r\n],'
         r_flags = LocalFile.read_LocalFile("./boxurl/res/r_flags.txt")
-        r_flags = '\r\n\r\n' + r_flags
+        r_flags = '\r\n' + r_flags
         r_rules = LocalFile.read_LocalFile("./boxurl/res/r_rules.txt").replace('},{','},\r\n{').replace('[{','[\r\n{')
-        r_rules = '\r\n\r\n' + r_rules
+        r_rules = '\r\n' + r_rules
         r_rules = r_rules.replace('\r','').replace('\n','\r\n')
         r_doh = LocalFile.read_LocalFile("./boxurl/res/r_doh.txt")
-        r_doh = '\r\n\r\n' + r_doh + '\r\n}'
+        r_doh = '\r\n' + r_doh + '\r\n}'
 
         r_pushagent = LocalFile.read_LocalFile("./boxurl/res/r_pushagent.txt")
 
-        LocalFile.write_LocalFile('./boxurl/out/tvbox.json', r_spider + '\r\n\r\n' + r_lives + '\r\n\r\n"sites":[' + addtv + '\r\n' + r_pushagent + '\r\n],'
+        LocalFile.write_LocalFile('./boxurl/out/tvbox.json', r_spider + '\r\n' + r_lives + '\r\n"sites":[' + addtv + '\r\n' + r_pushagent + '\r\n],'
             + r_parses + r_flags + r_rules + r_doh)
+
+        #LocalFile.write_LocalFile('./boxurl/out/tvbox.json', r_spider + '\r\n\r\n' + r_lives + '\r\n\r\n"sites":[' + addtv + '\r\n' + r_pushagent + '\r\n],'
+            #+ r_parses + r_flags + r_rules + r_doh)
         LocalFile.write_LocalFile('./boxurl/out/nsfw.txt', r_spider + '\r\n\r\n' + r_lives + '\r\n\r\n"sites":[' + nsfw + '\r\n' + r_pushagent + '\r\n],'
             + r_parses + r_flags + r_rules + r_doh)
         LocalFile.write_LocalFile('./boxurl/out/all', '"sites":[\r\n//Update:' + str(datetime.datetime.now()) + '\r\n' + addtv + '\r\n' + nsfw + '\r\n' + spare + '\r\n' + r_pushagent + '\r\n],')
