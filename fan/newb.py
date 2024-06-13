@@ -3,6 +3,7 @@ import base64
 import requests
 import hashlib
 import configparser
+import json
 headers = {'User-Agent': 'okhttp/3.15'}
 
 def get_fan_conf():
