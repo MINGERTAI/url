@@ -3,7 +3,6 @@ import base64
 import requests
 import hashlib
 import configparser
-import json
 headers = {'User-Agent': 'okhttp/3.15'}
 
 def get_fan_conf():
@@ -91,7 +90,7 @@ def local_myconf(content):
     pattern = r'{"key":"88js"(.|\n)*?(?={"key":"dr_兔小贝")'
     replacement = read_local_file("./fan/res/replace.txt")
     content = re.sub(pattern, replacement, content, flags=re.DOTALL)
-    pattern = r'{"name":"live","type"(.)*\n'
+    pattern = r'{"name":"live"(.)*\n'
     replacement = read_local_file("./fan/res/lives.txt")
     content = re.sub(pattern, replacement, content, flags=re.DOTALL)
     # 替换指定{"key":"cc"行内容
