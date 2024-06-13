@@ -342,7 +342,7 @@ if(menu == 'uptvbox'):
                 boxsites = boxsites.encode('utf-8').decode('utf-8', 'ignore').replace('\ufeff', '').strip('\n')
                 if (boxsites != '' and (osite_upmd5 != hashlib.md5(boxsites.encode('utf-8')).hexdigest() or osite_tvurl.find('/vpei/')>-1 or osite_tvurl.find('k2k4r8n888sny0v16vyfxbjwqrk0vgvh9k84xixh5k6ejdywbdc509ax')>-1)):
                     # 写入文件
-                    LocalFile.write_LocalFile('./tmp/' + hashlib.md5(newboxurl.encode('utf-8')).hexdigest() + '.txt', boxsites)
+                    LocalFile.write_LocalFile('./boxurl/tmp/' + hashlib.md5(newboxurl.encode('utf-8')).hexdigest() + '.txt', boxsites)
                     osite['upmd5'] = hashlib.md5(boxsites.encode('utf-8')).hexdigest()
                     if (osite_tvurl.find('k2k4r8n888sny0v16vyfxbjwqrk0vgvh9k84xixh5k6ejdywbdc509ax') > -1):
                         osite['uptime'] = (datetime.datetime.now() - datetime.timedelta(days=1453)).strftime("%Y-%m-%d %H:%M:%S")
