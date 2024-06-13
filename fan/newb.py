@@ -67,8 +67,12 @@ def modify_content(content):   # 更改自定义
     # 删除 //{"key":  整行
     content = re.sub(r'^\s*//\{"key":.*\n', '', content, flags=re.MULTILINE)
 
-    # 解析JSON字符串为Python字典
-    data = json.loads(json_content)
+    # 尝试解析修改后的字符串为Python字典
+    try:
+        data = json.loads(content)
+    except json.JSONDecodeError as e:
+        print(f"解析JSON时出错：{e}")
+        return
 
     # 删除 "lives" 键及其所有内容
     if "lives" in data:
@@ -77,8 +81,8 @@ def modify_content(content):   # 更改自定义
     # 将修改后的字典转换回JSON字符串
     modified_json_content = json.dumps(data, indent=4)
 
-    # 打印或保存修改后的JSON字符串
-    print(modified_json_content)
+    # 返回修改后的JSON字符串
+    return modified_json_content
     
 def diy_conf(content):
     #content = content.replace('https://fanty.run.goorm.site/ext/js/drpy2.min.js', './fan/JS/lib/drpy2.min.js')
