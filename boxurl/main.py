@@ -600,7 +600,7 @@ if(menu == 'check'):
 
         r_pushagent = LocalFile.read_LocalFile("./boxurl/res/r_pushagent.txt")
 
-        LocalFile.write_LocalFile('./tvbox.json', r_spider + '\r\n' + r_lives + '\r\n"sites":[' + addtv + '\r\n' + r_pushagent + '],'
+        LocalFile.write_LocalFile('./boxurl/tvbox.json', r_spider + '\r\n' + r_lives + '\r\n"sites":[' + addtv + '\r\n' + r_pushagent + '],'
             + r_parses + r_flags + r_rules + r_doh)
 
         LocalFile.write_LocalFile('./boxurl/out/tvbox.json', r_spider + '\r\n\r\n' + r_lives + '\r\n\r\n"sites":[' + addtv + '\r\n' + r_pushagent + '\r\n],'
