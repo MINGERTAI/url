@@ -6,16 +6,17 @@ import hashlib
 import configparser
 headers = {'User-Agent': 'okhttp/3.15'}
 
-def get_fan_conf():
+def save_website_content_as_json_and_check_updates(url, file_name):
     config = configparser.ConfigParser()
-    config.read("./fan/FatCat/config.ini")
-
-    url = 'http://肥猫.com'
-try:
-    response = requests.get(url, headers=headers)
+    config.read("config.ini")
+    
+    try:
+        response = requests.get(url, headers=headers)
+        if response.status_code == 200:
             data = response.json()  # 假设响应内容是JSON格式
-                # 将响应内容保存为JSON文件
-                with open(response + '.text', 'w', encoding='utf-8') as file:
+
+                    # 将响应内容保存为JSON文件
+                with open(file_name + '.json', 'w', encoding='utf-8') as file:
                     json.dump(data, file, indent=4, ensure_ascii=False)
                 print(f"数据已以JSON格式保存到{file_name}.json")
 
