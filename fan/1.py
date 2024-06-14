@@ -73,15 +73,18 @@ file_name = 'website_content'
 save_website_content_as_json_and_check_updates(url, file_name)
 
 def diy_conf(content):
-    #content = content.replace('https://fanty.run.goorm.site/ext/js/drpy2.min.js', './fan/JS/lib/drpy2.min.js')
-    #content = content.replace('公众号【神秘的哥哥们】', '豆瓣')
     pattern = r'"key": "csp_Dm84"(.)*\n"key": "csp_FirstAid",(.)*\n'
     replacement = ''
-    content = re.sub(pattern, replacement, content)
+    modified_content = re.sub(pattern, replacement, content)
+    return modified_content
 
-    return content
+# 假设我们已经有了一些内容，这里以从文件读取为例
+with open(file_name + '.json', 'r', encoding='utf-8') as f:
+    content = f.read()
 
-    local_content = diy_conf(content)
-    with open('C.json', 'w', newline='', encoding='utf-8') as f:
-        f.write(local_content)
-    return content
+# 使用 diy_conf 函数修改内容
+modified_content = diy_conf(content)
+
+# 将修改后的内容写入 C.json
+with open('C.json', 'w', encoding='utf-8') as f:
+    f.write(modified_content)
