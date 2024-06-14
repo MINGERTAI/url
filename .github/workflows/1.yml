@@ -21,8 +21,6 @@ jobs:
     - name: Install dependencies
       run: |
         pip install requests
-        pip install beautifulsoup4 requests
-        pip install selenium
 
     - name: Run Python script
       run: python ./1.py
