@@ -4,9 +4,12 @@ import json
 # 目标URL
 url = "http://tvbox.王二小放牛娃.xyz"
 
+headers = {
+    'Accept': 'application/json',  # 明确指定希望接收JSON格式的响应
+}
+
 try:
-    # 发起GET请求
-    response = requests.get(url)
+    response = requests.get(url, headers=headers)
 
     # 检查响应状态码
     if response.status_code == 200:
