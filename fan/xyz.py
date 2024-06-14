@@ -33,7 +33,7 @@ with open('page_content.html', 'w', encoding='utf-8') as f:
     f.write(content)
 
 # 使用正则表达式提取包含"spider"和"sites"关键字的JSON数据
-pattern = re.compile(r'{"key":"玩偶".*?}', re.DOTALL)  # 修改为实际的正则表达式模式
+pattern = re.compile(r'"wallpaper":"http.*?', re.DOTALL)  # 修改为实际的正则表达式模式
 matches = pattern.findall(content)
 
 if matches:
