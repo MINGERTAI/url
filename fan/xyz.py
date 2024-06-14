@@ -17,7 +17,7 @@ options.add_argument('--no-sandbox')
 driver = webdriver.Chrome(service=service, options=options)
 
 # 访问目标网址
-url = "http://肥猫.com"
+url = "http://tvbox.王二小放牛娃.xyz"
 driver.get(url)
 
 # 等待页面加载完成
@@ -33,23 +33,18 @@ with open('page_content.html', 'w', encoding='utf-8') as f:
 # 解析HTML内容
 soup = BeautifulSoup(content, 'html.parser')
 
-# 查找包含所需数据的标签（根据实际情况修改）
-data = {}
-items = soup.find_all('div', class_='item-class')  # 修改为实际的HTML标签和类名
-if not items:
-    print("没有找到匹配的元素，请检查选择器")
-for item in items:
-    title = item.find('h2').text if item.find('h2') else '无标题'  # 修改为实际的标签
-    description = item.find('p').text if item.find('p') else '无描述'  # 修改为实际的标签
-    data[title] = description
+# 查找包含JSON数据的<script>标签（假设数据嵌入在<script>标签中）
+script_tag = soup.find('script', {'type': 'application/json'})
+if script_tag:
+    json_data = script_tag.string  # 获取JSON字符串
+    data = json.loads(json_data)  # 解析JSON数据
+    print(data)
 
-# 将数据转换为JSON格式
-json_data = json.dumps(data, ensure_ascii=False, indent=4)
-print(json_data)
-
-# 保存到文件
-with open('data.json', 'w', encoding='utf-8') as f:
-    f.write(json_data)
+    # 保存到文件
+    with open('data.json', 'w', encoding='utf-8') as f:
+        json.dump(data, f, ensure_ascii=False, indent=4)
+else:
+    print("没有找到包含JSON数据的<script>标签")
 
 # 关闭浏览器
 driver.quit()
