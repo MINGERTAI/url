@@ -31,6 +31,11 @@ def save_website_content_as_json_and_check_updates(url, file_name):
                     original_url = data['spider'].split(';md5;')[0]  # 假设spider字段的格式为"URL;md5;MD5值"
                     data['spider'] = data['spider'].replace(original_url, './fan/FatCat/PandaQ240609.jar')
 
+                # 替换"live"URL
+                original_url = "./fan/JS"
+                replacement_url = "http://js.xn--z7x900a.com"
+                content = content.replace(original_url, replacement_url)
+
                 # 将修改后的data保存为JSON文件
                 with open(file_name + '.json', 'w', encoding='utf-8') as file:
                     json.dump(data, file, indent=4, ensure_ascii=False)
