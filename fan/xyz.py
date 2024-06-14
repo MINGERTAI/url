@@ -3,6 +3,7 @@ from selenium.webdriver.chrome.service import Service
 from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.common.by import By
 import json
+from bs4 import BeautifulSoup
 import time
 
 # 使用webdriver-manager自动下载并管理ChromeDriver
@@ -10,7 +11,9 @@ service = Service(ChromeDriverManager().install())
 
 # 初始化Chrome浏览器
 options = webdriver.ChromeOptions()
-options.add_argument('--headless')  # 如果您不需要看到浏览器界面，可以启用无头模式
+options.add_argument('--headless')  # 启用无头模式，不会显示浏览器界面
+options.add_argument('--disable-gpu')
+options.add_argument('--no-sandbox')
 driver = webdriver.Chrome(service=service, options=options)
 
 # 访问目标网址
@@ -18,13 +21,16 @@ url = "http://tvbox.王二小放牛娃.xyz"
 driver.get(url)
 
 # 等待页面加载完成
-time.sleep(5)  # 等待5秒，具体时间可以根据页面加载情况调整
+time.sleep(10)  # 等待10秒，具体时间可以根据页面加载情况调整
 
 # 获取页面内容
 content = driver.page_source
 
+# 打印页面内容以便调试
+with open('page_content.html', 'w', encoding='utf-8') as f:
+    f.write(content)
+
 # 解析HTML内容
-from bs4 import BeautifulSoup
 soup = BeautifulSoup(content, 'html.parser')
 
 # 查找包含所需数据的标签（根据实际情况修改）
