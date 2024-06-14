@@ -37,8 +37,8 @@ def save_website_content_as_json_and_check_updates(url, file_name):
     content = content.replace(url, './fan/FatCat/PandaQ240609.jar')
     content = diy_conf(content)             # 从这里diy_conf添加自己的
     content = modify_content(content)
-
-    with open('1.json', 'w', newline='', encoding='utf-8') as f:
+    with open(file_name + '.json', 'w', encoding='utf-8') as file:
+    #with open('1.json', 'w', newline='', encoding='utf-8') as f:
         f.write(content)
 
 
