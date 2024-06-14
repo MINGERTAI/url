@@ -8,7 +8,7 @@ headers = {'User-Agent': 'okhttp/3.15'}
 
 def get_fan_conf():
     config = configparser.ConfigParser()
-    config.read("FatCat/config.ini")
+    config.read("./fan/FatCat/config.ini")
 
     url = 'http://肥猫.com'
     response = requests.get(url, headers=headers)
