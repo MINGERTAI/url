@@ -38,7 +38,7 @@ def save_website_content_as_json_and_check_updates(url, file_name):
                     if jar_response.status_code == 200:
                         jar_file_name = jar_url.split('/')[-1]  # 从URL提取文件名
                         with open(jar_file_name, 'wb') as jar_file:
-                            jar_file.write(./fan/FatCat/jar_response.content)
+                            jar_file.write(jar_response.content)
                         print(f"jar文件已下载到：./fan/FatCat/{jar_file_name}")
                         config['DEFAULT']['jar_md5'] = jar_md5
                         with open('config.ini', 'w') as configfile:
