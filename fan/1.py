@@ -14,6 +14,7 @@ def save_website_content_as_json_and_check_updates(url, file_name):
     try:
         response = requests.get(url, headers=headers)
         if response.status_code == 200:
+            content = response.text  # 获取响应的文本内容
             data = response.json()  # 假设响应内容是JSON格式
             
             # 计算返回数据的md5值来检查数据是否有更新
@@ -26,8 +27,14 @@ def save_website_content_as_json_and_check_updates(url, file_name):
                 with open(os.path.join("fan", "FatCat", "config.ini"), 'w') as configfile:
                     config.write(configfile)
 
-                url = re.search(r'spider"\:"(.*);md5;', content).group(1)
-                content = content.replace(url, './fan/FatCat/PandaQ240609.jar')
+                # 注意：以下代码假设content变量是一个包含特定格式的字符串
+                # 如果您的意图是修改data变量，请确保您的逻辑与数据结构相匹配
+                url_search_result = re.search(r'spider"\:"(.*);md5;', content)
+                if url_search_result:
+                    url = url_search_result.group(1)
+                    content = content.replace(url, './fan/FatCat/PandaQ240609.jar')
+                else:
+                    print("未能在响应内容中找到预期的URL格式。")
                 
                 # 将响应内容保存为JSON文件
                 with open(file_name + '.json', 'w', encoding='utf-8') as file:
