@@ -72,16 +72,6 @@ file_name = 'website_content'
 
 save_website_content_as_json_and_check_updates(url, file_name)
 
-def modify_content(content):   # 更改自定义
-    # Replace specified key and name  替换"key":"豆豆","name":"全接口智能过滤广告" 为"key":"豆豆","name":"智能AI广告过滤"
-    content = re.sub(r'{"key": "drpy_js_豆瓣","name": "🐼┃公众号┃肥猫宝贝",', r'{"key": "drpy_js_豆瓣","name": "智能AI广告过滤",', content)
-    
-    # 删除 //{"key":  整行
-    #content = re.sub(r'^\s*//\{"key":.*\n', '', content, flags=re.MULTILINE)
-
-
-    return content
-
 def diy_conf(content):
     #content = content.replace('https://fanty.run.goorm.site/ext/js/drpy2.min.js', './fan/JS/lib/drpy2.min.js')
     #content = content.replace('公众号【神秘的哥哥们】', '豆瓣')
@@ -94,3 +84,4 @@ def diy_conf(content):
     local_content = diy_conf(content)
     with open('C.json', 'w', newline='', encoding='utf-8') as f:
         f.write(local_content)
+    return content
