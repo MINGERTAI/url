@@ -1,55 +1,50 @@
-import json
-import re
-import time
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.common.by import By
-from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-from browsermobproxy import Server
 from webdriver_manager.chrome import ChromeDriverManager
-
-# 启动BrowserMob Proxy服务器
-server = Server("/path/to/browsermob-proxy")  # 请下载并指定browsermob-proxy的路径
-server.start()
-proxy = server.create_proxy()
-
-# 配置Selenium使用BrowserMob Proxy
-chrome_options = Options()
-chrome_options.add_argument(f'--proxy-server={proxy.proxy}')
+import json
+import time
 
 # 初始化Chrome浏览器
 service = Service(ChromeDriverManager().install())
-driver = webdriver.Chrome(service=service, options=chrome_options)
-
-# 设定要捕获的URL
-proxy.new_har("tvbox", options={'captureHeaders': True, 'captureContent': True})
+options = webdriver.ChromeOptions()
+options.add_argument('--headless')  # 启用无头模式，不会显示浏览器界面
+driver = webdriver.Chrome(service=service, options=options)
 
 # 访问目标网址
-url = "http://tvbox.王二小放牛娃.xyz"
+url = "http://lige.unaux.com/?url=http://tvbox.王二小放牛娃.xyz&i=1"
 driver.get(url)
 
 # 等待页面加载完成
-time.sleep(10)
+time.sleep(10)  # 等待10秒，具体时间可以根据页面加载情况调整
 
-# 获取网络请求
-har = proxy.har
+# 获取页面内容
+content = driver.page_source
 
-# 查找包含JSON数据的请求
-for entry in har['log']['entries']:
-    request_url = entry['request']['url']
-    if "some_condition_to_identify_json_requests" in request_url:  # 修改为识别JSON请求的条件
-        response_content = entry['response']['content']['text']
-        try:
-            data = json.loads(response_content)
-            # 保存到文件
-            with open('data.json', 'w', encoding='utf-8') as f:
-                json.dump(data, f, indent=4, ensure_ascii=False)
-            print("数据已以JSON格式保存到 data.json")
-        except json.JSONDecodeError:
-            print("无法解析JSON数据")
+# 保存页面内容以便调试
+with open('page_content.html', 'w', encoding='utf-8') as f:
+    f.write(content)
 
-# 关闭浏览器和代理
+# 查找包含JSON数据的元素
+try:
+    # 假设JSON数据嵌入在某个元素的text或属性中
+    element = WebDriverWait(driver, 20).until(
+        EC.presence_of_element_located((By.XPATH, "//pre"))  # 修改为实际的XPath
+    )
+    json_data = element.text
+
+    # 解析JSON数据
+    data = json.loads(json_data)
+    print(data)
+
+    # 保存到文件
+    with open('data.json', 'w', encoding='utf-8') as f:
+        json.dump(data, f, indent=4, ensure_ascii=False)
+    print("数据已以JSON格式保存到 data.json")
+except Exception as e:
+    print(f"发生错误：{str(e)}")
+
+# 关闭浏览器
 driver.quit()
-server.stop()
