@@ -54,9 +54,14 @@ def save_website_content_as_json_and_check_updates(url, file_name):
                     else:
                         print(f"jar文件下载失败，状态码：{jar_response.status_code}")
 
-                if 'spider' in data:
-                    original_url = data['spider'].split(';md5;')[0]
-                    data['spider'] = data['spider'].replace(original_url, f'./fan/FatCat/{jar_file_name}')
+                #if 'spider' in data:
+                    #original_url = data['spider'].split(';md5;')[0]
+                    #data['spider'] = data['spider'].replace(original_url, f'./fan/FatCat/{jar_file_name}')
+                for key in data:
+                # 检查值是否为字符串类型
+                if isinstance(data[key], str):
+                    # 替换'http://js.xn--z7x900a.com'为'./fan/FatCat/'
+                    data[key] = data[key].replace('http://js.xn--z7x900a.com', './fan/FatCat/')
 
                 # 将修改后的data保存为JSON文件
                 #json_file_path = os.path.join(config_directory, file_name + '.json')
