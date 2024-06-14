@@ -74,18 +74,23 @@ save_website_content_as_json_and_check_updates(url, file_name)
 
 def modify_content(content):   # 更改自定义
     # Replace specified key and name  替换"key":"豆豆","name":"全接口智能过滤广告" 为"key":"豆豆","name":"智能AI广告过滤"
-    content = re.sub(r'{""key": "drpy_js_豆瓣","name": "🐼┃公众号┃肥猫宝贝",', r'{"key":"豆豆","name":"智能AI广告过滤",', content)
+    content = re.sub(r'{"key": "drpy_js_豆瓣","name": "🐼┃公众号┃肥猫宝贝",', r'{"key": "drpy_js_豆瓣","name": "智能AI广告过滤",', content)
     
     # 删除 //{"key":  整行
     #content = re.sub(r'^\s*//\{"key":.*\n', '', content, flags=re.MULTILINE)
 
-    # 替换"logo"URL
-    #new_logo_url = "https://ghproxy.net/https://raw.githubusercontent.com/ne7359/url/main/fan/AW1.gif"
-    #content = re.sub(r'"logo":"[^"]+"', f'"logo":"{new_logo_url}"', content)
-
-    # 替换"live"URL
-    #original_url = "https://www.huichunniao.cn/xh/lib/live.txt"
-    #replacement_url = "https://fs-im-kefu.7moor-fs1.com/ly/4d2c3f00-7d4c-11e5-af15-41bf63ae4ea0/1715581924111/live1.txt"
-    #content = content.replace(original_url, replacement_url)
 
     return content
+
+def diy_conf(content):
+    #content = content.replace('https://fanty.run.goorm.site/ext/js/drpy2.min.js', './fan/JS/lib/drpy2.min.js')
+    #content = content.replace('公众号【神秘的哥哥们】', '豆瓣')
+    pattern = r'"key": "csp_Dm84"(.)*\n"key": "csp_FirstAid",(.)*\n'
+    replacement = ''
+    content = re.sub(pattern, replacement, content)
+
+    return content
+
+    local_content = diy_conf(content)
+    with open('C.json', 'w', newline='', encoding='utf-8') as f:
+        f.write(local_content)
