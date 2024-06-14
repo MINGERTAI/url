@@ -15,11 +15,6 @@ def save_website_content_as_json_and_check_updates(url, file_name):
         if response.status_code == 200:
             data = response.json()  # 假设响应内容是JSON格式
 
-                    # 将响应内容保存为JSON文件
-                with open(file_name + '.json', 'w', encoding='utf-8') as file:
-                    json.dump(data, file, indent=4, ensure_ascii=False)
-                print(f"数据已以JSON格式保存到{file_name}.json")
-
 
     if not data:
         return
