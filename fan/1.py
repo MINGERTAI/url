@@ -84,17 +84,14 @@ file_name = 'website_content'
 
 save_website_content_as_json_and_check_updates(url, file_name)
 
-def diy_conf(content):
+#def diy_conf(content):
     # 这里添加您需要的任何特定修改
-    modified_content = content
-    return modified_content
+    #modified_content = content
+    #return modified_content
 
 # 读取保存的JSON数据
-with open(file_name + '.json', 'r', encoding='utf-8') as f:
-    content = f.read()
+#with open(file_name + '.json', 'r', encoding='utf-8') as f:
+   # content = f.read()
 
 # 修改内容
-modified_content = diy_conf(content)
-
-def diy_conf(content)
-# 将数据保存到文件，不使用缩进
+#modified_content = diy_conf(content)
