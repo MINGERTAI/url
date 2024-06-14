@@ -1,9 +1,7 @@
 import requests
-from urllib.parse import quote
 
-# 为了处理可能的URL编码问题，我们使用quote函数对URL进行编码
-base_url = "http://tvbox.王二小放牛娃.xyz"
-encoded_url = quote(base_url, safe=':/')
+# 不进行URL编码
+url = "http://tvbox.王二小放牛娃.xyz"
 
 # 设置请求头，模仿浏览器的请求
 headers = {
@@ -27,4 +25,4 @@ def get_website_content(url):
     except Exception as e:
         print(f"请求过程中发生错误：{str(e)}")
 
-get_website_content(encoded_url)
+get_website_content(url)
