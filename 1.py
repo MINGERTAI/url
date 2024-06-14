@@ -56,7 +56,7 @@ def save_website_content_as_json_and_check_updates(url, file_name):
         print(f"发生错误：{str(e)}")
 
 # 目标URL
-url = 'http://example.com'
+url = 'http://肥猫.com'
 # 文件名，不包括扩展名
 file_name = 'website_content'
 
