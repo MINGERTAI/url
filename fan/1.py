@@ -11,8 +11,12 @@ def get_fan_conf():
     config.read("./fan/FatCat/config.ini")
 
     url = 'http://肥猫.com'
+try:
     response = requests.get(url, headers=headers)
-    match = re.search(r'[A-Za-z0]{8}\*\*(.*)', response.text)
+        if response.status_code == 200:
+            match = response.json()  # 假设响应内容是JSON格式
+    # match = re.search(r'[A-Za-z0]{8}\*\*(.*)', response.text)
+
 
     if not match:
         return
