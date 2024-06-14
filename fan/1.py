@@ -21,9 +21,9 @@ try:
                 print(f"数据已以JSON格式保存到{file_name}.json")
 
 
-    if not match:
+    if not data:
         return
-    result = match.group(1)
+    result = data.group(1)
 
     m = hashlib.md5()
     m.update(result.encode('utf-8'))
