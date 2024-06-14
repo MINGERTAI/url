@@ -17,7 +17,7 @@ options.add_argument('--no-sandbox')
 driver = webdriver.Chrome(service=service, options=options)
 
 # 访问目标网址
-url = "http://tvbox.王二小放牛娃.xyz"
+url = "http://肥猫.com"
 driver.get(url)
 
 # 等待页面加载完成
