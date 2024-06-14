@@ -2,6 +2,7 @@ import requests
 import json
 import hashlib
 import configparser
+import re
 
 headers = {'User-Agent': 'okhttp/3.15'}
 
@@ -14,10 +15,8 @@ def save_website_content_as_json_and_check_updates(url, file_name):
         if response.status_code == 200:
             data = response.json()  # 假设响应内容是JSON格式
             
-            # 计算返回数据的md5值
+            # 计算返回数据的md5值来检查数据是否有更新
             new_md5 = hashlib.md5(json.dumps(data, sort_keys=True).encode('utf-8')).hexdigest()
-            
-            # 检查md5值是否有变化，确定是否有更新
             old_md5 = config.get('DEFAULT', 'md5', fallback='')
             if new_md5 != old_md5:
                 print("检测到更新。")
@@ -31,16 +30,22 @@ def save_website_content_as_json_and_check_updates(url, file_name):
                     json.dump(data, file, indent=4, ensure_ascii=False)
                 print(f"数据已以JSON格式保存到{file_name}.json")
                 
-                # 假设jar文件的URL也包含在JSON数据中
-                jar_url = data.get('jarUrl')
-                if jar_url:
+                # 从JSON数据中提取包含jar文件URL和md5值的"spider"字段
+                spider = data.get('spider')
+                if spider:
+                    jar_url, jar_md5 = re.match(r'http://[^/]+/jar/(.+?);md5;([a-f0-9]{32})', spider).groups()
+                    full_jar_url = f"http://like.xn--z7x900a.com/jar/{jar_url}"
                     # 下载jar文件
-                    jar_response = requests.get(jar_url)
+                    jar_response = requests.get(full_jar_url)
                     if jar_response.status_code == 200:
                         jar_file_name = jar_url.split('/')[-1]  # 从URL提取文件名
                         with open(jar_file_name, 'wb') as jar_file:
                             jar_file.write(jar_response.content)
                         print(f"jar文件已下载到：{jar_file_name}")
+                        config['DEFAULT']['jar_md5'] = jar_md5
+                        with open('config.ini', 'w') as configfile:
+                            config.write(configfile)
+                        print("jar文件的md5值已更新。")
                     else:
                         print(f"jar文件下载失败，状态码：{jar_response.status_code}")
             else:
@@ -51,7 +56,7 @@ def save_website_content_as_json_and_check_updates(url, file_name):
         print(f"发生错误：{str(e)}")
 
 # 目标URL
-url = 'http://肥猫.com'
+url = 'http://example.com'
 # 文件名，不包括扩展名
 file_name = 'website_content'
 
