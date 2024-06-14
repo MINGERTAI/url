@@ -15,10 +15,14 @@ def get_json_data(url):
         if response.status_code == 200:
             content = response.text  # 获取响应内容
             # 打印内容以调试
+            print("响应内容：")
+            print(content)
+            
+            # 保存响应内容到文件
             with open('response_content.txt', 'w', encoding='utf-8') as file:
                 file.write(content)
             
-            # 从内容中解析JSON数据
+            # 尝试从内容中解析JSON数据
             try:
                 data = json.loads(content)
                 # 保存JSON数据到文件
@@ -26,8 +30,8 @@ def get_json_data(url):
                 with open(json_file_path, 'w', encoding='utf-8') as file:
                     json.dump(data, file, indent=4, ensure_ascii=False)
                 print(f"数据已以JSON格式保存到 {json_file_path}")
-            except json.JSONDecodeError:
-                print("无法解析JSON数据。请检查响应内容。")
+            except json.JSONDecodeError as e:
+                print(f"无法解析JSON数据。错误信息：{str(e)}")
         else:
             print(f"请求失败，状态码：{response.status_code}")
     except Exception as e:
