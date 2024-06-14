@@ -23,7 +23,7 @@ jobs:
         pip install requests
 
     - name: Run Python script
-      run: python ./1.py
+      run: python ./fan/1.py
 
     - id: check
       name: Check for changes
