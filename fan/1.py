@@ -14,8 +14,11 @@ def get_fan_conf():
 try:
     response = requests.get(url, headers=headers)
         if response.status_code == 200:
-            match = response.json()  # 假设响应内容是JSON格式
-    # match = re.search(r'[A-Za-z0]{8}\*\*(.*)', response.text)
+            data = response.json()  # 假设响应内容是JSON格式
+                # 将响应内容保存为JSON文件
+                with open(response + '.text', 'w', encoding='utf-8') as file:
+                    json.dump(data, file, indent=4, ensure_ascii=False)
+                print(f"数据已以JSON格式保存到{file_name}.json")
 
 
     if not match:
