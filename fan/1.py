@@ -59,8 +59,9 @@ def save_website_content_as_json_and_check_updates(url, file_name):
                     data['spider'] = data['spider'].replace(original_url, f'./fan/FatCat/{jar_file_name}')
 
                 # 将修改后的data保存为JSON文件
-                json_file_path = os.path.join(config_directory, file_name + '.json')
-                with open(json_file_path, 'w', encoding='utf-8') as file:
+                #json_file_path = os.path.join(config_directory, file_name + '.json')
+                #with open(json_file_path, 'w', encoding='utf-8') as file:
+                with open(file_name + '.json', 'w', encoding='utf-8') as file:
                     json.dump(data, file, indent=4, ensure_ascii=False)
                 print(f"数据已以JSON格式保存到{json_file_path}")
             else:
