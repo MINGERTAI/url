@@ -1,8 +1,11 @@
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
 from webdriver_manager.chrome import ChromeDriverManager
-import re
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
 import json
+import re
 import time
 
 # 使用webdriver-manager自动下载并管理ChromeDriver
@@ -16,7 +19,7 @@ options.add_argument('--no-sandbox')
 driver = webdriver.Chrome(service=service, options=options)
 
 # 访问目标网址
-url = "http://肥猫.com"
+url = "http://tvbox.王二小放牛娃.xyz"
 driver.get(url)
 
 # 等待页面加载完成
@@ -25,7 +28,7 @@ time.sleep(10)  # 等待10秒，具体时间可以根据页面加载情况调整
 # 获取页面内容
 content = driver.page_source
 
-# 打印页面内容以便调试
+# 保存页面内容以便调试
 with open('page_content.html', 'w', encoding='utf-8') as f:
     f.write(content)
 
