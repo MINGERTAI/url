@@ -8,6 +8,15 @@ def fetch_and_save_json(url, output_file):
         }
         response = requests.get(url, headers=headers)
 
+  if 'application/json' in response.headers.get('Content-Type'):
+      try:
+          data = response.json()
+          # 后续处理...
+      except json.JSONDecodeError:
+          print("获取的数据无法解析为JSON。")
+  else:
+      print("响应的内容类型不是application/json。")
+
         # 检查状态码
         if response.status_code == 200:
             try:
