@@ -31,11 +31,6 @@ def save_website_content_as_json_and_check_updates(url, file_name):
                     original_url = data['spider'].split(';md5;')[0]  # 假设spider字段的格式为"URL;md5;MD5值"
                     data['spider'] = data['spider'].replace(original_url, './fan/FatCat/PandaQ240609.jar')
 
-                # 替换"live"URL
-                original_url = "./fan/JS"
-                replacement_url = "http://js.xn--z7x900a.com"
-                content = content.replace(original_url, replacement_url)
-
                 # 将修改后的data保存为JSON文件
                 with open(file_name + '.json', 'w', encoding='utf-8') as file:
                     json.dump(data, file, indent=4, ensure_ascii=False)
@@ -76,3 +71,21 @@ url = 'http://肥猫.com'
 file_name = 'website_content'
 
 save_website_content_as_json_and_check_updates(url, file_name)
+
+def modify_content(content):   # 更改自定义
+    # Replace specified key and name  替换"key":"豆豆","name":"全接口智能过滤广告" 为"key":"豆豆","name":"智能AI广告过滤"
+    content = re.sub(r'{""key": "drpy_js_豆瓣","name": "🐼┃公众号┃肥猫宝贝",', r'{"key":"豆豆","name":"智能AI广告过滤",', content)
+    
+    # 删除 //{"key":  整行
+    #content = re.sub(r'^\s*//\{"key":.*\n', '', content, flags=re.MULTILINE)
+
+    # 替换"logo"URL
+    #new_logo_url = "https://ghproxy.net/https://raw.githubusercontent.com/ne7359/url/main/fan/AW1.gif"
+    #content = re.sub(r'"logo":"[^"]+"', f'"logo":"{new_logo_url}"', content)
+
+    # 替换"live"URL
+    #original_url = "https://www.huichunniao.cn/xh/lib/live.txt"
+    #replacement_url = "https://fs-im-kefu.7moor-fs1.com/ly/4d2c3f00-7d4c-11e5-af15-41bf63ae4ea0/1715581924111/live1.txt"
+    #content = content.replace(original_url, replacement_url)
+
+    return content
