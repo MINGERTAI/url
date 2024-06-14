@@ -63,7 +63,6 @@ def save_website_content_as_json_and_check_updates(url, file_name):
                     if isinstance(data[key], str):
                         # 替换 'http://js.xn--z7x900a.com' 为 './fan/FatCat'
                         data[key] = data[key].replace('http://js.xn--z7x900a.com', './fan/FatCat')
-                        http://js.xn--z7x900a.com
 
                 # 将修改后的data保存为JSON文件
                 #json_file_path = os.path.join(config_directory, file_name + '.json')
