@@ -25,16 +25,6 @@ def save_website_content_as_json_and_check_updates(url, file_name):
                 config['DEFAULT']['md5'] = new_md5
                 with open(os.path.join("fan", "FatCat", "config.ini"), 'w') as configfile:
                     config.write(configfile)
-
-                # 直接在data字典上修改spider字段的值
-                if 'spider' in data:
-                    original_url = data['spider'].split(';md5;')[0]  # 假设spider字段的格式为"URL;md5;MD5值"
-                    data['spider'] = data['spider'].replace(original_url, './fan/FatCat/PandaQ240609.jar')
-
-                # 将修改后的data保存为JSON文件
-                with open(file_name + '.json', 'w', encoding='utf-8') as file:
-                    json.dump(data, file, indent=4, ensure_ascii=False)
-                print(f"数据已以JSON格式保存到{file_name}.json")
                 
                 # 从这里开始，代码逻辑保持不变...
                 
@@ -56,6 +46,16 @@ def save_website_content_as_json_and_check_updates(url, file_name):
                         print("jar文件的md5值已更新。")
                     else:
                         print(f"jar文件下载失败，状态码：{jar_response.status_code}")
+
+                # 直接在data字典上修改spider字段的值
+                if 'spider' in data:
+                    original_url = data['spider'].split(';md5;')[0]  # 假设spider字段的格式为"URL;md5;MD5值"
+                    data['spider'] = data['spider'].replace(original_url, './fan/FatCat/PandaQ240609.jar')
+
+                # 将修改后的data保存为JSON文件
+                with open(file_name + '.json', 'w', encoding='utf-8') as file:
+                    json.dump(data, file, indent=4, ensure_ascii=False)
+                print(f"数据已以JSON格式保存到{file_name}.json")
             else:
                 print("未检测到更新。")
         else:
