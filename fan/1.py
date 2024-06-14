@@ -13,7 +13,6 @@ def get_fan_conf():
     url = 'http://肥猫.com'
 try:
     response = requests.get(url, headers=headers)
-        if response.status_code == 200:
             data = response.json()  # 假设响应内容是JSON格式
                 # 将响应内容保存为JSON文件
                 with open(response + '.text', 'w', encoding='utf-8') as file:
