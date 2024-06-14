@@ -4,8 +4,10 @@ import json
 # 目标URL
 url = "http://tvbox.王二小放牛娃.xyz"
 
+# 添加用户代理，您可以根据需要更换为其他用户代理字符串
 headers = {
-    'Accept': 'application/json',  # 明确指定希望接收JSON格式的响应
+    'Accept': 'application/json',
+    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.3'
 }
 
 try:
