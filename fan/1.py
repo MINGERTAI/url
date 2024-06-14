@@ -3,12 +3,13 @@ import json
 import hashlib
 import configparser
 import re
+import os  # 导入os模块
 
 headers = {'User-Agent': 'okhttp/3.15'}
 
 def save_website_content_as_json_and_check_updates(url, file_name):
     config = configparser.ConfigParser()
-    config.read("fan/FatCat/config.ini")
+    config.read(os.path.join("fan", "FatCat", "config.ini"))  # 使用os.path.join确保路径正确
     
     try:
         response = requests.get(url, headers=headers)
@@ -22,7 +23,7 @@ def save_website_content_as_json_and_check_updates(url, file_name):
                 print("检测到更新。")
                 # 更新配置文件中的md5值
                 config['DEFAULT']['md5'] = new_md5
-                with open('fan/FatCat/config.ini', 'w') as configfile:
+                with open(os.path.join("fan", "FatCat", "config.ini"), 'w') as configfile:
                     config.write(configfile)
                 
                 # 将响应内容保存为JSON文件
@@ -33,21 +34,25 @@ def save_website_content_as_json_and_check_updates(url, file_name):
                 # 从JSON数据中提取包含jar文件URL和md5值的"spider"字段
                 spider = data.get('spider')
                 if spider:
-                    jar_url, jar_md5 = re.match(r'http://[^/]+/jar/(.+?);md5;([a-f0-9]{32})', spider).groups()
-                    full_jar_url = f"http://like.xn--z7x900a.com/jar/{jar_url}"
-                    # 下载jar文件
-                    jar_response = requests.get(full_jar_url)
-                    if jar_response.status_code == 200:
-                        jar_file_name = jar_url.split('/')[-1]  # 从URL提取文件名
-                        with open(fan/FatCat/jar_file_name, 'wb') as jar_file:
-                            jar_file.write(fan/FatCat/jar_response.content)
-                        print(f"jar文件已下载到：{jar_file_name}")
-                        config['DEFAULT']['jar_md5'] = jar_md5
-                        with open('fan/FatCat/config.ini', 'w') as configfile:
-                            config.write(configfile)
-                        print("jar文件的md5值已更新。")
+                    match = re.match(r'http://[^/]+/jar/(.+?);md5;([a-f0-9]{32})', spider)
+                    if match:
+                        jar_url, jar_md5 = match.groups()
+                        full_jar_url = f"http://like.xn--z7x900a.com/jar/{jar_url}"
+                        # 下载jar文件
+                        jar_response = requests.get(full_jar_url)
+                        if jar_response.status_code == 200:
+                            jar_file_name = jar_url.split('/')[-1]  # 从URL提取文件名
+                            with open(os.path.join("fan", "FatCat", jar_file_name), 'wb') as jar_file:
+                                jar_file.write(jar_response.content)
+                            print(f"jar文件已下载到：{jar_file_name}")
+                            config['DEFAULT']['jar_md5'] = jar_md5
+                            with open(os.path.join("fan", "FatCat", "config.ini"), 'w') as configfile:
+                                config.write(configfile)
+                            print("jar文件的md5值已更新。")
+                        else:
+                            print(f"jar文件下载失败，状态码：{jar_response.status_code}")
                     else:
-                        print(f"jar文件下载失败，状态码：{jar_response.status_code}")
+                        print("spider字段格式不匹配。")
             else:
                 print("未检测到更新。")
         else:
