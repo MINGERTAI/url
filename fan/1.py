@@ -8,7 +8,7 @@ headers = {'User-Agent': 'okhttp/3.15'}
 
 def save_website_content_as_json_and_check_updates(url, file_name):
     config = configparser.ConfigParser()
-    config.read("config.ini")
+    config.read("fan/FatCat/config.ini")
     
     try:
         response = requests.get(url, headers=headers)
@@ -22,7 +22,7 @@ def save_website_content_as_json_and_check_updates(url, file_name):
                 print("检测到更新。")
                 # 更新配置文件中的md5值
                 config['DEFAULT']['md5'] = new_md5
-                with open('config.ini', 'w') as configfile:
+                with open('fan/FatCat/config.ini', 'w') as configfile:
                     config.write(configfile)
                 
                 # 将响应内容保存为JSON文件
@@ -39,11 +39,11 @@ def save_website_content_as_json_and_check_updates(url, file_name):
                     jar_response = requests.get(full_jar_url)
                     if jar_response.status_code == 200:
                         jar_file_name = jar_url.split('/')[-1]  # 从URL提取文件名
-                        with open(jar_file_name, 'wb') as jar_file:
-                            jar_file.write(jar_response.content)
+                        with open(fan/FatCat/jar_file_name, 'wb') as jar_file:
+                            jar_file.write(fan/FatCat/jar_response.content)
                         print(f"jar文件已下载到：{jar_file_name}")
                         config['DEFAULT']['jar_md5'] = jar_md5
-                        with open('config.ini', 'w') as configfile:
+                        with open('fan/FatCat/config.ini', 'w') as configfile:
                             config.write(configfile)
                         print("jar文件的md5值已更新。")
                     else:
