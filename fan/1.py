@@ -24,6 +24,11 @@ def save_website_content_as_json_and_check_updates(url, file_name):
                 config['DEFAULT']['md5'] = new_md5
                 with open('config.ini', 'w') as configfile:
                     config.write(configfile)
+
+                # 检查并修改spider字段
+                if 'spider' in data:
+                    original_url = data['http://like.xn--z7x900a.com'].split(';md5;')[0]
+                    data['spider'] = './fan/JAR/'
                 
                 # 将响应内容保存为JSON文件
                 with open(file_name + '.json', 'w', encoding='utf-8') as file:
