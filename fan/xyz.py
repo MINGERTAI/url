@@ -1,9 +1,8 @@
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
 from webdriver_manager.chrome import ChromeDriverManager
-from selenium.webdriver.common.by import By
+import re
 import json
-from bs4 import BeautifulSoup
 import time
 
 # 使用webdriver-manager自动下载并管理ChromeDriver
@@ -30,13 +29,12 @@ content = driver.page_source
 with open('page_content.html', 'w', encoding='utf-8') as f:
     f.write(content)
 
-# 解析HTML内容
-soup = BeautifulSoup(content, 'html.parser')
+# 使用正则表达式提取包含"spider"和"sites"关键字的JSON数据
+pattern = re.compile(r'{"key":"玩偶".*?}', re.DOTALL)  # 修改为实际的正则表达式模式
+matches = pattern.findall(content)
 
-# 查找包含JSON数据的<script>标签（假设数据嵌入在<script>标签中）
-script_tag = soup.find('script', {'type': 'application/json'})
-if script_tag:
-    json_data = script_tag.string  # 获取JSON字符串
+if matches:
+    json_data = matches[0]  # 假设匹配到的第一个是所需的JSON数据
     data = json.loads(json_data)  # 解析JSON数据
     print(data)
 
@@ -44,7 +42,7 @@ if script_tag:
     with open('data.json', 'w', encoding='utf-8') as f:
         json.dump(data, f, ensure_ascii=False, indent=4)
 else:
-    print("没有找到包含JSON数据的<script>标签")
+    print("没有找到包含指定关键字的JSON数据")
 
 # 关闭浏览器
 driver.quit()
