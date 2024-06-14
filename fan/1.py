@@ -36,29 +36,8 @@ def save_website_content_as_json_and_check_updates(url, file_name):
                     json.dump(data, file, indent=4, ensure_ascii=False)
                 print(f"数据已以JSON格式保存到{file_name}.json")
                 
+                # 从这里开始，代码逻辑保持不变...
 
-                # 从JSON数据中提取包含jar文件URL和md5值的"spider"字段
-                spider = data.get('spider')
-                if spider:
-                    jar_url, jar_md5 = re.match(r'http://[^/]+/jar/(.+?);md5;([a-f0-9]{32})', spider).groups()
-                    full_jar_url = f"http://like.xn--z7x900a.com/jar/{jar_url}"
-                    # 下载jar文件
-                    jar_response = requests.get(full_jar_url)
-                    if jar_response.status_code == 200:
-                        jar_file_name = jar_url.split('/')[-1]  # 从URL提取文件名
-                        with open(jar_file_name, 'wb') as jar_file:
-                            jar_file.write(jar_response.content)
-                        print(f"jar文件已下载到：{jar_file_name}")
-                        config['DEFAULT']['jar_md5'] = jar_md5
-                        with open('config.ini', 'w') as configfile:
-                            config.write(configfile)
-                        print("jar文件的md5值已更新。")
-                    else:
-                        print(f"jar文件下载失败，状态码：{jar_response.status_code}")
-            else:
-                print("未检测到更新。")
-        else:
-            print(f"请求失败，状态码：{response.status_code}")
     except Exception as e:
         print(f"发生错误：{str(e)}")
 
