@@ -98,8 +98,3 @@ modified_content = diy_conf(content)
 
 def diy_conf(content)
 # 将数据保存到文件，不使用缩进
-with open('data.json', 'w', encoding='utf-8') as file:
-    json_string = json.dumps(data, ensure_ascii=False)
-    print(json_string)
-
-    return content
