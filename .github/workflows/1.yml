@@ -19,7 +19,9 @@ jobs:
         python-version: 3.x
 
     - name: Install dependencies
-      run: pip install requests
+      run: |
+        pip install requests
+        pip install beautifulsoup4 requests
 
     - name: Run Python script
       run: python ./1.py
