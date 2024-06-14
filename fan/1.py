@@ -25,6 +25,9 @@ def save_website_content_as_json_and_check_updates(url, file_name):
                 config['DEFAULT']['md5'] = new_md5
                 with open(os.path.join("fan", "FatCat", "config.ini"), 'w') as configfile:
                     config.write(configfile)
+
+                url = re.search(r'spider"\:"(.*);md5;', content).group(1)
+                content = content.replace(url, './fan/FatCat/PandaQ240609.jar')
                 
                 # 将响应内容保存为JSON文件
                 with open(file_name + '.json', 'w', encoding='utf-8') as file:
