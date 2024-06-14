@@ -59,3 +59,22 @@ modified_content = diy_conf(content)
 # 将修改后的内容写入C.json
 with open('C.json', 'w', encoding='utf-8') as f:
     f.write(modified_content)
+import json
+
+# 假设这是您想要保存的数据
+data = {
+    "spider": "./fan/JAR/fan.txt;md5;5ee96d541532306c3acc8c0fc229acbf",
+    "wallpaper": "https://深色壁纸.xxooo.cf/",
+    "sites": [
+        {"key": "drpy_js_豆瓣", "name": "🐼┃公众号┃肥猫宝贝", "type": 3, "api": "csp_DouDou", "searchable": 0, "quickSearch": 0, "filterable": 0},
+        {"key": "豆瓣", "name": "🐼┃豆瓣┃预告", "type": 3, "api": "csp_YGP", "searchable": 1, "playerType": 2, "searchable": 0},
+    ]
+}
+
+# 将数据保存到文件，不使用缩进
+with open('data.json', 'w', encoding='utf-8') as file:
+    json.dump(data, file, ensure_ascii=False)
+
+# 或者，如果您想要得到字符串形式的 JSON 数据，可以使用 json.dumps()
+json_string = json.dumps(data, ensure_ascii=False)
+print(json_string)
