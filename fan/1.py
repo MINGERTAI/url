@@ -32,7 +32,7 @@ def get_fan_conf():
 
     content = base64.b64decode(result).decode('utf-8')
     url = re.search(r'spider"\:"(.*);md5;', content).group(1)
-    content = content.replace(url, './FatCat/fan.txt')
+    content = content.replace(url, './fan/FatCat/PandaQ240609.jar')
     content = diy_conf(content)             # 从这里diy_conf添加自己的
     content = modify_content(content)
 
@@ -42,7 +42,7 @@ def get_fan_conf():
 
     # Update conf.md5
     config.set("md5", "conf", md5)
-    with open("fan/config.ini", "w") as f:
+    with open("./fan/FatCat/config.ini", "w") as f:
         config.write(f)
 
     jmd5 = re.search(r';md5;(\w+)"', content).group(1)
@@ -51,11 +51,11 @@ def get_fan_conf():
     if jmd5 != current_md5:
         # Update jar.md5
         config.set("md5", "jar", jmd5)
-        with open("fan/config.ini", "w") as f:
+        with open("./fan/FatCat/config.ini", "w") as f:
             config.write(f)
 
         response = requests.get(url)
-        with open("./fan/JAR/fan.txt", "wb") as f:
+        with open("./fan/FatCat/PandaQ240609.jar", "wb") as f:
             f.write(response.content)
 
 
