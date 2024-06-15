@@ -58,8 +58,6 @@ if(menu == 'update'):
             continue
         else:
             osite = json.loads(i)
-            # osite_uptime = osite['typename']
-            # osite_uptime = osite['tvname']
             osite_uptime = osite['uptime']
             osite_upmd5 = osite['upmd5']
             osite_tvurl = osite['tvurl']
@@ -81,9 +79,6 @@ if(menu == 'update'):
                     print('[GET Code {}] Download sub error on link: '.format(rq.status_code) + osite_upurl)
                     boxurl = boxurl + '\n' + i
                     continue
-                # boxsites = (rq.content).decode('utf-8', 'ignore') # 可用
-                # print(str(isinstance(rq.text, basestring)))
-                # print(str(chardet.detect(rq.text)))
                 if(rq.encoding != None):
                     boxsites = rq.text.encode(rq.encoding).decode('utf-8')
                 else:
@@ -107,13 +102,6 @@ if(menu == 'update'):
                     osite['size'] = len(boxsites)
                     i = json.dumps(osite)
                     print('UpdateTime:' + osite['uptime'] + ' boxsites-len:' + str(len(boxsites)))
-                    # if(IsValid.isBase64(boxsites)):
-                    #     boxsites = StrText.get_str_base64(boxsites) # Base64格式化
-                    #     boxsites = base64.b64decode(boxsites).decode('utf-8')
-                    #     print('Url-All-Nodes-is-Base64:' + newboxurl)
-                    # else:
-                    #     print('Url-All-Nodes-no-Base64:' + newboxurl)
-                    allonesite = ''
                     if (osite['type'] == 'tlive'):
                         alltv = boxsites #NetFile.url_to_str(osite_tvurl, 240, 240)
                         
@@ -254,8 +242,6 @@ if(menu == 'uptvbox'):
             continue
         else:
             osite = json.loads(i)
-            # osite_uptime = osite['typename']
-            # osite_uptime = osite['tvname']
             osite_uptime = osite['uptime']
             osite_upmd5 = osite['upmd5']
             osite_tvurl = osite['tvurl']
