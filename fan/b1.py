@@ -172,3 +172,5 @@ if(menu == 'check'):
 
 
         LocalFile.write_LocalFile('./all.txt', '"sites":[\r\n]')
+    except Exception as ex:
+        LocalFile.write_LogFile('Main-Line-108-Exception:' + str(ex))
