@@ -13,11 +13,6 @@
 { "name": "IPV6", "type": 0, "url": "https://live.fanmingming.com/tv/m3u/ipv6.m3u", "playerType": 1, "ua": "okhttp/3.15", "epg": "http://epg.112114.xyz/?ch={name}&date={date}", "logo": "https://epg.112114.xyz/logo/{name}.png" }],
 
 "sites":[
-{"key":"豆豆","name":"豆瓣┃搜索","type": 3, "api": "csp_DouDou","searchable": 0,"quickSearch": 0,"filterable": 0},
-{"key":"Ying","name":"樱花┃动漫","type":3,"api":"csp_Ying","searchable":1,"quickSearch":1,"changeable":1},
-{"key":"Anime1","name":"日本┃动漫","type": 3,"api": "csp_Anime1","searchable": 1,"quickSearch": 1,"changeable":1},
-{"key":"csp_Yj1211","name":"网红┃直播","type": 3,"api": "csp_Yj1211","playerType":"1","searchable": 0,"quickSearch": 1,"changeable":0},
-{"key":"csp_Nbys","name":"泥巴┃飞","type":3,"api":"csp_NiNi","searchable":1,"quickSearch":1,"filterable":1},
 {"key":"drpy_js_360影视","name":"官源┃360","type":3,"api":"./fan/JS/lib/drpy2.min.js","ext":"./fan/JS/js/360影视.js"},
 {"key":"drpy_js_奇珍异兽","name":"官源┃爱奇艺","type":3,"api":"./fan/JS/lib/drpy2.min.js","ext":"./fan/JS/js/奇珍异兽.js"},
 {"key":"drpy_js_百忙无果","name":"官源┃芒果","type":3,"api":"./fan/JS/lib/drpy2.min.js","ext":"./fan/JS/js/百忙无果.js"},
