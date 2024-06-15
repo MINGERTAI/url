@@ -1,7 +1,5 @@
 {
 "spider": "./fan/JAR/fan.txt;md5;d8f21fa84abb5ff61d7f1a0b7a78ec26",
-"logo": "https://ghproxy.net/https://raw.githubusercontent.com/ne7359/url/main/fan/AW1.gif",
-"wallpaper":"http://api.btstu.cn/sjbz/?lx=meizi/",
 
 
 "lives": [
