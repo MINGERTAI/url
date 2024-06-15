@@ -55,7 +55,7 @@ jobs:
         env:
           RESURL: ${{ secrets.RESURL }}
         run: |
-          python ./boxurl/main.py upexpire
+          python ./boxurl/boxurl.py upexpire
           echo "status=success" >> $GITHUB_OUTPUT
 
       - name: 'Update tvurl from listurl'
@@ -64,7 +64,7 @@ jobs:
           RESURL: ${{ secrets.RESURL }}
         if: steps.upexpire.outputs.status == 'success' && !cancelled()
         run: |
-          python ./boxurl/main.py uptvbox
+          python ./boxurl/boxurl.py uptvbox
           echo "status=success" >> $GITHUB_OUTPUT
 
       - name: '合并 tvurl'
@@ -73,7 +73,7 @@ jobs:
           RESURL: ${{ secrets.RESURL }}
         if: steps.uptvbox.outputs.status == 'success' && !cancelled()
         run: |
-          python ./boxurl/main.py check
+          python ./boxurl/boxurl.py check
           echo "status=success" >> $GITHUB_OUTPUT
 
       - name: '将新文件与旧文件用 MD5 进行比较' # 通过 MD5 检查新旧文件是否有变动，有变动则替换旧文件，并设置输出状态标记
