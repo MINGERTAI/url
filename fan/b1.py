@@ -171,4 +171,4 @@ if(menu == 'check'):
                     print('Main-Line-91-not-tvsite-url:' + j)
 
 
-        LocalFile.write_LocalFile('./all.txt', '"sites":[\r\n//Update:' + str(datetime.datetime.now()) + '\r\n' + addtv + '\r\n' + nsfw + '\r\n' + spare + '\r\n],')
+        LocalFile.write_LocalFile('./all.txt', '"sites":[\r\n//Update:' + str(datetime.datetime.now()) + '\r\n',')
