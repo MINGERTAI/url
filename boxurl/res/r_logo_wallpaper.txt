@@ -1,0 +1,2 @@
+"logo": "https://ghproxy.net/https://raw.githubusercontent.com/ne7359/url/main/fan/AW1.gif",
+"wallpaper":"http://api.btstu.cn/sjbz/?lx=meizi/",
