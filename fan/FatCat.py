@@ -67,34 +67,10 @@ def save_website_content_as_json_and_check_updates(url, file_name):
                 # 将修改后的data保存为JSON文件
                 #json_file_path = os.path.join(config_directory, file_name + '.json')
                 #with open(json_file_path, 'w', encoding='utf-8') as file:
-                with open(file_name1 + '.json', 'w', encoding='utf-8') as file:
+                with open(file_name + '.json', 'w', encoding='utf-8') as file:
                     json.dump(data, file, indent=4, ensure_ascii=False)
                 print(f"数据已以JSON格式保存到{file_name}")
-
                 
-                formatted_json = json.dump(data, file, indent=4, ensure_ascii=False)
-                data = json.load(file)
-                # 自定义格式化函数
-                custom_format(data):
-                formatted = json.dumps(data, ensure_ascii=False)
-                formatted = formatted.replace('",', '",\n').replace('},', '},\n')
-                formatted = formatted.replace('":[', '":[\n').replace('":"', '":"\n').replace('":{', '":{\n')
-                return formatted
-
-                # 使用自定义格式化函数处理数据
-                custom_formatted_json = custom_format(data)
-
-                # 输出自定义格式化后的JSON数据到控制台
-                print(custom_formatted_json)
-
-                # 指定保存文件的名称
-                file_name = "custom_formatted"
-
-                # 将自定义格式化后的JSON数据保存到文件
-                with open(file_name + '.json', 'w', encoding='utf-8') as file:
-                file.write(custom_formatted_json)
-
-                print(f"数据已以自定义格式保存到 {file_name}.json")
             else:
                 print("未检测到更新。")
         else:
@@ -105,7 +81,7 @@ def save_website_content_as_json_and_check_updates(url, file_name):
 # 目标URL
 url = 'http://肥猫.com'
 # 文件名，不包括扩展名
-file_name1 = 'FatCat'
+file_name = 'FatCat'
 
 save_website_content_as_json_and_check_updates(url, file_name)
 
