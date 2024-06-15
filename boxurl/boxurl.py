@@ -492,6 +492,7 @@ if(menu == 'check'):
 
         r_spider = LocalFile.read_LocalFile("./boxurl/res/r_spider.txt")
         r_spider = '{''\r\n' + r_spider
+        r_logo_wallpaper = LocalFile.read_LocalFile("./boxurl/res/r_logo_wallpaper.txt")
         r_lives = LocalFile.read_LocalFile("./boxurl/res/r_lives.txt")
         r_parses = LocalFile.read_LocalFile("./boxurl/res/r_parses.txt")
         r_parses = '\r\n\r\n"parses":[\r\n' + r_parses.replace('},\n{','},\r\n{').strip(',') + '\r\n],'
@@ -505,7 +506,7 @@ if(menu == 'check'):
 
         r_pushagent = LocalFile.read_LocalFile("./boxurl/res/r_pushagent.txt")
 
-        LocalFile.write_LocalFile('./tvbox.json', r_spider + '\r\n' + r_lives + '\r\n"sites":[' + addtv + '\r\n' + r_pushagent + '],'
+        LocalFile.write_LocalFile('./tvbox.json', r_spider + '\r\n' + r_logo_wallpaper + '\r\n' + r_lives + '\r\n"sites":[' + addtv + '\r\n' + r_pushagent + '],'
             + r_parses + r_flags + r_rules + r_doh)
 
         # LocalFile.write_LocalFile('./boxurl/out/tvbox.json', r_spider + '\r\n\r\n' + r_lives + '\r\n\r\n"sites":[' + addtv + '\r\n' + r_pushagent + '\r\n],'
