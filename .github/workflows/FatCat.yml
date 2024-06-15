@@ -26,7 +26,7 @@ jobs:
       run: python ./fan/FatCat.py
       
     - name: Run ls
-      run: ls -l tv/box
+      run: ls -l
 
     - id: check
       name: Check for changes
