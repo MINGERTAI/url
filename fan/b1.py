@@ -77,6 +77,8 @@ def save_website_content_as_json_and_check_updates(url, file_name):
                 with open(file_name + '.json', 'w', encoding='utf-8') as file:
                     json.dump(data, file, indent=4, ensure_ascii=False)
                 print(f"数据已以JSON格式保存到{file_name}")
+                with open('11.json', 'w', newline='', encoding='utf-8') as f:
+                    f.write(local_content)
             else:
                 print("未检测到更新。")
         else:
@@ -90,90 +92,3 @@ url = 'http://肥猫.com'
 file_name = 'FatCat'
 
 save_website_content_as_json_and_check_updates(url, file_name)
-
-
-# 获取传递的参数
-try:
-    #0表示文件名，1后面都是参数 0.py, 1, 2, 3
-    menu = sys.argv[1:][0]
-    if(len(sys.argv[1:]) > 1):
-        cid = sys.argv[1:][1]
-except:
-    menu = 'check'
-print('menu: ' + menu)
-
-# 下载FatCat.json中的所有Url订阅链接将其合并
-if(menu == 'check'):
-    try:
-        tvbox = LocalFile.read_LocalFile('FatCat.json').replace('\r','').replace('\n\n','\n')
-        addtv = ''
-        nsfw = ''
-        spare = ''
-        tvbox = tvbox.replace('//{','\n{')
-        for j in tvbox.split('\n'):
-            try:
-                if(j != '' and j.find('"key":') > -1 and j.find('"name":') > -1 and j.find('"type":') > -1 and r_sites_err.find(j) == -1):
-                    j = j.strip(',')
-                    if(len(j.split('}')) > len(j.split('{'))):
-                        j = j.strip(',')[:-1].strip(',')
-                    tv = json.loads(j)
-                    # 检查自定义Jar文件是否存在
-                    if('jar' in tv.keys()):
-                        jar = tv['jar']
-                        if(jar.find('http') == 0):
-                            ustat = NetFile.url_stat(jar, 60, 60)
-                            if(ustat == 404 or ustat == 0):
-                                j = j.replace(',"jar":"' + jar + '"', '')                         
-                    # 过滤重复的电影网站
-                    if((addtv + spare + nsfw).find(j) > -1):
-                        continue
-                    # 过滤重复Key的电影网站
-                    if((addtv + nsfw).find('"key":"' + tv['key'] + '"') > -1):
-                        spare += '\r\n' + j + ','
-                        continue
-                    # 分类去重
-                    id = tv['type']
-                    if(id == 3):
-                        if('ext' in tv.keys()):
-                            ext = tv['ext']
-                            if((addtv + nsfw + r_sites_err).find(ext) > -1):
-                                continue
-                            else:
-                                if(ext.find('http') == 0):
-                                    ustat = NetFile.url_stat(ext, 60, 60)
-                                    if(ustat == 404 or ustat == 0):
-                                        r_sites_err += '\r\n[' + datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S") + '] ' + str(ustat) + ':' + j + ','
-                                        continue
-                        else:
-                            # 未配置Ext信息，让api值唯一
-                            if((addtv + nsfw + r_sites_err).find('"api":"' + tv['api'] + '"') > -1):
-                                continue
-                        
-                    elif(id >= 0):
-                        api = tv['api']
-                        if((addtv + nsfw + r_sites_err).find(api) > -1):
-                            continue
-                        else:
-                            if(api.find('http') == 0):
-                                ustat = NetFile.url_stat(api, 60, 60)
-                                if(ustat == 404 or ustat == 0):
-                                    r_sites_err += '\r\n[' + datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S") + '] ' + str(ustat) + ':' + j + ','
-                                    continue
-
-                    else:
-                        spare += '\r\n' + j + ','
-                    
-                    if(tv['name'].find('*') > -1):
-                        nsfw += '\r\n' + j + ','
-                    elif(j.find('"key":') > -1 and j.find('"name":') > -1 and j.find('"type":') > -1):
-                        addtv += '\r\n' + j + ','
-                else:
-                    print('Main-Line-91-not-tvsite-url:' + j)
-
-
-        r_update = '{\r\n//Update:' + str(datetime.datetime.now()) + '\r\n'
-
-
-        LocalFile.write_LocalFile('./all.txt', '"sites":[\r\n//Update:' + str(datetime.datetime.now()) + '\r\n'],')
-    except Exception as ex:
-        LocalFile.write_LogFile('Main-Line-108-Exception:' + str(ex))
