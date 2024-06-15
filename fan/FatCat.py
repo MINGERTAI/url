@@ -7,13 +7,6 @@ import os
 
 headers = {'User-Agent': 'okhttp/3.15'}
 
-# 自定义格式化函数
-def custom_format(data):
-    formatted = json.dumps(data, ensure_ascii=False, indent=4)
-    formatted = formatted.replace('",', '",\n').replace('},', '},\n')
-    formatted = formatted.replace('":[', '":[\n').replace('":"', '":"\n').replace('":{', '":{\n')
-    return formatted
-
 def save_website_content_as_json_and_check_updates(url, file_name):
     # 定义配置文件和jar文件的保存路径
     config_directory = os.path.join("fan", "FatCat")
@@ -41,19 +34,50 @@ def save_website_content_as_json_and_check_updates(url, file_name):
                 with open(config_path, 'w') as configfile:
                     config.write(configfile)
                 
-                # 替换data字典中的特定字符串
+                spider = data.get('spider')
+                if spider:
+                    jar_url, jar_md5 = re.match(r'http://[^/]+/jar/(.+?);md5;([a-f0-9]{32})', spider).groups()
+                    full_jar_url = f"http://like.xn--z7x900a.com/jar/{jar_url}"
+                    jar_response = requests.get(full_jar_url)
+                    if jar_response.status_code == 200:
+                        jar_file_name = jar_url.split('/')[-1]
+                        # 构建jar文件的完整保存路径
+                        jar_file_path = os.path.join(config_directory, jar_file_name)
+                        with open(jar_file_path, 'wb') as jar_file:
+                            jar_file.write(jar_response.content)
+                        print(f"jar文件已下载到：{jar_file_path}")
+                        # 更新配置文件
+                        config['DEFAULT']['jar_md5'] = jar_md5
+                        with open(config_path, 'w') as configfile:
+                            config.write(configfile)
+                        print("jar文件的md5值已更新。")
+                    else:
+                        print(f"jar文件下载失败，状态码：{jar_response.status_code}")
+
+                if 'spider' in data:
+                    original_url = data['spider'].split(';md5;')[0]
+                    data['spider'] = data['spider'].replace(original_url, f'./fan/FatCat/{jar_file_name}')
+                # 假设已经有一个字典 data 和变量 jar_file_name
                 for key in data:
+                    # 检查值是否为字符串类型
                     if isinstance(data[key], str):
+                        # 替换 'http://js.xn--z7x900a.com' 为 './fan/FatCat'
                         data[key] = data[key].replace('http://js.xn--z7x900a.com/', './fan/FatCat/')
                 
-                # 使用自定义格式化函数格式化data
+                # 将修改后的data保存为JSON文件
+                #json_file_path = os.path.join(config_directory, file_name + '.json')
+                #with open(json_file_path, 'w', encoding='utf-8') as file:
+                def custom_format(data):
+                    formatted = json.dumps(data, ensure_ascii=False, indent=4)
+                    formatted = formatted.replace('",', '",\n').replace('},', '},\n')
+                    formatted = formatted.replace('":[', '":[\n').replace('":"', '":"\n').replace('":{', '":{\n')
+                    return formatted
+                # 在这里使用 custom_format 函数处理 data
                 custom_formatted_data = custom_format(data)
-                
-                # 保存自定义格式化后的数据到JSON文件
-                json_file_path = os.path.join(config_directory, file_name + '.json')
-                with open(json_file_path, 'w', encoding='utf-8') as file:
-                    file.write(custom_formatted_data)
-                print(f"数据已以自定义格式保存到 {json_file_path}")
+                with open(file_name + '.json', 'w', encoding='utf-8') as file:
+                     file.write(custom_formatted_data)
+                    #json.dump(data, file, indent=4, ensure_ascii=False)
+                print(f"数据已以JSON格式保存到{file_name}")
                 
             else:
                 print("未检测到更新。")
@@ -68,3 +92,15 @@ url = 'http://肥猫.com'
 file_name = 'FatCat'
 
 save_website_content_as_json_and_check_updates(url, file_name)
+
+#def diy_conf(content):
+    # 这里添加您需要的任何特定修改
+    #modified_content = content
+    #return modified_content
+
+# 读取保存的JSON数据
+#with open(file_name + '.json', 'r', encoding='utf-8') as f:
+   # content = f.read()
+
+# 修改内容
+#modified_content = diy_conf(content)
