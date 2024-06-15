@@ -67,16 +67,8 @@ def save_website_content_as_json_and_check_updates(url, file_name):
                 # 将修改后的data保存为JSON文件
                 #json_file_path = os.path.join(config_directory, file_name + '.json')
                 #with open(json_file_path, 'w', encoding='utf-8') as file:
-                def custom_format(data):
-                    formatted = json.dumps(data, ensure_ascii=False, indent=4)
-                    formatted = formatted.replace('",', '",\n').replace('},', '},\n')
-                    formatted = formatted.replace('":[', '":[\n').replace('":"', '":"\n').replace('":{', '":{\n')
-                    return formatted
-                # 在这里使用 custom_format 函数处理 data
-                custom_formatted_data = custom_format(data)
                 with open(file_name + '.json', 'w', encoding='utf-8') as file:
-                     file.write(custom_formatted_data)
-                    #json.dump(data, file, indent=4, ensure_ascii=False)
+                    json.dump(data, file, indent=4, ensure_ascii=False)
                 print(f"数据已以JSON格式保存到{file_name}")
                 
             else:
