@@ -72,8 +72,7 @@ def save_website_content_as_json_and_check_updates(url, file_name):
                 print(f"数据已以JSON格式保存到{file_name}")
 
                 
-                input_file_name = "FatCat.json"
-                with open(input_file_name, 'r', encoding='utf-8') as file:
+                formatted_json = json.dump(data, file, indent=4, ensure_ascii=False)
                 data = json.load(file)
                 # 自定义格式化函数
                 custom_format(data):
