@@ -411,8 +411,8 @@ if(menu == 'uptvbox'):
 if(menu == 'check'):
     try:
         rename = LocalFile.read_LocalFile('./boxurl/res/rename.txt').replace('\r','').replace('\n\n','\n')
-        if(os.path.exists('./boxurl/out/all')):
-            tvbox = LocalFile.read_LocalFile('./boxurl/out/all').replace('\r','').replace('\n\n','\n')
+        if(os.path.exists('./tvbox.json')):
+            tvbox = LocalFile.read_LocalFile('./tvbox.json').replace('\r','').replace('\n\n','\n')
         else:
             tvbox = LocalFile.read_LocalFile('./boxurl/res/all').replace('\r','').replace('\n\n','\n')
         r_sites_err = LocalFile.read_LocalFile("./boxurl/res/r_sites_err.txt")
