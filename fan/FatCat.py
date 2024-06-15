@@ -63,8 +63,17 @@ def save_website_content_as_json_and_check_updates(url, file_name):
                     if isinstance(data[key], str):
                         # 替换 'http://js.xn--z7x900a.com' 为 './fan/FatCat'
                         data[key] = data[key].replace('http://js.xn--z7x900a.com/', './fan/FatCat/')
-                        
-                file_name = "json.dump(data, file, indent=4, ensure_ascii=False)"
+                
+                # 将修改后的data保存为JSON文件
+                #json_file_path = os.path.join(config_directory, file_name + '.json')
+                #with open(json_file_path, 'w', encoding='utf-8') as file:
+                with open(file_name1 + '.json', 'w', encoding='utf-8') as file:
+                    json.dump(data, file, indent=4, ensure_ascii=False)
+                print(f"数据已以JSON格式保存到{file_name}")
+
+                
+                input_file_name = "file_name1"
+                with open(input_file_name, 'r', encoding='utf-8') as file:
                 data = json.load(file)
                 # 自定义格式化函数
                 custom_format(data):
@@ -87,13 +96,6 @@ def save_website_content_as_json_and_check_updates(url, file_name):
                 file.write(custom_formatted_json)
 
                 print(f"数据已以自定义格式保存到 {file_name}.json")
-                
-                # 将修改后的data保存为JSON文件
-                #json_file_path = os.path.join(config_directory, file_name + '.json')
-                #with open(json_file_path, 'w', encoding='utf-8') as file:
-                with open(file_name1 + '.json', 'w', encoding='utf-8') as file:
-                    json.dump(data, file, indent=4, ensure_ascii=False)
-                print(f"数据已以JSON格式保存到{file_name}")
             else:
                 print("未检测到更新。")
         else:
@@ -104,7 +106,6 @@ def save_website_content_as_json_and_check_updates(url, file_name):
 # 目标URL
 url = 'http://肥猫.com'
 # 文件名，不包括扩展名
-file_name = 'FatCatA'
 file_name1 = 'FatCat'
 
 save_website_content_as_json_and_check_updates(url, file_name)
