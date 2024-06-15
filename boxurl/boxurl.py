@@ -25,76 +25,6 @@ except:
     menu = 'init'
 print('menu: ' + menu)
 
-# ustat = NetFile.url_stat('https://video.xuan.io/api.php/provide/vod/', 60, 60)
-# menu = 'update'
-# menu = 'upexpire'
-# menu = 'uptvbox'
-# menu = 'check'
-# 配置信息和同步本地需要更新的资源文件
-# resurl = 'http://121.46.250.130:8080/ipns/k2k4r8n888sny0v16vyfxbjwqrk0vgvh9k84xixh5k6ejdywbdc509ax/'
-
-# 对程序的基本信息进行下载更新，下载IPFS网关信息和过滤列表信息
-# if(menu == 'init'):
-#     filename = 'live.json|tvbox.json'
-#     for i in filename.split('|'):
-#         try:
-#             File = NetFile.url_to_str(resurl + '' + i, 240, 240)
-#             if(len(File) > 10240):
-#                 LocalFile.write_LocalFile('./res/' + i, File.strip('\n')) 
-#                 print('Get-File-is-True:' + resurl + '' + i + ' FileSize:' + str(len(File)))
-#         except Exception as ex:
-#             print('Get-File-is-False:' + resurl + '' + i + '\n' + str(ex))
-
-# def write_json():
-#     '''
-#     写入/追加json文件
-#     :param obj:
-#     :return:
-#     '''
-#     # post=set()
-#     # fp=[]
-#     # for p in range(len(json)):
-#     #         if json[p]['text'] not in post:#如果set中没有这个值（set特性是不能重复）
-#     #                 fp.append(json[p])#fp数组将这个不重复的值存进
-#     #                 post.add(json[p]['text'])#set存进这个不重复的值，为了后面判断是否重复做准备
-#     #                 print(json[p])
-#     #                 print(post)
-#     #                 print(json[p]['text'])
-#     # print(fp)
-
-#     #首先读取已有的json文件中的内容
-#     post=set()
-#     item_list = []
-#     alltypename = ''
-#     with open('./res/tvlist.json', 'r', encoding='utf-8') as f:
-#         load_dict = json.load(f)
-#         num_item = len(load_dict)
-#         for i in range(num_item):
-#             try:
-#                 if load_dict[i]['tvmd5'] not in post:#如果set中没有这个值（set特性是不能重复）
-#                     post.add(str(load_dict[i]['tvmd5']))#set存进这个不重复的值，为了后面判断是否重复做准备
-#                     typename = load_dict[i]['typename']
-#                     if(alltypename.find(typename) == -1):
-#                         alltypename = alltypename + '\r\n' + typename
-#                     # tvname = load_dict[i]['tvname']
-#                     # tvmd5 = load_dict[i]['tvmd5']
-#                     # tvurl = load_dict[i]['tvurl']
-
-#                     # item_dict = {'typename':typename, 'tvname':tvname,'tvmd5':tvmd5, 'tvurl':tvurl}
-#                     # item_list.append(item_dict)
-#                     item_list.append(load_dict[i])
-#             except Exception as ex:
-#                 LocalFile.write_LogFile('Main-Line-87-Exception:' + str(ex))
-            
-#     #读取已有内容完毕
-#     #将新传入的dict对象追加至list中
-#     # item_list.append(obj)
-#     #将追加的内容与原有内容写回（覆盖）原文件
-#     with open('./res/tvlist.json', 'w', encoding='utf-8') as f2:
-#         json.dump(item_list, f2, ensure_ascii=False)
-#     LocalFile.write_LocalFile('./res/typename.txt', alltypename.lstrip('\r\n'))
-
-# 下载Node.json中的所有Url订阅链接将其合并，生成本地vpei-new.txt，同步至Github后改名为vpei.txt文件
 # 本菜单暂时无效
 if(menu == 'update'):
     oldexpire = LocalFile.read_LocalFile("./boxurl/res/r_sites_err.txt")
@@ -352,20 +282,14 @@ if(menu == 'uptvbox'):
                         osite['uptime'] = (datetime.datetime.now() - datetime.timedelta(days=731)).strftime("%Y-%m-%d %H:%M:%S")
                     elif (osite_tvurl.find('vpei') > -1 or osite_tvurl.find('k2k4r8n888sny0v16vyfxbjwqrk0vgvh9k84xixh5k6ejdywbdc509ax') > -1):
                         osite['uptime'] = (datetime.datetime.now() - datetime.timedelta(days=365)).strftime("%Y-%m-%d %H:%M:%S")
-                    #elif (ii > 115):
-                    #    osite['uptime'] = (datetime.datetime.now() + datetime.timedelta(days=365)).strftime("%Y-%m-%d %H:%M:%S")
+
                     else:
                         osite['uptime'] = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
                     osite['size'] = len(boxsites)
                     i = json.dumps(osite)
                     #　boxsites = boxsites.encode('utf-8').decode('utf-8', 'ignore').strip('\n')
                     print('UpdateTime:' + osite['uptime'] + ' boxsites-len:' + str(len(boxsites)))
-                    # if(IsValid.isBase64(boxsites)):
-                    #     boxsites = StrText.get_str_base64(boxsites) # Base64格式化
-                    #     boxsites = base64.b64decode(boxsites).decode('utf-8')
-                    #     print('Url-All-Nodes-is-Base64:' + newboxurl)
-                    # else:
-                    #     print('Url-All-Nodes-no-Base64:' + newboxurl)
+
                     allonesite = ''
                     if (osite['type'] == 'tlive'):
                         alltv = boxsites #NetFile.url_to_str(osite_tvurl, 240, 240)
@@ -463,11 +387,6 @@ if(menu == 'uptvbox'):
             boxurl = boxurl + '\n' + i
     # tvlist = tvlist.replace(',"jar":"' + tvjar + '"','')
     tvlist = tvlist.replace(',"jar":"http://freed.yuanhsing.cf/TVBox/MaooXB2/XBiubiuLA4.jar"','')
-    #tvlist = tvlist.replace(',"jar":"http://121.46.250.130:8080/ipfs/QmZFDWsm15DiH3WLb2WwgPb136tKPibvMoGKDT41aEpwfa?filename=XBiubiuLA4.jar"','')
-    # 我添加
-    tvlist = tvlist.replace(',"jar":"https://raw.githubusercontent.com/ne7359/url/main/boxurl/jar/XBiubiuLA4.jar"','')
-    tvlist = tvlist.replace(',"jar":"http://iurl.leertai.top/jar/XBiubiuLA4.jar"','')
-    tvlist = tvlist.replace(',"jar":"https://raw.githubusercontent.com/ne7359/url/main/boxurl/jar/XBiubiuLA4.PNG"','')
     # 去除重复项目
     # write_json()
     # 将节点更新时间等写入配置文件
