@@ -169,16 +169,11 @@ if(menu == 'check'):
                         addtv += '\r\n' + j + ','
                 else:
                     print('Main-Line-91-not-tvsite-url:' + j)
-            except Exception as ex:
-                LocalFile.write_LogFile('Main-Line-93-Exception:' + str(ex) + '\ntvsite:' + j)
-        
-        LocalFile.write_LocalFile('./res/r_sites_err.txt', r_sites_err.strip('\r\n'))
-        print('Line-96:/res/r_sites_err.txt已更新。')
 
-        # r_pushagent = LocalFile.read_LocalFile("./res/r_pushagent.txt")
+
         r_update = '{\r\n//Update:' + str(datetime.datetime.now()) + '\r\n'
 
 
-        LocalFile.write_LocalFile('./out/all.txt', '"sites":[\r\n//Update:' + str(datetime.datetime.now()) + '\r\n'],')
+        LocalFile.write_LocalFile('./all.txt', '"sites":[\r\n//Update:' + str(datetime.datetime.now()) + '\r\n'],')
     except Exception as ex:
         LocalFile.write_LogFile('Main-Line-108-Exception:' + str(ex))
