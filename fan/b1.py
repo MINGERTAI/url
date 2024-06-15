@@ -4,14 +4,6 @@ import hashlib
 import configparser
 import re
 import os
-
-import datetime
-from gettext import find
-import json
-import sys
-from cls import LocalFile
-from cls import NetFile
-
 headers = {'User-Agent': 'okhttp/3.15'}
 
 def save_website_content_as_json_and_check_updates(url, file_name):
