@@ -40,7 +40,6 @@ def get_fan_conf():
 
     with open(file_name + '.json', 'w', encoding='utf-8') as file:
         json.dump(content, file, indent=4, ensure_ascii=False)
-                print(f"数据已以JSON格式保存到{file_name}")
         
     # DIY添加自定义接口，写入a.json
     local_content = local_conf(content)
