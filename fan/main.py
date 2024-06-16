@@ -23,7 +23,7 @@ def main():
 def check_and_update():
     try:
         # 读取本地文件内容
-        tvbox = load_file('./out/all.txt') or load_file('./res/all.txt')
+        tvbox = load_file('./b.json') or load_file('./FatCat.json')
         r_sites_err = LocalFile.read_LocalFile("./res/r_sites_err.txt")
         
         addtv = ''
