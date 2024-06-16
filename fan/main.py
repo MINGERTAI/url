@@ -1,29 +1,29 @@
-#!/usr/bin/env python3
-
 import datetime
+from gettext import find
 import json
 import os
+import requests
 import sys
 from cls import LocalFile
 from cls import NetFile
 
-def main():
-    # 获取传递的参数
-    try:
-        menu = sys.argv[1]
-        cid = sys.argv[2] if len(sys.argv) > 2 else None
-    except IndexError:
-        menu = 'check'
-    
-    print('menu: ' + menu)
+# 获取传递的参数
+try:
+    #0表示文件名，1后面都是参数 0.py, 1, 2, 3
+    menu = sys.argv[1:][0]
+    if(len(sys.argv[1:]) > 1):
+        cid = sys.argv[1:][1]
+except:
+    menu = 'check'
+print('menu: ' + menu)
 
-    if menu == 'check':
-        check_and_update()
-
-def check_and_update():
+# 下载Node.json中的所有Url订阅链接将其合并，生成本地vpei-new.txt，同步至Github后改名为vpei.txt文件
+if(menu == 'check'):
     try:
-        # 读取本地文件内容
-        tvbox = load_file('./b.json') or load_file('./FatCat.json')
+        if(os.path.exists('./out/all.txt')):
+            tvbox = LocalFile.read_LocalFile('./out/all.txt').replace('\r','').replace('\n\n','\n')
+        else:
+            tvbox = LocalFile.read_LocalFile('./res/all.txt').replace('\r','').replace('\n\n','\n')
         r_sites_err = LocalFile.read_LocalFile("./res/r_sites_err.txt")
         
         addtv = ''
