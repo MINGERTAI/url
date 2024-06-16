@@ -20,11 +20,11 @@ print('menu: ' + menu)
 # 下载Node.json中的所有Url订阅链接将其合并，生成本地vpei-new.txt，同步至Github后改名为vpei.txt文件
 if(menu == 'check'):
     try:
-        if(os.path.exists('./out/all.txt')):
-            tvbox = LocalFile.read_LocalFile('./out/all.txt').replace('\r','').replace('\n\n','\n')
+        if(os.path.exists('./b.json')):
+            tvbox = LocalFile.read_LocalFile('./b.json').replace('\r','').replace('\n\n','\n')
         else:
-            tvbox = LocalFile.read_LocalFile('./res/all.txt').replace('\r','').replace('\n\n','\n')
-        r_sites_err = LocalFile.read_LocalFile("./res/r_sites_err.txt")
+            tvbox = LocalFile.read_LocalFile('./FatCat.json').replace('\r','').replace('\n\n','\n')
+        r_sites_err = LocalFile.read_LocalFile("./fan/res/r_sites_err.txt")
         
         addtv = ''
         nsfw = ''
