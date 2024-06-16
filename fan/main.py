@@ -21,10 +21,10 @@ print('menu: ' + menu)
 if(menu == 'check'):
     try:
         if(os.path.exists('./b.json')):
-            tvbox = LocalFile.read_LocalFile('./b.json').replace('\r','').replace('\n\n','\n')
+            tvbox = LocalFile.read_LocalFile('./code/fan/res/r_sites_err.txt').replace('\r','').replace('\n\n','\n')
         else:
-            tvbox = LocalFile.read_LocalFile('./b.json').replace('\r','').replace('\n\n','\n')
-        r_sites_err = LocalFile.read_LocalFile("./FatCat.json")
+            tvbox = LocalFile.read_LocalFile('./code/b.json').replace('\r','').replace('\n\n','\n')
+        r_sites_err = LocalFile.read_LocalFile("./code/FatCat.json")
         
         addtv = ''
         nsfw = ''
