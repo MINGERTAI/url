@@ -65,7 +65,7 @@ def save_website_content_as_json_and_check_updates(url, file_name):
                     json.dump(data, file, indent=4, ensure_ascii=False)
                 print(f"数据已以JSON格式保存到{file_name}")
                 with open('1.json', 'w', encoding='utf-8') as file:
-                    json.dump(data, file, indent=0, ensure_ascii=False)
+                    json.dump(data, file, newline='', ensure_ascii=False)
                 
             else:
                 print("未检测到更新。")
