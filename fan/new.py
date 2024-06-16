@@ -61,7 +61,7 @@ def get_fan_conf():
     if jmd5 != current_md5:
         # Update jar.md5
         config.set("md5", "jar", jmd5)
-        with open("fan/config.ini", "w") as f:
+        with open(./fan/JAR/config.ini", "w") as f:
             config.write(f)
 
         response = requests.get(url)
