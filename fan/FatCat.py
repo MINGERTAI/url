@@ -64,6 +64,23 @@ def save_website_content_as_json_and_check_updates(url, file_name):
                 with open(file_name + '.json', 'w', encoding='utf-8') as file:
                     json.dump(data, file, indent=4, ensure_ascii=False)
                 print(f"数据已以JSON格式保存到{file_name}")
+
+                # 假定这是要保存的数据示例
+                data = [
+                {"key": "短剧", "name": "🌈上头┃短剧", "type": 3, "api": "csp_Djuu", "searchable": 1, "quickSearch": 1, "changeable": 1},
+                {"key": "酷看", "name": "💡酷看┃秒播", "type": 3, "api": "csp_Kkys", "timeout": 15, "searchable": 1, "quickSearch": 1, "changeable": 1},
+                {"key": "原创", "name": "☀原创┃不卡", "type": 3, "api": "csp_YCyz", "timeout": 15, "playerType": 1, "searchable": 1, "quickSearch": 1, "changeable": 1}
+                ]
+
+                # 生成JSON字符串
+                json_str = json.dumps(data, ensure_ascii=False, separators=(',', ':'))
+
+                # 保存到文件
+                file_name = "output"
+                with open('1.json', 'w', encoding='utf-8') as file:
+                file.write(json_str)
+
+                print(f"数据已以JSON格式保存到 1.json")
                 
             else:
                 print("未检测到更新。")
