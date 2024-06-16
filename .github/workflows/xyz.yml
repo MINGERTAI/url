@@ -21,7 +21,7 @@ jobs:
       run: |
         pip install requests
     - name: Run Python script
-      run: python ./fan/b1.py
+      run: python ./fan/main.py
   
     - name: Run ls
       run: ls -l
