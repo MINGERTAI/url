@@ -11,10 +11,6 @@ jobs:
     steps:          
     - name: Checkout repository qist/tvbox
       uses: actions/checkout@v4
-      with:
-        repository: ne7359/url
-        ref: master
-        path: code
 
     - name: Set up Python
       uses: actions/setup-python@v5 
