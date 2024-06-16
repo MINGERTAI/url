@@ -7,7 +7,7 @@ headers = {'User-Agent': 'okhttp/3.15'}
 
 def get_fan_conf():
     config = configparser.ConfigParser()
-    config.read("fan/config.ini")
+    config.read("./fan/JAR/config.ini")
 
     url = 'http://饭太硬.com/tv'
     response = requests.get(url, headers=headers)
