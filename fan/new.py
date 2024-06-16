@@ -40,7 +40,7 @@ def get_fan_conf():
         
     # DIY添加自定义接口，写入a.json
     local_content = local_conf(content)
-    with open('a.json', 'w', newline='', encoding='utf-8') as f:
+    with open('a.json', 'w', indent=4, encoding='utf-8') as f:
         f.write(local_content)
         
     # DIY添加自定义接口，写入b.json
