@@ -1,5 +1,9 @@
 import requests
 import json  # 确保导入json模块
+import re
+import base64
+import hashlib
+import configparser
 
 #def save_website_content_as_json(url, file_name):
 def save_website_content_as_json(url):
@@ -9,15 +13,18 @@ def save_website_content_as_json(url):
     try:
         response = requests.get(url, headers=headers)
         
+        
         # 检查状态码，确认请求成功
         if response.status_code == 200:
             try:
                 # 尝试将响应内容解析为JSON
-                data = response.text()
+                #match = response.text()
+                match = re.search(r'[A-Za-z0]{8}\*\*(.*)', response.text)
                 # 如果成功，以JSON格式保存
                 #with open(file_name + '.json', 'w', encoding='utf-8') as file:
                     #json.dump(data, file, indent=4, ensure_ascii=False)
                 #print(f"数据已以JSON格式保存到{file_name}.json")
+                content = content.replace(url, './fan/JAR/fan.txt')
                 with open('1.json', 'w', newline='', encoding='utf-8') as f:
                     f.write(data)
             except ValueError:
