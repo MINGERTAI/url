@@ -22,7 +22,8 @@ jobs:
       run: pip install requests
 
     - name: Run Python script
-      run: python ./fan/new.py
+      #run: python ./fan/new.py
+      run: python ./newgood.py
   
     - name: Run ls
       run: ls -l
