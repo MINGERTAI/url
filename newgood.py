@@ -2,6 +2,7 @@ import requests
 import json  # 确保导入json模块
 
 def save_website_content_as_json(url, file_name):
+def save_website_content_as_json(url):
     headers = {'User-Agent': 'okhttp/3.15'}
     
     # 尝试发起GET请求
@@ -34,4 +35,4 @@ url = 'http://肥猫.com'
 # 文件名，不包括扩展名
 #file_name = 'website_content'
 
-save_website_content_as_json(url, file_name)
+#save_website_content_as_json(url, file_name)
