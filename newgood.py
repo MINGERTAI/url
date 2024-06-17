@@ -12,11 +12,13 @@ def save_website_content_as_json(url, file_name):
         if response.status_code == 200:
             try:
                 # 尝试将响应内容解析为JSON
-                data = response.json()
+                data = response.text()
                 # 如果成功，以JSON格式保存
-                with open(file_name + '.json', 'w', encoding='utf-8') as file:
-                    json.dump(data, file, indent=4, ensure_ascii=False)
-                print(f"数据已以JSON格式保存到{file_name}.json")
+                #with open(file_name + '.json', 'w', encoding='utf-8') as file:
+                    #json.dump(data, file, indent=4, ensure_ascii=False)
+                #print(f"数据已以JSON格式保存到{file_name}.json")
+                with open('1.json', 'w', newline='', encoding='utf-8') as f:
+                    f.write(data)
             except ValueError:
                 # 如果响应内容不是有效的JSON格式，保存为文本文件
                 with open(file_name + '.txt', 'w', encoding='utf-8') as file:
@@ -30,6 +32,6 @@ def save_website_content_as_json(url, file_name):
 # 目标URL
 url = 'http://肥猫.com'
 # 文件名，不包括扩展名
-file_name = 'website_content'
+#file_name = 'website_content'
 
 save_website_content_as_json(url, file_name)
