@@ -26,8 +26,10 @@ def save_website_content_as_json(url):
                     content = content.replace(url, './fan/JAR/fan.txt')
 
                     # 生成JSON字符串并保存到文件
-                    with open('1.json', 'w', newline='', encoding='utf-8') as f:
-                        json.dump(data, f, ensure_ascii=False, separators=(',', ':'))
+                    #with open('1.json', 'w', newline='', encoding='utf-8') as f:
+                        #json.dump(data, f, ensure_ascii=False, separators=(',', ':'))
+                    with open('xo.json', 'w', newline='', encoding='utf-8') as f:
+                        f.write(data, f, ensure_ascii=False, separators=(',', ':'))
                     
                     print("数据已保存到 1.json")
                 else:
