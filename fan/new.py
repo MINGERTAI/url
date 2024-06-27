@@ -127,6 +127,7 @@ def local_myconf(content):
             # 在找到的行之后添加新内容
             new_lines.append(new_content)
     # 查找并添加新内容
+    lines = content.split('\n')
     live_content = []
     for line in lines:
         live_content.append(line)
