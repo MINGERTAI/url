@@ -72,9 +72,9 @@ def modify_content(content):   # 更改自定义
     # Replace specified key and name  替换"key":"豆豆","name":"全接口智能过滤广告" 为"key":"豆豆","name":"智能AI广告过滤"
     content = re.sub(r'{"key":"豆豆","name":"全接口智能过滤广告",', r'{"key":"豆豆","name":"智能AI广告过滤",', content)
     
-    # 删除 //{"key": 整行
+    # 删除 //{"key":  整行
     content = re.sub(r'^\s*//\{"key":.*\n', '', content, flags=re.MULTILINE)
-    
+
     # 删除 "lives":[ 整行
     content = re.sub(r'^\s*"lives":[.*\n', '', content, flags=re.MULTILINE)
     # 删除 {"name":"live","type": 整行
@@ -82,19 +82,16 @@ def modify_content(content):   # 更改自定义
     # 删除 { "name": "XIUTAN", "ua": 整行
     content = re.sub(r'^\s*{ "name": "XIUTAN", "ua":.*\n', '', content, flags=re.MULTILINE)
     # 删除 "logo":"https:\/\/fs-im-kefu.7moor-fs1.com 整行
-    #content = re.sub(r'^\s*"logo":"https:\/\/fs-im-kefu.7moor-fs1.com.*\n', '', content, flags=re.MULTILINE)
+    content = re.sub(r'^\s*"logo":"https:\/\/fs-im-kefu.7moor-fs1.com.*\n', '', content, flags=re.MULTILINE)
 
-    #return content
-
-
-    #替换"logo"URL
-    new_logo_url = "https://ghproxy.net/https://raw.githubusercontent.com/ne7359/url/main/fan/AW1.gif"
-    content = re.sub(r'"logo":"[^"]+"', f'"logo":"{new_logo_url}"', content)
+    # 替换"logo"URL
+    #new_logo_url = "https://ghproxy.net/https://raw.githubusercontent.com/ne7359/url/main/fan/AW1.gif"
+    #content = re.sub(r'"logo":"[^"]+"', f'"logo":"{new_logo_url}"', content)
 
     # 替换"live"URL
-    original_url = "https://www.huichunniao.cn/xh/lib/live.txt"
-    replacement_url = "https://ghproxy.net/https://raw.githubusercontent.com/kimwang1978/collect-tv-txt/main/merged_output.txt"
-    content = content.replace(original_url, replacement_url)
+    #original_url = "https://www.huichunniao.cn/xh/lib/live.txt"
+    #replacement_url = "https://ghproxy.net/https://raw.githubusercontent.com/kimwang1978/collect-tv-txt/main/merged_output.txt"
+    #content = content.replace(original_url, replacement_url)
     return content
     
 def diy_conf(content):
@@ -114,26 +111,23 @@ def read_local_file(file_path):   # 用于加载read_local_file("./fan/res/repla
         return file.read()
 
 def local_myconf(content):
-    # 从文件加载要添加的parses&flag&rules新内容
+    # 从文件加载要添加的新内容
     new_content = read_local_file("./fan/res/parses_flags_rules.txt")
-    
     # 替换指定模式的内容，从{"key":"88js"到{"key":"dr_兔小贝"前的内容
     pattern = r'{"key":"88js"(.|\n)*?(?={"key":"dr_兔小贝")'
     replacement = read_local_file("./fan/res/replace.txt")
     content = re.sub(pattern, replacement, content, flags=re.DOTALL)
-    
     # 替换指定{"key":"cc"行内容
     pattern = r'{"key":"cc"(.)*\n'
-    replacement = r'{"key":"cc","name":"豆瓣评级","type":3,"api":"./fan/JS/lib/drpy2.min.js","ext":"./fan/JS/js/drpy.js"}\n'
+    replacement = r'{"key":"cc","name":"请勿相信视频中广告","type":3,"api":"./fan/JS/lib/drpy2.min.js","ext":"./fan/JS/js/drpy.js"}\n'
     content = re.sub(pattern, replacement, content)
-    
-    # 查找"doh":[{"name":"Google"并在行后添加parses&flag&rules新内容
+    # 查找并添加新内容
     lines = content.split('\n')
     new_lines = []
     for line in lines:
         new_lines.append(line)
         if '"doh":[{"name":"Google"' in line:
-            # 在找到的行之后添加parses&flag&rules新内容
+            # 在找到的行之后添加新内容
             new_lines.append(new_content)
     return '\n'.join(new_lines)
 
