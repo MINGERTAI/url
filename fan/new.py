@@ -72,17 +72,21 @@ def modify_content(content):   # 更改自定义
     # Replace specified key and name  替换"key":"豆豆","name":"全接口智能过滤广告" 为"key":"豆豆","name":"智能AI广告过滤"
     content = re.sub(r'{"key":"豆豆","name":"全接口智能过滤广告",', r'{"key":"豆豆","name":"智能AI广告过滤",', content)
     
-    # 删除 //{"key":  整行
+    # 删除 //{"key": 整行
     content = re.sub(r'^\s*//\{"key":.*\n', '', content, flags=re.MULTILINE)
     
-    # 删除 "lives":[  整行
+    # 删除 "lives":[ 整行
     content = re.sub(r'^\s*"lives":[.*\n', '', content, flags=re.MULTILINE)
-    # 删除 {"name":"live","type":  整行
+    # 删除 {"name":"live","type": 整行
     content = re.sub(r'^\s*{"name":"live","type":.*\n', '', content, flags=re.MULTILINE)
-    # 删除 { "name": "XIUTAN", "ua":  整行
+    # 删除 { "name": "XIUTAN", "ua": 整行
     content = re.sub(r'^\s*{ "name": "XIUTAN", "ua":.*\n', '', content, flags=re.MULTILINE)
-    # 删除 "logo":"https://fs-im-kefu.7moor-fs1.com  整行
+    # 删除 "logo":"https:\/\/fs-im-kefu.7moor-fs1.com 整行
     content = re.sub(r'^\s*"logo":"https:\/\/fs-im-kefu.7moor-fs1.com.*\n', '', content, flags=re.MULTILINE)
+
+    return content
+
+print("已删除指定行")
 
     # 替换"logo"URL
     #new_logo_url = "https://ghproxy.net/https://raw.githubusercontent.com/ne7359/url/main/fan/AW1.gif"
