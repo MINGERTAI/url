@@ -84,7 +84,7 @@ def modify_content(content):   # 更改自定义
 
     # 替换"logo"URL
     new_logo_url = "https://ghproxy.net/https://raw.githubusercontent.com/ne7359/url/main/fan/AW1.gif"
-    content = re.sub(r'"logo":"[^"]+"' f'"logo":"{new_logo_url}"' content)
+    content = re.sub(r'"logo":"[^"]+,"', f'"logo":"{new_logo_url}"', content)
 
     # 替换"logo"URL
     #new_logo_url = "https://ghproxy.net/https://raw.githubusercontent.com/ne7359/url/main/fan/AW1.gif"
