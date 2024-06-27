@@ -110,6 +110,8 @@ def local_myconf(content):
     pattern = r'{"key":"cc"(.)*\n'
     replacement = r'{"key":"cc","name":"请勿相信视频中广告","type":3,"api":"./fan/JS/lib/drpy2.min.js","ext":"./fan/JS/js/drpy.js"}\n'
     content = re.sub(pattern, replacement, content)
+    # 查找并添加新内容
+    lines = content.split('\n')
 
 def local_conf(content):                                       # diy 修改后，生成a.json  写命令在# 本地包 local_content = local_conf(content)
     pattern = r'{"key":"88js"(.|\n)*(?={"key":"YiSo")'         # 用于删除{"key":"88js"  到"key":"YiSo"前一行
