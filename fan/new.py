@@ -81,20 +81,18 @@ def modify_content(content):   # 更改自定义
     content = re.sub(r'^\s*{"name":"live","type":.*\n', '', content, flags=re.MULTILINE)
     # 删除 { "name": "XIUTAN", "ua":  整行
     content = re.sub(r'^\s*{ "name": "XIUTAN", "ua":.*\n', '', content, flags=re.MULTILINE)
-
-    # 替换"logo"URL
-    new_logo_url = "https://ghproxy.net/https://raw.githubusercontent.com/ne7359/url/main/fan/AW1.gif"
-    content = re.sub(r'"logo":"[^"]+"', f'"logo":"{new_logo_url}"' content)
+    # 删除 "logo":"https://fs-im-kefu.7moor-fs1.com  整行
+    content = re.sub(r'^\s*"logo":"https:\/\/fs-im-kefu.7moor-fs1.com.*\n', '', content, flags=re.MULTILINE)
 
     # 替换"logo"URL
     #new_logo_url = "https://ghproxy.net/https://raw.githubusercontent.com/ne7359/url/main/fan/AW1.gif"
     #content = re.sub(r'"logo":"[^"]+"', f'"logo":"{new_logo_url}"', content)
 
     # 替换"live"URL
-    original_url = "https://www.huichunniao.cn/xh/lib/live.txt"
-    replacement_url = "https://ghproxy.net/https://raw.githubusercontent.com/kimwang1978/collect-tv-txt/main/merged_output.txt"
-    content = content.replace(original_url, replacement_url)
-    return content
+    #original_url = "https://www.huichunniao.cn/xh/lib/live.txt"
+    #replacement_url = "https://ghproxy.net/https://raw.githubusercontent.com/kimwang1978/collect-tv-txt/main/merged_output.txt"
+    #content = content.replace(original_url, replacement_url)
+    #return content
     
 def diy_conf(content):
     #content = content.replace('https://fanty.run.goorm.site/ext/js/drpy2.min.js', './fan/JS/lib/drpy2.min.js')
