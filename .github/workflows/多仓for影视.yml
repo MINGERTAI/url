@@ -3,8 +3,8 @@ name: 多仓for影视
 on:
   workflow_dispatch:
     
-  #schedule:
-    #- cron: '5 */4 * * *'
+  schedule:
+    - cron: '5 */4 * * *'
 
 jobs:
   run_python_script:
