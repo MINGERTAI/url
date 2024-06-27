@@ -67,8 +67,24 @@ def get_fan_conf():
         response = requests.get(url)
         with open("./fan/JAR/fan.txt", "wb") as f:
             f.write(response.content)
+    
+def diy_conf(content):
+    #content = content.replace('https://fanty.run.goorm.site/ext/js/drpy2.min.js', './fan/JS/lib/drpy2.min.js')
+    #content = content.replace('公众号【神秘的哥哥们】', '豆瓣')
+    pattern = r'{"key":"Bili"(.)*\n{"key":"Biliych"(.)*\n'
+    replacement = ''
+    content = re.sub(pattern, replacement, content)
+    pattern = r'{"key":"Nbys"(.|\n)*(?={"key":"cc")'
+    replacement = ''
+    content = re.sub(pattern, replacement, content)
 
-def modify_content(content):   # 更改自定义
+    return content
+
+def read_local_file(file_path):   # 用于加载read_local_file("./fan/res/replace.txt") 函数
+    with open(file_path, 'r', encoding='utf-8') as file:
+        return file.read()
+
+def local_myconf(content):
     # Replace specified key and name  替换"key":"豆豆","name":"全接口智能过滤广告" 为"key":"豆豆","name":"智能AI广告过滤"
     content = re.sub(r'{"key":"豆豆","name":"全接口智能过滤广告",', r'{"key":"豆豆","name":"智能AI广告过滤",', content)
     
@@ -88,25 +104,8 @@ def modify_content(content):   # 更改自定义
     #original_url = "https://www.huichunniao.cn/xh/lib/live.txt"
     #replacement_url = "https://ghproxy.net/https://raw.githubusercontent.com/kimwang1978/collect-tv-txt/main/merged_output.txt"
     #content = content.replace(original_url, replacement_url)
-    return content
+    #return content
     
-def diy_conf(content):
-    #content = content.replace('https://fanty.run.goorm.site/ext/js/drpy2.min.js', './fan/JS/lib/drpy2.min.js')
-    #content = content.replace('公众号【神秘的哥哥们】', '豆瓣')
-    pattern = r'{"key":"Bili"(.)*\n{"key":"Biliych"(.)*\n'
-    replacement = ''
-    content = re.sub(pattern, replacement, content)
-    pattern = r'{"key":"Nbys"(.|\n)*(?={"key":"cc")'
-    replacement = ''
-    content = re.sub(pattern, replacement, content)
-
-    return content
-
-def read_local_file(file_path):   # 用于加载read_local_file("./fan/res/replace.txt") 函数
-    with open(file_path, 'r', encoding='utf-8') as file:
-        return file.read()
-
-def local_myconf(content):
     # 从文件加载要添加的新内容
     new_content = read_local_file("./fan/res/parses_flags_rules.txt")
     live_content = read_local_file("./fan/res/lives.txt")
