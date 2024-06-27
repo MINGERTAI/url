@@ -117,7 +117,7 @@ def local_myconf(content):
     new_lines = []
     for line in lines:
         new_lines.append(line)
-        if '{ "name": "XIUTAN"' in line:
+        if '"doh":[{"name":"Google"' in line:
             # 在找到的行之后添加新内容
             new_lines.append(new_content)
     return '\n'.join(new_lines)
