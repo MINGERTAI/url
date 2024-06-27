@@ -92,9 +92,9 @@ def modify_content(content):   # 更改自定义
     content = re.sub(r'"logo":"[^"]+"', f'"logo":"{new_logo_url}"', content)
 
     # 替换"live"URL
-    #original_url = "https://www.huichunniao.cn/xh/lib/live.txt"
-    #replacement_url = "https://ghproxy.net/https://raw.githubusercontent.com/kimwang1978/collect-tv-txt/main/merged_output.txt"
-    #content = content.replace(original_url, replacement_url)
+    original_url = "https://www.huichunniao.cn/xh/lib/live.txt"
+    replacement_url = "https://ghproxy.net/https://raw.githubusercontent.com/kimwang1978/collect-tv-txt/main/merged_output.txt"
+    content = content.replace(original_url, replacement_url)
     return content
     
 def diy_conf(content):
