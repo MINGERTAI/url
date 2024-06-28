@@ -1,11 +1,12 @@
-{"urls":[
+{
+    "urls": [
         {
             "name": "🪐放牛线路-龒蜗牛D推荐",
             "url": "http://tvbox.王二小放牛娃.xyz"
         },
         {
             "name": "🏡自用一",
-            "url": "https://raw.iqiq.io/qist/tvbox/master/0821.json"
+            "url": "https://ghproxy.net/https://raw.githubusercontent.com/qist/tvbox/master/0821.json"
         },
         {
             "name": "🏡自用二",
@@ -13,11 +14,11 @@
         },
         {
             "name": "🏡自用三",
-            "url": "https://raw.iqiq.io/qist/tvbox/master/0825.json"
+            "url": "https://ghproxy.net/https://raw.githubusercontent.com/qist/tvbox/master/0825.json"
         },
         {
             "name": "🏡自用四",
-            "url": "https://raw.iqiq.io/ne7359/url/main/b.json"
+            "url": "https://ghproxy.net/https://raw.githubusercontent.com/ne7359/url/main/b.json"
         },
         {
             "name": "🏡肥猫",
