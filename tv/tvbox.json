@@ -17,10 +17,6 @@
             "url": "https://ghproxy.net/https://raw.githubusercontent.com/qist/tvbox/master/0825.json"
         },
         {
-            "name": "🏡自用四",
-            "url": "https://ghproxy.net/https://raw.githubusercontent.com/ne7359/url/main/b.json"
-        },
-        {
             "name": "🏡肥猫",
             "url": "http://肥猫.com"
         },
@@ -31,6 +27,10 @@
         {
             "name": "🚚运输车",
             "url": "https://weixine.net/ysc.json"
+        },
+        {
+            "name": "OK|线路",
+            "url": "https://gitee.com/okjack/okk/raw/master/op.txt"
         },
         {
             "name": "PG|线路",
