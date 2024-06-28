@@ -7,7 +7,7 @@ headers = {'User-Agent': 'okhttp/3.15'}
 
 def get_fan_conf():
     config = configparser.ConfigParser()
-    config.read("fan/config.ini")
+    config.read("fan/JAR/config.ini")
 
     url = 'http://饭太硬.com/tv'
     response = requests.get(url, headers=headers)
@@ -51,7 +51,7 @@ def get_fan_conf():
 
     # Update conf.md5
     config.set("md5", "conf", md5)
-    with open("fan/config.ini", "w") as f:
+    with open("fan/JAR/config.ini", "w") as f:
         config.write(f)
 
     jmd5 = re.search(r';md5;(\w+)"', content).group(1)
@@ -60,7 +60,7 @@ def get_fan_conf():
     if jmd5 != current_md5:
         # Update jar.md5
         config.set("md5", "jar", jmd5)
-        with open("fan/config.ini", "w") as f:
+        with open("fan/JAR/config.ini", "w") as f:
             config.write(f)
 
         response = requests.get(url)
