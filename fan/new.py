@@ -116,7 +116,7 @@ def local_myconf(content):
 
     # 替换指定{"key":"cc"行内容
     pattern = r'{"key":"cc"(.)*\n'
-    replacement = r'{"key":"cc","name":"请勿相信视频中广告","type":3,"api":"./fan/JS/lib/drpy2.min.js","ext":"./fan/JS/js/drpy.js"}\n'
+    replacement = r'{"key":"cc","name":"豆瓣","type":3,"api":"./fan/JS/lib/drpy2.min.js","ext":"./fan/JS/js/drpy.js"}\n'
     content = re.sub(pattern, replacement, content)
    
     # 查找并在 "doh":[{"name":"Google" 之后添加新内容
