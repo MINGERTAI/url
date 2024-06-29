@@ -21,7 +21,7 @@ with open(replacement_file_path, 'r', encoding='utf-8') as file:
             '{"key":"豆豆","name":"豆瓣┃搜索","type": 3, "api": "csp_DouDou","searchable": 0,"quickSearch": 0,"filterable": 0}, 这种格式换成
             '{"key":"豆豆","name":"豆瓣┃搜索","type": 3, "api": "csp_DouDou","searchable": 0,"quickSearch": 0,"filterable": 0}  去除逗号
             """
-            # replacement_sites.append(json.loads(content.strip()[0:-1])) ## 格式化字符串
+            replacement_sites.append(json.loads(content.strip()[0:-1])) ## 格式化字符串
         except:
             pass
 
