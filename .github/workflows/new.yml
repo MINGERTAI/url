@@ -38,16 +38,6 @@ jobs:
         run: |
           python ./${{ secrets.PY_PATH }}/dianshi.py
 
-      - name: Remove code directory
-        run: |
-          git rm -r --cached code
-          rm -rf code
-          git add .
-          git commit -m "Remove code directory"
-          git push
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
       - name: Commit and push changes
         run: |
           git config --global user.name "GitHub Actions"
@@ -59,6 +49,16 @@ jobs:
             git commit -m "update dianshi.txt"
             git push
           fi
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Remove code directory
+        run: |
+          git rm -r --cached code
+          rm -rf code
+          git add .
+          git commit -m "Remove code directory"
+          git push
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
