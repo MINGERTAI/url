@@ -38,10 +38,6 @@ jobs:
         run: |
           python ./${{ secrets.PY_PATH }}/dianshi.py
 
-      - name: Run ls
-        run: |
-          rm -rf ./TVUrl-check/py/cls/__pycache__
-
       - name: Commit and push changes
         run: |
           git config --global user.name "GitHub Actions"
