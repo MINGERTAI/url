@@ -42,17 +42,13 @@ jobs:
         run: |
           git config --global user.name "GitHub Actions"
           git config --global user.email "actions@github.com"
-          # git add .
           git add ./out/dianshi.txt
-          # Check if there are any changes to commit
           if git diff --cached --quiet; then
             echo "No changes to commit"
           else
             git commit -m "update dianshi.txt"
             git push
           fi
-          #git commit -m "update"
-          #git push
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
