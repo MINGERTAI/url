@@ -1,13 +1,9 @@
-#!/usr/bin/env python3
-
 import datetime
 from gettext import find
 import json
 import os
 import requests
 import sys
-from cls import LocalFile
-from cls import NetFile
 
 # 获取传递的参数
 try:
