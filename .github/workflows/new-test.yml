@@ -48,7 +48,6 @@ jobs:
           #git commit -a --allow-empty -m "$commit_msg"
 
       - name: Push changes
-        if: steps.check.conclusion == 'success'
         uses:  ad-m/github-push-action@master
         with:
            github_token: ${{ secrets.GITHUB_TOKEN }}
