@@ -49,6 +49,7 @@ jobs:
           # git add .
           git add ./out/dianshi.txt
           git commit -m "update"
+          git commit -a
           git push
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
