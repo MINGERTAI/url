@@ -9,18 +9,6 @@ jobs:
   setup:
     runs-on: ubuntu-latest
     steps:
-      - name: Set up Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: 3.x
-
-      - name: Set timezone and Git configurations
-        run: |
-          sudo timedatectl set-timezone "Asia/Shanghai"
-          
-      - name: Install dependencies
-        run: pip install requests
-
       - name: Checkout
         uses: actions/checkout@v4
         with:
@@ -32,6 +20,18 @@ jobs:
           repository: qist/tvbox
           ref: master
           path: code
+          
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: 3.x
+
+      - name: Set timezone and Git configurations
+        run: |
+          sudo timedatectl set-timezone "Asia/Shanghai"
+          
+      - name: Install dependencies
+        run: pip install requests
         
       - name: Run Python script
         working-directory: ${{ github.workspace }}
@@ -44,12 +44,9 @@ jobs:
           git config --global user.email "actions@github.com"
           git add .
           git commit -m "update"
-
-      - name: Push changes
-        uses:  ad-m/github-push-action@master
-        with:
-           github_token: ${{ secrets.GITHUB_TOKEN }}
-           branch: main
+          git push
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Delete Workflow Runs
         uses: Mattraks/delete-workflow-runs@main
