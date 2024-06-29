@@ -39,7 +39,9 @@ jobs:
           python ./${{ secrets.PY_PATH }}/dianshi.py
 
       - name: Run ls
-        run: ls -l
+        run: |
+          ls -l ./
+          ls -l ./out
 
       - name: Commit and push changes
         run: |
