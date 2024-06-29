@@ -39,3 +39,6 @@ tvsite:{"key":"drpy_js_rrdyw","name":"影视 | rrdyw[js]","type":3,"api":"./lib/
 
 [2024-06-29 18:07:37] Main-Line-93-Exception:Extra data: line 1 column 151 (char 150)
 tvsite:{"key":"drpy_js_meow","name":"影视 | meow搜[js]","type":3,"api":"./lib/drpy2.min.js","ext":"./js/meow.js", "quickSearch":1, "changeable":1, "timeout":30}, 
+
+[2024-06-29 18:32:42] Main-Line-93-Exception:must be str, not dict
+tvsite:{"key":"蛋蛋","name":"影视 | 蛋蛋[直连]","type":3,"api":"csp_XBPQ","searchable":1,"quickSearch":1,"filterable":1,"ext":{"嗅探词":"v3.toutiaovod.com#v3-dy-o.zjcdn#.m3u8#/tos/#.mp4","请求头":"手机#Referer$https://www.dandanju.cc/","分类url":"https://www.dandanju.cc/show/{cateId}--------{catePg}---2023.html","分类":"电影$1#剧集$2#动漫$4#综艺$4","数组":" <li class=\"col-md-6 col-sm-4 col-xs-3&&</li","搜索模式":"1","搜索url":"https://www.dandanju.cc/search/{wd}----------1---.html","搜索数组":"<li class=\"active clearfix&&</li"},"jar": "./jar/Yoursmile.jar;md5;557e28611dc14e0c52e025068ffe2b3b"}
