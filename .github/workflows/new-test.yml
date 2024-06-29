@@ -40,9 +40,7 @@ jobs:
 
       - name: Run ls
         run: |
-          ls -l ./TVUrl-check/py/cls/__pycache__/
-          ls -l ./out
-          ls -l ./tmp
+          rm -rf ./TVUrl-check/py/cls/__pycache__
 
       - name: Commit and push changes
         run: |
