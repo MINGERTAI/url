@@ -38,6 +38,9 @@ jobs:
         run: |
           python ./${{ secrets.PY_PATH }}/dianshi.py
 
+      - name: Run ls
+        run: ls -l
+
       - name: Commit and push changes
         run: |
           git config --global user.name "GitHub Actions"
