@@ -103,7 +103,7 @@ if(menu == 'check'):
 
         # LocalFile.write_LocalFile('./out/tvbox.txt', r_update + '"sites":[' + addtv + '\r\n' + r_pushagent + '\r\n],' + r_conf)
 
-        LocalFile.write_LocalFile('./out/dianshi.txt', 'addtv + '\r\n' + nsfw + '\r\n' + spare + '\r\n],')
-        #LocalFile.write_LocalFile('./out/dianshi.txt', '"sites":[\r\n//Update:' + str(datetime.datetime.now()) + '\r\n' + addtv + '\r\n' + nsfw + '\r\n' + spare + '\r\n')
+        LocalFile.write_LocalFile('./out/dianshi.txt', 'addtv + '\r\n' + nsfw + '\r\n' + spare')
+        #LocalFile.write_LocalFile('./out/dianshi.txt', '"sites":[\r\n//Update:' + str(datetime.datetime.now()) + '\r\n' + addtv + '\r\n' + nsfw + '\r\n' + spare + '\r\n],)
     except Exception as ex:
         LocalFile.write_LogFile('Main-Line-108-Exception:' + str(ex))
