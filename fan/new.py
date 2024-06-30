@@ -48,6 +48,13 @@ def get_fan_conf():
         for line in local_content.split('\n'):  # 将内容按行分割
             if line.strip():  # 如果该行非空（移除空白字符后有内容）
                 f.write(line + '\n')  # 将非空行写入到文件中，记得在最后加上 '\n' 以保持原有的行分割
+        
+    # DIY添加自定义接口，写入c.json
+    local_content = local_dianshi(content)
+    with open('c.json', 'w', encoding='utf-8') as f:
+        for line in local_content.split('\n'):  # 将内容按行分割
+            if line.strip():  # 如果该行非空（移除空白字符后有内容）
+                f.write(line + '\n')  # 将非空行写入到文件中，记得在最后加上 '\n' 以保持原有的行分割
 
     # Update conf.md5
     config.set("md5", "conf", md5)
@@ -107,6 +114,55 @@ def local_myconf(content):
     
     # 从文件加载要添加的新内容
     new_content = read_local_file("./fan/res/parses_flags_rules.txt")
+    live_content = read_local_file("./fan/res/lives.txt")
+
+    # 替换指定模式的内容，从{"key":"88js"到{"key":"dr_兔小贝"前的内容
+    pattern = r'{"key":"88js"(.|\n)*?(?={"key":"dr_兔小贝")'
+    replacement = read_local_file("./fan/res/replace.txt")
+    content = re.sub(pattern, replacement, content, flags=re.DOTALL)
+
+    # 替换指定{"key":"cc"行内容
+    pattern = r'{"key":"cc"(.)*\n'
+    replacement = r'{"key":"cc","name":"豆瓣","type":3,"api":"./lib/drpy2.min.js","ext":"./js/drpy.js"}\n'
+    content = re.sub(pattern, replacement, content)
+   
+    # 查找并在 "doh":[{"name":"Google" 之后添加新内容
+    lines = content.split('\n')
+    new_lines = []
+    for line in lines:
+        new_lines.append(line)
+        if '"doh":[{"name":"Google"' in line:
+            # 在找到的行之后添加新内容
+            new_lines.append(new_content)
+            
+    # 查找并在 "lives":[" 之后添加新内容
+    final_lines = []
+    for line in new_lines:
+        final_lines.append(line)
+        if '"lives":[' in line:
+            # 在找到的行之后添加新内容
+            final_lines.append(live_content)
+    
+    return '\n'.join(final_lines)
+
+def local_dianshi(content):
+    # Replace specified key and name  替换"key":"豆豆","name":"全接口智能过滤广告" 为"key":"豆豆","name":"智能AI广告过滤"
+    content = re.sub(r'{"key":"豆豆","name":"全接口智能过滤广告",', r'{"key":"豆豆","name":"智能AI广告过滤",', content)
+    
+    # 删除 //{"key":  整行
+    content = re.sub(r'^\s*//\{"key":.*\n', '', content, flags=re.MULTILINE)
+
+    # 替换"logo"URL
+    new_logo_url = "https://ghproxy.net/https://raw.githubusercontent.com/ne7359/url/main/fan/AW1.gif"
+    content = re.sub(r'"logo":"[^"]+"', f'"logo":"{new_logo_url}"', content)
+
+    # 删除 {"name":"live","type": 整行
+    content = re.sub(r'^\s*{"name":"live","type":.*\n', '', content, flags=re.MULTILINE)
+    # 删除 { "name": "XIUTAN", "ua": 整行
+    content = re.sub(r'^\s*{ "name": "XIUTAN", "ua":.*\n', '', content, flags=re.MULTILINE)
+    
+    # 从文件加载要添加的新内容
+    new_content = read_local_file("./fan/res/parses_flags_rules_dianshi.txt")
     live_content = read_local_file("./fan/res/lives.txt")
 
     # 替换指定模式的内容，从{"key":"88js"到{"key":"dr_兔小贝"前的内容
