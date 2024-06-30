@@ -109,7 +109,7 @@ if(menu == 'check'):
                 LocalFile.write_LogFile('Main-Line-93-Exception:' + str(ex) + '\ntvsite:' + j)
         
         LocalFile.write_LocalFile('./code/r_sites_err.txt', r_sites_err.strip('\r\n'))
-        print('Line-96:/res/r_sites_err.txt已更新。'))
+        print('Line-96:/res/r_sites_err.txt已更新。')
         
         # 将修改后的内容组合
         final_content = addtv + '\r\n' + nsfw + '\r\n' + spare
