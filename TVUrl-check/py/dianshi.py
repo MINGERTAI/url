@@ -11,9 +11,7 @@ def delete_lines(content):
     """删除指定模式的行"""
     print("删除前的内容:", content)  # 调试输出
     patterns = [
-        r'{"key":"drpy_js_豆瓣","name":(.|\n)*?(?={"key":"Nbys","name":"🛫泥巴┃飞")',
-        r'{"key":"drpy_js_58动漫","name":"动漫",.*?\n.*?\n.*?"key":"drpy_js_A8音乐","name":"音频"',
-        r'{"key":"drpy_js_影视之家\[V2\]","name":"影视",.*?\n.*?\n.*?"key":"drpy_js_360影视","name":"官源"'
+        r'{"key":"drpy_js_豆瓣","name":(.|\n)*?(?={"key":"Nbys","name":"🛫泥巴┃飞")'
     ]
     
     for pattern in patterns:
