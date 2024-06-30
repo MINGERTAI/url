@@ -7,7 +7,7 @@ headers = {'User-Agent': 'okhttp/3.15'}
 
 def get_fan_conf():
     config = configparser.ConfigParser()
-    config.read("fan/config.ini")
+    config.read("fan/JAR/config.ini")
 
     url = 'http://饭太硬.com/tv'
     response = requests.get(url, headers=headers)
@@ -33,7 +33,6 @@ def get_fan_conf():
     url = re.search(r'spider"\:"(.*);md5;', content).group(1)
     content = content.replace(url, './fan/JAR/fan.txt')
     content = diy_conf(content)             # 这里添加diy_conf
-    content = modify_content(content)
 
     with open('xo.json', 'w', newline='', encoding='utf-8') as f:
         f.write(content)
@@ -52,7 +51,7 @@ def get_fan_conf():
 
     # Update conf.md5
     config.set("md5", "conf", md5)
-    with open("fan/config.ini", "w") as f:
+    with open("fan/JAR/config.ini", "w") as f:
         config.write(f)
 
     jmd5 = re.search(r';md5;(\w+)"', content).group(1)
@@ -61,14 +60,30 @@ def get_fan_conf():
     if jmd5 != current_md5:
         # Update jar.md5
         config.set("md5", "jar", jmd5)
-        with open("fan/config.ini", "w") as f:
+        with open("fan/JAR/config.ini", "w") as f:
             config.write(f)
 
         response = requests.get(url)
         with open("./fan/JAR/fan.txt", "wb") as f:
             f.write(response.content)
+    
+def diy_conf(content):
+    #content = content.replace('https://fanty.run.goorm.site/ext/js/drpy2.min.js', './fan/JS/lib/drpy2.min.js')
+    #content = content.replace('公众号【神秘的哥哥们】', '豆瓣')
+    pattern = r'{"key":"Bili"(.)*\n{"key":"Biliych"(.)*\n'
+    replacement = ''
+    content = re.sub(pattern, replacement, content)
+    pattern = r'{"key":"Nbys"(.|\n)*(?={"key":"cc")'
+    replacement = ''
+    content = re.sub(pattern, replacement, content)
 
-def modify_content(content):   # 更改自定义
+    return content
+
+def read_local_file(file_path):   # 用于加载read_local_file("./fan/res/replace.txt") 函数
+    with open(file_path, 'r', encoding='utf-8') as file:
+        return file.read()
+
+def local_myconf(content):
     # Replace specified key and name  替换"key":"豆豆","name":"全接口智能过滤广告" 为"key":"豆豆","name":"智能AI广告过滤"
     content = re.sub(r'{"key":"豆豆","name":"全接口智能过滤广告",', r'{"key":"豆豆","name":"智能AI广告过滤",', content)
     
@@ -88,25 +103,8 @@ def modify_content(content):   # 更改自定义
     #original_url = "https://www.huichunniao.cn/xh/lib/live.txt"
     #replacement_url = "https://ghproxy.net/https://raw.githubusercontent.com/kimwang1978/collect-tv-txt/main/merged_output.txt"
     #content = content.replace(original_url, replacement_url)
-    return content
+    #return content
     
-def diy_conf(content):
-    #content = content.replace('https://fanty.run.goorm.site/ext/js/drpy2.min.js', './fan/JS/lib/drpy2.min.js')
-    #content = content.replace('公众号【神秘的哥哥们】', '豆瓣')
-    pattern = r'{"key":"Bili"(.)*\n{"key":"Biliych"(.)*\n'
-    replacement = ''
-    content = re.sub(pattern, replacement, content)
-    pattern = r'{"key":"Nbys"(.|\n)*(?={"key":"cc")'
-    replacement = ''
-    content = re.sub(pattern, replacement, content)
-
-    return content
-
-def read_local_file(file_path):   # 用于加载read_local_file("./fan/res/replace.txt") 函数
-    with open(file_path, 'r', encoding='utf-8') as file:
-        return file.read()
-
-def local_myconf(content):
     # 从文件加载要添加的新内容
     new_content = read_local_file("./fan/res/parses_flags_rules.txt")
     live_content = read_local_file("./fan/res/lives.txt")
@@ -118,7 +116,7 @@ def local_myconf(content):
 
     # 替换指定{"key":"cc"行内容
     pattern = r'{"key":"cc"(.)*\n'
-    replacement = r'{"key":"cc","name":"请勿相信视频中广告","type":3,"api":"./fan/JS/lib/drpy2.min.js","ext":"./fan/JS/js/drpy.js"}\n'
+    replacement = r'{"key":"cc","name":"豆瓣","type":3,"api":"./fan/JS/lib/drpy2.min.js","ext":"./fan/JS/js/drpy.js"}\n'
     content = re.sub(pattern, replacement, content)
    
     # 查找并在 "doh":[{"name":"Google" 之后添加新内容
