@@ -115,7 +115,7 @@ if(menu == 'check'):
         final_content = addtv + '\r\n' + nsfw + '\r\n' + spare
         
         # 删除指定行
-        final_content = delete_lines(content)
+        #final_content = delete_lines(content)
         
         # 将修改后的内容写回文件
         LocalFile.write_LocalFile('./out/dianshi.txt', final_content)
