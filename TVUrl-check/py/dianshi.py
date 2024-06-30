@@ -10,9 +10,9 @@ def delete_lines(content):
     """删除指定模式的行"""
     patterns = [
         r'{"key":"drpy_js_豆瓣","name":(.|\n)*?(?={"key":"Nbys","name":"🛫泥巴┃飞")',
-        r'{"key":"drpy_js_58动漫","name":(.|\n)*?(?={"key":"drpy_js_A8音乐","name":)',
-        r'{"key":"drpy_js_影视之家\[V2\]","name":"影视",.*?\n.*?(?={"key":"drpy_js_360影视","name":"官源)'
-        r'{"key":"bb","name":"配置接口完全免费"'
+        r'{"key":"drpy_js_58动漫","name":"动漫",.*?\n.*?\n.*?"key":"drpy_js_A8音乐","name":"音频"',
+        r'{"key":"drpy_js_影视之家\[V2\]","name":"影视",.*?\n.*?\n.*?"key":"drpy_js_360影视","name":"官源"',
+        r'{"key":"bb","name":"配置接口完全免费"}'
     ]
     
     for pattern in patterns:
@@ -78,39 +78,39 @@ if menu == 'check':
                             if (addtv + nsfw + r_sites_err).find(ext) > -1:
                                 continue
                             else:
-                                if ext.find('http') == 0:
-                                    ustat = NetFile.url_stat(ext, 60, 60)
-                                    if ustat == 404 or ustat == 0:
+                                if ext找('http') == 0:
+                                    ustat = NetFile.状态(ext, 60, 60)
+                                    如果ustat是404或ustat是0:
                                         r_sites_err += '\r\n[' + datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S") + '] ' + str(ustat) + ':' + j + ','
-                                        continue
-                        else:
+                                        继续
+                        其他:
                             # 未配置Ext信息，让api值唯一
                             if (addtv + nsfw + r_sites_err).find('"api":"' + tv['api'] + '"') > -1:
-                                continue
+                                继续
                     elif id >= 0:
                         api = tv['api']
                         if (addtv + nsfw + r_sites_err).find(api) > -1:
-                            continue
-                        else:
-                            if api.find('http') == 0:
-                                ustat = NetFile.url_stat(api, 60, 60)
-                                if ustat == 404 or ustat == 0:
+                            继续
+                        其他:
+                            如果 api.find('http') == 0:
+                                ustat = NetFile.状态(api, 60, 60)
+                                如果ustat是404或ustat是0:
                                     r_sites_err += '\r\n[' + datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S") + '] ' + str(ustat) + ':' + j + ','
-                                    continue
-                    else:
+                                    继续
+                    其他:
                         spare += '\r\n' + j + ','
                     
-                    if tv['name'].find('*') > -1:
+                    如果 tv['name'].find('*') > -1:
                         nsfw += '\r\n' + j + ','
-                    elif j.find('"key":') > -1 and j.find('"name":') > -1 and j.find('"type":') > -1:
+                    elif j.find('"key":') > -1 且 j.find('"name":') > -1 且 j找('"type":') > -1:
                         addtv += '\r\n' + j + ','
-                else:
-                    print('Main-Line-91-not-tvsite-url:' + j)
-            except Exception as ex:
+                其他:
+                    打印('Main-Line-91-not-tvsite-url:' + j)
+            除了 Exception 之外:
                 LocalFile.write_LogFile('Main-Line-93-Exception:' + str(ex) + '\ntvsite:' + j)
         
         LocalFile.write_LocalFile('./code/r_sites_err.txt', r_sites_err.strip('\r\n'))
-        print('Line-96:/res/r_sites_err.txt已更新。')
+        打印('Line-96:/res/r_sites_err.txt 已更新。')
         
         # 删除指定行
         tvbox = delete_lines(tvbox)
@@ -118,5 +118,5 @@ if menu == 'check':
         # 将修改后的内容写回文件
         LocalFile.write_LocalFile('./out/dianshi.txt', addtv + '\r\n' + nsfw + '\r\n' + spare)
         
-    except Exception as ex:
+    除了 Exception 之外:
         LocalFile.write_LogFile('Main-Line-108-Exception:' + str(ex))
