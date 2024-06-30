@@ -110,15 +110,12 @@ if(menu == 'check'):
         
         # 将修改后的内容组合
         final_content = addtv + '\r\n' + nsfw + '\r\n' + spare
-        print("组合后的内容:", final_content)
         
         # 删除指定行
-        final_content = delete_lines(final_content)
-        print("删除指定行后的内容:", final_content)
+        #final_content = delete_lines(final_content)
         
         # 将修改后的内容写回文件
         LocalFile.write_LocalFile('./out/dianshi.txt', final_content)
-        print("文件已被修改并写回: ./out/dianshi.txt")
         
     except Exception as ex:
         LocalFile.write_LogFile('Main-Line-108-Exception:' + str(ex))
