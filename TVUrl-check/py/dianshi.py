@@ -1,7 +1,8 @@
 import datetime
+from gettext import find
 import json
 import os
-import re
+import requests
 import sys
 from cls import LocalFile
 from cls import NetFile
@@ -43,74 +44,71 @@ if menu == 'check':
         addtv = ''
         nsfw = ''
         spare = ''
-        
-        tvbox = tvbox.replace('//{', '\n{')
+        tvbox = tvbox.replace('//{','\n{')
         for j in tvbox.split('\n'):
             try:
-                if j != '' and j.find('"key":') > -1 and j.find('"name":') > -1 and j.find('"type":') > -1 and r_sites_err.find(j) == -1:
+                if(j != '' and j.find('"key":') > -1 and j.find('"name":') > -1 and j.find('"type":') > -1 and r_sites_err.find(j) == -1):
                     j = j.strip(',')
-                    if len(j.split('}')) > len(j.split('{')):
+                    if(len(j.split('}')) > len(j.split('{'))):
                         j = j.strip(',')[:-1].strip(',')
                     tv = json.loads(j)
-                    
                     # 检查自定义Jar文件是否存在
-                    if 'jar' in tv.keys():
+                    if('jar' in tv.keys()):
                         jar = tv['jar']
-                        if jar.find('http') == 0:
+                        if(jar.find('http') == 0):
                             ustat = NetFile.url_stat(jar, 60, 60)
-                            if ustat == 404 or ustat == 0:
-                                j = j.replace(',"jar":"' + jar + '"', '')
-                    
+                            if(ustat == 404 or ustat == 0):
+                                j = j.replace(',"jar":"' + jar + '"', '')                         
                     # 过滤重复的电影网站
-                    if (addtv + spare + nsfw).find(j) > -1:
+                    if((addtv + spare + nsfw).find(j) > -1):
                         continue
-                    
                     # 过滤重复Key的电影网站
-                    if (addtv + nsfw).find('"key":"' + tv['key'] + '"') > -1:
+                    if((addtv + nsfw).find('"key":"' + tv['key'] + '"') > -1):
                         spare += '\r\n' + j + ','
                         continue
-                    
                     # 分类去重
                     id = tv['type']
-                    if id == 3:
-                        if 'ext' in tv.keys():
+                    if(id == 3):
+                        if('ext' in tv.keys()):
                             ext = tv['ext']
-                            if (addtv + nsfw + r_sites_err).find(ext) > -1:
+                            if((addtv + nsfw + r_sites_err).find(ext) > -1):
                                 continue
                             else:
-                                if ext找('http') == 0:
-                                    ustat = NetFile.状态(ext, 60, 60)
-                                    如果ustat是404或ustat是0:
+                                if(ext.find('http') == 0):
+                                    ustat = NetFile.url_stat(ext, 60, 60)
+                                    if(ustat == 404 or ustat == 0):
                                         r_sites_err += '\r\n[' + datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S") + '] ' + str(ustat) + ':' + j + ','
-                                        继续
-                        其他:
+                                        continue
+                        else:
                             # 未配置Ext信息，让api值唯一
-                            if (addtv + nsfw + r_sites_err).find('"api":"' + tv['api'] + '"') > -1:
-                                继续
-                    elif id >= 0:
+                            if((addtv + nsfw + r_sites_err).find('"api":"' + tv['api'] + '"') > -1):
+                                continue
+                        
+                    elif(id >= 0):
                         api = tv['api']
-                        if (addtv + nsfw + r_sites_err).find(api) > -1:
-                            继续
-                        其他:
-                            如果 api.find('http') == 0:
-                                ustat = NetFile.状态(api, 60, 60)
-                                如果ustat是404或ustat是0:
+                        if((addtv + nsfw + r_sites_err).find(api) > -1):
+                            continue
+                        else:
+                            if(api.find('http') == 0):
+                                ustat = NetFile.url_stat(api, 60, 60)
+                                if(ustat == 404 or ustat == 0):
                                     r_sites_err += '\r\n[' + datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S") + '] ' + str(ustat) + ':' + j + ','
-                                    继续
-                    其他:
+                                    continue
+
+                    else:
                         spare += '\r\n' + j + ','
                     
-                    如果 tv['name'].find('*') > -1:
+                    if(tv['name'].find('*') > -1):
                         nsfw += '\r\n' + j + ','
-                    elif j.find('"key":') > -1 且 j.find('"name":') > -1 且 j找('"type":') > -1:
+                    elif(j.find('"key":') > -1 and j.find('"name":') > -1 and j.find('"type":') > -1):
                         addtv += '\r\n' + j + ','
-                其他:
-                    打印('Main-Line-91-not-tvsite-url:' + j)
-            除了 Exception 之外:
+                else:
+                    print('Main-Line-91-not-tvsite-url:' + j)
+            except Exception as ex:
                 LocalFile.write_LogFile('Main-Line-93-Exception:' + str(ex) + '\ntvsite:' + j)
         
         LocalFile.write_LocalFile('./code/r_sites_err.txt', r_sites_err.strip('\r\n'))
-        打印('Line-96:/res/r_sites_err.txt 已更新。')
+        print('Line-96:/res/r_sites_err.txt已更新。')
         
         # 删除指定行
         tvbox = delete_lines(tvbox)
