@@ -167,7 +167,7 @@ def local_dianshi(content):
 
     # 替换指定模式的内容，从{"key":"88js"到{"key":"dr_兔小贝"前的内容
     pattern = r'{"key":"88js"(.|\n)*?(?={"key":"dr_兔小贝")'
-    replacement = read_local_file("./fan/res/replace.txt")
+    replacement = read_local_file("./out/dianshi.txt")
     content = re.sub(pattern, replacement, content, flags=re.DOTALL)
 
     # 替换指定{"key":"cc"行内容
