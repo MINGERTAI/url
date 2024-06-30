@@ -7,17 +7,40 @@ import sys
 from cls import LocalFile
 from cls import NetFile
 
-def delete_lines(content):
-    patterns = [
-        r'\{"key":"drpy_js_豆瓣","name":.*?\{"key":"Nbys","name":"🛫泥巴┃飞"',
-        r'\{"key":"drpy_js_58动漫","name":.*?\{"key":"drpy_js_A8音乐","name":'
-    ]
-    
-    for pattern in patterns:
-        # 使用 re.DOTALL 以确保 '.' 匹配包括换行符在内的任何字符
-        content = re.sub(pattern, '', content, flags=re.DOTALL)
-        
+def delete_custom_lines(content, start_pattern, end_pattern):
+    while True:
+        start_index = content.find(start_pattern)
+        if start_index == -1:
+            # 如果找不到起始模式，则结束循环
+            break
+        end_index = content.find(end_pattern, start_index)
+        if end_index == -1:
+            # 如果找不到结束模式，也结束循环
+            break
+        # 删除从起始模式到结束模式之间的内容，包括结束模式
+        content = content[:start_index] + content[end_index+len(end_pattern):]
     return content
+
+# 示例文本
+content = "您的文本内容"
+
+# 应用删除逻辑
+content = delete_custom_lines(content, '{"key":"drpy_js_豆瓣","name":', '{"key":"Nbys","name":"🛫泥巴┃飞"')
+content = delete_custom_lines(content, '{"key":"drpy_js_58动漫","name":', '{"key":"drpy_js_A8音乐","name":')
+
+print(content)
+
+#def delete_lines(content):
+    #patterns = [
+        #r'\{"key":"drpy_js_豆瓣","name":.*?\{"key":"Nbys","name":"🛫泥巴┃飞"',
+        #r'\{"key":"drpy_js_58动漫","name":.*?\{"key":"drpy_js_A8音乐","name":'
+    #]
+    
+    #for pattern in patterns:
+        # 使用 re.DOTALL 以确保 '.' 匹配包括换行符在内的任何字符
+        #content = re.sub(pattern, '', content, flags=re.DOTALL)
+        
+    #return content
 
 # 获取传递的参数
 try:
@@ -111,7 +134,7 @@ if(menu == 'check'):
         final_content = addtv + '\r\n' + nsfw + '\r\n' + spare
         
         # 删除指定行
-        final_content = delete_lines(content)
+        final_content = delete_custom_lines(final_content)
         
         # 将修改后的内容写回文件
         LocalFile.write_LocalFile('./out/dianshi.txt', final_content)
