@@ -6,18 +6,12 @@ import sys
 from cls import LocalFile
 from cls import NetFile
 
-#def delete_lines(content):
-    #"""删除从 'drpy_js_豆瓣' 到 'Nbys' 之间的所有行"""
-    #pattern = r'{"key":"drpy_js_豆瓣","name":(.|\n)*?(?={"key":"Nbys","name":"🛫泥巴┃飞")'
-    #content = re.sub(pattern, '', content, flags=re.DOTALL)
-    #return content
-
 def delete_lines(content):
-    """删除从 'drpy_js_豆瓣' 到 'Nbys' 之间的所有行"""
+    """删除指定模式的行"""
     patterns = [
         r'{"key":"drpy_js_豆瓣","name":(.|\n)*?(?={"key":"Nbys","name":"🛫泥巴┃飞")',
-        r'{"key":"drpy_js_58动漫","name":"动漫(.|\n)*?(?={"key":"drpy_js_A8音乐","name":"音频")',
-        r'{"key":"drpy_js_影视之家[V2]","name":"影视(.|\n)*?(?={"key":"drpy_js_360影视","name":"官源)'
+        r'{"key":"drpy_js_58动漫","name":"动漫",.*?\n.*?(?={"key":"drpy_js_A8音乐","name":"音频")',
+        r'{"key":"drpy_js_影视之家\[V2\]","name":"影视",.*?\n.*?(?={"key":"drpy_js_360影视","name":"官源)'
     ]
     
     for pattern in patterns:
@@ -44,9 +38,6 @@ if menu == 'check':
             tvbox = LocalFile.read_LocalFile('./code/dianshi.json').replace('\r', '').replace('\n\n', '\n')
         
         r_sites_err = LocalFile.read_LocalFile("./code/r_sites_err.txt")
-        
-        # 删除指定行
-        tvbox = delete_lines(tvbox)
         
         addtv = ''
         nsfw = ''
@@ -120,7 +111,11 @@ if menu == 'check':
         LocalFile.write_LocalFile('./code/r_sites_err.txt', r_sites_err.strip('\r\n'))
         print('Line-96:/res/r_sites_err.txt已更新。')
         
+        # 删除指定行
+        tvbox = delete_lines(tvbox)
+        
         # 将修改后的内容写回文件
         LocalFile.write_LocalFile('./out/dianshi.txt', addtv + '\r\n' + nsfw + '\r\n' + spare)
+        
     except Exception as ex:
         LocalFile.write_LogFile('Main-Line-108-Exception:' + str(ex))
