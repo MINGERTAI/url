@@ -23,24 +23,22 @@ def delete_lines(content):
 
 # 获取传递的参数
 try:
-    # 0表示文件名，1后面都是参数 0.py, 1, 2, 3
+    #0表示文件名，1后面都是参数 0.py, 1, 2, 3
     menu = sys.argv[1:][0]
-    if len(sys.argv[1:]) > 1:
+    if(len(sys.argv[1:]) > 1):
         cid = sys.argv[1:][1]
 except:
     menu = 'check'
 print('menu: ' + menu)
 
 # 下载Node.json中的所有Url订阅链接将其合并，生成本地vpei-new.txt，同步至Github后改名为vpei.txt文件
-if menu == 'check':
+if(menu == 'check'):
     try:
-        if os.path.exists('./out/dianshi.txt'):
-            tvbox = LocalFile.read_LocalFile('./out/dianshi.txt').replace('\r', '').replace('\n\n', '\n')
+        if(os.path.exists('./out/dianshi.txt')):
+            tvbox = LocalFile.read_LocalFile('./out/dianshi.txt').replace('\r','').replace('\n\n','\n')
         else:
-            tvbox = LocalFile.read_LocalFile('./code/dianshi.json').replace('\r', '').replace('\n\n', '\n')
-        
+            tvbox = LocalFile.read_LocalFile('./code/dianshi.json').replace('\r','').replace('\n\n','\n')
         r_sites_err = LocalFile.read_LocalFile("./code/r_sites_err.txt")
-        
         addtv = ''
         nsfw = ''
         spare = ''
