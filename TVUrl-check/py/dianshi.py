@@ -110,7 +110,7 @@ if(menu == 'check'):
         print('Line-96:/res/r_sites_err.txt已更新。')
         
         # 删除指定行
-        tvbox = delete_lines(tvbox)
+        #tvbox = delete_lines(tvbox)
         
         # 将修改后的内容写回文件
         LocalFile.write_LocalFile('./out/dianshi.txt', addtv + '\r\n' + nsfw + '\r\n' + spare)
