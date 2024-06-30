@@ -13,7 +13,7 @@ def delete_lines(content):
     ]
     
     for pattern in patterns:
-         使用 re.DOTALL 以确保 '.' 匹配包括换行符在内的任何字符
+         #使用 re.DOTALL 以确保 '.' 匹配包括换行符在内的任何字符
         content = re.sub(pattern, '', content, flags=re.DOTALL)
     return content
 
