@@ -111,12 +111,6 @@ if(menu == 'check'):
         
         # 删除指定行
         tvbox = delete_lines(tvbox)
-
-def create_output_dir():
-    if not os.path.exists('./out'):
-        os.makedirs('./out')
-
-    create_output_dir()
         
         # 将修改后的内容写回文件
         LocalFile.write_LocalFile('./out/dianshi.txt', addtv + '\r\n' + nsfw + '\r\n' + spare)
