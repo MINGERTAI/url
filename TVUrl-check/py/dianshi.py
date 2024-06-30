@@ -11,7 +11,10 @@ def delete_lines(content):
     """删除指定模式的行"""
     print("删除前的内容:", content)  # 调试输出
     patterns = [
-        r'{"key":"drpy_js_豆瓣","name":(.|\n)*?(?={"key":"Nbys","name":"🛫泥巴┃飞")'
+        r'{"key":"drpy_js_豆瓣","name":(.|\n)*?(?={"key":"Nbys","name":"🛫泥巴┃飞")',
+        r'{"key":"drpy_js_58动漫","name":"动漫",.*?\n.*?\n.*?"key":"drpy_js_A8音乐","name":"音频"',
+        r'{"key":"drpy_js_影视之家\[V2\]","name":"影视",.*?\n.*?\n.*?"key":"drpy_js_360影视","name":"官源"',
+        r'{"key":"bb","name":"配置接口完全免费"}'
     ]
     
     for pattern in patterns:
@@ -108,11 +111,11 @@ if(menu == 'check'):
         LocalFile.write_LocalFile('./code/r_sites_err.txt', r_sites_err.strip('\r\n'))
         print('Line-96:/res/r_sites_err.txt已更新。')
         
+        # 删除指定行
+        final_content = delete_lines(final_content)
+        
         # 将修改后的内容组合
         final_content = addtv + '\r\n' + nsfw + '\r\n' + spare
-        
-        # 删除指定行
-        #final_content = delete_lines(final_content)
         
         # 将修改后的内容写回文件
         LocalFile.write_LocalFile('./out/dianshi.txt', final_content)
