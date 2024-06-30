@@ -59,7 +59,7 @@ if menu == 'check':
                         jar = tv['jar']
                         if jar.find('http') == 0:
                             ustat = NetFile.url_stat(jar, 60, 60)
-                            if ustat == 404 or ustat == 0:
+                            if(ustat == 404 or ustat == 0):
                                 j = j.replace(',"jar":"' + jar + '"', '')
                     
                     # 过滤重复的电影网站
@@ -81,7 +81,7 @@ if menu == 'check':
                             else:
                                 if ext.find('http') == 0:
                                     ustat = NetFile.url_stat(ext, 60, 60)
-                                    if ustat == 404或 ustat == 0:
+                                    if(ustat == 404 or ustat == 0):
                                         r_sites_err += '\r\n[' + datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S") + '] ' + str(ustat) + ':' + j + ','
                                         continue
                         else:
@@ -95,7 +95,7 @@ if menu == 'check':
                         else:
                             if api.find('http') == 0:
                                 ustat = NetFile.url_stat(api, 60, 60)
-                                if ustat == 404或 ustat == 0:
+                                if(ustat == 404 or ustat == 0):
                                     r_sites_err += '\r\n[' + datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S") + '] ' + str(ustat) + ':' + j + ','
                                     continue
                     else:
