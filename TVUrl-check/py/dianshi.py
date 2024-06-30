@@ -10,8 +10,9 @@ def delete_lines(content):
     """删除指定模式的行"""
     patterns = [
         r'{"key":"drpy_js_豆瓣","name":(.|\n)*?(?={"key":"Nbys","name":"🛫泥巴┃飞")',
-        r'{"key":"drpy_js_58动漫","name":"动漫",.*?\n.*?(?={"key":"drpy_js_A8音乐","name":"音频")',
+        r'{"key":"drpy_js_58动漫","name":"动漫,.*?\n.*?(?={"key":"drpy_js_A8音乐","name":"音频)',
         r'{"key":"drpy_js_影视之家\[V2\]","name":"影视",.*?\n.*?(?={"key":"drpy_js_360影视","name":"官源)'
+        r'{"key":"bb","name":"配置接口完全免费"'
     ]
     
     for pattern in patterns:
