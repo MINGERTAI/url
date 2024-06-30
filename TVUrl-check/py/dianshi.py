@@ -112,7 +112,7 @@ if(menu == 'check'):
         print('Line-96:/res/r_sites_err.txt已更新。')
         
         # 删除指定行
-        final_content = delete_lines(final_content)
+        final_content = delete_lines(content)
         
         # 将修改后的内容组合
         final_content = addtv + '\r\n' + nsfw + '\r\n' + spare
