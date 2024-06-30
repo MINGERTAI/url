@@ -39,7 +39,7 @@ if(menu == 'check'):
         r_sites_err = LocalFile.read_LocalFile("./code/r_sites_err.txt")
 
         # 删除指定行
-        remove_specific_blocks(content)
+        tvbox = remove_specific_blocks(tvbox)  # 确保处理后的内容被保存
         addtv = ''
         nsfw = ''
         spare = ''
