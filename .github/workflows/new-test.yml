@@ -45,7 +45,7 @@ jobs:
           #git add ./out/dianshi.txt
           git add .
           # 强制提交更改，即使没有检测到变化
-          git commit -m "update dianshi.txt" --allow-empty
+          #git commit -m "update dianshi.txt" --allow-empty
           git push
           #if git diff --cached --quiet; then
             #echo "No changes to commit"
