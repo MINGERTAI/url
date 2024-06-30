@@ -40,7 +40,7 @@ print(content)
         # 使用 re.DOTALL 以确保 '.' 匹配包括换行符在内的任何字符
         #content = re.sub(pattern, '', content, flags=re.DOTALL)
         
-    return content
+    #return content
 
 # 获取传递的参数
 try:
