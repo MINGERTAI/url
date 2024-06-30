@@ -8,13 +8,13 @@ from cls import LocalFile
 from cls import NetFile
 
 def delete_lines(content):
-    patterns = [
-        r'{"key":"drpy_js_豆瓣","name":(.|\n)*(?={"key":"Nbys","name":)'
-    ]
-    
-    for pattern in patterns:
-         #使用 re.DOTALL 以确保 '.' 匹配包括换行符在内的任何字符
-        content = re.sub(pattern, '', content, flags=re.DOTALL)
+    pattern = r'{"key":"drpy_js_豆瓣","name":(.|\n)*(?={"key":"Nbys","name":)'
+    replacement = ''
+    content = re.sub(pattern, replacement, content)
+    pattern = r'{"key":"drpy_js_58动漫","name":(.|\n)*(?={"key":"drpy_js_A8音乐","name":)'
+    replacement = ''
+    content = re.sub(pattern, replacement, content)
+   
     return content
 
 # 获取传递的参数
