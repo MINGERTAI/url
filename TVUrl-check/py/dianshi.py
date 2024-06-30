@@ -9,6 +9,7 @@ from cls import NetFile
 
 def delete_lines(content):
     """删除指定模式的行"""
+    print("删除前的内容:", content)  # 调试输出
     patterns = [
         r'{"key":"drpy_js_豆瓣","name":(.|\n)*?(?={"key":"Nbys","name":"🛫泥巴┃飞")',
         r'{"key":"drpy_js_58动漫","name":"动漫",.*?\n.*?\n.*?"key":"drpy_js_A8音乐","name":"音频"',
@@ -18,6 +19,7 @@ def delete_lines(content):
     
     for pattern in patterns:
         content = re.sub(pattern, '', content, flags=re.DOTALL)
+        print("应用模式后删除的内容:", content)  # 调试输出
         
     return content
 
@@ -107,8 +109,8 @@ if(menu == 'check'):
                 LocalFile.write_LogFile('Main-Line-93-Exception:' + str(ex) + '\ntvsite:' + j)
         
         LocalFile.write_LocalFile('./code/r_sites_err.txt', r_sites_err.strip('\r\n'))
-        print('Line-96:/res/r_sites_err.txt已更新。')
-     
+        print('Line-96:/res/r_sites_err.txt已更新。'))
+        
         # 将修改后的内容组合
         final_content = addtv + '\r\n' + nsfw + '\r\n' + spare
         print("组合后的内容:", final_content)
@@ -122,7 +124,7 @@ if(menu == 'check'):
         print("文件已被修改并写回: ./out/dianshi.txt")
         
     except Exception as ex:
-        LocalFile.write_LogFile('Main-Line-108-Exception:' + str(ex))    
+        LocalFile.write_LogFile('Main-Line-108-Exception:' + str(ex))
         
         # 删除指定行
         #tvbox = delete_lines(content)
