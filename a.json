@@ -1,5 +1,5 @@
 {
-"spider":"./fan/JAR/fan.txt;md5;5640a8ad5bd5face5679bd8d6d73d44a",
+"spider":"./jar/fan.txt;md5;5640a8ad5bd5face5679bd8d6d73d44a",
 "wallpaper":"https://深色壁纸.xxooo.cf/",
 
 "sites":[
@@ -36,8 +36,8 @@
 {"key":"Anime1","name":"🐾日本┃动漫","type": 3,"api": "csp_Anime1","searchable": 1,"quickSearch": 1,"changeable":1},
 
 
-{"key":"drpy_js_爱看","name":"影视 | 爱看[js]","type":3,"api":"./fan/JS/lib/drpy2.min.js","ext":"./fan/JS/js/爱看.js"},
-{"key":"drpy_js_美剧网","name":"影视 | 美剧网[js]","type":3,"api":"./fan/JS/lib/drpy2.min.js","ext":"./fan/JS/js/美剧网.js"},
+{"key":"drpy_js_爱看","name":"影视 | 爱看[js]","type":3,"api":"./lib/drpy2.min.js","ext":"./js/爱看.js"},
+{"key":"drpy_js_美剧网","name":"影视 | 美剧网[js]","type":3,"api":"./lib/drpy2.min.js","ext":"./js/美剧网.js"},
 {"key":"百度","name":"百度┃采集","type":1,"api":"https://api.apibdzy.com/api.php/provide/vod?ac=list","searchable":1,"filterable":0},
 {"key":"量子","name":"量子┃采集","type":0,"api":"https://cj.lziapi.com/api.php/provide/vod/at/xml/","searchable":1,"changeable":1},
 {"key":"非凡","name":"非凡┃采集","type":0,"api":"http://cj.ffzyapi.com/api.php/provide/vod/at/xml/","searchable":1,"changeable":1},
