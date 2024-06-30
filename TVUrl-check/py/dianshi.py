@@ -35,6 +35,9 @@ if(menu == 'check'):
         else:
             tvbox = LocalFile.read_LocalFile('./code/dianshi.json').replace('\r','').replace('\n\n','\n')
         r_sites_err = LocalFile.read_LocalFile("./code/r_sites_err.txt")
+
+        # 删除指定行
+        content = delete_lines(content)
         addtv = ''
         nsfw = ''
         spare = ''
@@ -109,7 +112,7 @@ if(menu == 'check'):
         final_content = addtv + '\r\n' + nsfw + '\r\n' + spare
         
         # 删除指定行
-        final_content = delete_lines(content)
+        #final_content = delete_lines(content)
         
         # 将修改后的内容写回文件
         LocalFile.write_LocalFile('./out/dianshi.txt', final_content)
