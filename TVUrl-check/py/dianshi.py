@@ -116,5 +116,5 @@ if menu == 'check':
         # 将修改后的内容写回文件
         LocalFile.write_LocalFile('./out/dianshi.txt', addtv + '\r\n' + nsfw + '\r\n' + spare)
         
-    除了 Exception 之外:
+    except Exception as ex:
         LocalFile.write_LogFile('Main-Line-108-Exception:' + str(ex))
