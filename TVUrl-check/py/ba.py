@@ -20,11 +20,12 @@ print('menu: ' + menu)
 # 下载Node.json中的所有Url订阅链接将其合并，生成本地vpei-new.txt，同步至Github后改名为vpei.txt文件
 if(menu == 'check'):
     try:
-        if(os.path.exists('./out/dianshi.txt')):
+        if(os.path.exists('./out/0821.txt')):
             tvbox = LocalFile.read_LocalFile('./out/dianshi.txt').replace('\r','').replace('\n\n','\n')
         else:
             tvbox = LocalFile.read_LocalFile('./code/dianshi.json').replace('\r','').replace('\n\n','\n')
         r_sites_err = LocalFile.read_LocalFile("./code/r_sites_err.txt")
+
         addtv = ''
         nsfw = ''
         spare = ''
@@ -88,19 +89,26 @@ if(menu == 'check'):
                         addtv += '\r\n' + j + ','
                 else:
                     print('Main-Line-91-not-tvsite-url:' + j)
+
             except Exception as ex:
                 LocalFile.write_LogFile('Main-Line-93-Exception:' + str(ex) + '\ntvsite:' + j)
         
         LocalFile.write_LocalFile('./code/r_sites_err.txt', r_sites_err.strip('\r\n'))
         print('Line-96:/res/r_sites_err.txt已更新。')
-
-        # r_pushagent = LocalFile.read_LocalFile("./res/r_pushagent.txt")
-        r_update = '{\r\n//Update:' + str(datetime.datetime.now()) + '\r\n'
-        # r_conf = LocalFile.read_LocalFile("./res/r_conf.txt")
-        # r_conf = '\r\n' + r_conf + '\r\n}'
-
-        # LocalFile.write_LocalFile('./out/tvbox.txt', r_update + '"sites":[' + addtv + '\r\n' + r_pushagent + '\r\n],' + r_conf)
-
-        LocalFile.write_LocalFile('./out/dianshi.txt', addtv + '\r\n' + nsfw + '\r\n' + spare)
+        
+        # 将修改后的内容组合
+        final_content = addtv + '\r\n' + nsfw + '\r\n' + spare
+        
+        # 将修改后的内容写回文件
+        LocalFile.write_LocalFile('./out/dianshi.txt', final_content)
+        
     except Exception as ex:
         LocalFile.write_LogFile('Main-Line-108-Exception:' + str(ex))
+        
+        # 删除指定行
+        #tvbox = delete_lines(content)
+        
+        # 将修改后的内容写回文件
+        #LocalFile.write_LocalFile('./out/dianshi.txt', addtv + '\r\n' + nsfw + '\r\n' + spare)
+    #except Exception as ex:
+        #LocalFile.write_LogFile('Main-Line-108-Exception:' + str(ex))
