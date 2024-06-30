@@ -41,9 +41,6 @@ if menu == 'check':
         
         r_sites_err = LocalFile.read_LocalFile("./code/r_sites_err.txt")
         
-        # 删除指定行
-        tvbox = delete_lines(tvbox)
-        
         addtv = ''
         nsfw = ''
         spare = ''
@@ -115,6 +112,9 @@ if menu == 'check':
         
         LocalFile.write_LocalFile('./code/r_sites_err.txt', r_sites_err.strip('\r\n'))
         print('Line-96:/res/r_sites_err.txt已更新。')
+        
+        # 删除指定行
+        tvbox = delete_lines(tvbox)
         
         # 将修改后的内容写回文件
         LocalFile.write_LocalFile('./out/dianshi.txt', addtv + '\r\n' + nsfw + '\r\n' + spare)
