@@ -8,15 +8,14 @@ from cls import LocalFile
 from cls import NetFile
 
 def delete_lines(content):
-    """删除指定模式的行"""
-    print("删除前的内容:", content)  # 调试输出
     patterns = [
-        r'{"key":"drpy_js_豆瓣","name":(.|\n)*?(?={"key":"Nbys","name":"🛫泥巴┃飞")'
+        r'\{"key":"drpy_js_豆瓣","name":.*?\{"key":"Nbys","name":"🛫泥巴┃飞"',
+        r'\{"key":"drpy_js_58动漫","name":.*?\{"key":"drpy_js_A8音乐","name":'
     ]
     
     for pattern in patterns:
+        # 使用 re.DOTALL 以确保 '.' 匹配包括换行符在内的任何字符
         content = re.sub(pattern, '', content, flags=re.DOTALL)
-        print("应用模式后删除的内容:", content)  # 调试输出
         
     return content
 
@@ -112,7 +111,7 @@ if(menu == 'check'):
         final_content = addtv + '\r\n' + nsfw + '\r\n' + spare
         
         # 删除指定行
-        #final_content = delete_lines(content)
+        final_content = delete_lines(content)
         
         # 将修改后的内容写回文件
         LocalFile.write_LocalFile('./out/dianshi.txt', final_content)
