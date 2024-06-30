@@ -7,14 +7,16 @@ import sys
 from cls import LocalFile
 from cls import NetFile
 
-def delete_lines(content):
-    pattern = r'{"key":"drpy_js_豆瓣","name":(.|\n)*(?={"key":"Nbys","name":)'
-    replacement = ''
-    content = re.sub(pattern, replacement, content)
-    pattern = r'{"key":"drpy_js_58动漫","name":(.|\n)*(?={"key":"drpy_js_A8音乐","name":)'
-    replacement = ''
-    content = re.sub(pattern, replacement, content)
-   
+def remove_specific_blocks(content):
+    patterns = [
+        r'{"key":"drpy_js_豆瓣","name":.*?(?={"key":"Nbys","name":)',
+        r'{"key":"drpy_js_58动漫","name":.*?(?={"key":"drpy_js_A8音乐","name":)'
+    ]
+    
+    for pattern in patterns:
+        # 使用 re.DOTALL 以确保 '.' 匹配包括换行符在内的任何字符
+        content = re.sub(pattern, '', content, flags=re.DOTALL)
+        
     return content
 
 # 获取传递的参数
@@ -37,7 +39,7 @@ if(menu == 'check'):
         r_sites_err = LocalFile.read_LocalFile("./code/r_sites_err.txt")
 
         # 删除指定行
-        content = delete_lines(content)
+        remove_specific_blocks(content)
         addtv = ''
         nsfw = ''
         spare = ''
