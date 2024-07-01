@@ -7,18 +7,6 @@ import sys
 from cls import LocalFile
 from cls import NetFile
 
-def remove_specific_blocks(content):
-    patterns = [
-        r'{"key":"drpy_js_豆瓣","name":.*?(?={"key":"Nbys","name":)',
-        r'{"key":"drpy_js_58动漫","name":.*?(?={"key":"drpy_js_A8音乐","name":)'
-    ]
-    
-    for pattern in patterns:
-        # 使用 re.DOTALL 以确保 '.' 匹配包括换行符在内的任何字符
-        content = re.sub(pattern, '', content, flags=re.DOTALL)
-        
-    return content
-
 # 获取传递的参数
 try:
     #0表示文件名，1后面都是参数 0.py, 1, 2, 3
@@ -109,15 +97,28 @@ if(menu == 'check'):
         
         LocalFile.write_LocalFile('./code/r_sites_err.txt', r_sites_err.strip('\r\n'))
         print('Line-96:/res/r_sites_err.txt已更新。')
-        
-        # 将修改后的内容组合
-        final_content = addtv + '\r\n' + nsfw + '\r\n' + spare
+
+def remove_line(content):
+    patterns = [
+        r'^\s*//\{"key":.*\n',
+        r'^\s*{"key":"fan","name":"导航.*\n',
+        r'{"key":"Bili"(.)*\n{"key":"Biliych"(.)*\n',
+        r'{"key":"Nbys"(.|\n)*(?={"key":"cc")',
+        r'^\s*{"name":"live","type":.*\n',
+        r'^\s*{ "name": "XIUTAN", "ua":.*\n'
+    ]    
+    for pattern in patterns:
+        content = re.sub(pattern, '', content, flags=re.MULTILINE)        
+    return content
         
         # 删除指定行
-        #final_content = delete_lines(content)
+        content = remove_line(content)
+        
+        # 将修改后的内容组合
+        content = addtv + '\r\n' + nsfw + '\r\n' + spare
         
         # 将修改后的内容写回文件
-        LocalFile.write_LocalFile('./out/dianshi.txt', final_content)
+        LocalFile.write_LocalFile('./out/dianshi.txt', content)
         
     except Exception as ex:
         LocalFile.write_LogFile('Main-Line-108-Exception:' + str(ex))
