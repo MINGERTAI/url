@@ -105,12 +105,6 @@ def local_myconf(content):
     content = re.sub(r'^\s*{"name":"live","type":.*\n', '', content, flags=re.MULTILINE)
     # 删除 { "name": "XIUTAN", "ua": 整行
     content = re.sub(r'^\s*{ "name": "XIUTAN", "ua":.*\n', '', content, flags=re.MULTILINE)
-
-    # 替换"live"URL
-    #original_url = "https://www.huichunniao.cn/xh/lib/live.txt"
-    #replacement_url = "https://ghproxy.net/https://raw.githubusercontent.com/kimwang1978/collect-tv-txt/main/merged_output.txt"
-    #content = content.replace(original_url, replacement_url)
-    #return content
     
     # 从文件加载要添加的新内容
     new_content = read_local_file("./fan/res/parses_flags_rules.txt")
@@ -145,23 +139,30 @@ def local_myconf(content):
     
     return '\n'.join(final_lines)
 
+def remove_specific_blocks(content):
+    patterns = [
+        r'^\s*//\{"key":.*\n',
+        r'^\s*{"name":"live","type":.*\n',
+        r'^\s*{ "name": "XIUTAN", "ua":.*\n',
+        (r'^\s*{"key":"fan","name":"导航.*\n'
+    ]
+    
+    for pattern in patterns:
+        # 使用 re.DOTALL 以确保 '.' 匹配包括换行符在内的任何字符
+        content = re.sub(patterns, '', content, flags=re.MULTILINE)
+        
+    return content
+
 def local_dianshi(content):
     # Replace specified key and name  替换"key":"豆豆","name":"全接口智能过滤广告" 为"key":"豆豆","name":"智能AI广告过滤"
     content = re.sub(r'{"key":"豆豆","name":"全接口智能过滤广告",', r'{"key":"豆豆","name":"智能AI广告过滤",', content)
-    
-    # 删除 //{"key":  整行
-    content = re.sub(r'^\s*//\{"key":.*\n', '', content, flags=re.MULTILINE)
 
     # 替换"logo"URL
     new_logo_url = "https://ghproxy.net/https://raw.githubusercontent.com/ne7359/url/main/fan/AW1.gif"
     content = re.sub(r'"logo":"[^"]+"', f'"logo":"{new_logo_url}"', content)
 
-    # 删除 {"name":"live","type": 整行
-    content = re.sub(r'^\s*{"name":"live","type":.*\n', '', content, flags=re.MULTILINE)
-    # 删除 { "name": "XIUTAN", "ua": 整行
-    content = re.sub(r'^\s*{ "name": "XIUTAN", "ua":.*\n', '', content, flags=re.MULTILINE)
-    # 删除 {"key":"fan","name":"导航 整行
-    content = re.sub(r'^\s*{"key":"fan","name":"导航.*\n', '', content, flags=re.MULTILINE)
+    # 删除指定行
+    final_content = remove_specific_blocks(content)
     
     # 从文件加载要添加的新内容
     new_content = read_local_file("./fan/res/parses_flags_rules_dianshi.txt")
