@@ -5,7 +5,7 @@ import re
 import sys
 from cls import LocalFile, NetFile
 
-def remove_line(delFile):
+def remove_line(content):
     patterns = [
         r'{"key":"drpy_js_豆瓣","name":.*?\n{"key":"dr_兔小贝","name":.*?\n',
         r'^\s*{"key":"fan","name":"导航.*\n',
