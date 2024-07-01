@@ -93,7 +93,7 @@ if(menu == 'check'):
             except Exception as ex:
                 LocalFile.write_LogFile('Main-Line-93-Exception:' + str(ex) + '\ntvsite:' + j)
         
-        LocalFile.write_LocalFile('./code/r_sites_err.txt', r_sites_err.strip('\r\n'))
+        LocalFile.write_LocalFile('./out/r_sites_err.txt', r_sites_err.strip('\r\n'))
         print('Line-96:/res/r_sites_err.txt已更新。')
         content = addtv + '\r\n' + nsfw + '\r\n' + spare
         return content
