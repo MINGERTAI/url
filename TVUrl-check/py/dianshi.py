@@ -112,5 +112,5 @@ if(menu == 'check'):
 
         content = remove_line(content)
         LocalFile.write_LocalFile('./out/dianshi.txt', content)
-        except Exception as ex:
-              LocalFile.write_LogFile('Main-Line-108-Exception:' + str(ex))
+    except Exception as ex:
+        LocalFile.write_LogFile('Main-Line-108-Exception:' + str(ex))
