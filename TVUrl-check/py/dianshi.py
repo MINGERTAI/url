@@ -7,6 +7,19 @@ import sys
 from cls import LocalFile
 from cls import NetFile
 
+def remove_line(content):
+    patterns = [
+        r'^\s*//\{"key":.*\n',
+        r'^\s*{"key":"fan","name":"导航.*\n',
+        r'{"key":"Bili"(.)*\n{"key":"Biliych"(.)*\n',
+        r'{"key":"Nbys"(.|\n)*(?={"key":"cc")',
+        r'^\s*{"name":"live","type":.*\n',
+        r'^\s*{ "name": "XIUTAN", "ua":.*\n'
+    ]    
+    for pattern in patterns:
+        content = re.sub(pattern, '', content, flags=re.MULTILINE)        
+    return content
+
 # 获取传递的参数
 try:
     #0表示文件名，1后面都是参数 0.py, 1, 2, 3
@@ -95,19 +108,6 @@ if(menu == 'check'):
         
         LocalFile.write_LocalFile('./code/r_sites_err.txt', r_sites_err.strip('\r\n'))
         print('Line-96:/res/r_sites_err.txt已更新。')
-
-def remove_line(content):
-    patterns = [
-        r'^\s*//\{"key":.*\n',
-        r'^\s*{"key":"fan","name":"导航.*\n',
-        r'{"key":"Bili"(.)*\n{"key":"Biliych"(.)*\n',
-        r'{"key":"Nbys"(.|\n)*(?={"key":"cc")',
-        r'^\s*{"name":"live","type":.*\n',
-        r'^\s*{ "name": "XIUTAN", "ua":.*\n'
-    ]    
-    for pattern in patterns:
-        content = re.sub(pattern, '', content, flags=re.MULTILINE)        
-    return content
         
         # 删除指定行
         content = remove_line(content)
