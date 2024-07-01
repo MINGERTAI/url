@@ -160,6 +160,8 @@ def local_dianshi(content):
     content = re.sub(r'^\s*{"name":"live","type":.*\n', '', content, flags=re.MULTILINE)
     # 删除 { "name": "XIUTAN", "ua": 整行
     content = re.sub(r'^\s*{ "name": "XIUTAN", "ua":.*\n', '', content, flags=re.MULTILINE)
+    # 删除 {"key":"fan","name":"导航 整行
+    content = re.sub(r'^\s*{"key":"fan","name":"导航.*\n', '', content, flags=re.MULTILINE)
     
     # 从文件加载要添加的新内容
     new_content = read_local_file("./fan/res/parses_flags_rules_dianshi.txt")
