@@ -97,20 +97,20 @@ if(menu == 'check'):
         print('Line-96:/res/r_sites_err.txt已更新。')
         content = addtv + '\r\n' + nsfw + '\r\n' + spare
         return content
-def remove_line(content):
-      patterns = [
-            r '{"key":"Bili"(.)*\n{"key":"dr_兔小贝","name":(.)*\n',
-            r '^\s*{"key":"fan","name":"导航.*\n',
-            r '{"key":"Bili"(.)*\n{"key":"Biliych"(.)*\n',
-            r '{"key":"Nbys"(.|\n)*(?={"key":"cc")',
-            r '^\s*{"name":"live","type":.*\n',
-            r '^\s*{ "name": "XIUTAN", "ua":.*\n'
-      ]
-    for pattern in patterns:
-          content = re.sub(pattern, '', content, flags = re.MULTILINE)
-    return content
+        def remove_line(content):
+          patterns = [
+                r '{"key":"Bili"(.)*\n{"key":"dr_兔小贝","name":(.)*\n',
+                r '^\s*{"key":"fan","name":"导航.*\n',
+                r '{"key":"Bili"(.)*\n{"key":"Biliych"(.)*\n',
+                r '{"key":"Nbys"(.|\n)*(?={"key":"cc")',
+                r '^\s*{"name":"live","type":.*\n',
+                r '^\s*{ "name": "XIUTAN", "ua":.*\n'
+          ]
+        for pattern in patterns:
+              content = re.sub(pattern, '', content, flags = re.MULTILINE)
+        return content
 
-    content = remove_line(content)
-    LocalFile.write_LocalFile('./out/dianshi.txt', content)
-    except Exception as ex:
-          LocalFile.write_LogFile('Main-Line-108-Exception:' + str(ex))
+        content = remove_line(content)
+        LocalFile.write_LocalFile('./out/dianshi.txt', content)
+        except Exception as ex:
+              LocalFile.write_LogFile('Main-Line-108-Exception:' + str(ex))
