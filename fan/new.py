@@ -33,6 +33,7 @@ def get_fan_conf():
     url = re.search(r'spider"\:"(.*);md5;', content).group(1)
     content = content.replace(url, './jar/fan.txt')
     content = diy_conf(content)             # 这里添加diy_conf
+    content = remove_specific_blocks(content)
 
     with open('xo.json', 'w', newline='', encoding='utf-8') as f:
         f.write(content)
@@ -192,10 +193,6 @@ def local_dianshi(content):
             final_lines.append(live_content)
     
     return '\n'.join(final_lines)
-
-    # 删除指定行
-    content = remove_specific_blocks(content)
-    return content
 
 def local_conf(content):                                       # diy 修改后，生成a.json  写命令在# 本地包 local_content = local_conf(content)
     pattern = r'{"key":"88js"(.|\n)*(?={"key":"YiSo")'         # 用于删除{"key":"88js"  到"key":"YiSo"前一行
