@@ -161,7 +161,8 @@ def local_dianshi(content):
     content = re.sub(r'"logo":"[^"]+"', f'"logo":"{new_logo_url}"', content)
 
     # 删除指定行
-    delfile = remove_specific_blocks(content)
+    content = remove_specific_blocks(content)
+    return content
     
     # 从文件加载要添加的新内容
     new_content = read_local_file("./fan/res/parses_flags_rules_dianshi.txt")
