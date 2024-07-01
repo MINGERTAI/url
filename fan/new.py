@@ -148,8 +148,7 @@ def remove_specific_blocks(content):
     ]
     
     for pattern in patterns:
-        # 使用 re.DOTALL 以确保 '.' 匹配包括换行符在内的任何字符
-        content = re.sub(patterns, '', content, flags=re.MULTILINE)
+        content = re.sub(pattern, '', content, flags=re.MULTILINE)
         
     return content
 
