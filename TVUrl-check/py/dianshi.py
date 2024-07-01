@@ -16,19 +16,20 @@ try:
 except:
     menu = 'check'
 print('menu: ' + menu)
-if (menu == 'check'):
-      try:
-      if (os.path.exists('./out/0821.txt')):
-            tvbox = LocalFile.read_LocalFile('./out/dianshi.txt').replace(
-                  '\r', '').replace('\n\n', '\n')
-      else :
-            tvbox = LocalFile.read_LocalFile('./code/dianshi.json').replace(
-                  '\r', '').replace('\n\n', '\n')
-r_sites_err = LocalFile.read_LocalFile("./code/r_sites_err.txt")
-addtv = ''
-nsfw = ''
-spare = ''
-tvbox = tvbox.replace('//{', '\n{')
+
+# 下载Node.json中的所有Url订阅链接将其合并，生成本地vpei-new.txt，同步至Github后改名为vpei.txt文件
+if(menu == 'check'):
+    try:
+        if(os.path.exists('./out/0821.txt')):
+            tvbox = LocalFile.read_LocalFile('./out/dianshi.txt').replace('\r','').replace('\n\n','\n')
+        else:
+            tvbox = LocalFile.read_LocalFile('./code/dianshi.json').replace('\r','').replace('\n\n','\n')
+        r_sites_err = LocalFile.read_LocalFile("./code/r_sites_err.txt")
+
+        addtv = ''
+        nsfw = ''
+        spare = ''
+        tvbox = tvbox.replace('//{','\n{')
 for j in tvbox.split('\n'):
       try:
       if (j != ''
