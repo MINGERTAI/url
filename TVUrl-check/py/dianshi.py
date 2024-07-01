@@ -96,7 +96,6 @@ if(menu == 'check'):
         LocalFile.write_LocalFile('./out/r_sites_err.txt', r_sites_err.strip('\r\n'))
         print('Line-96:/res/r_sites_err.txt已更新。')
         content = addtv + '\r\n' + nsfw + '\r\n' + spare
-    return content
         def remove_line(content):
           patterns = [
                 r'{"key":"drpy_js_豆瓣","name":(.)*\n{"key":"dr_兔小贝","name":(.)*\n',
