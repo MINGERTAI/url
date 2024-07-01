@@ -144,7 +144,7 @@ def remove_specific_blocks(content):
         r'^\s*//\{"key":.*\n',
         r'^\s*{"name":"live","type":.*\n',
         r'^\s*{ "name": "XIUTAN", "ua":.*\n',
-        (r'^\s*{"key":"fan","name":"导航.*\n'
+        r'^\s*{"key":"fan","name":"导航.*\n'
     ]
     
     for pattern in patterns:
