@@ -100,10 +100,10 @@ if menu == 'check':
         LocalFile.write_LocalFile('./out/r_sites_err.txt', r_sites_err.strip('\r\n'))
         print('Line-96:/res/r_sites_err.txt已更新。')
         
-        content = addtv + '\r\n' + nsfw + '\r\n' + spare
+        mytv = addtv + '\r\n' + nsfw + '\r\n' + spare
         # 应用删除特定行的逻辑
         content = remove_line(content)
-        LocalFile.write_LocalFile('./out/dianshi.txt', content)
+        LocalFile.write_LocalFile('./out/dianshi.txt', mytv)
 
     except Exception as ex:
         LocalFile.write_LogFile('Main-Line-108-Exception:' + str(ex))
