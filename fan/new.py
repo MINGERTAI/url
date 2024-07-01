@@ -159,10 +159,6 @@ def local_dianshi(content):
     # 替换"logo"URL
     new_logo_url = "https://ghproxy.net/https://raw.githubusercontent.com/ne7359/url/main/fan/AW1.gif"
     content = re.sub(r'"logo":"[^"]+"', f'"logo":"{new_logo_url}"', content)
-
-    # 删除指定行
-    content = remove_specific_blocks(content)
-    return content
     
     # 从文件加载要添加的新内容
     new_content = read_local_file("./fan/res/parses_flags_rules_dianshi.txt")
@@ -196,6 +192,10 @@ def local_dianshi(content):
             final_lines.append(live_content)
     
     return '\n'.join(final_lines)
+
+    # 删除指定行
+    content = remove_specific_blocks(content)
+    return content
 
 def local_conf(content):                                       # diy 修改后，生成a.json  写命令在# 本地包 local_content = local_conf(content)
     pattern = r'{"key":"88js"(.|\n)*(?={"key":"YiSo")'         # 用于删除{"key":"88js"  到"key":"YiSo"前一行
