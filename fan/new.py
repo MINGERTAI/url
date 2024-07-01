@@ -32,16 +32,17 @@ def get_fan_conf():
     content = base64.b64decode(result).decode('utf-8')
     url = re.search(r'spider"\:"(.*);md5;', content).group(1)
     content = content.replace(url, './jar/fan.txt')
-    content = remove_specific_blocks(content)
+    #content = remove_line(content)
 
     with open('xo.json', 'w', newline='', encoding='utf-8') as f:
         f.write(content)
-        
+
     # DIY添加自定义接口，写入a.json
     local_content = local_conf(content)
     with open('a.json', 'w', newline='', encoding='utf-8') as f:
         f.write(local_content)
-        
+
+    content = remove_line(content)        
     # DIY添加自定义接口，写入b.json
     local_content = local_myconf(content)
     with open('b.json', 'w', encoding='utf-8') as f:
@@ -74,16 +75,14 @@ def get_fan_conf():
         with open("./jar/fan.txt", "wb") as f:
             f.write(response.content)
 
-def remove_specific_blocks(content):
-    #content = content.replace('https://fanty.run.goorm.site/ext/js/drpy2.min.js', './lib/drpy2.min.js')
-    #content = content.replace('公众号【神秘的哥哥们】', '豆瓣')
+def remove_line(content):
     patterns = [
         r'^\s*//\{"key":.*\n',
-        r'^\s*{"name":"live","type":.*\n',
-        r'^\s*{ "name": "XIUTAN", "ua":.*\n',
         r'^\s*{"key":"fan","name":"导航.*\n',
         r'{"key":"Bili"(.)*\n{"key":"Biliych"(.)*\n',
-        r'{"key":"Nbys"(.|\n)*(?={"key":"cc")'
+        r'{"key":"Nbys"(.|\n)*(?={"key":"cc")',
+        r'^\s*{"name":"live","type":.*\n',
+        r'^\s*{ "name": "XIUTAN", "ua":.*\n'
     ]    
     for pattern in patterns:
         content = re.sub(pattern, '', content, flags=re.MULTILINE)        
