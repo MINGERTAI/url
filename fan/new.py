@@ -32,7 +32,6 @@ def get_fan_conf():
     content = base64.b64decode(result).decode('utf-8')
     url = re.search(r'spider"\:"(.*);md5;', content).group(1)
     content = content.replace(url, './jar/fan.txt')
-    content = diy_conf(content)             # 这里添加diy_conf
     content = remove_specific_blocks(content)
 
     with open('xo.json', 'w', newline='', encoding='utf-8') as f:
@@ -74,17 +73,20 @@ def get_fan_conf():
         response = requests.get(url)
         with open("./jar/fan.txt", "wb") as f:
             f.write(response.content)
-    
-def diy_conf(content):
+
+def remove_specific_blocks(content):
     #content = content.replace('https://fanty.run.goorm.site/ext/js/drpy2.min.js', './lib/drpy2.min.js')
     #content = content.replace('公众号【神秘的哥哥们】', '豆瓣')
-    pattern = r'{"key":"Bili"(.)*\n{"key":"Biliych"(.)*\n'
-    replacement = ''
-    content = re.sub(pattern, replacement, content)
-    pattern = r'{"key":"Nbys"(.|\n)*(?={"key":"cc")'
-    replacement = ''
-    content = re.sub(pattern, replacement, content)
-
+    patterns = [
+        r'^\s*//\{"key":.*\n',
+        r'^\s*{"name":"live","type":.*\n',
+        r'^\s*{ "name": "XIUTAN", "ua":.*\n',
+        r'^\s*{"key":"fan","name":"导航.*\n',
+        r'{"key":"Bili"(.)*\n{"key":"Biliych"(.)*\n',
+        r'{"key":"Nbys"(.|\n)*(?={"key":"cc")'
+    ]    
+    for pattern in patterns:
+        content = re.sub(pattern, '', content, flags=re.MULTILINE)        
     return content
 
 def read_local_file(file_path):   # 用于加载read_local_file("./fan/res/replace.txt") 函数
@@ -94,18 +96,10 @@ def read_local_file(file_path):   # 用于加载read_local_file("./fan/res/repla
 def local_myconf(content):
     # Replace specified key and name  替换"key":"豆豆","name":"全接口智能过滤广告" 为"key":"豆豆","name":"智能AI广告过滤"
     content = re.sub(r'{"key":"豆豆","name":"全接口智能过滤广告",', r'{"key":"豆豆","name":"智能AI广告过滤",', content)
-    
-    # 删除 //{"key":  整行
-    content = re.sub(r'^\s*//\{"key":.*\n', '', content, flags=re.MULTILINE)
 
     # 替换"logo"URL
     new_logo_url = "https://ghproxy.net/https://raw.githubusercontent.com/ne7359/url/main/fan/AW1.gif"
     content = re.sub(r'"logo":"[^"]+"', f'"logo":"{new_logo_url}"', content)
-
-    # 删除 {"name":"live","type": 整行
-    content = re.sub(r'^\s*{"name":"live","type":.*\n', '', content, flags=re.MULTILINE)
-    # 删除 { "name": "XIUTAN", "ua": 整行
-    content = re.sub(r'^\s*{ "name": "XIUTAN", "ua":.*\n', '', content, flags=re.MULTILINE)
     
     # 从文件加载要添加的新内容
     new_content = read_local_file("./fan/res/parses_flags_rules.txt")
@@ -139,19 +133,6 @@ def local_myconf(content):
             final_lines.append(live_content)
     
     return '\n'.join(final_lines)
-
-def remove_specific_blocks(content):
-    patterns = [
-        r'^\s*//\{"key":.*\n',
-        r'^\s*{"name":"live","type":.*\n',
-        r'^\s*{ "name": "XIUTAN", "ua":.*\n',
-        r'^\s*{"key":"fan","name":"导航.*\n'
-    ]
-    
-    for pattern in patterns:
-        content = re.sub(pattern, '', content, flags=re.MULTILINE)
-        
-    return content
 
 def local_dianshi(content):
     # Replace specified key and name  替换"key":"豆豆","name":"全接口智能过滤广告" 为"key":"豆豆","name":"智能AI广告过滤"
