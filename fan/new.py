@@ -52,7 +52,7 @@ def get_fan_conf():
     # DIY添加自定义接口，写入c.json
     local_content = local_dianshi(content)
     # 删除指定行
-    tvbox = remove_specific_blocks(content)
+    local_content = remove_specific_blocks(content)
     with open('c.json', 'w', encoding='utf-8') as f:
         for line in local_content.split('\n'):  # 将内容按行分割
             if line.strip():  # 如果该行非空（移除空白字符后有内容）
