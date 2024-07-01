@@ -107,7 +107,7 @@ if(menu == 'check'):
           ]
         for pattern in patterns:
               content = re.sub(pattern, '', content, flags = re.MULTILINE)
-        return content
+            return content
 
         content = remove_line(content)
         LocalFile.write_LocalFile('./out/dianshi.txt', content)
