@@ -96,14 +96,28 @@ if(menu == 'check'):
         LocalFile.write_LocalFile('./code/r_sites_err.txt', r_sites_err.strip('\r\n'))
         print('Line-96:/res/r_sites_err.txt已更新。')
         
-        # 删除指定行
-        #content = remove_line(content)
-        
         # 将修改后的内容组合
         content = addtv + '\r\n' + nsfw + '\r\n' + spare
+        return content
+
+def remove_line(content):
+    patterns = [
+        r'{"key":"Bili"(.)*\n{"key":"dr_兔小贝","name":(.)*\n',
+        r'^\s*{"key":"fan","name":"导航.*\n',
+        r'{"key":"Bili"(.)*\n{"key":"Biliych"(.)*\n',
+        r'{"key":"Nbys"(.|\n)*(?={"key":"cc")',
+        r'^\s*{"name":"live","type":.*\n',
+        r'^\s*{ "name": "XIUTAN", "ua":.*\n'
+    ]    
+    for pattern in patterns:
+        content = re.sub(pattern, '', content, flags=re.MULTILINE)
+    return content
         
-        # 将修改后的内容写回文件
-        LocalFile.write_LocalFile('./out/dianshi.txt', content)
+    # 删除指定行
+    content = remove_line(content)
+        
+    # 将修改后的内容写回文件
+    LocalFile.write_LocalFile('./out/dianshi.txt', content)
         
     except Exception as ex:
         LocalFile.write_LogFile('Main-Line-108-Exception:' + str(ex))
