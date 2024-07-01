@@ -1,14 +1,11 @@
 import datetime
-from gettext
-import find
+from gettext import find
 import json
 import os
 import requests
 import sys
-from cls
-import LocalFile
-from cls
-import NetFile
+from cls import LocalFile
+from cls import NetFile
 # 获取传递的参数
 try:
 #0表示文件名，1后面都是参数 0.py, 1, 2, 3
