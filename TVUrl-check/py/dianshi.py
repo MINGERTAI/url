@@ -5,7 +5,7 @@ import re
 import sys
 from cls import LocalFile, NetFile
 
-def remove_line(content):
+def remove_line(delFile):
     patterns = [
         r'{"key":"drpy_js_豆瓣","name":.*?\n{"key":"dr_兔小贝","name":.*?\n',
         r'^\s*{"key":"fan","name":"导航.*\n',
@@ -104,8 +104,8 @@ if menu == 'check':
         LocalFile.write_LocalFile('./tmp/dianshi.txt', content)
         LocalFile.read_LocalFile('./tmp/dianshi.txt')
         # 应用删除特定行的逻辑
-        content = remove_line(content)
-        LocalFile.write_LocalFile('./out/dianshi.txt', content)
+        delFile = remove_line(delFile)
+        LocalFile.write_LocalFile('./out/dianshi.txt', delFile)
 
     except Exception as ex:
         LocalFile.write_LogFile('Main-Line-108-Exception:' + str(ex))
