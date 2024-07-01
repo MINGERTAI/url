@@ -9,7 +9,7 @@ from cls import NetFile
 # 获取传递的参数
 try:
 #0表示文件名，1后面都是参数 0.py, 1, 2, 3
-    menu = sys.argv[1: ][0]
+menu = sys.argv[1: ][0]
 if(len(sys.argv[1: ]) > 1):
     cid = sys.argv[1: ][1]
 except:
