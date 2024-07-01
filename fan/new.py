@@ -51,6 +51,8 @@ def get_fan_conf():
         
     # DIY添加自定义接口，写入c.json
     local_content = local_dianshi(content)
+    # 删除指定行
+    tvbox = remove_specific_blocks(tvbox)
     with open('c.json', 'w', encoding='utf-8') as f:
         for line in local_content.split('\n'):  # 将内容按行分割
             if line.strip():  # 如果该行非空（移除空白字符后有内容）
@@ -160,8 +162,6 @@ def local_dianshi(content):
     new_logo_url = "https://ghproxy.net/https://raw.githubusercontent.com/ne7359/url/main/fan/AW1.gif"
     content = re.sub(r'"logo":"[^"]+"', f'"logo":"{new_logo_url}"', content)
 
-    # 删除指定行
-    final_content = remove_specific_blocks(final_content)
     
     # 从文件加载要添加的新内容
     new_content = read_local_file("./fan/res/parses_flags_rules_dianshi.txt")
