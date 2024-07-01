@@ -99,12 +99,12 @@ if(menu == 'check'):
         return content
         def remove_line(content):
           patterns = [
-                r '{"key":"Bili"(.)*\n{"key":"dr_兔小贝","name":(.)*\n',
-                r '^\s*{"key":"fan","name":"导航.*\n',
-                r '{"key":"Bili"(.)*\n{"key":"Biliych"(.)*\n',
-                r '{"key":"Nbys"(.|\n)*(?={"key":"cc")',
-                r '^\s*{"name":"live","type":.*\n',
-                r '^\s*{ "name": "XIUTAN", "ua":.*\n'
+                r'{"key":"drpy_js_豆瓣","name":(.)*\n{"key":"dr_兔小贝","name":(.)*\n',
+                r'^\s*{"key":"fan","name":"导航.*\n',
+                r'{"key":"Bili"(.)*\n{"key":"Biliych"(.)*\n',
+                r'{"key":"Nbys"(.|\n)*(?={"key":"cc")',
+                r'^\s*{"name":"live","type":.*\n',
+                r'^\s*{ "name": "XIUTAN", "ua":.*\n'
           ]
         for pattern in patterns:
               content = re.sub(pattern, '', content, flags = re.MULTILINE)
