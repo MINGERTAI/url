@@ -88,7 +88,7 @@ def remove_line(content):
         content = re.sub(pattern, '', content, flags=re.MULTILINE)        
     return content
 
-def read_local_file(file_path):
+def read_local_file(file_path): #用于加载文本函数
     with open(file_path, 'r', encoding='utf-8') as file:
         return file.read()
 
