@@ -7,12 +7,12 @@ from cls import LocalFile, NetFile
 
 # 获取传递的参数
 try:
-    # 0表示文件名，1后面都是参数 0.py, 1, 2, 3
+    #0表示文件名，1后面都是参数 0.py, 1, 2, 3
     menu = sys.argv[1:][0]
-    if len(sys.argv[1:]) > 1:
+    if(len(sys.argv[1:]) > 1):
         cid = sys.argv[1:][1]
-except Exception as e:
-    menu = 'check'
+except:
+    menu = 'init'
 print('menu: ' + menu)
 
 # 下载Node.json中的所有Url订阅链接将其合并，生成本地vpei-new.txt，同步至Github后改名为vpei.txt文件
