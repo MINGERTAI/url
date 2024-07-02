@@ -98,10 +98,7 @@ if menu == 'del':
         patterns = [
             r'^\s*{"key":"drpy_js_豆瓣","name":.*\n',
             r'^\s*{"key":"drpy_js_TVB云播","name":.*\n',
-            r'^\s*{"key":"YGP","name"(.)*\n{"key":"高中教育","name"(.)*\n',
-            r'^\s*{"key":"drpy_js_555电影[V2]"(.|\n)*(?={"key":"drpy_js_360影视")',
-            r'^\s*{"key":"drpy_js_网飞.TV","name":.*\n',
-            r'^\s*{ "name": "XIUTAN", "ua":.*\n'
+            r'{{"key":"YGP"(.)*\n{"key":"高中教育"(.)*\n'
         ]    
         for pattern in patterns:
             content = re.sub(pattern, '', content, flags=re.MULTILINE)        
