@@ -92,8 +92,6 @@ if menu == 'uptvbox':
     except Exception as ex:
         LocalFile.write_LogFile('Main-Line-108-Exception:' + str(ex))
 
-###
-# 下载Node.json中的所有Url订阅链接将其合并，生成本地vpei-new.txt，同步至Github后改名为vpei.txt文件
 if menu == 'del':
     def remove_line(content):
         patterns = [
@@ -113,5 +111,8 @@ if menu == 'del':
         # 应用删除特定行的逻辑
         content = remove_line(content)
 
-    with open('./out/json.txt', 'w', newline='', encoding='utf-8') as f:
-        f.write(content)
+        with open('./out/json.txt', 'w', newline='', encoding='utf-8') as f:
+            f.write(content)
+
+    except Exception as e:
+        print(f"An error occurred: {e}")
