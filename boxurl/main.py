@@ -462,12 +462,12 @@ if(menu == 'uptvbox'):
                 LocalFile.write_LogFile('Main-Line-530-Exception:' + str(ex) + '\nosite_tvurl:\n' + osite_tvurl)
             boxurl = boxurl + '\n' + i
     # tvlist = tvlist.replace(',"jar":"' + tvjar + '"','')
-    tvlist = tvlist.replace(',"jar":"http://freed.yuanhsing.cf/TVBox/MaooXB2/XBiubiuLA4.jar"','')
-    #tvlist = tvlist.replace(',"jar":"http://121.46.250.130:8080/ipfs/QmZFDWsm15DiH3WLb2WwgPb136tKPibvMoGKDT41aEpwfa?filename=XBiubiuLA4.jar"','')
+    tvlist = tvlist.replace(',"jar":"https://github.com/ne7359/url/blob/main/jar/fan.txt"','')
+    tvlist = tvlist.replace(',"jar":"https://github.com/ne7359/url/blob/main/jar/fty.jar"','')
     # 我添加
-    tvlist = tvlist.replace(',"jar":"https://raw.githubusercontent.com/ne7359/url/main/boxurl/jar/XBiubiuLA4.jar"','')
-    tvlist = tvlist.replace(',"jar":"http://iurl.leertai.top/jar/XBiubiuLA4.jar"','')
-    tvlist = tvlist.replace(',"jar":"https://raw.githubusercontent.com/ne7359/url/main/boxurl/jar/XBiubiuLA4.PNG"','')
+    tvlist = tvlist.replace(',"jar":"https://raw.githubusercontent.com/ne7359/url/main/jar/Yoursmile.jar"','')
+    tvlist = tvlist.replace(',"jar":"https://raw.githubusercontent.com/ne7359/url/main/jar/pg.jar"','')
+    tvlist = tvlist.replace(',"jar":"https://raw.githubusercontent.com/ne7359/url/main/jar/custom_spider.jar"','')
     # 去除重复项目
     # write_json()
     # 将节点更新时间等写入配置文件
