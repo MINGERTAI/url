@@ -15,23 +15,12 @@ def save_website_content_as_json_and_check_updates(url, file_name):
     # 确保目标目录存在
     if not os.path.exists(config_directory):
         os.makedirs(config_directory)
-    
-    # 读取配置文件
-    config = configparser.ConfigParser()
-    config.read(config_path)
+
     
     try:
         response = requests.get(url, headers=headers)
         if response.status_code == 200:
             data = response.json()
-
-            new_md5 = hashlib.md5(json.dumps(data, sort_keys=True).encode('utf-8')).hexdigest()
-            old_md5 = config.get('DEFAULT', 'md5', fallback='')
-
-                
-                # 将修改后的data保存为JSON文件
-                #json_file_path = os.path.join(config_directory, file_name + '.json')
-                #with open(json_file_path, 'w', encoding='utf-8') as file:
                 with open(file_name + '.json', 'w', encoding='utf-8') as file:
                     json.dump(data, file, indent=4, ensure_ascii=False)
                 print(f"数据已以JSON格式保存到{file_name}")
