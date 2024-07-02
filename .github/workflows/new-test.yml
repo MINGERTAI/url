@@ -33,20 +33,26 @@ jobs:
       - name: Install dependencies
         run: pip install requests
         
-      - name: Run Python script
+      - name: Run Python uptvbox
         working-directory: ${{ github.workspace }}
         run: |
-          python ./${{ secrets.PY_PATH }}/dianshi.py check
+          python ./${{ secrets.PY_PATH }}/dianshi.py uptvbox
+          echo "status=success" >> $GITHUB_OUTPUT
+        
+      - name: Run Python del
+        working-directory: ${{ github.workspace }}
+        run: |
+          python ./${{ secrets.PY_PATH }}/dianshi.py del
           echo "status=success" >> $GITHUB_OUTPUT
 
       - name: Commit and push changes
         run: |
           git config --global user.name "GitHub Actions"
           git config --global user.email "actions@github.com"
-          git add ./out/tmp.txt
+          git add ./out/json.txt
           #git add .
           # 强制提交更改，即使没有检测到变化
-          git commit -m "update dianshi.txt" --allow-empty
+          git commit -m "update json.txt" --allow-empty
           git push
           #if git diff --cached --quiet; then
             #echo "No changes to commit"
