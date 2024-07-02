@@ -16,7 +16,7 @@ except:
 print('menu: ' + menu)
 
 # 下载Node.json中的所有Url订阅链接将其合并，生成本地vpei-new.txt，同步至Github后改名为vpei.txt文件
-if menu == 'check':
+if menu == 'uptvbox':
     try:
         if os.path.exists('./out/tmp.txt'):
             tvbox = LocalFile.read_LocalFile('./out/tmp.txt').replace('\r', '').replace('\n\n', '\n')
@@ -87,6 +87,32 @@ if menu == 'check':
         myjson = addtv + '\r\n' + nsfw + '\r\n' + spare
         LocalFile.write_LocalFile('./out/tmp.txt', myjson)
         print('Line-96:./out/tmp.txt已更新。')
+
+    except Exception as ex:
+        LocalFile.write_LogFile('Main-Line-108-Exception:' + str(ex))
+
+###
+# 下载Node.json中的所有Url订阅链接将其合并，生成本地vpei-new.txt，同步至Github后改名为vpei.txt文件
+if menu == 'del':
+    def remove_line(content):
+        patterns = [
+            r'{"key":"drpy_js_豆瓣","name":.*?\n{"key":"高中教育","name":.*?\n',
+            r'^\s*{"key":"蛋蛋","name":"影视.*\n'
+        ]
+        for pattern in patterns:
+            content = re.sub(pattern, '', content, flags=re.MULTILINE)
+        return content    
+    try:
+        if os.path.exists('./out/tmp.txt'):
+            json = LocalFile.read_LocalFile('./out/json.txt').replace('\r', '').replace('\n\n', '\n')
+        else:
+            json = LocalFile.read_LocalFile('./out/tmp.txt').replace('\r', '').replace('\n\n', '\n')
+
+        # 应用删除特定行的逻辑
+        content = remove_line(content)
+        
+        LocalFile.write_LocalFile('./out/json.txt', content)
+        print('Line:./out/json.txt已更新。')
 
     except Exception as ex:
         LocalFile.write_LogFile('Main-Line-108-Exception:' + str(ex))
