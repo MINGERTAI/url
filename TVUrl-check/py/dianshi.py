@@ -99,10 +99,10 @@ if menu == 'del':
             r'^\s*{"key":"drpy_js_豆瓣".*\n',
             r'^\s*{"key":"drpy_js_TVB云播".*\n',
             r'^\s*{"key":"drpy_js_网飞.TV".*\n',
-            r'{"key":"YGP".*?(?=\n\s*{"key":"高中教育"(.)*\n'
+            r'{"key":"88js"(.|\n)*(?={"key":"YiSo")'
         ]    
         for pattern in patterns:
-            content = re.sub(pattern, '', content, flags=re.MULTILINE | re.DOTALL)
+            content = re.sub(pattern, '', content, flags=re.MULTILINE)
         return content
 
     try:
