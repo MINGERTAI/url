@@ -104,9 +104,9 @@ if menu == 'del':
         return content    
     try:
         if os.path.exists('./out/tmp.txt'):
-            json = LocalFile.read_LocalFile('./out/json.txt').replace('\r', '').replace('\n\n', '\n')
-        else:
             json = LocalFile.read_LocalFile('./out/tmp.txt').replace('\r', '').replace('\n\n', '\n')
+        else:
+            json = LocalFile.read_LocalFile('./out/json.txt').replace('\r', '').replace('\n\n', '\n')
 
         # 应用删除特定行的逻辑
         content = remove_line(content)
