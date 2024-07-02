@@ -36,7 +36,8 @@ jobs:
       - name: Run Python script
         working-directory: ${{ github.workspace }}
         run: |
-          python ./${{ secrets.PY_PATH }}/dianshi.py
+          python ./${{ secrets.PY_PATH }}/dianshi.py check
+          echo "status=success" >> $GITHUB_OUTPUT
 
       - name: Commit and push changes
         run: |
