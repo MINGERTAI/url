@@ -5,19 +5,6 @@ import re
 import sys
 from cls import LocalFile, NetFile
 
-def remove_line(content):
-    patterns = [
-        r'{"key":"drpy_js_豆瓣","name":.*?\n{"key":"dr_兔小贝","name":.*?\n',
-        r'^\s*{"key":"fan","name":"导航.*\n',
-        r'{"key":"Bili".*?\n{"key":"Biliych".*?\n',
-        r'{"key":"Nbys".*?(?={"key":"cc")',
-        r'^\s*{"name":"live","type":.*\n',
-        r'^\s*{ "name": "XIUTAN", "ua":.*\n'
-    ]
-    for pattern in patterns:
-        content = re.sub(pattern, '', content, flags=re.MULTILINE)
-    return content
-
 # 获取传递的参数
 try:
     # 0表示文件名，1后面都是参数 0.py, 1, 2, 3
@@ -31,8 +18,8 @@ print('menu: ' + menu)
 # 下载Node.json中的所有Url订阅链接将其合并，生成本地vpei-new.txt，同步至Github后改名为vpei.txt文件
 if menu == 'check':
     try:
-        if os.path.exists('./out/0821.txt'):
-            tvbox = LocalFile.read_LocalFile('./out/dianshi.txt').replace('\r', '').replace('\n\n', '\n')
+        if os.path.exists('./out/tmp.txt'):
+            tvbox = LocalFile.read_LocalFile('./out/tmp.txt').replace('\r', '').replace('\n\n', '\n')
         else:
             tvbox = LocalFile.read_LocalFile('./code/dianshi.json').replace('\r', '').replace('\n\n', '\n')
         r_sites_err = LocalFile.read_LocalFile("./code/r_sites_err.txt")
@@ -96,14 +83,10 @@ if menu == 'check':
                     print('Main-Line-91-not-tvsite-url:' + j)
             except Exception as ex:
                 LocalFile.write_LogFile('Main-Line-93-Exception:' + str(ex) + '\ntvsite:' + j)
-
-        LocalFile.write_LocalFile('./out/r_sites_err.txt', r_sites_err.strip('\r\n'))
-        print('Line-96:/res/r_sites_err.txt已更新。')
-        # 应用删除特定行的逻辑
-        content = remove_line(content)
         
-        mytv = addtv + '\r\n' + nsfw + '\r\n' + spare
-        LocalFile.write_LocalFile('./out/dianshi.txt', mytv)
+        myjson = addtv + '\r\n' + nsfw + '\r\n' + spare
+        LocalFile.write_LocalFile('./out/tmp.txt', myjson)
+        print('Line-96:./out/dianshi.txt已更新。')
 
     except Exception as ex:
         LocalFile.write_LogFile('Main-Line-108-Exception:' + str(ex))
