@@ -35,24 +35,6 @@ def save_website_content_as_json_and_check_updates(url, file_name):
                     config.write(configfile)
                 
                 spider = data.get('spider')
-                if spider:
-                    jar_url, jar_md5 = re.match(r'http://[^/]+/jar/(.+?);md5;([a-f0-9]{32})', spider).groups()
-                    full_jar_url = f"http://like.xn--z7x900a.com/jar/{jar_url}"
-                    jar_response = requests.get(full_jar_url)
-                    if jar_response.status_code == 200:
-                        jar_file_name = jar_url.split('/')[-1]
-                        # 构建jar文件的完整保存路径
-                        jar_file_path = os.path.join(config_directory, jar_file_name)
-                        with open(jar_file_path, 'wb') as jar_file:
-                            jar_file.write(jar_response.content)
-                        print(f"jar文件已下载到：{jar_file_path}")
-                        # 更新配置文件
-                        config['DEFAULT']['jar_md5'] = jar_md5
-                        with open(config_path, 'w') as configfile:
-                            config.write(configfile)
-                        print("jar文件的md5值已更新。")
-                    else:
-                        print(f"jar文件下载失败，状态码：{jar_response.status_code}")
 
                 if 'spider' in data:
                     original_url = data['spider'].split(';md5;')[0]
