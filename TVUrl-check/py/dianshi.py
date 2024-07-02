@@ -105,7 +105,7 @@ if menu == 'del':
             content = re.sub(pattern, '', content, flags=re.MULTILINE)
         return content
     def del_line(content):
-        pattern = r'{"key":"YGP"(.)*\n{"key":"高中教育"(.)*\n'
+        pattern = r'{"key":"YGP"(.|\n)*(?={"key":"高中教育")'
         replacement = '' 
         content = re.sub(pattern, replacement, content)
         return content
