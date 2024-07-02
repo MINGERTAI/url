@@ -99,16 +99,12 @@ if menu == 'del':
             r'^\s*{"key":"drpy_js_豆瓣".*\n',
             r'^\s*{"key":"drpy_js_TVB云播".*\n',
             r'^\s*{"key":"drpy_js_网飞.TV".*\n',
-            r'{"key":"豆豆"(.|\n)*(?={"key":"高中教育")'
+            r'{"key":"YGP"(.|\n)*(?={"key":"高中教育")'
         ]    
         for pattern in patterns:
             content = re.sub(pattern, '', content, flags=re.MULTILINE)
         return content
-    def del_line(content):
-        pattern = r'{"key":"YGP"(.|\n)*(?={"key":"高中教育")'
-        replacement = '' 
-        content = re.sub(pattern, replacement, content)
-        return content
+
 
     try:
         if os.path.exists('./out/tmp.txt'):
@@ -118,7 +114,7 @@ if menu == 'del':
 
         # 应用删除特定行的逻辑
         content = remove_line(content)
-        content = del_line(content)
+
 
         with open('./out/json.txt', 'w', newline='', encoding='utf-8') as f:
             f.write(content)
