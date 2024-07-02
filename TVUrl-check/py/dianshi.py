@@ -101,6 +101,9 @@ if menu == 'del':
         ]    
         for pattern in patterns:
             content = re.sub(pattern, '', content, flags=re.MULTILINE)
+        return content
+
+    def del_line(content):
         pattern = r'{"key":"YGP"(.)*\n{"key":"高中教育"(.)*\n'
         replacement = ''
         content = re.sub(pattern, replacement, content)
@@ -114,6 +117,7 @@ if menu == 'del':
 
         # 应用删除特定行的逻辑
         content = remove_line(content)
+        content = del_line(content)
 
         with open('./out/json.txt', 'w', newline='', encoding='utf-8') as f:
             f.write(content)
