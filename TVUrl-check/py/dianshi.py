@@ -97,11 +97,13 @@ if menu == 'del':
     def remove_line(content):
         patterns = [
             r'^\s*{"key":"drpy_js_豆瓣","name":.*\n',
-            r'^\s*{"key":"drpy_js_TVB云播","name":.*\n',
-            r'{"key":"YGP"(.)*\n{"key":"高中教育"(.)*\n'
+            r'^\s*{"key":"drpy_js_TVB云播","name":.*\n'
         ]    
         for pattern in patterns:
-            content = re.sub(pattern, '', content, flags=re.MULTILINE)        
+            content = re.sub(pattern, '', content, flags=re.MULTILINE)
+        pattern = r'{"key":"YGP"(.)*\n{"key":"高中教育"(.)*\n'
+        replacement = ''
+        content = re.sub(pattern, replacement, content)
         return content
 
     try:
