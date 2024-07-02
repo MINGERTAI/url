@@ -94,12 +94,6 @@ if menu == 'uptvbox':
 ###
 # 下载Node.json中的所有Url订阅链接将其合并，生成本地vpei-new.txt，同步至Github后改名为vpei.txt文件
 if menu == 'del':
-    try:
-        if os.path.exists('./out/tmp.txt'):
-            content = LocalFile.read_LocalFile('./out/tmp.txt').replace('\r', '').replace('\n\n', '\n')
-        else:
-            content = LocalFile.read_LocalFile('./out/json.txt').replace('\r', '').replace('\n\n', '\n')
-
     def remove_line(content):
         patterns = [
             r'{"key":"drpy_js_豆瓣","name":.*?\n{"key":"高中教育","name":.*?\n',
@@ -107,7 +101,13 @@ if menu == 'del':
         ]
         for pattern in patterns:
             content = re.sub(pattern, '', content, flags=re.MULTILINE)
-        return content    
+        return content
+
+    try:
+        if os.path.exists('./out/tmp.txt'):
+            content = LocalFile.read_LocalFile('./out/tmp.txt').replace('\r', '').replace('\n\n', '\n')
+        else:
+            content = LocalFile.read_LocalFile('./out/json.txt').replace('\r', '').replace('\n\n', '\n')
 
         # 应用删除特定行的逻辑
         content = remove_line(content)
