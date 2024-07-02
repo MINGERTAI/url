@@ -102,7 +102,7 @@ if menu == 'del':
             r'{"key":"YGP".*?{"key":"高中教育"'
         ]    
         for pattern in patterns:
-            content = re.sub(pattern, '', content, flags=re.MULTILINE)
+            content = re.sub(pattern, '', content, flags=re.MULTILINE | re.DOTALL)
         return content
 
     try:
