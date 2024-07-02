@@ -111,9 +111,6 @@ if menu == 'del':
 
         # 应用删除特定行的逻辑
         content = remove_line(content)
-        
-        LocalFile.write_LocalFile('./out/json.txt', content)
-        print('Line:./out/json.txt已更新。')
 
-    except Exception as ex:
-        LocalFile.write_LogFile('Main-Line-108-Exception:' + str(ex))
+    with open('./out/json.txt', 'w', newline='', encoding='utf-8') as f:
+        f.write(content)
