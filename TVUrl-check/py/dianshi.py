@@ -4,6 +4,7 @@ import os
 import re
 import sys
 import requests
+headers = {'User-Agent': 'okhttp/3.15'}
 from cls import LocalFile, NetFile
 
 # 获取传递的参数
