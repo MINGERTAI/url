@@ -86,7 +86,7 @@ if menu == 'check':
         
         myjson = addtv + '\r\n' + nsfw + '\r\n' + spare
         LocalFile.write_LocalFile('./out/tmp.txt', myjson)
-        print('Line-96:./out/dianshi.txt已更新。')
+        print('Line-96:./out/tmp.txt已更新。')
 
     except Exception as ex:
         LocalFile.write_LogFile('Main-Line-108-Exception:' + str(ex))
