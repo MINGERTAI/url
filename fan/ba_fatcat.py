@@ -27,24 +27,7 @@ def save_website_content_as_json_and_check_updates(url, file_name):
 
             new_md5 = hashlib.md5(json.dumps(data, sort_keys=True).encode('utf-8')).hexdigest()
             old_md5 = config.get('DEFAULT', 'md5', fallback='')
-            if new_md5 != old_md5:
-                print("检测到更新。")
-                # 更新配置文件中的md5值
-                config['DEFAULT']['md5'] = new_md5
-                with open(config_path, 'w') as configfile:
-                    config.write(configfile)
-                
-                spider = data.get('spider')
 
-                if 'spider' in data:
-                    original_url = data['spider'].split(';md5;')[0]
-                    data['spider'] = data['spider'].replace(original_url, f'./fan/FatCat/{jar_file_name}')
-                # 假设已经有一个字典 data 和变量 jar_file_name
-                for key in data:
-                    # 检查值是否为字符串类型
-                    if isinstance(data[key], str):
-                        # 替换 'http://js.xn--z7x900a.com' 为 './fan/FatCat'
-                        data[key] = data[key].replace('http://js.xn--z7x900a.com/', './fan/FatCat/')
                 
                 # 将修改后的data保存为JSON文件
                 #json_file_path = os.path.join(config_directory, file_name + '.json')
