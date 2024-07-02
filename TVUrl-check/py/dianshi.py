@@ -3,6 +3,7 @@ import json
 import os
 import re
 import sys
+import requests
 from cls import LocalFile, NetFile
 
 # 获取传递的参数
