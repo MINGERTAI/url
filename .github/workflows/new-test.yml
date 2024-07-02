@@ -42,7 +42,7 @@ jobs:
         run: |
           git config --global user.name "GitHub Actions"
           git config --global user.email "actions@github.com"
-          git add ./out/dianshi.txt
+          git add ./out/tmp.txt
           #git add .
           # 强制提交更改，即使没有检测到变化
           git commit -m "update dianshi.txt" --allow-empty
