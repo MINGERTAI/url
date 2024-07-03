@@ -118,5 +118,5 @@ if menu == 'del':
         #with open('./out/newjson.txt', 'w', newline='', encoding='utf-8') as f:
             #f.write(content)
 
-    #except Exception as e:
-       #print(f"An error occurred: {e}")
+    except Exception as e:
+       print(f"An error occurred: {e}")
