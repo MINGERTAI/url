@@ -1,9 +1,9 @@
-name: new test
+name: new fan
 on:
   workflow_dispatch:
 
-  #schedule:
-    #- cron: '5 */4 * * *'
+  schedule:
+    - cron: '5 */4 * * *'
 
 jobs:
   setup:
@@ -50,14 +50,15 @@ jobs:
         run: |
           rm -rf code
           rm -rf ./fan/cls/__pycache__
+          if git diff-index --quiet HEAD --; then
+            echo "未检测到任何更改。正在跳过提交."
+            exit 0
+          fi
           git config --global user.name "GitHub Actions"
           git config --global user.email "actions@github.com"
           git add .
           git commit -m "update"
-          # 强制提交更改，即使没有检测到变化
-          #git commit -m "update json.txt" --allow-empty
           git push
-
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           
