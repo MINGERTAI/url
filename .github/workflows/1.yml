@@ -22,7 +22,7 @@ jobs:
       run: pip install requests
 
     - name: Run Python script
-      run: python ./fan/1.py
+      run: python ./fan/1.py tvbox
   
     - name: Run ls
       run: ls -l
