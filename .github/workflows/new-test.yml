@@ -48,10 +48,20 @@ jobs:
           git commit -m "update"
           # 强制提交更改，即使没有检测到变化
           #git commit -m "update json.txt" --allow-empty
-          git push
+         # git push
 
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        #env:
+         # GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Push changes
+        uses:  ad-m/github-push-action@master
+        with:
+           github_token: ${{ secrets.GITHUB_TOKEN }}
+         # github_token: ${{ secrets.TOKEN }}
+           branch: main
+         #force: true
+      #env:
+        #GITHUB_ACTOR: ne7359
 
       - name: Delete Workflow Runs
         uses: Mattraks/delete-workflow-runs@main
