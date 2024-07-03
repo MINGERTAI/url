@@ -45,6 +45,12 @@ jobs:
           python ./${{ secrets.PY_PATH }}/dianshi.py Pulladd
           echo "status=success" >> $GITHUB_OUTPUT
 
+      - name: Check if file exists
+        run: |
+          ls -l ./
+          ls -l ./out
+          ls -l ./fan
+
       - name: Commit and push changes
         run: |
           git config --global user.name "GitHub Actions"
