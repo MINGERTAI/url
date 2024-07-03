@@ -156,7 +156,7 @@ if menu == 'Pulladd':
         
         # DIY添加自定义接口，写入c.json
         local_content = local_dianshi(content)
-        with open('c.json', 'w', encoding='utf-8') as f:
+        with open('./out/c.json', 'w', encoding='utf-8') as f:
             for line in local_content.split('\n'):  # 将内容按行分割
                 if line.strip():  # 如果该行非空（移除空白字符后有内容）
                     f.write(line + '\n')  # 将非空行写入到文件中，记得在最后加上 '\n' 以保持原有的行分割
