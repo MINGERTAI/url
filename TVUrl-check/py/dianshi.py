@@ -17,6 +17,16 @@ print('menu: ' + menu)
 
 # 下载Node.json中的所有Url订阅链接将其合并，生成本地vpei-new.txt，同步至Github后改名为vpei.txt文件
 if menu == 'uptvbox':
+    def remove_line(content):
+        patterns = [
+            r'{"key":"drpy_js_豆瓣"(.|\n)*(?={"key":"高中教育")',   # 删除自{"key":"drpy_js_豆瓣"行到{"key":"高中教育"前一行所有
+            r'^\s*{"key":"高中教育".*\n',
+            r'^\s*{"key":"蛋蛋".*'      # 删除最后一行不可以添加\n换行代码
+        ]    
+        for pattern in patterns:
+            content = re.sub(pattern, '', content, flags=re.MULTILINE)
+        return content
+
     try:
         if os.path.exists('./out/tmp.txt'):
             tvbox = LocalFile.read_LocalFile('./out/tmp.txt').replace('\r', '').replace('\n\n', '\n')
@@ -84,40 +94,10 @@ if menu == 'uptvbox':
             except Exception as ex:
                 LocalFile.write_LogFile('Main-Line-93-Exception:' + str(ex) + '\ntvsite:' + j)
         
-        myjson = addtv + '\r\n' + nsfw + '\r\n' + spare
-        LocalFile.write_LocalFile('./out/tmp.txt', myjson)
+        content = addtv + '\r\n' + nsfw + '\r\n' + spare
+        content = remove_line(content)
+        LocalFile.write_LocalFile('./out/json.txt', content)
         print('Line-96:./out/tmp.txt已更新。')
 
     except Exception as ex:
         LocalFile.write_LogFile('Main-Line-108-Exception:' + str(ex))
-
-if menu == 'del':
-    def remove_line(content):
-        patterns = [
-            r'{"key":"drpy_js_豆瓣"(.|\n)*(?={"key":"高中教育")',   # 删除自{"key":"drpy_js_豆瓣"行到{"key":"高中教育"前一行所有
-            r'^\s*{"key":"高中教育".*\n',
-            r'^\s*{"key":"蛋蛋".*'      # 删除最后一行不可以添加\n换行代码
-        ]    
-        for pattern in patterns:
-            content = re.sub(pattern, '', content, flags=re.MULTILINE)
-        return content
-    # 加载内容
-    content = LocalFile.read_LocalFile('./out/tmp.txt').replace('\r', '').replace('\n\n', '\n')
-    # 应用删除特定行的逻辑
-    content = remove_line(content)
-    LocalFile.write_LocalFile('./out/json.txt', content)
-
-######
-
-    #try:
-        #if os.path.exists('./out/tmp.txt'):
-            #content = LocalFile.read_LocalFile('./out/tmp.txt').replace('\r', '').replace('\n\n', '\n')
-        #else:
-            #content = LocalFile.read_LocalFile('./out/json.txt').replace('\r', '').replace('\n\n', '\n')
-
-        # 应用删除特定行的逻辑
-        #content = remove_line(content)
-        #LocalFile.write_LocalFile('./out/newjson.txt', content)
-
-    #except Exception as ex:
-        #LocalFile.write_LogFile('Main-Line-108-Exception:' + str(ex))
