@@ -161,6 +161,9 @@ if menu == 'Pulladd':
                 if line.strip():  # 如果该行非空（移除空白字符后有内容）
                     f.write(line + '\n')  # 将非空行写入到文件中，记得在最后加上 '\n' 以保持原有的行分割
 
+    except Exception as ex:
+        LocalFile.write_LogFile('Main-Line-108-Exception:' + str(ex))
+
         # Update conf.md5
         config.set("md5", "conf", md5)
         with open("fan/config.ini", "w") as f:
