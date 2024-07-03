@@ -115,7 +115,7 @@ if menu == 'del':
         LocalFile.write_LocalFile('./out/newjson.txt', content)
 
     except Exception as ex:
-        LocalFile.write_LogFile('Main-Line-108-Exception:' + str(ex))
+        LocalFile.write_LogFile('Main-Line-109-Exception:' + str(ex))
 
         #with open('./out/newjson.txt', 'w', newline='', encoding='utf-8') as f:
             #f.write(content)
