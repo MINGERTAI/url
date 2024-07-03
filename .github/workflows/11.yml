@@ -58,9 +58,10 @@ jobs:
           git add ./c.json
           git add ./xo.json
           git add ./fan/config.ini
+          git add ./jar/fan.txt
           #git commit -m "update"
           # 强制提交更改，即使没有检测到变化
-          git commit -m "update c.json a.json b.json xo.json fan/config.ini" --allow-empty
+          git commit -m "update c.json a.json b.json xo.json fan/config.ini jar/fan.txt" --allow-empty
           git push
 
         env:
