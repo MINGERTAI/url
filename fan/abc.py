@@ -107,7 +107,7 @@ if menu == 'tvbox':
     except Exception as ex:
         LocalFile.write_LogFile('Main-Line-108-Exception:' + str(ex))
 
-if menu == 'pulltvbox':
+if menu == 'out':
 
     def get_fan_conf():
         config = configparser.ConfigParser()
