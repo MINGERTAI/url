@@ -101,16 +101,23 @@ if menu == 'del':
         for pattern in patterns:
             content = re.sub(pattern, '', content, flags=re.MULTILINE)
         return content
-
+    # 加载内容
     content = LocalFile.read_LocalFile('./out/tmp.txt').replace('\r', '').replace('\n\n', '\n')
-        # 应用删除特定行的逻辑
+    # 应用删除特定行的逻辑
     content = remove_line(content)
-    LocalFile.write_LocalFile('./out/newjson.txt', content)
+    LocalFile.write_LocalFile('./out/json.txt', content)
 
+######
 
+    #try:
+        #if os.path.exists('./out/tmp.txt'):
+            #content = LocalFile.read_LocalFile('./out/tmp.txt').replace('\r', '').replace('\n\n', '\n')
+        #else:
+            #content = LocalFile.read_LocalFile('./out/json.txt').replace('\r', '').replace('\n\n', '\n')
 
-        #with open('./out/newjson.txt', 'w', newline='', encoding='utf-8') as f:
-            #f.write(content)
+        # 应用删除特定行的逻辑
+        #content = remove_line(content)
+        #LocalFile.write_LocalFile('./out/newjson.txt', content)
 
-    #except Exception as e:
-       #print(f"An error occurred: {e}")
+    #except Exception as ex:
+        #LocalFile.write_LogFile('Main-Line-108-Exception:' + str(ex))
