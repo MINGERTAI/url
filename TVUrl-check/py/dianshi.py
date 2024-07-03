@@ -102,13 +102,11 @@ if menu == 'del':
             content = re.sub(pattern, '', content, flags=re.MULTILINE)
         return content
 
-    #try:
-        #if os.path.exists('./out/tmp.txt'):
-            #content = LocalFile.read_LocalFile('./out/tmp.txt').replace('\r', '').replace('\n\n', '\n')
-        #else:
-            #content = LocalFile.read_LocalFile('./out/json.txt').replace('\r', '').replace('\n\n', '\n')
-
-        content = LocalFile.read_LocalFile('./out/tmp.txt').replace('\r', '').replace('\n\n', '\n')
+    try:
+        if os.path.exists('./out/tmp.txt'):
+            content = LocalFile.read_LocalFile('./out/tmp.txt').replace('\r', '').replace('\n\n', '\n')
+        else:
+            content = LocalFile.read_LocalFile('./out/json.txt').replace('\r', '').replace('\n\n', '\n')
 
         # 应用删除特定行的逻辑
         content = remove_line(content)
