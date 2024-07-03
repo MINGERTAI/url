@@ -96,8 +96,8 @@ if menu == 'tvbox':
         
         content = addtv + '\r\n' + nsfw + '\r\n' + spare
         content = remove_line(content)
-        LocalFile.write_LocalFile('./out/json.txt', content)
-        print('Line-96:./out/json.txt已更新。')
+        LocalFile.write_LocalFile('./out/1.txt', content)
+        print('Line-96:./out/1.txt已更新。')
 
     except Exception as ex:
         LocalFile.write_LogFile('Main-Line-108-Exception:' + str(ex))
