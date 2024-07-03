@@ -49,6 +49,7 @@ jobs:
       - name: Commit and push changes
         run: |
           rm -rf code
+          rm -rf tmp
           rm -rf ./fan/cls/__pycache__
           if git diff-index --quiet HEAD --; then
             echo "未检测到任何更改。正在跳过提交."
