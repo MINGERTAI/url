@@ -1,4 +1,4 @@
-name: new_fan
+name: abc
 on:
   workflow_dispatch:
 
@@ -36,12 +36,12 @@ jobs:
       - name: Run Python tvbox
         working-directory: ${{ github.workspace }}
         run: |
-          python ./fan/dianshi.py tvbox
+          python ./fan/abc.py tvbox
         
-      - name: Run Python pulltvbox
+      - name: Run Python out
         working-directory: ${{ github.workspace }}
         run: |
-          python ./fan/dianshi.py pulltvbox
+          python ./fan/abc.py out
 
       - name: Commit and push changes
         run: |
