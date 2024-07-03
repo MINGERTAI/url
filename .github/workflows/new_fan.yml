@@ -42,9 +42,6 @@ jobs:
         working-directory: ${{ github.workspace }}
         run: |
           python ./fan/dianshi.py pulltvbox
-          
-      - name: Run ls
-        run: ls -l
 
       - name: Commit and push changes
         run: |
