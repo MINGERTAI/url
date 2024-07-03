@@ -53,21 +53,14 @@ jobs:
           fi
           git config --global user.name "GitHub Actions"
           git config --global user.email "actions@github.com"
-          git add .
-          git commit -m "update"
-          #commit_msg="更新并删除删除无效节点"
-          #git commit -a --allow-empty -m "$commit_msg"
+          git add ./c.json
+          #git commit -m "update"
+          # 强制提交更改，即使没有检测到变化
+          git commit -m "update c.json" --allow-empty
+          git push
 
-      - name: Push changes
-        if: steps.check.conclusion == 'success'
-        uses:  ad-m/github-push-action@master
-        with:
-           github_token: ${{ secrets.GITHUB_TOKEN }}
-         # github_token: ${{ secrets.TOKEN }}
-           branch: main
-         #force: true
-      #env:
-        #GITHUB_ACTOR: ne7359
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Delete Workflow Runs
         uses: Mattraks/delete-workflow-runs@main
