@@ -3,6 +3,11 @@ import json
 import os
 import re
 import sys
+import base64
+import requests
+import hashlib
+import configparser
+headers = {'User-Agent': 'okhttp/3.15'}
 from cls import LocalFile, NetFile
 
 # 获取传递的参数
@@ -103,12 +108,6 @@ if menu == 'tvbox':
         LocalFile.write_LogFile('Main-Line-108-Exception:' + str(ex))
 
 if menu == 'pulltvbox':
-    import re
-    import base64
-    import requests
-    import hashlib
-    import configparser
-    headers = {'User-Agent': 'okhttp/3.15'}
 
     def get_fan_conf():
         config = configparser.ConfigParser()
@@ -193,10 +192,6 @@ if menu == 'pulltvbox':
             content = re.sub(pattern, '', content, flags=re.MULTILINE)        
         return content
 
-    def read_local_file(file_path): #用于加载文本函数
-        with open(file_path, 'r', encoding='utf-8') as file:
-            return file.read()
-
     def local_myconf(content):
         # Replace specified key and name  替换"key":"豆豆","name":"全接口智能过滤广告" 为"key":"豆豆","name":"智能AI广告过滤"
         content = re.sub(r'{"key":"豆豆","name":"全接口智能过滤广告",', r'{"key":"豆豆","name":"智能AI广告过滤",', content)
@@ -206,12 +201,12 @@ if menu == 'pulltvbox':
         content = re.sub(r'"logo":"[^"]+"', f'"logo":"{new_logo_url}"', content)
     
         # 从文件加载要添加的新内容
-        new_content = read_local_file("./fan/res/parses_flags_rules.txt")
-        live_content = read_local_file("./fan/res/lives.txt")
+        new_content = LocalFile.read_LocalFile("./fan/res/parses_flags_rules.txt")
+        live_content = LocalFile.read_LocalFile("./fan/res/lives.txt")
 
         # 替换指定模式的内容，从{"key":"88js"到{"key":"dr_兔小贝"前的内容
         pattern = r'{"key":"88js"(.|\n)*?(?={"key":"dr_兔小贝")'
-        replacement = read_local_file("./fan/res/replace.txt")
+        replacement = LocalFile.read_LocalFile("./fan/res/replace.txt")
         content = re.sub(pattern, replacement, content, flags=re.DOTALL)
 
         # 替换指定{"key":"cc"行内容
@@ -247,12 +242,12 @@ if menu == 'pulltvbox':
         content = re.sub(r'"logo":"[^"]+"', f'"logo":"{new_logo_url}"', content)
     
         # 从文件加载要添加的新内容
-        new_content = read_local_file("./fan/res/parses_flags_rules_dianshi.txt")
-        live_content = read_local_file("./fan/res/lives.txt")
+        new_content = LocalFile.read_LocalFile("./fan/res/parses_flags_rules_dianshi.txt")
+        live_content = LocalFile.read_LocalFile("./fan/res/lives.txt")
 
         # 替换指定模式的内容，从{"key":"88js"到{"key":"dr_兔小贝"前的内容
         pattern = r'{"key":"88js"(.|\n)*?(?={"key":"dr_兔小贝")'
-        replacement = read_local_file("./out/json.txt")
+        replacement = LocalFile.read_LocalFile("./out/json.txt")
         content = re.sub(pattern, replacement, content, flags=re.DOTALL)
 
         # 替换指定{"key":"cc"行内容
