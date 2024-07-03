@@ -108,7 +108,6 @@ if menu == 'uptvbox':
         LocalFile.write_LogFile('Main-Line-108-Exception:' + str(ex))
 
 if menu == 'Pulladd':
-    import re
     def get_fan_conf():
         config = configparser.ConfigParser()
         config.read("fan/config.ini")
