@@ -33,12 +33,12 @@ jobs:
       - name: Install dependencies
         run: pip install requests
         
-      - name: Run Python uptvbox
+      - name: Run Python tvbox
         working-directory: ${{ github.workspace }}
         run: |
           python ./fan/dianshi.py tvbox
         
-      - name: Run Python uptvbox
+      - name: Run Python pulltvbox
         working-directory: ${{ github.workspace }}
         run: |
           python ./fan/dianshi.py pulltvbox
