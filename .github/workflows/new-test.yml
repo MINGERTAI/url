@@ -43,11 +43,11 @@ jobs:
           git config --global user.name "GitHub Actions"
           git config --global user.email "actions@github.com"
           git add ./out/json.txt
-          commit_msg="* 添加已经更新"
-          git commit --allow-empty -m "$commit_msg"
+          ＠commit_msg="* 添加已经更新"
+          ＃git commit --allow-empty -m "$commit_msg"
           #git commit -m "update"
           # 强制提交更改，即使没有检测到变化
-          #git commit -m "update c.json" --allow-empty
+          git commit -m "update json.txt" --allow-empty
           git push
 
         env:
