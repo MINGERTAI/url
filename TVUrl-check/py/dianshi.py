@@ -22,7 +22,7 @@ if menu == 'uptvbox':
             tvbox = LocalFile.read_LocalFile('./out/tmp.txt').replace('\r', '').replace('\n\n', '\n')
         else:
             tvbox = LocalFile.read_LocalFile('./code/dianshi.json').replace('\r', '').replace('\n\n', '\n')
-        r_sites_err = LocalFile.read_LocalFile("./code/r_sites_err.txt")
+        addjson = LocalFile.read_LocalFile("./code/js.json")
 
         addtv = ''
         nsfw = ''
@@ -30,7 +30,7 @@ if menu == 'uptvbox':
         tvbox = tvbox.replace('//{', '\n{')
         for j in tvbox.split('\n'):
             try:
-                if j != '' and j.find('"key":') > -1 and j.find('"name":') > -1 and j.find('"type":') > -1 and r_sites_err.find(j) == -1:
+                if j != '' and j.find('"key":') > -1 and j.find('"name":') > -1 and j.find('"type":') > -1 and addjson.find(j) == -1:
                     j = j.strip(',')
                     if len(j.split('}')) > len(j.split('{')):
                         j = j.strip(',')[:-1].strip(',')
@@ -54,23 +54,23 @@ if menu == 'uptvbox':
                     if id == 3:
                         if 'ext' in tv.keys():
                             ext = tv['ext']
-                            if (addtv + nsfw + r_sites_err).find(ext) > -1:
+                            if (addtv + nsfw + addjson).find(ext) > -1:
                                 continue
                             else:
                                 if ext.find('http') == 0:
                                     ustat = NetFile.url_stat(ext, 60, 60)
                                     if ustat == 404 or ustat == 0:
-                                        r_sites_err += '\r\n[' + datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S") + '] ' + str(ustat) + ':' + j + ','
+                                        addjson += '\r\n[' + datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S") + '] ' + str(ustat) + ':' + j + ','
                                         continue
                     elif id >= 0:
                         api = tv['api']
-                        if (addtv + nsfw + r_sites_err).find(api) > -1:
+                        if (addtv + nsfw + addjson).find(api) > -1:
                             continue
                         else:
                             if api.find('http') == 0:
                                 ustat = NetFile.url_stat(api, 60, 60)
                                 if ustat == 404 or ustat == 0:
-                                    r_sites_err += '\r\n[' + datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S") + '] ' + str(ustat) + ':' + j + ','
+                                    addjson += '\r\n[' + datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S") + '] ' + str(ustat) + ':' + j + ','
                                     continue
                     else:
                         spare += '\r\n' + j + ','
