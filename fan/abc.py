@@ -33,10 +33,10 @@ if menu == 'tvbox':
         return content
 
     try:
-        if os.path.exists('./out/tmp.txt'):
-            tvbox = LocalFile.read_LocalFile('./out/tmp.txt').replace('\r', '').replace('\n\n', '\n')
-        else:
+        if os.path.exists('./code/dianshi.json'):
             tvbox = LocalFile.read_LocalFile('./code/dianshi.json').replace('\r', '').replace('\n\n', '\n')
+        else:
+            tvbox = LocalFile.read_LocalFile('./out/json.txt').replace('\r', '').replace('\n\n', '\n')
         addjson = LocalFile.read_LocalFile("./code/addjson.txt")
 
         addtv = ''
