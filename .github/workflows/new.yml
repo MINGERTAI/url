@@ -42,11 +42,11 @@ jobs:
         run: |
           git config --global user.name "GitHub Actions"
           git config --global user.email "actions@github.com"
-          git add ./out/dianshi.txt
+          git add ./out/json.txt
           if git diff --cached --quiet; then
             echo "No changes to commit"
           else
-            git commit -m "update dianshi.txt"
+            git commit -m "update json.txt"
             git push
           fi
         env:
