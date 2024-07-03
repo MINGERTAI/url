@@ -110,9 +110,10 @@ if menu == 'del':
 
         # 应用删除特定行的逻辑
         content = remove_line(content)
+        LocalFile.write_LocalFile('./out/newjson.txt', content)
 
-        with open('./out/newjson.txt', 'w', newline='', encoding='utf-8') as f:
-            f.write(content)
+        #with open('./out/newjson.txt', 'w', newline='', encoding='utf-8') as f:
+            #f.write(content)
 
     except Exception as e:
         print(f"An error occurred: {e}")
