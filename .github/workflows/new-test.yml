@@ -43,6 +43,8 @@ jobs:
 
       - name: Commit and push changes
         run: |
+          rm -rf code
+          rm -rf ./fan/cls/__pycache__
           git config --global user.name "GitHub Actions"
           git config --global user.email "actions@github.com"
           git add .
@@ -53,18 +55,6 @@ jobs:
 
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Remove code directory
-        run: |
-          git rm -r --cached code
-          rm -rf code
-          rm -rf ./fan/cls/__pycache__
-          git add .
-          git commit -m "Remove code directory"
-          git push
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
       - name: Delete Workflow Runs
         uses: Mattraks/delete-workflow-runs@main
         continue-on-error: true
