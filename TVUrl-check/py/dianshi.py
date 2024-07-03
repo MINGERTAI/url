@@ -16,7 +16,7 @@ except:
 print('menu: ' + menu)
 
 # 下载Node.json中的所有Url订阅链接将其合并，生成本地vpei-new.txt，同步至Github后改名为vpei.txt文件
-if menu == 'uptvbox':
+if menu == 'tvbox':
     def remove_line(content):
         patterns = [
             r'{"key":"drpy_js_豆瓣"(.|\n)*(?={"key":"高中教育")',   # 删除自{"key":"drpy_js_豆瓣"行到{"key":"高中教育"前一行所有
