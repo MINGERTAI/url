@@ -111,7 +111,7 @@ if menu == 'del':
         # 应用删除特定行的逻辑
         content = remove_line(content)
 
-        with open('./out/json.txt', 'w', newline='', encoding='utf-8') as f:
+        with open('./out/newjson.txt', 'w', newline='', encoding='utf-8') as f:
             f.write(content)
 
     except Exception as e:
