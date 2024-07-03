@@ -36,7 +36,7 @@ jobs:
       - name: Run Python uptvbox
         working-directory: ${{ github.workspace }}
         run: |
-          python ./fan/dianshi.py
+          python ./${{ secrets.PY_PATH }}/dianshi.py
 
       - name: Commit and push changes
         run: |
