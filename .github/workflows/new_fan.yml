@@ -1,4 +1,4 @@
-name: new fan
+name: new_fan
 on:
   workflow_dispatch:
 
