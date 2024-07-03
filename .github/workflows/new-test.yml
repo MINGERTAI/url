@@ -38,10 +38,6 @@ jobs:
         run: |
           python ./fan/dianshi.py
 
-      - name: Check if file exists
-        run: |
-          ls -l ./out
-
       - name: Commit and push changes
         run: |
           git config --global user.name "GitHub Actions"
