@@ -29,10 +29,10 @@ if menu == 'tvbox':
 
     try:
         if os.path.exists('./out/tmp.txt'):
-            tvbox = LocalFile.read_LocalFile('./out/tmp.txt').replace('\r', '').replace('\n\n', '\n')
+            tvbox = LocalFile.read_LocalFile('https://raw.githubusercontent.com/qist/tvbox/master/dianshi.json').replace('\r', '').replace('\n\n', '\n')
         else:
-            tvbox = LocalFile.read_LocalFile('./code/dianshi.json').replace('\r', '').replace('\n\n', '\n')
-        addjson = LocalFile.read_LocalFile("./code/addjson.txt")
+            tvbox = LocalFile.read_LocalFile('https://raw.githubusercontent.com/qist/tvbox/master/dianshi.json').replace('\r', '').replace('\n\n', '\n')
+        addjson = LocalFile.read_LocalFile("https://raw.githubusercontent.com/qist/tvbox/master/")
 
         addtv = ''
         nsfw = ''
