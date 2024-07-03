@@ -37,6 +37,11 @@ jobs:
         working-directory: ${{ github.workspace }}
         run: |
           python ./fan/dianshi.py tvbox
+        
+      - name: Run Python uptvbox
+        working-directory: ${{ github.workspace }}
+        run: |
+          python ./fan/dianshi.py pulltvbox
           
       - name: Run ls
         run: ls -l
@@ -55,6 +60,7 @@ jobs:
 
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          
       - name: Delete Workflow Runs
         uses: Mattraks/delete-workflow-runs@main
         continue-on-error: true
