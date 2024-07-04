@@ -27,7 +27,11 @@ resurl = 'https://github.com/qist/tvbox/blob/master/'
 
 #对程序的基本信息进行下载更新，下载IPFS网关信息和过滤列表信息
 if(menu == 'init'):
-    tvbox = 'js.json|dianshi.json'
+    tvbox = 'dianshi.json'
+    tvbox = LocalFile.read_LocalFile('./code/dianshi.json').replace('\r', '').replace('\n\n', '\n') 
+        addtv = ''
+        nsfw = ''
+        spare = ''
         tvbox = tvbox.replace('//{', '\n{')
         for j in tvbox.split('\n'):
             try:
