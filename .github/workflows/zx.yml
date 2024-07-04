@@ -1,0 +1,60 @@
+name: zx
+on:
+  workflow_dispatch:
+
+jobs:
+  setup:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: 3.x
+
+      - name: Set timezone and Git configurations
+        run: |
+          sudo timedatectl set-timezone "Asia/Shanghai"
+          
+      - name: Install dependencies
+        run: pip install requests
+        
+      - name: Run Python tvbox
+        working-directory: ${{ github.workspace }}
+        run: |
+          python ./1.py init
+        
+      - name: Run Python out
+        working-directory: ${{ github.workspace }}
+        run: |
+          python ./1.py out
+
+      - name: Commit and push changes
+        run: |
+          rm -rf code
+          rm -rf tmp
+          rm -rf ./fan/cls/__pycache__
+          if git diff-index --quiet HEAD --; then
+            echo "未检测到任何更改。正在跳过提交."
+            exit 0
+          fi
+          git config --global user.name "GitHub Actions"
+          git config --global user.email "actions@github.com"
+          git add .
+          git commit -m "update"
+          git push
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          
+      - name: Delete Workflow Runs
+        uses: Mattraks/delete-workflow-runs@main
+        continue-on-error: true
+        with:
+          token: ${{ github.token }}
+          repository: ${{github.repository}}
+          retain_days: 0
+          keep_minimum_runs: 1
