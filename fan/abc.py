@@ -58,6 +58,16 @@ if menu == 'tvbox':
                     if (addtv + nsfw).find('"key":"' + tv['key'] + '"') > -1:
                         spare += '\r\n' + j + ','
                         continue
+
+                    else:
+                        spare += '\r\n' + j + ','
+                    
+                    if tv['name'].find('*') > -1:
+                        nsfw += '\r\n' + j + ','
+                    elif j.find('"key":') > -1 and j.find('"name":') > -1 and j.find('"type":') > -1:
+                        addtv += '\r\n' + j + ','
+                else:
+                    print('Main-Line-91-not-tvsite-url:' + j)
             except Exception as ex:
                 LocalFile.write_LogFile('Main-Line-93-Exception:' + str(ex) + '\ntvsite:' + j)
         
