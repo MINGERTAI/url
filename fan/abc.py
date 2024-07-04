@@ -60,10 +60,8 @@ if menu == 'tvbox':
                     if (addtv + nsfw).find('"key":"' + tv['key'] + '"') > -1:
                         spare += '\r\n' + j + ','
                         continue
-
                     else:
-                        spare += '\r\n' + j + ','
-                    
+                        spare += '\r\n' + j + ','                
                     if tv['name'].find('*') > -1:
                         nsfw += '\r\n' + j + ','
                     elif j.find('"key":') > -1 and j.find('"name":') > -1 and j.find('"type":') > -1:
