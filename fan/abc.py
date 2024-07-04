@@ -61,7 +61,6 @@ if menu == 'tvbox':
                     if id == 3:
                         if 'ext' in tv.keys():
                             ext = tv['ext']
-                            if (addtv + nsfw > -1:
                                 continue
                             else:
                                 if ext.find('http') == 0:
@@ -70,7 +69,6 @@ if menu == 'tvbox':
                                         continue
                     elif id >= 0:
                         api = tv['api']
-                        if (addtv + nsfw > -1:
                             continue
                         else:
                             if api.find('http') == 0:
