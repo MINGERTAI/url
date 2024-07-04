@@ -45,7 +45,18 @@ if menu == 'tvbox':
         addtv = ''
         nsfw = ''
         spare = ''
-        #tvbox = tvbox.replace('//{', '\n{')
+        tvbox = tvbox.replace('//{', '\n{')
+        for j in tvbox.split('\n'):
+            try:
+                if j != '' and j.find('"key":') > -1 and j.find('"name":') > -1 and j.find('"type":') > -1 == -1:
+                    j = j.strip(',')
+                    if len(j.split('}')) > len(j.split('{')):
+                        j = j.strip(',')[:-1].strip(',')
+                    tv = json.loads(j)
+                    if (addtv + spare + nsfw).find(j) > -1:
+                        continue
+            except Exception as ex:
+                LocalFile.write_LogFile('Main-Line-93-Exception:' + str(ex) + '\ntvsite:' + j)
         
         content = addtv + '\r\n' + nsfw + '\r\n' + spare
         LocalFile.write_LocalFile('./out/pull.txt', content)
