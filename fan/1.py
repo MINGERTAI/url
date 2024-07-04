@@ -53,15 +53,7 @@ if(menu == 'init'):
                     nsfw += '\r\n' + j + ','
                 elif j.find('"key":') > -1 and j.find('"name":') > -1 and j.find('"type":') > -1:
                     addtv += '\r\n' + j + ','
+                    content = addtv + '\r\n' + nsfw + '\r\n' + spare
+                    LocalFile.write_LocalFile('./out/123.txt', content)
         except Exception as ex:
             LocalFile.write_LogFile('Main-Line-93-Exception:' + str(ex) + '\ntvsite:' + j)
-
-    
-    content = addtv + '\r\n' + nsfw + '\r\n' + spare
-    LocalFile.write_LocalFile('./out/123.txt', content)
-    print('Line-96:./out/pull.txt已更新。')
-    #content = remove_line(content)
-    #LocalFile.write_LocalFile('./out/json.txt', content)
-    #print('Line-96:./out/json.txt已更新。')
-except Exception as ex:
-    LocalFile.write_LogFile('Main-Line-108-Exception:' + str(ex))
