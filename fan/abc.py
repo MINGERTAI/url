@@ -68,8 +68,8 @@ if menu == 'tvbox':
                         nsfw += '\r\n' + j + ','
                     elif j.find('"key":') > -1 and j.find('"name":') > -1 and j.find('"type":') > -1:
                         addtv += '\r\n' + j + ','
-            except Exception as ex:
-                LocalFile.write_LogFile('Main-Line-93-Exception:' + str(ex) + '\ntvsite:' + j)
+            # except Exception as ex:
+                # LocalFile.write_LogFile('Main-Line-93-Exception:' + str(ex) + '\ntvsite:' + j)
         
         content = addtv + '\r\n' + nsfw + '\r\n' + spare
         LocalFile.write_LocalFile('./out/pull.txt', content)
