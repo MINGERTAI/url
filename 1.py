@@ -23,13 +23,13 @@ except:
     menu = 'init'
 print('menu: ' + menu)
 
-ustat = NetFile.url_stat('https://video.xuan.io/api.php/provide/vod/', 60, 60)
+ustat = NetFile.url_stat('https://raw.githubusercontent.com/qist/tvbox/master/dianshi.json', 60, 60)
 menu = 'update'
 menu = 'upexpire'
 menu = 'uptvbox'
 menu = 'check'
 配置信息和同步本地需要更新的资源文件
-resurl = 'http://121.46.250.130:8080/ipns/k2k4r8n888sny0v16vyfxbjwqrk0vgvh9k84xixh5k6ejdywbdc509ax/'
+resurl = 'https://raw.githubusercontent.com/qist/tvbox/master/dianshi.json'
 
 对程序的基本信息进行下载更新，下载IPFS网关信息和过滤列表信息
 if(menu == 'init'):
