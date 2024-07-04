@@ -37,7 +37,6 @@ if menu == 'tvbox':
             tvbox = LocalFile.read_LocalFile('./code/dianshi.json').replace('\r', '').replace('\n\n', '\n')
         else:
             tvbox = LocalFile.read_LocalFile('./out/pull.txt').replace('\r', '').replace('\n\n', '\n')
-        addjson = LocalFile.read_LocalFile("./code/addjson.json")
 
         addtv = ''
         nsfw = ''
@@ -45,18 +44,11 @@ if menu == 'tvbox':
         tvbox = tvbox.replace('//{', '\n{')
         for j in tvbox.split('\n'):
             try:
-                if j != '' and j.find('"key":') > -1 and j.find('"name":') > -1 and j.find('"type":') > -1 and addjson.find(j) == -1:
+                if j != '' and j.find('"key":') > -1 and j.find('"name":') > -1 and j.find('"type":') > -1 == -1:
                     j = j.strip(',')
                     if len(j.split('}')) > len(j.split('{')):
                         j = j.strip(',')[:-1].strip(',')
                     tv = json.loads(j)
-                    # 检查自定义Jar文件是否存在
-                    if 'jar' in tv.keys():
-                        jar = tv['jar']
-                        if jar.find('http') == 0:
-                            ustat = NetFile.url_stat(jar, 60, 60)
-                            if ustat == 404 or ustat == 0:
-                                j = j.replace(',"jar":"' + jar + '"', '')
                     # 过滤重复的电影网站
                     if (addtv + spare + nsfw).find(j) > -1:
                         continue
@@ -69,23 +61,21 @@ if menu == 'tvbox':
                     if id == 3:
                         if 'ext' in tv.keys():
                             ext = tv['ext']
-                            if (addtv + nsfw + addjson).find(ext) > -1:
+                            if (addtv + nsfw > -1:
                                 continue
                             else:
                                 if ext.find('http') == 0:
                                     ustat = NetFile.url_stat(ext, 60, 60)
                                     if ustat == 404 or ustat == 0:
-                                        addjson += '\r\n[' + datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S") + '] ' + str(ustat) + ':' + j + ','
                                         continue
                     elif id >= 0:
                         api = tv['api']
-                        if (addtv + nsfw + addjson).find(api) > -1:
+                        if (addtv + nsfw > -1:
                             continue
                         else:
                             if api.find('http') == 0:
                                 ustat = NetFile.url_stat(api, 60, 60)
                                 if ustat == 404 or ustat == 0:
-                                    addjson += '\r\n[' + datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S") + '] ' + str(ustat) + ':' + j + ','
                                     continue
                     else:
                         spare += '\r\n' + j + ','
