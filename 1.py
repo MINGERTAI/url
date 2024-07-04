@@ -13,9 +13,9 @@ from cls import NetFile
 from cls import PingIP
 from cls import StrText
 
-获取传递的参数
+# 获取传递的参数
 try:
-    #0表示文件名，1后面都是参数 0.py, 1, 2, 3
+    # 0表示文件名，1后面都是参数 0.py, 1, 2, 3
     menu = sys.argv[1:][0]
     if(len(sys.argv[1:]) > 1):
         cid = sys.argv[1:][1]
@@ -28,10 +28,10 @@ menu = 'update'
 menu = 'upexpire'
 menu = 'uptvbox'
 menu = 'check'
-配置信息和同步本地需要更新的资源文件
+# 配置信息和同步本地需要更新的资源文件
 resurl = 'https://raw.githubusercontent.com/qist/tvbox/master/dianshi.json'
 
-对程序的基本信息进行下载更新，下载IPFS网关信息和过滤列表信息
+#对程序的基本信息进行下载更新，下载IPFS网关信息和过滤列表信息
 if(menu == 'init'):
     filename = 'live.json|tvbox.json'
     for i in filename.split('|'):
@@ -45,16 +45,16 @@ if(menu == 'init'):
 
 def write_json():
     '''
-    写入/追加json文件
+    # 写入/追加json文件
     :param obj:
     :return:
     '''
     post=set()
     fp=[]
     for p in range(len(json)):
-            if json[p]['text'] not in post:#如果set中没有这个值（set特性是不能重复）
-                    fp.append(json[p])#fp数组将这个不重复的值存进
-                    post.add(json[p]['text'])#set存进这个不重复的值，为了后面判断是否重复做准备
+            if json[p]['text'] not in post:  #如果set中没有这个值（set特性是不能重复）
+                    fp.append(json[p])  #fp数组将这个不重复的值存进
+                    post.add(json[p]['text'])  #set存进这个不重复的值，为了后面判断是否重复做准备
                     print(json[p])
                     print(post)
                     print(json[p]['text'])
@@ -69,8 +69,8 @@ def write_json():
         num_item = len(load_dict)
         for i in range(num_item):
             try:
-                if load_dict[i]['tvmd5'] not in post:#如果set中没有这个值（set特性是不能重复）
-                    post.add(str(load_dict[i]['tvmd5']))#set存进这个不重复的值，为了后面判断是否重复做准备
+                if load_dict[i]['tvmd5'] not in post:   #如果set中没有这个值（set特性是不能重复）
+                    post.add(str(load_dict[i]['tvmd5']))  #set存进这个不重复的值，为了后面判断是否重复做准备
                     typename = load_dict[i]['typename']
                     if(alltypename.find(typename) == -1):
                         alltypename = alltypename + '\r\n' + typename
