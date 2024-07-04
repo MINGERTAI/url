@@ -30,7 +30,7 @@ resurl = 'https://raw.githubusercontent.com/qist/tvbox/master/dianshi.json'
 
 #对程序的基本信息进行下载更新，下载IPFS网关信息和过滤列表信息
 if(menu == 'init'):
-    filename = 'dianshi.json|dianshi.json'
+    filename = 'live.json|tvbox.json'
     for i in filename.split('|'):
         try:
             File = NetFile.url_to_str(resurl + '' + i, 240, 240)
