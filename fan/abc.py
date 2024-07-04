@@ -53,8 +53,19 @@ if menu == 'tvbox':
                     if len(j.split('}')) > len(j.split('{')):
                         j = j.strip(',')[:-1].strip(',')
                     tv = json.loads(j)
+                    # 过滤重复的电影网站
                     if (addtv + spare + nsfw).find(j) > -1:
                         continue
+                    # 过滤重复Key的电影网站
+                    if (addtv + nsfw).find('"key":"' + tv['key'] + '"') > -1:
+                        spare += '\r\n' + j + ','
+                        continue
+                    else:
+                        spare += '\r\n' + j + ','                
+                    if tv['name'].find('*') > -1:
+                        nsfw += '\r\n' + j + ','
+                    elif j.find('"key":') > -1 and j.find('"name":') > -1 and j.find('"type":') > -1:
+                        addtv += '\r\n' + j + ','
             except Exception as ex:
                 LocalFile.write_LogFile('Main-Line-93-Exception:' + str(ex) + '\ntvsite:' + j)
         
