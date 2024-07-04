@@ -26,7 +26,7 @@ jobs:
       - name: Run Python tvbox
         working-directory: ${{ github.workspace }}
         run: |
-          python ./1.py init
+          python ./fan/1.py init
         
       - name: Run Python out
         working-directory: ${{ github.workspace }}
