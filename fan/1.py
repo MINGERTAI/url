@@ -20,14 +20,14 @@ except:
     menu = 'init'
 print('menu: ' + menu)
 
-resurl = NetFile.url_stat('https://github.com/qist/tvbox', 60, 60)
+resurl = NetFile.url_stat('https://github.com/qist/tvbox/', 60, 60)
 
 # 配置信息和同步本地需要更新的资源文件
-resurl = 'https://github.com/qist/tvbox'
+resurl = 'https://github.com/qist/tvbox/'
 
 #对程序的基本信息进行下载更新，下载IPFS网关信息和过滤列表信息
 if(menu == 'init'):
-    filename = 'live.json|tvbox.json'
+    filename = 'js.json|dianshi.json'
     for i in filename.split('|'):
         try:
             File = NetFile.url_to_str(resurl + '' + i, 240, 240)
