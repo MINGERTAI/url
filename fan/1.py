@@ -40,7 +40,6 @@ if(menu == 'init'):
                 if len(j.split('}')) > len(j.split('{')):
                     j = j.strip(',')[:-1].strip(',')
                 tv = json.loads(j)
-
                 # 过滤重复的电影网站
                 if (addtv + spare + nsfw).find(j) > -1:
                     continue
@@ -48,13 +47,8 @@ if(menu == 'init'):
                 if (addtv + nsfw).find('"key":"' + tv['key'] + '"') > -1:
                     spare += '\r\n' + j + ','
                     continue
-                elif id >= 0:
-                    api = tv['api']
-                    if (addtv + nsfw > -1:
-                        continue
                 else:
-                    spare += '\r\n' + j + ','
-                
+                    spare += '\r\n' + j + ','                
                 if tv['name'].find('*') > -1:
                     nsfw += '\r\n' + j + ','
                 elif j.find('"key":') > -1 and j.find('"name":') > -1 and j.find('"type":') > -1:
