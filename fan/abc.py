@@ -46,8 +46,6 @@ if menu == 'tvbox':
         nsfw = ''
         spare = ''
         #tvbox = tvbox.replace('//{', '\n{')
-            except Exception as ex:
-                LocalFile.write_LogFile('Main-Line-93-Exception:' + str(ex) + '\ntvsite:' + j)
         
         content = addtv + '\r\n' + nsfw + '\r\n' + spare
         LocalFile.write_LocalFile('./out/pull.txt', content)
