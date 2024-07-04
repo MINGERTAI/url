@@ -28,7 +28,7 @@ resurl = 'https://github.com/qist/tvbox/blob/master/'
 #对程序的基本信息进行下载更新，下载IPFS网关信息和过滤列表信息
 if(menu == 'init'):
     tvboxlur = 'dianshi.json'
-    tvbox = LocalFile.read_LocalFile('tvboxlur').replace('\r', '').replace('\n\n', '\n')
+    tvbox =  NetFile.url_stat('tvboxlur').replace('\r', '').replace('\n\n', '\n')
     addtv = ''
     nsfw = ''
     spare = ''
