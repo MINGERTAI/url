@@ -1,15 +1,14 @@
-import base64
 import datetime
-from gettext import find
-import hashlib
 import json
 import os
-import requests
+import re
 import sys
-from cls import LocalFile
-from cls import ListFile
-from cls import NetFile
-from cls import StrText
+import base64
+import requests
+import hashlib
+import configparser
+headers = {'User-Agent': 'okhttp/3.15'}
+from cls import LocalFile, NetFile
 
 # 获取传递的参数
 try:
