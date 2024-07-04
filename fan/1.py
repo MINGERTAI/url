@@ -55,13 +55,13 @@ if(menu == 'init'):
                     addtv += '\r\n' + j + ','
         except Exception as ex:
             LocalFile.write_LogFile('Main-Line-93-Exception:' + str(ex) + '\ntvsite:' + j)
-        
+
+    
     content = addtv + '\r\n' + nsfw + '\r\n' + spare
     LocalFile.write_LocalFile('./out/123.txt', content)
     print('Line-96:./out/pull.txt已更新。')
     #content = remove_line(content)
     #LocalFile.write_LocalFile('./out/json.txt', content)
     #print('Line-96:./out/json.txt已更新。')
-
-except Exception as ex:
-    LocalFile.write_LogFile('Main-Line-108-Exception:' + str(ex))
+    except Exception as ex:
+        LocalFile.write_LogFile('Main-Line-108-Exception:' + str(ex))
