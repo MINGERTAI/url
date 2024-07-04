@@ -56,25 +56,6 @@ if menu == 'tvbox':
                     if (addtv + nsfw).find('"key":"' + tv['key'] + '"') > -1:
                         spare += '\r\n' + j + ','
                         continue
-                    # 分类去重
-                    id = tv['type']
-                    if id == 3:
-                        if 'ext' in tv.keys():
-                            ext = tv['ext']
-                                continue
-                            else:
-                                if ext.find('http') == 0:
-                                    ustat = NetFile.url_stat(ext, 60, 60)
-                                    if ustat == 404 or ustat == 0:
-                                        continue
-                    elif id >= 0:
-                        api = tv['api']
-                            continue
-                        else:
-                            if api.find('http') == 0:
-                                ustat = NetFile.url_stat(api, 60, 60)
-                                if ustat == 404 or ustat == 0:
-                                    continue
                     else:
                         spare += '\r\n' + j + ','
                     
