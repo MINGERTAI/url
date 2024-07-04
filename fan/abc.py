@@ -37,7 +37,7 @@ if menu == 'tvbox':
             tvbox = LocalFile.read_LocalFile('./code/dianshi.json').replace('\r', '').replace('\n\n', '\n')
         else:
             tvbox = LocalFile.read_LocalFile('./out/pull.txt').replace('\r', '').replace('\n\n', '\n')
-        addjson = LocalFile.read_LocalFile("./code/js.json")
+        addjson = LocalFile.read_LocalFile("./code/addjson.json")
 
         addtv = ''
         nsfw = ''
