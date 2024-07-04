@@ -36,8 +36,8 @@ if menu == 'tvbox':
         if os.path.exists('./code/dianshi.json'):
             tvbox = LocalFile.read_LocalFile('./code/dianshi.json').replace('\r', '').replace('\n\n', '\n')
         else:
-            tvbox = LocalFile.read_LocalFile('./out/json.txt').replace('\r', '').replace('\n\n', '\n')
-        addjson = LocalFile.read_LocalFile("./code/addjson.txt")
+            tvbox = LocalFile.read_LocalFile('./out/pull.txt').replace('\r', '').replace('\n\n', '\n')
+        addjson = LocalFile.read_LocalFile("./code/js.json")
 
         addtv = ''
         nsfw = ''
@@ -100,6 +100,8 @@ if menu == 'tvbox':
                 LocalFile.write_LogFile('Main-Line-93-Exception:' + str(ex) + '\ntvsite:' + j)
         
         content = addtv + '\r\n' + nsfw + '\r\n' + spare
+        LocalFile.write_LocalFile('./out/pull.txt', content)
+        print('Line-96:./out/pull.txt已更新。')
         content = remove_line(content)
         LocalFile.write_LocalFile('./out/json.txt', content)
         print('Line-96:./out/json.txt已更新。')
