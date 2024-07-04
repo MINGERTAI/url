@@ -6,11 +6,9 @@ import json
 import os
 import requests
 import sys
-from cls import IsValid
 from cls import LocalFile
 from cls import ListFile
 from cls import NetFile
-from cls import PingIP
 from cls import StrText
 
 # 获取传递的参数
