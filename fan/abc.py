@@ -26,7 +26,7 @@ if menu == 'tvbox':
         patterns = [
             r'{"key":"drpy_js_豆瓣"(.|\n)*(?={"key":"高中教育")',   # 删除自{"key":"drpy_js_豆瓣"行到{"key":"高中教育"前一行所有
             r'^\s*{"key":"高中教育".*\n',
-            r'{"key":"drpy_js_校长影视"(.|\n)*(?={"key":"drpy_js_磁力熊/[磁/])',
+            r'{"key":"drpy_js_校长影视"(.|\n)*(?={"key":"drpy_js_磁力熊)',
             r'{"key":"drpy_js_童趣"(.|\n)*(?={"key":"drpy_js_好趣网")',
             r'{"key":"drpy_js_58动漫"(.|\n)*(?={"key":"drpy_js_怡萱动漫")',
             r'^\s*{"key":"drpy_js_怡萱动漫".*\n',
