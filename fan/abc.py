@@ -25,10 +25,12 @@ if menu == 'tvbox':
     def remove_line(content):
         patterns = [
             r'{"key":"drpy_js_豆瓣"(.|\n)*(?={"key":"高中教育")',   # 删除自{"key":"drpy_js_豆瓣"行到{"key":"高中教育"前一行所有
+            r'^\s*{"key":"高中教育".*\n',
             r'{"key":"drpy_js_童趣"(.|\n)*(?={"key":"drpy_js_好趣网")',
             r'{"key":"drpy_js_58动漫"(.|\n)*(?={"key":"drpy_js_怡萱动漫")',
-            r'^\s*{"key":"高中教育".*\n',
-            r'^\s*{"key":"bb","name".*' # 删除最后一行不可以添加\n换行代码
+            r'^\s*{"key":"drpy_js_怡萱动漫".*\n',
+            r'^\s*{"key":"bb","name".*\n',
+            r'^\s*{"key":"cc","name".*'      # 删除最后一行不可以添加\n换行代码
         ]    
         for pattern in patterns:
             content = re.sub(pattern, '', content, flags=re.MULTILINE)
