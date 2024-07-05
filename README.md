@@ -6,4 +6,6 @@
 - "parses": [] 解释地址
 - "ijk": [] 解码配置
 - "wallpaper":"HTTPS://"
+
+
 https://github.com/aliluya1977/TVBox/blob/master/shg.json
