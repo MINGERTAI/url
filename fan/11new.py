@@ -21,7 +21,7 @@ except:
 print('menu: ' + menu)
 # 下载Node.json中的所有Url订阅链接将其合并，生成本地vpei-new.txt，同步至Github后改名为vpei.txt文件
 if menu == 'tvbox':
-tvlist = LocalFile.read_LocalFile("./res/tvlist.json")
+ tvlist = LocalFile.read_LocalFile("./res/tvlist.json")
     list1 = tvlist.split('\n')
     list1 = ListFile.get_list_sort(list1)
     print('Get-tvbox.json: \n' + str(len(list1)))
