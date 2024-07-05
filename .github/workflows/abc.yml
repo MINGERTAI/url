@@ -32,6 +32,13 @@ jobs:
           
       - name: Install dependencies
         run: pip install requests
+
+      - name: Commit del
+        run: |
+          rm -rf a.json
+          rm -rf b.json
+          rm -rf c.json
+          rm -rf xo.json
         
       - name: Run Python tvbox
         working-directory: ${{ github.workspace }}
@@ -42,13 +49,6 @@ jobs:
         working-directory: ${{ github.workspace }}
         run: |
           python ./fan/abc.py out
-
-      - name: Commit del
-        run: |
-          rm -rf a.json
-          rm -rf b.json
-          rm -rf c.json
-          rm -rf xo.json
 
       - name: Commit and push changes
         run: |
