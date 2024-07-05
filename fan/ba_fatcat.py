@@ -25,7 +25,7 @@ def save_website_content_as_json_and_check_updates(url, file_name):
                 with open('config.ini', 'w') as configfile:
                     config.write(configfile)
 
-                data_list = json.loads(data)
+                data_list =  json.dump(data, file, indent=4, ensure_ascii=False)
                 # 查找并删除包含指定键值对的字典项
                 key_to_remove = "drpy_js_豆瓣"
                 data_list = [item for item in data_list if item.get('key') != key_to_remove]
