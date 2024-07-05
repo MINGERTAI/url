@@ -21,9 +21,9 @@ print('menu: ' + menu)
 if menu == 'tvbox':
     try:
         if os.path.exists('FatCat.json'):
-            tvbox = LocalFile.read_LocalFile('FatCat.json').replace('\r', '').replace('\n\n', '\n')
+            tvbox = LocalFile.read_LocalFile('FatCat.json')   #.replace('\r', '').replace('\n\n', '\n')
         else:
-            tvbox = LocalFile.read_LocalFile('FatCat.json').replace('\r', '').replace('\n\n', '\n')
+            tvbox = LocalFile.read_LocalFile('FatCat.json')  #.replace('\r', '').replace('\n\n', '\n')
 
         addtv = ''
         nsfw = ''
