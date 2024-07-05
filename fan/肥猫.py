@@ -22,7 +22,7 @@ def save_website_content_as_json_and_check_updates(url, file_name):
                 print("检测到更新。")
                 # 更新配置文件中的md5值
                 config['DEFAULT']['md5'] = new_md5
-                with open('config.ini', 'w') as configfile:
+                with open('./fan/ca_config.ini', 'w') as configfile:
                     config.write(configfile)
                 
                 # 将响应内容保存为JSON文件
