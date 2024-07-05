@@ -24,7 +24,6 @@ def get_fan_conf():
     content = base64.b64decode(result).decode('utf-8')
     url = re.search(r'spider"\:"(.*);md5;', content).group(1)
     content = content.replace(url, './out/fan.txt')
-    content = diy_conf(content)
 
     with open('out/11.json', 'w', newline='', encoding='utf-8') as f:
         f.write(content)
@@ -42,3 +41,5 @@ def get_fan_conf():
         response = requests.get(url)
         with open("./out/fan.txt", "wb") as f:
             f.write(response.content)
+if __name__ == '__main__':
+    get_fan_conf()
