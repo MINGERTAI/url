@@ -17,11 +17,11 @@ def save_website_content_as_json_and_check_updates(url, file_name):
             
             # 计算返回数据的md5值来检查数据是否有更新
             new_md5 = hashlib.md5(json.dumps(data, sort_keys=True).encode('utf-8')).hexdigest()
-            old_md5 = config.get('md5', 'conf', fallback='')
+            old_md5 = config.get('DEFAULT', 'md5', fallback='')
             if new_md5 != old_md5:
                 print("检测到更新。")
                 # 更新配置文件中的md5值
-                config['md5']['conf'] = new_md5
+                config['DEFAULT']['md5'] = new_md5
                 with open('./fan/ca_config.ini', 'w') as configfile:
                     config.write(configfile)
                 
@@ -33,8 +33,8 @@ def save_website_content_as_json_and_check_updates(url, file_name):
                 # 从JSON数据中提取包含jar文件URL和md5值的"spider"字段
                 spider = data.get('spider')
                 if spider:
-                    jar_url, jar_md5 = re.match(r'http://[^/]+/jar/(.+?);md5;([a-f0-9]{32})', spider).groups()
-                    full_jar_url = f"http://like.xn--z7x900a.com/jar/{jar_url}"
+                    jar_url, jar_md5 = re.match(r'https://[^/]+/jar/(.+?);md5;([a-f0-9]{32})', spider).groups()
+                    full_jar_url = f"https://like.xn--z7x900a.com/jar/{jar_url}"
                     # 下载jar文件
                     jar_response = requests.get(full_jar_url)
                     if jar_response.status_code == 200:
@@ -43,7 +43,7 @@ def save_website_content_as_json_and_check_updates(url, file_name):
                             jar_file.write(jar_response.content)
                         print(f"jar文件已下载到：{jar_file_name}")
                         config['DEFAULT']['jar_md5'] = jar_md5
-                        with open('config.ini', 'w') as configfile:
+                        with open('./fan/ca_config.ini', 'w') as configfile:
                             config.write(configfile)
                         print("jar文件的md5值已更新。")
                     else:
