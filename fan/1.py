@@ -1,59 +1,44 @@
-import datetime
-import json
-import os
 import re
-import sys
 import base64
 import requests
 import hashlib
 import configparser
 headers = {'User-Agent': 'okhttp/3.15'}
-from cls import LocalFile, NetFile
 
-# 获取传递的参数
-try:
-    # 0表示文件名，1后面都是参数 0.py, 1, 2, 3
-    menu = sys.argv[1:][0]
-    if(len(sys.argv[1:]) > 1):
-        cid = sys.argv[1:][1]
-except:
-    menu = 'init'
-print('menu: ' + menu)
+def get_fan_conf():
+    # config = configparser.ConfigParser()
+    # config.read("fan/config.ini")
 
-resurl = NetFile.url_stat('https://github.com/qist/tvbox/blob/master/', 60, 60)
+    url = 'https://raw.githubusercontent.com/ne7359/tvurl/main/dianshi.json'
+    response = requests.get(url, headers=headers)
+    match = re.search(r'[A-Za-z0]{8}\*\*(.*)', response.text)
 
-# 配置信息和同步本地需要更新的资源文件
-resurl = 'https://github.com/qist/tvbox/blob/master/'
+    if not match:
+        return
+    result = match.group(1)
 
-#对程序的基本信息进行下载更新，下载IPFS网关信息和过滤列表信息
-if(menu == 'init'):
-    tvboxlur = 'dianshi.json'
-    tvbox =  NetFile.url_stat('tvboxlur').replace('\r', '').replace('\n\n', '\n')
-    addtv = ''
-    nsfw = ''
-    spare = ''
-    tvbox = tvbox.replace('//{', '\n{')
-    for j in tvbox.split('\n'):
-        try:
-            if j != '' and j.find('"key":') > -1 and j.find('"name":') > -1 and j.find('"type":') > -1 == -1:
-                j = j.strip(',')
-                if len(j.split('}')) > len(j.split('{')):
-                    j = j.strip(',')[:-1].strip(',')
-                tv = json.loads(j)
-                # 过滤重复的电影网站
-                if (addtv + spare + nsfw).find(j) > -1:
-                    continue
-                # 过滤重复Key的电影网站
-                if (addtv + nsfw).find('"key":"' + tv['key'] + '"') > -1:
-                    spare += '\r\n' + j + ','
-                    continue
-                else:
-                    spare += '\r\n' + j + ','                
-                if tv['name'].find('*') > -1:
-                    nsfw += '\r\n' + j + ','
-                elif j.find('"key":') > -1 and j.find('"name":') > -1 and j.find('"type":') > -1:
-                    addtv += '\r\n' + j + ','
-                    content = addtv + '\r\n' + nsfw + '\r\n' + spare
-                    LocalFile.write_LocalFile('./out/123.txt', content)
-        except Exception as ex:
-            LocalFile.write_LogFile('Main-Line-93-Exception:' + str(ex) + '\ntvsite:' + j)
+    m = hashlib.md5()
+    m.update(result.encode('utf-8'))
+    md5 = m.hexdigest()
+
+    content = base64.b64decode(result).decode('utf-8')
+    url = re.search(r'spider"\:"(.*);md5;', content).group(1)
+    content = content.replace(url, './out/fan.txt')
+    content = diy_conf(content)
+
+    with open('out/11.json', 'w', newline='', encoding='utf-8') as f:
+        f.write(content)
+
+    # Update conf.md5
+    config.set("md5", "conf", md5)
+
+    jmd5 = re.search(r';md5;(\w+)"', content).group(1)
+    current_md5 = config.get("md5", "jar").strip()
+
+    if jmd5 != current_md5:
+        # Update jar.md5
+        config.set("md5", "jar", jmd5)
+
+        response = requests.get(url)
+        with open("./out/fan.txt", "wb") as f:
+            f.write(response.content)
