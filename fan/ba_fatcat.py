@@ -25,7 +25,24 @@ def save_website_content_as_json_and_check_updates(url, file_name):
                 with open('config.ini', 'w') as configfile:
                     config.write(configfile)
 
-                
+                data = '''
+                [
+                    {
+                        "key": "drpy_js_豆瓣",
+                        "name": "🐼┃公众号┃肥猫宝贝",
+                        "type": 3,
+                        "api": "csp_Douban",
+                        "searchable": 0
+                    },
+                    {
+                        "key": "豆瓣",
+                        "name": "🐼┃豆瓣┃预告",
+                        "type": 3,
+                        "api": "csp_YGP",
+                        "playerType": 2,
+                        "searchable": 0
+                    }
+                ]
                 # 将字符串解析为Python列表
                 data_list = json.loads(data)
                 # 查找并删除包含指定键值对的字典项
