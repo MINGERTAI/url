@@ -48,12 +48,6 @@ jobs:
           rm -rf code
           rm -rf tmp
           rm -rf ./fan/cls/__pycache__
-          if git diff-index --quiet HEAD --; then
-            echo "未检测到任何更改。正在跳过提交."
-            else
-              exit
-            exit 0
-          fi
           git config --global user.name "GitHub Actions"
           git config --global user.email "actions@github.com"
           git add .
@@ -63,7 +57,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           
       - name: Delete Workflow Runs
-        id: exit
         uses: Mattraks/delete-workflow-runs@main
         continue-on-error: true
         with:
