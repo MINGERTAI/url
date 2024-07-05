@@ -32,13 +32,6 @@ jobs:
           
       - name: Install dependencies
         run: pip install requests
-
-      - name: Commit del
-        run: |
-          rm -rf a.json
-          rm -rf b.json
-          rm -rf c.json
-          rm -rf xo.json
         
       - name: Run Python tvbox
         working-directory: ${{ github.workspace }}
@@ -55,10 +48,6 @@ jobs:
           rm -rf code
           rm -rf tmp
           rm -rf ./fan/cls/__pycache__
-          if git diff-index --quiet HEAD --; then
-            echo "未检测到任何更改。正在跳过提交."
-            exit 0
-          fi
           git config --global user.name "GitHub Actions"
           git config --global user.email "actions@github.com"
           git add .
