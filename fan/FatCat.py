@@ -38,6 +38,7 @@ def save_website_content_as_json_and_check_updates(url, file_name):
                 if spider:
                     jar_url, jar_md5 = re.match(r'http://[^/]+/jar/(.+?);md5;([a-f0-9]{32})', spider).groups()
                     full_jar_url = f"http://like.xn--z7x900a.com/jar/{jar_url}"
+                    #full_jar_url = f"http://like.xn--z7x900a.com/jar/{jar_url}"
                     jar_response = requests.get(full_jar_url)
                     if jar_response.status_code == 200:
                         jar_file_name = jar_url.split('/')[-1]
