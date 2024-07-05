@@ -33,7 +33,7 @@ def save_website_content_as_json_and_check_updates(url, file_name):
                 data_list = [item for item in data_list if item.get('key') != key_to_remove]
                 # 将结果转换回JSON格式
                 data = json.dumps(data_list, ensure_ascii=False, indent=4)
-                #print(result)
+                print(data)
                 
                 # 将响应内容保存为JSON文件
                 with open(file_name + '.json', 'w', encoding='utf-8') as file:
