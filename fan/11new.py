@@ -19,7 +19,6 @@ try:
 except:
     menu = 'init'
 print('menu: ' + menu)
-File = NetFile.url_to_str(resurl + '' + i, 240, 240)
 # 下载Node.json中的所有Url订阅链接将其合并，生成本地vpei-new.txt，同步至Github后改名为vpei.txt文件
 if menu == 'tvbox':
     try:
