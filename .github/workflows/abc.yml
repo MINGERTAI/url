@@ -48,6 +48,7 @@ jobs:
           rm -rf code
           rm -rf tmp
           rm -rf ./fan/cls/__pycache__
+          rm -rf c.json
           if git diff-index --quiet HEAD --; then
             echo "未检测到任何更改。正在跳过提交."
             exit 0
