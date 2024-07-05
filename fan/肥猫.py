@@ -43,7 +43,7 @@ def save_website_content_as_json_and_check_updates(url, file_name):
                             jar_file.write(jar_response.content)
                         print(f"jar文件已下载到：{jar_file_name}")
                         config['DEFAULT']['jar_md5'] = jar_md5
-                        with open('config.ini', 'w') as configfile:
+                        with open('./fan/ca_config.ini', 'w') as configfile:
                             config.write(configfile)
                         print("jar文件的md5值已更新。")
                     else:
