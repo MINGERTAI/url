@@ -24,10 +24,21 @@ def save_website_content_as_json_and_check_updates(url, file_name):
                 config['DEFAULT']['md5'] = new_md5
                 with open('config.ini', 'w') as configfile:
                     config.write(configfile)
+
+                # 从JSON数据中提取包含jar文件URL和md5值的"spider"字段
+                dellist = data.get('sites')
+                # 将字符串解析为Python列表
+                data_list = json.loads(dellist)
+                # 查找并删除包含指定键值对的字典项
+                key_to_remove = "drpy_js_豆瓣"
+                data_list = [item for item in data_list if item.get('key') != key_to_remove]
+                # 将结果转换回JSON格式
+                result = json.dumps(data_list, ensure_ascii=False, indent=4)
+                print(result)
                 
                 # 将响应内容保存为JSON文件
                 with open(file_name + '.json', 'w', encoding='utf-8') as file:
-                    json.dump(data, file, indent=4, ensure_ascii=False)
+                    json.dump(result, file, indent=4, ensure_ascii=False)
                 print(f"数据已以JSON格式保存到{file_name}.json")
                 
                 # 从JSON数据中提取包含jar文件URL和md5值的"spider"字段
