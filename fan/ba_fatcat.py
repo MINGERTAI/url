@@ -17,18 +17,13 @@ def save_website_content_as_json_and_check_updates(url, file_name):
             
             # 计算返回数据的md5值来检查数据是否有更新
             new_md5 = hashlib.md5(json.dumps(data, sort_keys=True).encode('utf-8')).hexdigest()
-            old_md5 = config.get('DEFAULT', 'md5', fallback='')
+            old_md5 = config.get('md5', 'conf', fallback='')
             if new_md5 != old_md5:
                 print("检测到更新。")
                 # 更新配置文件中的md5值
-                config['DEFAULT']['md5'] = new_md5
-                with open('config.ini', 'w') as configfile:
+                config['md5']['conf'] = new_md5
+                with open('./fan/ca_config.ini', 'w') as configfile:
                     config.write(configfile)
-
-                
-                # 查找并删除包含指定键值对的字典项
-                key_to_remove = "drpy_js_豆瓣"
-                data = [item for item if item.get('key') != key_to_remove]
                 
                 # 将响应内容保存为JSON文件
                 with open(file_name + '.json', 'w', encoding='utf-8') as file:
