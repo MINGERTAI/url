@@ -33,8 +33,8 @@ def save_website_content_as_json_and_check_updates(url, file_name):
                 # 从JSON数据中提取包含jar文件URL和md5值的"spider"字段
                 spider = data.get('spider')
                 if spider:
-                    jar_url, jar_md5 = re.match(r'http://[^/]+/jar/(.+?);md5;([a-f0-9]{32})', spider).groups()
-                    full_jar_url = f"http://like.xn--z7x900a.com/jar/{jar_url}"
+                    jar_url, jar_md5 = re.match(r'https://[^/]+/jar/(.+?);md5;([a-f0-9]{32})', spider).groups()
+                    full_jar_url = f"https://like.xn--z7x900a.com/jar/{jar_url}"
                     # 下载jar文件
                     jar_response = requests.get(full_jar_url)
                     if jar_response.status_code == 200:
