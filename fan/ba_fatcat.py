@@ -28,7 +28,7 @@ def save_website_content_as_json_and_check_updates(url, file_name):
                 
                 # 查找并删除包含指定键值对的字典项
                 key_to_remove = "drpy_js_豆瓣"
-                data = [item for item in data_list if item.get('key') != key_to_remove]
+                data = [item for item if item.get('key') != key_to_remove]
                 
                 # 将响应内容保存为JSON文件
                 with open(file_name + '.json', 'w', encoding='utf-8') as file:
