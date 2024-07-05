@@ -43,6 +43,7 @@ def save_website_content_as_json_and_check_updates(url, file_name):
                             "searchable": 0
                         }
                     ]
+                    '''
                 # 将字符串解析为Python列表
                 data_list = json.loads(data)
                 # 查找并删除包含指定键值对的字典项
