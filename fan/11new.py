@@ -19,11 +19,12 @@ try:
 except:
     menu = 'init'
 print('menu: ' + menu)
+ustat = NetFile.url_stat('https://raw.githubusercontent.com/aliluya1977/TVBox/master/', 60, 60)
+resurl = 'https://raw.githubusercontent.com/aliluya1977/TVBox/master/'
 # 下载Node.json中的所有Url订阅链接将其合并，生成本地vpei-new.txt，同步至Github后改名为vpei.txt文件
 if menu == 'tvbox':
     try:
-        tvbox = NetFile.url_stat('https://raw.githubusercontent.com/aliluya1977/TVBox/master/shg.json').replace('\r', '').replace('\n\n', '\n')
-
+        tvbox = 'shg.json'
         addtv = ''
         nsfw = ''
         spare = ''
