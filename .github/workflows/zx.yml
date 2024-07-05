@@ -25,7 +25,8 @@ jobs:
         
       - name: Run Python tvbox
         run: |
-          python ./fan/1.py
+          python ./fan/肥猫.py
+
 
       - name: Commit and push changes
         run: |
