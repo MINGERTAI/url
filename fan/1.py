@@ -12,12 +12,6 @@ def get_fan_conf():
     url = 'https://github.com/ne7359/tvurl/blob/main/dianshi.json'
     response = requests.get(url, headers=headers)
 
-    content = content.replace(url, './out/fan.txt')
-
-    with open('out/11.json', 'w', newline='', encoding='utf-8') as f:
-        f.write(content)
-
-
         response = requests.get(url)
         with open("./out/fan.txt", "wb") as f:
             f.write(response.content)
