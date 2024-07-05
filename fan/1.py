@@ -9,9 +9,9 @@ def get_fan_conf():
     # config = configparser.ConfigParser()
     # config.read("fan/config.ini")
 
-    url = 'https://raw.githubusercontent.com/ne7359/tvurl/main/dianshi.json'
+    url = 'https://github.com/ne7359/tvurl/blob/main/dianshi.json'
     response = requests.get(url, headers=headers)
-    match = re.search(r'[A-Za-z0]{8}\*\*(.*)', response.text)
+    match = re.search(response.text)
 
     if not match:
         return
@@ -21,7 +21,6 @@ def get_fan_conf():
     m.update(result.encode('utf-8'))
     md5 = m.hexdigest()
 
-    content = base64.b64decode(result).decode('utf-8')
     url = re.search(r'spider"\:"(.*);md5;', content).group(1)
     content = content.replace(url, './out/fan.txt')
 
