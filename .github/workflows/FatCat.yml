@@ -3,8 +3,8 @@ name: FatCat
 on:
   workflow_dispatch:
     
-  #schedule:
-    #- cron: '5 */4 * * *'
+  schedule:
+    - cron: '5 */4 * * *'
 
 jobs:
   run_python_script:
@@ -33,8 +33,6 @@ jobs:
       run: |
         if git diff-index --quiet HEAD --; then
           echo "未检测到任何更改。正在跳过提交."
-          else
-            exit
           exit 0
         fi
         git config --global user.name "GitHub Actions"
@@ -56,7 +54,6 @@ jobs:
         #GITHUB_ACTOR: ne7359
 
     - name: Delete Workflow Runs
-      id: exit
       uses: Mattraks/delete-workflow-runs@main
       continue-on-error: true
       with:
