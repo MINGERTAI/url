@@ -19,14 +19,11 @@ try:
 except:
     menu = 'init'
 print('menu: ' + menu)
-
+File = NetFile.url_to_str(resurl + '' + i, 240, 240)
 # 下载Node.json中的所有Url订阅链接将其合并，生成本地vpei-new.txt，同步至Github后改名为vpei.txt文件
 if menu == 'tvbox':
     try:
-        if os.path.exists('./code/dianshi.json'):
-            tvbox = LocalFile.read_LocalFile('./code/dianshi.json').replace('\r', '').replace('\n\n', '\n')
-        else:
-            tvbox = LocalFile.read_LocalFile('./code/js.json').replace('\r', '').replace('\n\n', '\n')
+        tvbox = NetFile.url_to_str('https://raw.githubusercontent.com/aliluya1977/TVBox/master/shg.json').replace('\r', '').replace('\n\n', '\n')
 
         addtv = ''
         nsfw = ''
@@ -57,8 +54,8 @@ if menu == 'tvbox':
         
         content = addtv + '\r\n' + nsfw + '\r\n' + spare
         content = remove_line(content)
-        LocalFile.write_LocalFile('./out/json.txt', content)
-        print('Line-96:./out/json.txt已更新。')
+        LocalFile.write_LocalFile('./out/11.txt', content)
+        print('Line-96:./out/11.txt已更新。')
 
     except Exception as ex:
         LocalFile.write_LogFile('Main-Line-108-Exception:' + str(ex))
