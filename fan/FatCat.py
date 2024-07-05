@@ -36,9 +36,8 @@ def save_website_content_as_json_and_check_updates(url, file_name):
                 
                 spider = data.get('spider')
                 if spider:
-                    jar_url, jar_md5 = re.match(r'http://[^/]+/jar/(.+?);md5;([a-f0-9]{32})', spider).groups()
-                    full_jar_url = f"http://like.xn--z7x900a.com/jar/{jar_url}"
-                    #full_jar_url = f"http://like.xn--z7x900a.com/jar/{jar_url}"
+                    jar_url, jar_md5 = re.match(r'https://[^/]+/jar/(.+?);md5;([a-f0-9]{32})', spider).groups()
+                    full_jar_url = f"https://like.xn--z7x900a.com/jar/{jar_url}"
                     jar_response = requests.get(full_jar_url)
                     if jar_response.status_code == 200:
                         jar_file_name = jar_url.split('/')[-1]
@@ -62,8 +61,8 @@ def save_website_content_as_json_and_check_updates(url, file_name):
                 for key in data:
                     # 检查值是否为字符串类型
                     if isinstance(data[key], str):
-                        # 替换 'http://js.xn--z7x900a.com' 为 './fan/FatCat'
-                        data[key] = data[key].replace('http://js.xn--z7x900a.com/', './fan/FatCat/')
+                        # 替换 'https://js.xn--z7x900a.com' 为 './fan/FatCat'
+                        data[key] = data[key].replace('https://js.xn--z7x900a.com/', './fan/FatCat/')
                 
                 # 将修改后的data保存为JSON文件
                 #json_file_path = os.path.join(config_directory, file_name + '.json')
