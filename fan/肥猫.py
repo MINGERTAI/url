@@ -58,6 +58,6 @@ def save_website_content_as_json_and_check_updates(url, file_name):
 # 目标URL
 url = 'http://肥猫.com'
 # 文件名，不包括扩展名
-file_name = 'website_content'
+file_name = '肥猫'
 
 save_website_content_as_json_and_check_updates(url, file_name)
