@@ -23,7 +23,7 @@ jobs:
         pip install requests
 
     - name: Run Python script
-      run: python ./fan/ba_fatcat.py
+      run: python ./fan/FatCat.py
       
     - name: Run ls
       run: ls -l
