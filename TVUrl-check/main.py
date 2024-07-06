@@ -23,7 +23,7 @@ if menu == 'tvbox':
         if os.path.exists('./c.json'):
             tvbox = LocalFile.read_LocalFile('./c.json')   #.replace('\r', '').replace('\n\n', '\n')
         else:
-            tvbox = LocalFile.read_LocalFile('./fatcat.json')  #.replace('\r', '').replace('\n\n', '\n')
+            tvbox = LocalFile.read_LocalFile('./c.json')  #.replace('\r', '').replace('\n\n', '\n')
 
         addtv = ''
         nsfw = ''
