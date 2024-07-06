@@ -22,7 +22,7 @@ if menu == 'tvbox':
     try:
         response = requests.get(url)
         response.raise_for_status()
-        tvbox = response.content
+        tvbox = file.write(response.content)
         spare = ''
         for j in tvbox.split('\n'):
             try:
