@@ -41,10 +41,10 @@ if menu == 'tvbox':
                         continue
                     # 过滤重复Key的电影网站
                     if (addtv + nsfw).find('"key":"' + tv['key'] + '"') > -1:
-                        spare += '\r\n' + j + ','
+                        # spare += '\r\n' + j + ','
                         continue
-                    else:
-                        spare += '\r\n' + j + ','                
+                    # else:
+                        # spare += '\r\n' + j + ','                
                     if tv['name'].find('*') > -1:
                         nsfw += '\r\n' + j + ','
             except Exception as ex:
