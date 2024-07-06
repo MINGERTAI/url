@@ -43,10 +43,11 @@ if menu == 'tvbox':
                     # if (addtv + nsfw).find('"key":"' + tv['key'] + '"') > -1:
                         # spare += '\r\n' + j + ','
                         # continue
-                    else:
-                        spare += '\r\n' + j + ','                
+                    #else:
+                        #spare += '\r\n' + j + ','                
                     if tv['name'].find('*') > -1:
                         nsfw += '\r\n' + j + ','
+                        continue
             except Exception as ex:
                 LocalFile.write_LogFile('Main-Line-93-Exception:' + str(ex) + '\ntvsite:' + j)
         
