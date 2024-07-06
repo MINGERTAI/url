@@ -17,13 +17,12 @@ except:
     menu = 'init'
 print('menu: ' + menu)
 
-# 下载Node.json中的所有Url订阅链接将其合并，生成本地vpei-new.txt，同步至Github后改名为vpei.txt文件
 if menu == 'tvbox':
     try:
-        if os.path.exists('./c.json'):
-            tvbox = LocalFile.read_LocalFile('./c.json')   #.replace('\r', '').replace('\n\n', '\n')
+        if os.path.exists('./out/123.txt'):
+            tvbox = LocalFile.read_LocalFile('./out/123.txt')   #.replace('\r', '').replace('\n\n', '\n')
         else:
-            tvbox = LocalFile.read_LocalFile('./c.json')  #.replace('\r', '').replace('\n\n', '\n')
+            tvbox = LocalFile.read_LocalFile('./out/123.txt')  #.replace('\r', '').replace('\n\n', '\n')
         addtv = ''
         nsfw = ''
         spare = ''
@@ -50,7 +49,7 @@ if menu == 'tvbox':
         
         content = addtv + '\r\n' + nsfw + '\r\n' + spare
 
-        LocalFile.write_LocalFile('./out/123.txt', tvbox)
+        LocalFile.write_LocalFile('./out/11.txt', tvbox)
         print('Line-96:./out/123.txt已更新。')
 
     except Exception as ex:
