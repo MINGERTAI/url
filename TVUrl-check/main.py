@@ -27,7 +27,7 @@ if menu == 'tvbox':
         addtv = ''
         nsfw = ''
         spare = ''
-        for j in tvbox.split(''):
+        for j in tvbox.split:
             try:
                 if j != '' and j.find('"key":') > -1 and j.find('"name":') > -1 and j.find('"type":') > -1 == -1:
                     # 过滤重复的电影网站
