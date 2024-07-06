@@ -40,20 +40,16 @@ if menu == 'tvbox':
                     if (addtv + spare + nsfw).find(j) > -1:
                         continue
                     spare += '\r\n' + j + ','
-                    # 过滤重复Key的电影网站
-                    # if (addtv + nsfw).find('"key":"' + tv['key'] + '"') > -1:
-                        # spare += '\r\n' + j + ','
-                        # continue
-                    #else:
-                        #spare += '\r\n' + j + ','                
-                    #if tv['name'].find('*') > -1:
-                        #nsfw += '\r\n' + j + ','
+                    content = addtv + '\r\n' + nsfw + '\r\n' + spare
+                    LocalFile.write_LocalFile('./out/11.txt', content)
+                    print('Line-96:./out/11.txt已更新。')
+                    
             except Exception as ex:
                 LocalFile.write_LogFile('Main-Line-93-Exception:' + str(ex) + '\ntvsite:' + j)
         
-        content = addtv + '\r\n' + nsfw + '\r\n' + spare
-        LocalFile.write_LocalFile('./out/11.txt', content)
-        print('Line-96:./out/11.txt已更新。')
+        #content = addtv + '\r\n' + nsfw + '\r\n' + spare
+        #LocalFile.write_LocalFile('./out/11.txt', content)
+        #print('Line-96:./out/11.txt已更新。')
 
     except Exception as ex:
         LocalFile.write_LogFile('Main-Line-108-Exception:' + str(ex))
