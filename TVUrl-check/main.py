@@ -52,7 +52,7 @@ if menu == 'tvbox':
         content = addtv + '\r\n' + nsfw + '\r\n' + spare
 
         LocalFile.write_LocalFile('./out/11.txt', tvbox)
-        print('Line-96:./out/123.txt已更新。')
+        print('Line-96:./out/11.txt已更新。')
 
     except Exception as ex:
         LocalFile.write_LogFile('Main-Line-108-Exception:' + str(ex))
