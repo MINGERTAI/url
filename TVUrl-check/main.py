@@ -28,7 +28,7 @@ if menu == 'tvbox':
         addtv = ''
         nsfw = ''
         spare = ''
-        tvbox = tvbox.replace('//{', '\n{')
+        #tvbox = tvbox.replace('//{', '\n{')
         for j in tvbox.split('\n'):
             try:
                 if j != '' and j.find('"key":') > -1 and j.find('"name":') > -1 and j.find('"type":') > -1 == -1:
@@ -40,17 +40,13 @@ if menu == 'tvbox':
                     if (addtv + spare + nsfw).find(j) > -1:
                         continue
                     spare += '\r\n' + j + ','
-                    content = addtv + '\r\n' + nsfw + '\r\n' + spare
-                    LocalFile.write_LocalFile('./out/11.txt', content)
-                    print('Line-96:./out/11.txt已更新。')
                     
             except Exception as ex:
-                LocalFile.write_LogFile('Main-Line-108-Exception:' + str(ex))
                 LocalFile.write_LogFile('Main-Line-93-Exception:' + str(ex) + '\ntvsite:' + j)
         
-        #content = addtv + '\r\n' + nsfw + '\r\n' + spare
-        #LocalFile.write_LocalFile('./out/11.txt', content)
-        #print('Line-96:./out/11.txt已更新。')
+        content = addtv + '\r\n' + nsfw + '\r\n' + spare
+        LocalFile.write_LocalFile('./out/11.txt', content)
+        print('Line-96:./out/11.txt已更新。')
 
-    #except Exception as ex:
-        #LocalFile.write_LogFile('Main-Line-108-Exception:' + str(ex))
+    except Exception as ex:
+        LocalFile.write_LogFile('Main-Line-108-Exception:' + str(ex))
