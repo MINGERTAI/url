@@ -23,7 +23,7 @@ if menu == 'tvbox':
         tvbox = requests.get(url)
         tvbox.raise_for_status()
         spare = ''
-        for j in tvbox.split('\n'):
+        for j in tvbox.content('\n'):
             try:
                 if j != '' and j.find('"key":') > -1 and j.find('"name":') > -1 and j.find('"type":') > -1 == -1:
                     # 过滤重复的电影网站
