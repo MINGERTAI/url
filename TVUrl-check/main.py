@@ -28,8 +28,8 @@ if menu == 'tvbox':
         addtv = ''
         nsfw = ''
         spare = ''
-        #tvbox = tvbox.replace('{', '\n{')
-        for j in tvbox.split(','):
+        #tvbox = tvbox.replace('//{', '\n{')
+        for j in tvbox.split('\n'):
             try:
                 if j != '' and j.find('"key":') > -1 and j.find('"name":') > -1 and j.find('"type":') > -1 == -1:
                     j = j.strip(',')
