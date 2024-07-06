@@ -20,8 +20,8 @@ print('menu: ' + menu)
 # 下载Node.json中的所有Url订阅链接将其合并，生成本地vpei-new.txt，同步至Github后改名为vpei.txt文件
 if menu == 'tvbox':
     try:
-        if os.path.exists('./fatcat.json'):
-            tvbox = LocalFile.read_LocalFile('./fatcat.json')   #.replace('\r', '').replace('\n\n', '\n')
+        if os.path.exists('./c.json'):
+            tvbox = LocalFile.read_LocalFile('./c.json')   #.replace('\r', '').replace('\n\n', '\n')
         else:
             tvbox = LocalFile.read_LocalFile('./fatcat.json')  #.replace('\r', '').replace('\n\n', '\n')
 
