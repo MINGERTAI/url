@@ -36,11 +36,11 @@ if menu == 'tvbox':
                     spare += '\r\n' + j + ','
                     
             except Exception as ex:
-                LocalFile.write_LogFile('Main-Line-93-Exception:' + str(ex) + j)
+                LocalFile.write_LogFile('str(ex) + j)
         
         content = addtv + '\r\n' + nsfw + '\r\n' + spare
         LocalFile.write_LocalFile('./out/11.txt', content)
         print('Line-96:./out/11.txt已更新。')
 
     except Exception as ex:
-        LocalFile.write_LogFile('Main-Line-108-Exception:' + str(ex))
+        LocalFile.write_LogFile('str(ex))
