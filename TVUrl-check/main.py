@@ -18,11 +18,13 @@ except:
 print('menu: ' + menu)
 
 if menu == 'tvbox':
+
     try:
-        if os.path.exists('./out/123.txt'):
+        if os.path.exists('./out/123.json'):
             tvbox = LocalFile.read_LocalFile('./out/123.json').replace('\r', '').replace('\n\n', '\n')
         else:
             tvbox = LocalFile.read_LocalFile('./out/123.json').replace('\r', '').replace('\n\n', '\n')
+
         addtv = ''
         nsfw = ''
         spare = ''
@@ -51,8 +53,8 @@ if menu == 'tvbox':
                 LocalFile.write_LogFile('Main-Line-93-Exception:' + str(ex) + '\ntvsite:' + j)
         
         content = addtv + '\r\n' + nsfw + '\r\n' + spare
-
-        LocalFile.write_LocalFile('./out/11.txt', tvbox)
+        content = remove_line(content)
+        LocalFile.write_LocalFile('./out/11.txt', content)
         print('Line-96:./out/11.txt已更新。')
 
     except Exception as ex:
