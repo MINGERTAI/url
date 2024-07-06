@@ -30,7 +30,7 @@ if menu == 'tvbox':
                     # 过滤重复的电影网站
                     if (spare).find(j) > -1:
                         continue
-                    spare += '\r\n' + j + ','
+                    spare += '\r\n' + j
                     
             except Exception as ex:
                 LocalFile.write_LogFile(str(ex) + j)
