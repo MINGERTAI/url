@@ -27,13 +27,13 @@ if menu == 'tvbox':
         addtv = ''
         nsfw = ''
         spare = ''
-        for j in tvbox.split:
+        for j in tvbox.split('\n'):
             try:
                 if j != '' and j.find('"key":') > -1 and j.find('"name":') > -1 and j.find('"type":') > -1 == -1:
                     # 过滤重复的电影网站
                     if (addtv + spare + nsfw).find(j) > -1:
                         continue
-                    spare += '\r\n' + j + ','
+                    spare += + j + ','
                     
             except Exception as ex:
                 LocalFile.write_LogFile(str(ex) + j)
