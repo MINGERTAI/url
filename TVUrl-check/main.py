@@ -18,11 +18,10 @@ except:
 print('menu: ' + menu)
 
 if menu == 'tvbox':
+    url = "https://raw.githubusercontent.com/ne7359/tvurl/main/jsm.json"
     try:
-        if os.path.exists('./out/123.json'):
-            tvbox = LocalFile.read_LocalFile('./out/123.json')
-        else:
-            tvbox = LocalFile.read_LocalFile('./out/123.json')
+        tvbox = requests.get(url)
+        tvbox.raise_for_status()
         spare = ''
         for j in tvbox.split('\n'):
             try:
