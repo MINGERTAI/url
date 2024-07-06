@@ -43,14 +43,14 @@ def download_file(url, save_path):
         print(f"其他错误: {err}")
 
 if __name__ == "__main__":
-    url = "https://raw.githubusercontent.com/ne7359/tvurl/main/jsm.json"
-    save_path = "data/jsm.json"
+    url = "https://raw.githubusercontent.com/aliluya1977/TVBox/master/shg.json"
+    save_path = "data/shg.json"
     
     download_file(url, save_path)
     
 if menu == 'tvbox':
     try:
-        tvbox = LocalFile.read_LocalFile('data/jsm.json')
+        tvbox = LocalFile.read_LocalFile('data/shg.json')
         spare = ''
         for j in tvbox.split('\n'):
             try:
