@@ -44,7 +44,7 @@ if menu == 'tvbox':
                         # spare += '\r\n' + j + ','
                         # continue
                     else:
-                        # spare += '\r\n' + j + ','                
+                        spare += '\r\n' + j + ','                
                     if tv['name'].find('*') > -1:
                         nsfw += '\r\n' + j + ','
             except Exception as ex:
