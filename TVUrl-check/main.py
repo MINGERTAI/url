@@ -35,7 +35,7 @@ if menu == 'tvbox':
                     j = j.strip(',')
                     if len(j.split('}')) > len(j.split('{')):
                         j = j.strip(',')[:-1].strip(',')
-                    tv = json.loads(j)
+                    #tv = json.loads(j)
                     # 过滤重复的电影网站
                     if (addtv + spare + nsfw).find(j) > -1:
                         continue
