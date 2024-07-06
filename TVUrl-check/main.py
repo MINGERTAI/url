@@ -20,10 +20,11 @@ print('menu: ' + menu)
 if menu == 'tvbox':
     url = "https://raw.githubusercontent.com/ne7359/tvurl/main/jsm.json"
     try:
-        tvbox = requests.get(url)
-        tvbox.raise_for_status()
+        response = requests.get(url)
+        response.raise_for_status()
+        tvbox = response.content
         spare = ''
-        for j in tvbox.content('\n'):
+        for j in tvbox.split('\n'):
             try:
                 if j != '' and j.find('"key":') > -1 and j.find('"name":') > -1 and j.find('"type":') > -1 == -1:
                     # 过滤重复的电影网站
