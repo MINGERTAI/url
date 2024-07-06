@@ -18,7 +18,8 @@ except:
 print('menu: ' + menu)
 
 if menu == 'tvbox':
-def save_website_content_as_json_and_check_updates(url, file_name):
+
+  def save_website_content_as_json_and_check_updates(url, file_name):
     try:
         if os.path.exists('./out/123.json'):
             tvbox = LocalFile.read_LocalFile('./out/123.json') #.replace('\r', '').replace('\n\n', '\n')
@@ -45,4 +46,4 @@ def save_website_content_as_json_and_check_updates(url, file_name):
 
     #except Exception as ex:
         #LocalFile.write_LogFile('Main-Line-108-Exception:' + str(ex))
-save_website_content_as_json_and_check_updates(url, file_name)
+  save_website_content_as_json_and_check_updates(url, file_name)
