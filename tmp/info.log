@@ -1,1 +1,3 @@
 [2024-07-06 07:17:01] 'Response' object has no attribute 'split'
+
+[2024-07-06 07:19:18] 'bytes' object is not callable
