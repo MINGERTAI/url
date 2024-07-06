@@ -16,13 +16,40 @@ try:
 except:
     menu = 'init'
 print('menu: ' + menu)
-
-if menu == 'tvbox':
-    url = "https://raw.githubusercontent.com/ne7359/tvurl/main/jsm.json"
+def download_file(url, save_path):
+    """
+    从指定 URL 下载文件并保存到本地路径。
+    """
     try:
+        # 发送 HTTP GET 请求
         response = requests.get(url)
+        
+        # 检查请求是否成功
         response.raise_for_status()
-        tvbox = file.write(response.content)
+        
+        # 创建保存路径的目录（如果不存在）
+        os.makedirs(os.path.dirname(save_path), exist_ok=True)
+        
+        # 将内容写入文件
+        with open(save_path, 'wb') as file:
+            file.write(response.content)
+        
+        print(f"文件已成功下载并保存到: {save_path}")
+    
+    except requests.exceptions.HTTPError as http_err:
+        print(f"HTTP 错误: {http_err}")
+    except Exception as err:
+        print(f"其他错误: {err}")
+
+if __name__ == "__main__":
+    url = "https://raw.githubusercontent.com/ne7359/tvurl/main/jsm.json"
+    save_path = "data/jsm.json"
+    
+    download_file(url, save_path)
+    
+if menu == 'tvbox':
+    try:
+        tvbox = LocalFile.read_LocalFile('data/jsm.json')
         spare = ''
         for j in tvbox.split('\n'):
             try:
