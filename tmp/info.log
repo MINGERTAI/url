@@ -1,7 +1,0 @@
-[2024-07-06 07:17:01] 'Response' object has no attribute 'split'
-
-[2024-07-06 07:19:18] 'bytes' object is not callable
-
-[2024-07-06 07:26:12] a bytes-like object is required, not 'str'
-
-[2024-07-06 07:28:08] name 'file' is not defined
