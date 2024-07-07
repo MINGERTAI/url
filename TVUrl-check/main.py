@@ -4,7 +4,7 @@ from cls import LocalFile  # 假设这是你自定义的本地文件操作类
 
 headers = {'User-Agent': 'okhttp/3.15'}
 
-def 4567()
+def get_dianshi():
     """
     从指定 URL 下载文件并保存到本地路径。
     """
@@ -40,4 +40,4 @@ def 4567()
 
 # 脚本的主逻辑
 if __name__ == "__main__":
-    4567()
+    get_dianshi()
