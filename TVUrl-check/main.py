@@ -14,7 +14,7 @@ def download_file():
         response = requests.get(url, headers=headers)
         if response.status_code == 200:
             # 转换响应的 JSON 数据为字符串
-            tvbox = response.json()
+            tvbox = json.dumps(response.json())
             spare = []
             for item in tvbox:
                 try:
