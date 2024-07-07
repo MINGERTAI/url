@@ -7,3 +7,5 @@
 [2024-07-07 12:11:57] 下载或处理文件时出错: 'list' object is not callable
 
 [2024-07-07 12:13:01] 下载或处理文件时出错: can only concatenate str (not "NoneType") to str
+
+[2024-07-07 12:14:07] 下载或处理文件时出错: can only concatenate str (not "list") to str
