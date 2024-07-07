@@ -31,7 +31,7 @@ def remove_url_key(content):
         content = re.sub(pattern, '', content, flags=re.MULTILINE)
     return content
 
-def download_file(content):
+def download_file():
     """
     从指定 URL 下载文件并保存到本地路径。
     """
@@ -64,13 +64,12 @@ def download_file(content):
         LocalFile.write_LocalFile('./out/new.txt', content)
         print('读取并删除:./out/new.txt已更新。')
     
-#    except Exception as ex:
-        #LocalFile.write_LogFile(f"下载或处理文件时出错: {str(ex)}")
-# 脚本的主逻辑
-#if __name__ == "__main__":
-    #download_file()
     except Exception as ex:
-        LocalFile.write_LogFile('下载或处理文件时出错:' + str(ex))
+        LocalFile.write_LogFile(f"下载或处理文件时出错: {str(ex)}")
+# 脚本的主逻辑
+if __name__ == "__main__":
+    download_file()
+
 #############
 
 def get_fan_conf():
