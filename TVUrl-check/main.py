@@ -22,10 +22,10 @@ def download_file():
 
         # 从response.text数据中提取包含jar文件和md5值的"spider"字段
         jar = response.text
-        if j '' j.find('spider.jar')
+        j.find('spider.jar')
             with open("./jar/spider.jar", "wb") as f:
                 f.write(j)
-                print(f"jar文件已下载到：{./jar/spider.jar")
+            print(f"jar文件已下载到：{./jar/spider.jar")
 
         # 检查请求是否成功
         response.raise_for_status()
