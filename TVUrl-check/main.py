@@ -23,34 +23,27 @@ def download_file(url, save_path):
     """
     try:
         # 发送 HTTP GET 请求
-        response = requests.get(url)
+        response = request.get(url)
         
         # 检查请求是否成功
         response.raise_for_status()
         
         # 创建保存路径的目录（如果不存在）
         os.makedirs(os.path.dirname(save_path), exist_ok=True)
-        
-        # 将内容写入文件
-        with open(save_path, 'wb') as file:
-            file.write(response.content)
-        
-        print(f"文件已成功下载并保存到: {save_path}")
     
-    except requests.exceptions.HTTPError as http_err:
+    except request.exceptions.HTTPError as http_err:
         print(f"HTTP 错误: {http_err}")
     except Exception as err:
         print(f"其他错误: {err}")
 
 if __name__ == "__main__":
     url = "https://raw.githubusercontent.com/aliluya1977/TVBox/master/shg.json"
-    save_path = "data/shg.json"
     
     download_file(url, save_path)
     
 if menu == 'tvbox':
     try:
-        tvbox = LocalFile.read_LocalFile('data/shg.json')
+        tvbox = response
         spare = ''
         for j in tvbox.split('\n'):
             try:
