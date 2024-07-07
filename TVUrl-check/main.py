@@ -12,7 +12,7 @@ def download_file():
         # 发送 HTTP GET 请求
         url = "http://肥猫.com"
         response = requests.get(url, headers=headers)
-        response.encoding('utf-8')
+        # response.encoding('utf-8')
         if response.status_code == 200:
             # 转换响应的 JSON 数据为字符串
             tvbox = json.dumps(response.json())
