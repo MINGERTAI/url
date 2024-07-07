@@ -3,15 +3,16 @@
 #精确条件：确保只有完全匹配 "key":、"name": 和 "type": 的行才被处理。
 #异常处理：在每行处理过程中添加异常处理，并记录日志。
 #通过这些修改，脚本将从指定 URL 下载 shg.json 文件，提取包含 "key":、"name": 和 "type": 的行，并将结果写入到 ./out/11.txt 文件中
-import datetime
+#import datetime
 import json
-import os
-import requests
-import sys
+#import os
+#import requests
+#import sys
 from cls import LocalFile
 
 import re
 import base64
+import requests
 import hashlib
 import configparser
 headers = {'User-Agent': 'okhttp/3.15'}
