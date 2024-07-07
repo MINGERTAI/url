@@ -1,11 +1,5 @@
-#添加 headers：在请求头中添加 User-Agent 以避免某些服务器的拒绝访问。
-#response.text：使用 response.text 获取响应内容。
-#精确条件：确保只有完全匹配 "key":、"name": 和 "type": 的行才被处理。
-#异常处理：在每行处理过程中添加异常处理，并记录日志。
-#通过这些修改，脚本将从指定 URL 下载 shg.json 文件，提取包含 "key":、"name": 和 "type": 的行，并将结果写入到 ./out/11.txt 文件中
 import json
 from cls import LocalFile
-
 import re
 import base64
 import requests
