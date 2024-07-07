@@ -27,21 +27,16 @@ def download_file():
         url = "http://肥猫.com"
         response = requests.get(url, headers=headers)
         if response.status_code == 200:
-
-        # 解析 JSON 内容
-        tvbox = response.json()
-        spare = ''
-        
-        # 分行处理 JSON 内容
-        for j in tvbox.split('\n'):
-            try:
-                if j != '' and j.find('"key":') > -1 and j.find('"name":') > -1 and j.find('"type":') > -1:
-                    # 过滤重复的电影网站
-                    if spare.find(j) > -1:
-                        continue
-                    spare += '\r\n' + j
-            except Exception as ex:
-                LocalFile.write_LogFile(f"解析行时出错: {str(ex)} 行内容: {j}")
+            tvbox = response.json()
+            spare = ''
+            for j in tvbox.split('\n'):
+                try:
+                    if j != '' and j.find('"key":') > -1 and j.find('"name":') > -1 and j.find('"type":') > -1:
+                        if spare.find(j) > -1:
+                            continue
+                        spare += '\r\n' + j
+                except Exception as ex:
+                        LocalFile.write_LogFile(f"解析行时出错: {str(ex)} 行内容: {j}")
    
         content = spare
         LocalFile.write_LocalFile('./out/10.txt', content)
