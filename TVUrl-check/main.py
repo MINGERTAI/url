@@ -24,7 +24,7 @@ def download_file():
         jar = response.text
         j.find('spider.jar')
         with open("./jar/spider.jar", "wb") as f:
-            f.write(j)
+            f.write(j.find)
 
         # 检查请求是否成功
         response.raise_for_status()
