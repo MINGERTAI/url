@@ -41,3 +41,5 @@
 [2024-07-07 10:57:13] 下载或处理文件时出错: cannot access local variable 'spare' where it is not associated with a value
 
 [2024-07-07 11:14:41] 下载或处理文件时出错: 'bool' object is not callable
+
+[2024-07-07 11:15:29] 下载或处理文件时出错: 'bool' object is not callable
