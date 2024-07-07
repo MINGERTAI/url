@@ -31,8 +31,8 @@ def remove_line(content):
    
         content = spare
         content = remove_url_key(content)
-        LocalFile.write_LocalFile('./out/new.txt', content)
-        print('读取并删除:./out/new.txt已更新。')
+        LocalFile.write_LocalFile('./out/22.txt', content)
+        print('读取并删除:./out/22.txt已更新。')
     
     except Exception as ex:
         LocalFile.write_LogFile(f"下载或处理文件时出错: {str(ex)}")
