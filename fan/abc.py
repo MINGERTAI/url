@@ -46,9 +46,6 @@ if menu == 'tvbox':
         for j in tvbox.split('\n'):
             try:
                 if j != '' and j.find('"key":') > -1 and j.find('"name":') > -1 and j.find('"type":') > -1 == -1:
-                    j = j.strip(',').replace('"type":0','"type":1')
-                    if(len(j.split('}')) > len(j.split('{'))):
-                        j = j.strip[:-1].strip
                     # 过滤重复的电影网站
                     if (spare).find(j) > -1:
                         continue
@@ -177,7 +174,7 @@ if menu == 'out':
         new_lines = []
         for line in lines:
             new_lines.append(line)
-            if '"doh":[{"name":"Google"' in line:
+            if '"logo":"https://' in line:
                 # 在找到的行之后添加新内容
                 new_lines.append(new_content)
             
@@ -218,7 +215,7 @@ if menu == 'out':
         new_lines = []
         for line in lines:
             new_lines.append(line)
-            if '"doh":[{"name":"Google"' in line:
+            if '"logo":"https://' in line:
                 # 在找到的行之后添加新内容
                 new_lines.append(new_content)
             
