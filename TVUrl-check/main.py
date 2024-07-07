@@ -60,22 +60,18 @@ def get_fan_conf():
                     if spare.find(j) > -1:
                         continue
                     spare += '\r\n' + j + ','
-            except Exception as ex:
-                LocalFile.write_LogFile(f"解析行时出错: {str(ex)} 行内容: {j}")
         
         content = spare
         content = remove_line(content)
-        LocalFile.write_LocalFile('./out/new.txt', content)
-        print('读取并删除:./out/new.txt已更新。')
 
-    except Exception as ex:
-        LocalFile.write_LogFile(f"下载或处理文件时出错: {str(ex)}")
+        with open('./out/new.txt', 'w', newline='', encoding='utf-8') as f:
+            f.write(content)
 
     return content
 
 #############
 
-# def get_fan_conf():
+def get_fan_conf():
     config = configparser.ConfigParser()
     config.read("fan/config.ini")
 
