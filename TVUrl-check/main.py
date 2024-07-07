@@ -27,7 +27,7 @@ def download_file():
                     LocalFile.write_LogFile(f"解析项目时出错: {str(ex)} 项目内容: {item}")
    
             # 将处理后的内容转换为JSON字符串
-            content = spare.append(item)
+            content = spare
             LocalFile.write_LocalFile('./out/10.txt', content)
             print('读取并删除: ./out/10.txt 已更新。')
     
