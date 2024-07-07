@@ -31,7 +31,7 @@ def remove_url_key(content):
         content = re.sub(pattern, '', content, flags=re.MULTILINE)
     return content
 
-def download_file():
+def download_file(content):
     """
     从指定 URL 下载文件并保存到本地路径。
     """
