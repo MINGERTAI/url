@@ -30,7 +30,7 @@ def download_file():
         if response.status_code == 200:
             data = response.json() 
             
-            tvbox = json.dump(data, ensure_ascii=False)
+            tvbox = json.dump(data)
             spare = ''
             for j in tvbox.split('\n'):
                 try:
