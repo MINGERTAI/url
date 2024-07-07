@@ -22,10 +22,8 @@ def remove_url_key(content):
         content = re.sub(pattern, '', content, flags=re.MULTILINE)
     return content
 
-def download_file():
-    """
-    从指定 URL 下载文件并保存到本地路径。
-    """
+def get_dianshi():
+
     try:
         # 发送 HTTP GET 请求
         url = "https://raw.githubusercontent.com/qist/tvbox/master/dianshi.json"
@@ -56,11 +54,7 @@ def download_file():
     
     except Exception as ex:
         LocalFile.write_LogFile(f"下载或处理文件时出错: {str(ex)}")
-# 脚本的主逻辑
-if __name__ == "__main__":
-    download_file()
-
-#############
+get_dianshi()
 
 def get_fan_conf():
     config = configparser.ConfigParser()
