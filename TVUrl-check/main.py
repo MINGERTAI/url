@@ -37,4 +37,6 @@ def remove_line(content):
     except Exception as ex:
         LocalFile.write_LogFile(f"下载或处理文件时出错: {str(ex)}")
 
-    return content
+# 脚本的主逻辑
+if __name__ == "__main__":
+    remove_line(content)
