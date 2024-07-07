@@ -4,7 +4,7 @@ from cls import LocalFile  # 假设这是你自定义的本地文件操作类
 
 headers = {'User-Agent': 'okhttp/3.15'}
 
-def get_dianshi(url):
+def get_dianshi():
 
     try:
         # 发送 HTTP GET 请求
@@ -38,4 +38,4 @@ def get_dianshi(url):
 
 # 脚本的主逻辑
 #if __name__ == "__main__":
-get_dianshi(url)
+get_dianshi()
