@@ -21,14 +21,14 @@ def download_file():
                 try:
                     if j.strip() and j.find('"key":') > -1 and j.find('"name":') > -1 and j.find('"type":') > -1:
                         # 过滤重复的电影网站
-                        if spare.find(j) > -1:
-                            continue
-                        spare += '\r\n' + j
-                #try:
-                    #if j.strip() and '"key":' in j and '"name":' in j and '"type":' in j:
-                        #if j in spare:
+                        #if spare.find(j) > -1:
                             #continue
                         #spare += '\r\n' + j
+                #try:
+                    #if j.strip() and '"key":' in j and '"name":' in j and '"type":' in j:
+                        if j in spare:
+                            continue
+                        spare += '\r\n' + j
                 except Exception as ex:
                     LocalFile.write_LogFile(f"解析行时出错: {str(ex)} 行内容: {j}")
         
