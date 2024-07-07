@@ -31,7 +31,8 @@ def remove_line(content):
         content = re.sub(pattern, '', content, flags=re.MULTILINE)
     return content
 
-def download_file(content):
+def get_fan_conf():
+#def download_file(content):
     """
     从指定 URL 下载文件并保存到本地路径。
     """
@@ -74,7 +75,7 @@ def download_file(content):
 
 #############
 
-def get_fan_conf():
+# def get_fan_conf():
     config = configparser.ConfigParser()
     config.read("fan/config.ini")
 
