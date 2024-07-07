@@ -28,9 +28,7 @@ def download_file():
         url = "http://肥猫.com"
         response = requests.get(url, headers=headers)
         if response.status_code == 200:
-            data = response.json() 
-            
-            tvbox = json.dump(data)
+            tvbox = response.json()
             spare = ''
             for j in tvbox.split('\n'):
                 try:
