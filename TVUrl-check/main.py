@@ -160,8 +160,8 @@ def read_local_file(file_path): #用于加载文本函数
         return file.read()
 
 def local_myconf(content):
-    # Replace specified key and name  替换"key":"豆豆","name":"全接口智能过滤广告" 为"key":"豆豆","name":"智能AI广告过滤"
-    content = re.sub(r'{"key":"豆豆","name":"全接口智能过滤广告",', r'{"key":"豆豆","name":"智能AI广告过滤",', content)
+    # Replace specified key and name  替换"key":"豆豆","name":"玩偶新添加优汐线路", 为"豆豆","name":"添加玩偶优质线路",
+    content = re.sub(r'{"key":"豆豆","name":"玩偶新添加优汐线路",', r'{"key":"豆豆","name":"添加玩偶优质线路",', content)
 
     # 替换"logo"URL
     new_logo_url = "https://ghproxy.net/https://raw.githubusercontent.com/ne7359/url/main/fan/AW1.gif"
@@ -201,8 +201,8 @@ def local_myconf(content):
     return '\n'.join(final_lines)
 
 def local_dianshi(content):
-    # Replace specified key and name  替换"key":"豆豆","name":"全接口智能过滤广告" 为"key":"豆豆","name":"智能AI广告过滤"
-    content = re.sub(r'{"key":"豆豆","name":"全接口智能过滤广告",', r'{"key":"豆豆","name":"智能AI广告过滤",', content)
+    # Replace specified key and name  替换"key":"豆豆","name":"玩偶新添加优汐线路", 为"豆豆","name":"添加玩偶优质线路",
+    content = re.sub(r'{"key":"豆豆","name":"玩偶新添加优汐线路",', r'{"key":"豆豆","name":"添加玩偶优质线路",', content)
 
     # 替换"logo"URL
     new_logo_url = "https://ghproxy.net/https://raw.githubusercontent.com/ne7359/url/main/fan/AW1.gif"
