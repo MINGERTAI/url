@@ -16,7 +16,7 @@ import hashlib
 import configparser
 headers = {'User-Agent': 'okhttp/3.15'}
 
-def remove_line(content):
+def remove_url_key(content):
     patterns = [
         r'{"key":"drpy_js_豆瓣"(.|\n)*(?={"key":"高中教育")',   # 删除自{"key":"drpy_js_豆瓣"行到{"key":"高中教育"前一行所有
         r'^\s*{"key":"高中教育".*\n',
@@ -60,7 +60,7 @@ def download_file():
                 LocalFile.write_LogFile(f"解析行时出错: {str(ex)} 行内容: {j}")
    
         content = spare
-        content = remove_line(content)
+        content = remove_url_key(content)
         LocalFile.write_LocalFile('./out/new.txt', content)
         print('读取并删除:./out/new.txt已更新。')
     
