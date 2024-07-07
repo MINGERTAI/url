@@ -1,71 +1,49 @@
+#添加 headers：在请求头中添加 User-Agent 以避免某些服务器的拒绝访问。
+#response.text：使用 response.text 获取响应内容。
+#精确条件：确保只有完全匹配 "key":、"name": 和 "type": 的行才被处理。
+#异常处理：在每行处理过程中添加异常处理，并记录日志。
+#通过这些修改，脚本将从指定 URL 下载 shg.json 文件，提取包含 "key":、"name": 和 "type": 的行，并将结果写入到 ./out/11.txt 文件中
 import datetime
-from gettext import find
 import json
 import os
 import requests
 import sys
 from cls import LocalFile
-from cls import NetFile
 
-# 获取传递的参数
-try:
-    #0表示文件名，1后面都是参数 0.py, 1, 2, 3
-    menu = sys.argv[1:][0]
-    if(len(sys.argv[1:]) > 1):
-        cid = sys.argv[1:][1]
-except:
-    menu = 'init'
-print('menu: ' + menu)
-
-def download_file(url, save_path):
+def download_file():
     """
     从指定 URL 下载文件并保存到本地路径。
     """
     try:
         # 发送 HTTP GET 请求
-        response = requests.get(url)
+        url = "https://raw.githubusercontent.com/aliluya1977/TVBox/master/shg.json"
+        headers = {'User-Agent': 'Mozilla/5.0'}
+        response = requests.get(url, headers=headers)
         
         # 检查请求是否成功
         response.raise_for_status()
-        
-        # 创建保存路径的目录（如果不存在）
-        os.makedirs(os.path.dirname(save_path), exist_ok=True)
-        
-        # 将内容写入文件
-        with open(save_path, 'wb') as file:
-            file.write(response.content)
-        
-        print(f"文件已成功下载并保存到: {save_path}")
-    
-    except requests.exceptions.HTTPError as http_err:
-        print(f"HTTP 错误: {http_err}")
-    except Exception as err:
-        print(f"其他错误: {err}")
 
-if __name__ == "__main__":
-    url = "https://raw.githubusercontent.com/aliluya1977/TVBox/master/shg.json"
-    save_path = "data/shg.json"
-    
-    download_file(url, save_path)
-    
-if menu == 'tvbox':
-    try:
-        tvbox = LocalFile.read_LocalFile('data/shg.json')
+        # 解析 JSON 内容
+        tvbox = response.text
         spare = ''
+        
+        # 分行处理 JSON 内容
         for j in tvbox.split('\n'):
             try:
-                if j != '' and j.find('"key":') > -1 and j.find('"name":') > -1 and j.find('"type":') > -1 == -1:
+                if j != '' and j.find('"key":') > -1 and j.find('"name":') > -1 and j.find('"type":') > -1:
                     # 过滤重复的电影网站
-                    if (spare).find(j) > -1:
+                    if spare.find(j) > -1:
                         continue
                     spare += '\r\n' + j
-                    
             except Exception as ex:
-                LocalFile.write_LogFile(str(ex) + j)
+                LocalFile.write_LogFile(f"解析行时出错: {str(ex)} 行内容: {j}")
         
-        content =  spare
-        LocalFile.write_LocalFile('./out/11.txt', content)
-        print('读取并删除:./out/11.txt已更新。')
+        content = spare
+        LocalFile.write_LocalFile('./out/12.txt', content)
+        print('读取并删除:./out/12.txt已更新。')
 
     except Exception as ex:
-        LocalFile.write_LogFile(str(ex))
+        LocalFile.write_LogFile(f"下载或处理文件时出错: {str(ex)}")
+# 脚本的主逻辑
+if __name__ == "__main__":
+    download_file()
