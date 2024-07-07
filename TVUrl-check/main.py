@@ -23,7 +23,6 @@ def download_file():
         # 检查请求是否成功
         response.raise_for_status()
 
-    try:
         tvbox = response
         spare = ''
         for j in tvbox.split('\n'):
