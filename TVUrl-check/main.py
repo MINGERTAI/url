@@ -5,7 +5,9 @@ from cls import LocalFile  # 假设这是你自定义的本地文件操作类
 headers = {'User-Agent': 'okhttp/3.15'}
 
 def remove_line():
-
+    """
+    从指定 URL 下载文件并保存到本地路径。
+    """
     try:
         # 发送 HTTP GET 请求
         url = "https://raw.githubusercontent.com/qist/tvbox/master/dianshi.json"
