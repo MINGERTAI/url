@@ -23,7 +23,7 @@ def download_file():
                         # 过滤重复的电影网站
                         if spare.find(j) > -1:
                             continue
-                        #spare = ''
+                        spare = ''
                         spare += '\r\n' + j
                 #try:
                     #if j.strip() and '"key":' in j and '"name":' in j and '"type":' in j:
