@@ -30,9 +30,9 @@ def download_file():
                         #spare += '\r\n' + j
                 except Exception as ex:
                     LocalFile.write_LogFile(f"解析行时出错: {str(ex)} 行内容: {j}")
-                    
-            with open('./out/10.txt', 'w', encoding='utf-8') as file:
-                json.dump(spare, file, ensure_ascii=False)
+            
+            with open('./out/10.txt', 'w', newline='', encoding='utf-8') as f:
+                f.write(spare)
             print(f"数据已以JSON格式保存到./out/10.txt")     
             #content = spare
             #LocalFile.write_LocalFile('./out/10.txt', content)
