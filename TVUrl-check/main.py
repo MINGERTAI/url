@@ -10,10 +10,12 @@ import requests
 import sys
 from cls import LocalFile
 
-import re
-import base64
+import requests
+import json
 import hashlib
 import configparser
+import re
+
 headers = {'User-Agent': 'okhttp/3.15'}
 
 def download_file():
@@ -32,7 +34,7 @@ def download_file():
         response.raise_for_status()
 
         # 解析 JSON 内容
-        tvbox = data
+        tvbox = response.json()
         spare = ''
         
         # 分行处理 JSON 内容
