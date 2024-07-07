@@ -1,10 +1,10 @@
-name: zx
+name: merge
 
 on:
   workflow_dispatch:
     
-  #schedule:
-    #- cron: '5 */4 * * *'
+  schedule:
+    - cron: '5 */4 * * *'
 
 jobs:
   run_python_script:
@@ -22,7 +22,7 @@ jobs:
       run: pip install requests
 
     - name: Run Python script
-      run: python ./TVUrl-check/main.py
+      run: python ./fan/main.py
   
     - name: Run ls
       run: ls -l
@@ -40,11 +40,7 @@ jobs:
       uses:  ad-m/github-push-action@master
       with:
          github_token: ${{ secrets.GITHUB_TOKEN }}
-         # github_token: ${{ secrets.TOKEN }}
          branch: main
-         #force: true
-      #env:
-        #GITHUB_ACTOR: ne7359
 
     - name: Delete Workflow Runs
       uses: Mattraks/delete-workflow-runs@main
