@@ -15,3 +15,5 @@
 [2024-07-07 08:40:35] 下载或处理文件时出错: 'dict' object has no attribute 'split'
 
 [2024-07-07 08:53:59] 下载或处理文件时出错: dump() missing 1 required positional argument: 'fp'
+
+[2024-07-07 08:55:24] 下载或处理文件时出错: dump() missing 1 required positional argument: 'fp'
