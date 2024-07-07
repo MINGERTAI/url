@@ -63,6 +63,7 @@ def download_file():
                 LocalFile.write_LogFile(f"解析行时出错: {str(ex)} 行内容: {j}")
         
         content = spare
+        content = remove_line(content)
         LocalFile.write_LocalFile('./out/new.txt', content)
         print('读取并删除:./out/new.txt已更新。')
 
