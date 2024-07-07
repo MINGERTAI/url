@@ -4,7 +4,7 @@ from cls import LocalFile  # 假设这是你自定义的本地文件操作类
 
 headers = {'User-Agent': 'okhttp/3.15'}
 
-def remove_line(content):
+def remove_line():
 
     try:
         # 发送 HTTP GET 请求
@@ -39,4 +39,4 @@ def remove_line(content):
 
 # 脚本的主逻辑
 if __name__ == "__main__":
-    remove_line(content)
+    remove_line()
