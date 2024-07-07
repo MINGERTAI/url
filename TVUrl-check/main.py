@@ -23,11 +23,6 @@ def download_file():
                         if spare.find(j) > -1:
                             continue
                         spare += '\r\n' + j
-                #try:
-                    #if j.strip() and '"key":' in j and '"name":' in j and '"type":' in j:
-                        #if j in spare:
-                            #continue
-                        #spare += '\r\n' + j
                 except Exception as ex:
                     LocalFile.write_LogFile(f"解析行时出错: {str(ex)} 行内容: {j}")
    
