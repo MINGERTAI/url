@@ -25,7 +25,6 @@ def download_file():
     try:
         # 发送 HTTP GET 请求
         url = "http://肥猫.com"
-        headers = {'User-Agent': 'Mozilla/5.0'}
         response = requests.get(url, headers=headers)
         if response.status_code == 200:
             data = response.json()
