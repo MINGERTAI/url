@@ -12,18 +12,16 @@ def download_file():
         # 发送 HTTP GET 请求
         url = "http://肥猫.com"
         response = requests.get(url, headers=headers)
-        # response.encoding('utf-8')
         if response.status_code == 200:
             # 转换响应的 JSON 数据为字符串
             tvbox = json.dumps(response.json())
-            #spare = ''
+            spare = ''
             for j in tvbox.split('\n'):
                 try:
                     if j != '' and j.find('"key":') > -1 and j.find('"name":') > -1 and j.find('"type":') > -1:
                         # 过滤重复的电影网站
                         if spare.find(j) > -1:
                             continue
-                        spare = ''
                         spare += '\r\n' + j
                 #try:
                     #if j.strip() and '"key":' in j and '"name":' in j and '"type":' in j:
@@ -32,10 +30,13 @@ def download_file():
                         #spare += '\r\n' + j
                 except Exception as ex:
                     LocalFile.write_LogFile(f"解析行时出错: {str(ex)} 行内容: {j}")
-        
-            content = spare
-            LocalFile.write_LocalFile('./out/10.txt', content)
-            print('读取并删除: ./out/10.txt 已更新。')
+                    
+            with open('./out/10.txt', 'w', encoding='utf-8') as file:
+                json.dump(spare, file, ensure_ascii=False)
+            print(f"数据已以JSON格式保存到./out/10.txt")     
+            #content = spare
+            #LocalFile.write_LocalFile('./out/10.txt', content)
+            #print('读取并删除: ./out/10.txt 已更新。')
     
     except Exception as ex:
         LocalFile.write_LogFile(f"下载或处理文件时出错: {str(ex)}")
