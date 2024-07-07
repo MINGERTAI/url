@@ -229,7 +229,7 @@ def local_dianshi(content):
     new_lines = []
     for line in lines:
         new_lines.append(line)
-        if '"doh":[{"name":"Google"' in line:
+        if '"logo":"https://' in line:
             # 在找到的行之后添加新内容
             new_lines.append(new_content)
             
