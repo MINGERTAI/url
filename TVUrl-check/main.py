@@ -34,8 +34,8 @@ def download_file():
                 LocalFile.write_LogFile(f"解析行时出错: {str(ex)} 行内容: {j}")
         
         content = spare
-        LocalFile.write_LocalFile('./out/11.txt', content)
-        print('读取并删除:./out/11.txt已更新。')
+        LocalFile.write_LocalFile('./out/12.txt', content)
+        print('读取并删除:./out/12.txt已更新。')
 
     except Exception as ex:
         LocalFile.write_LogFile(f"下载或处理文件时出错: {str(ex)}")
