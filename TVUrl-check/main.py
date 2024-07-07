@@ -3,19 +3,11 @@ from gettext import find
 import json
 import os
 import requests
+import hashlib
 import sys
 from cls import LocalFile
 from cls import NetFile
 
-# 获取传递的参数
-try:
-    #0表示文件名，1后面都是参数 0.py, 1, 2, 3
-    menu = sys.argv[1:][0]
-    if(len(sys.argv[1:]) > 1):
-        cid = sys.argv[1:][1]
-except:
-    menu = 'init'
-print('menu: ' + menu)
 
 def download_file(url, save_path):
     """
@@ -23,23 +15,16 @@ def download_file(url, save_path):
     """
     try:
         # 发送 HTTP GET 请求
-        response = request.get(url)
+        url = "https://raw.githubusercontent.com/aliluya1977/TVBox/master/shg.json"
+        #response = request.get(url)
+        response = requests.get(url, headers=headers)
+        response.encoding = 'utf-8'
         
         # 检查请求是否成功
         response.raise_for_status()
         
-        # 创建保存路径的目录（如果不存在）
-        os.makedirs(os.path.dirname(save_path), exist_ok=True)
-    
-    except request.exceptions.HTTPError as http_err:
-        print(f"HTTP 错误: {http_err}")
-    except Exception as err:
-        print(f"其他错误: {err}")
-
 if __name__ == "__main__":
-    url = "https://raw.githubusercontent.com/aliluya1977/TVBox/master/shg.json"
-    
-if menu == 'tvbox':
+
     try:
         tvbox = response
         spare = ''
