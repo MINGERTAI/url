@@ -31,7 +31,7 @@ def remove_line(content):
         content = re.sub(pattern, '', content, flags=re.MULTILINE)
     return content
 
-def download_file(content):
+def download_file():
     """
     从指定 URL 下载文件并保存到本地路径。
     """
