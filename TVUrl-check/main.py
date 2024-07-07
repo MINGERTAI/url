@@ -21,7 +21,7 @@ def download_file():
         response = requests.get(url, headers=headers)
 
         with open("./jar/spider.jar", "wb") as f:
-            f.write(response.text)
+            f.write(response.content)
 
         # 检查请求是否成功
         response.raise_for_status()
