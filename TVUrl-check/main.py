@@ -30,7 +30,7 @@ def download_file():
         response.raise_for_status()
 
         # 解析 JSON 内容
-        tvbox = response.text
+        tvbox = response.json()
         spare = ''
         
         # 分行处理 JSON 内容
