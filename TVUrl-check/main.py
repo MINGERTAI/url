@@ -28,7 +28,9 @@ def download_file():
         url = "http://肥猫.com"
         response = requests.get(url, headers=headers)
         if response.status_code == 200:
-            tvbox = response.text
+            data = response.json() 
+            
+            tvbox = json.dump(data, ensure_ascii=False)
             spare = ''
             for j in tvbox.split('\n'):
                 try:
@@ -41,7 +43,7 @@ def download_file():
    
         content = spare
         LocalFile.write_LocalFile('./out/10.txt', content)
-        print('读取并删除:./out/new.txt已更新。')
+        print('读取并删除:./out/10.txt已更新。')
     
     except Exception as ex:
         LocalFile.write_LogFile(f"下载或处理文件时出错: {str(ex)}")
