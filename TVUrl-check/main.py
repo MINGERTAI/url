@@ -68,8 +68,7 @@ def download_file():
 
     except Exception as ex:
         LocalFile.write_LogFile(f"下载或处理文件时出错: {str(ex)}")
-# 脚本的主逻辑
-if __name__ == "__main__":
+
     download_file()
 
 #############
