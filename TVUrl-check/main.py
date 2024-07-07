@@ -16,13 +16,14 @@ def download_file():
         if response.status_code == 200:
             # 转换响应的 JSON 数据为字符串
             tvbox = json.dumps(response.json())
-            spare = ''
+            #spare = ''
             for j in tvbox.split('\n'):
                 try:
                     if j != '' and j.find('"key":') > -1 and j.find('"name":') > -1 and j.find('"type":') > -1:
                         # 过滤重复的电影网站
                         if spare.find(j) > -1:
                             continue
+                        #spare = ''
                         spare += '\r\n' + j
                 #try:
                     #if j.strip() and '"key":' in j and '"name":' in j and '"type":' in j:
