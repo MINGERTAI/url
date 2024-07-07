@@ -15,7 +15,6 @@ def download_file():
         if response.status_code == 200:
             # 转换响应的 JSON 数据为字符串
             tvbox = json.dumps(response.json())
-            encoding='utf-8'
             spare = ''
             for j in tvbox.split('\n'):
                 try:
@@ -27,7 +26,7 @@ def download_file():
                     LocalFile.write_LogFile(f"解析行时出错: {str(ex)} 行内容: {j}")
         
             content = spare
-            LocalFile.write_LocalFile('./out/10.txt', content)
+            LocalFile.write_LocalFile('./out/10.txt', encoding='utf-8', content)
             print('读取并删除: ./out/10.txt 已更新。')
     
     except Exception as ex:
