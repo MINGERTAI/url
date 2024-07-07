@@ -16,14 +16,12 @@ def download_file():
     try:
         # 发送 HTTP GET 请求
         url = "https://raw.githubusercontent.com/aliluya1977/TVBox/master/shg.json"
-        #response = request.get(url)
         response = requests.get(url, headers=headers)
         response.encoding = 'utf-8'
         
-        # 检查请求是否成功
-        response.raise_for_status()
+        match = re.search(r'[A-Za-z0]{8}\*\*(.*)', response.text)
 
-        tvbox = response
+        tvbox = match
         spare = ''
         for j in tvbox.split('\n'):
             try:
