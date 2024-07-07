@@ -19,7 +19,7 @@ jobs:
       run: pip install requests
 
     - name: Run Python script
-      run: python ./TVUrl-check/main.py
+      run: python ./scripts/tvboxSourceScript.py
   
     - name: Run ls
       run: ls -l
