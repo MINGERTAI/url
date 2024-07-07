@@ -31,7 +31,7 @@ def remove_line(content):
         content = re.sub(pattern, '', content, flags=re.MULTILINE)
     return content
 
-def download_file(url_del):
+def download_file(content):
     """
     从指定 URL 下载文件并保存到本地路径。
     """
@@ -70,7 +70,7 @@ def download_file(url_del):
     except Exception as ex:
         LocalFile.write_LogFile(f"下载或处理文件时出错: {str(ex)}")
 
-    return url_del
+    return content
 
 #############
 
