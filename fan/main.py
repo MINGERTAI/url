@@ -145,10 +145,6 @@ def remove_line(content):
         content = re.sub(pattern, '', content, flags=re.MULTILINE)        
     return content
 
-def read_local_file(file_path): #用于加载文本函数
-    with open(file_path, 'r', encoding='utf-8') as file:
-        return file.read()
-
 def local_myconf(content):
     # Replace specified key and name  替换"key":"豆豆","name":"玩偶新添加优汐线路", 为"豆豆","name":"添加玩偶优质线路",
     content = re.sub(r'{"key":"豆豆","name":"玩偶新添加优汐线路",', r'{"key":"豆豆","name":"添加玩偶优质线路",', content)
@@ -158,12 +154,12 @@ def local_myconf(content):
     content = re.sub(r'"logo":"[^"]+"', f'"logo":"{new_logo_url}"', content)
     
     # 从文件加载要添加的新内容
-    new_content = read_local_file("./fan/res/parses_flags_rules.txt")
-    live_content = read_local_file("./fan/res/lives.txt")
+    new_content = LocalFile.read_LocalFile("./fan/res/parses_flags_rules.txt")
+    live_content = LocalFile.read_LocalFile("./fan/res/lives.txt")
 
     # 替换指定模式的内容，从{"key":"88js"到{"key":"dr_兔小贝"前的内容
     pattern = r'{"key":"88js"(.|\n)*?(?={"key":"dr_兔小贝")'
-    replacement = read_local_file("./fan/res/replace.txt")
+    replacement = LocalFile.read_LocalFile("./fan/res/replace.txt")
     content = re.sub(pattern, replacement, content, flags=re.DOTALL)
 
     # 替换指定{"key":"cc"行内容
@@ -199,12 +195,12 @@ def local_dianshi(content):
     content = re.sub(r'"logo":"[^"]+"', f'"logo":"{new_logo_url}"', content)
     
     # 从文件加载要添加的新内容
-    new_content = read_local_file("./fan/res/parses_flags_rules_dianshi.txt")
-    live_content = read_local_file("./fan/res/lives.txt")
+    new_content = LocalFile.read_LocalFile("./fan/res/parses_flags_rules_dianshi.txt")
+    live_content = LocalFile.read_LocalFile("./fan/res/lives.txt")
 
     # 替换指定模式的内容，从{"key":"88js"到{"key":"dr_兔小贝"前的内容
     pattern = r'{"key":"88js"(.|\n)*?(?={"key":"dr_兔小贝")'
-    replacement = read_local_file("./out/new.txt")
+    replacement = LocalFile.read_LocalFile("./out/new.txt")
     content = re.sub(pattern, replacement, content, flags=re.DOTALL)
 
     # 替换指定{"key":"cc"行内容
