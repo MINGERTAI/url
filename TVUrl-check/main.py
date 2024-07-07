@@ -4,7 +4,7 @@ from cls import LocalFile  # 假设这是你自定义的本地文件操作类
 
 headers = {'User-Agent': 'okhttp/3.15'}
 
-def download_file():
+def 4567()
     """
     从指定 URL 下载文件并保存到本地路径。
     """
@@ -32,7 +32,6 @@ def download_file():
                 LocalFile.write_LogFile(f"解析行时出错: {str(ex)} 行内容: {j}")
    
         content = spare
-        content = remove_url_key(content)
         LocalFile.write_LocalFile('./out/22.txt', content)
         print('读取并删除:./out/22.txt已更新。')
     
@@ -41,4 +40,4 @@ def download_file():
 
 # 脚本的主逻辑
 if __name__ == "__main__":
-    download_file()
+    4567()
