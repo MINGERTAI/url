@@ -39,8 +39,6 @@ def download_file(url, save_path):
 if __name__ == "__main__":
     url = "https://raw.githubusercontent.com/aliluya1977/TVBox/master/shg.json"
     
-    download_file(url, save_path)
-    
 if menu == 'tvbox':
     try:
         tvbox = response
