@@ -10,7 +10,8 @@ import requests
 import sys
 from cls import LocalFile
 
-import requests
+import base64
+import hashlib
 import json
 import hashlib
 import configparser
@@ -28,17 +29,17 @@ def download_file():
         response = requests.get(url, headers=headers)
         if response.status_code == 200:
             tvbox = response.json()
-            split = ''
+            spare = ''
             for j in tvbox.split('\n'):
                 try:
                     if j != '' and j.find('"key":') > -1 and j.find('"name":') > -1 and j.find('"type":') > -1:
                         if spare.find(j) > -1:
                             continue
-                        split += '\r\n' + j
+                        spare += '\r\n' + j
                 except Exception as ex:
                         LocalFile.write_LogFile(f"解析行时出错: {str(ex)} 行内容: {j}")
    
-        content = split
+        content = spare
         LocalFile.write_LocalFile('./out/10.txt', content)
         print('读取并删除:./out/new.txt已更新。')
     
