@@ -3,11 +3,7 @@
 #精确条件：确保只有完全匹配 "key":、"name": 和 "type": 的行才被处理。
 #异常处理：在每行处理过程中添加异常处理，并记录日志。
 #通过这些修改，脚本将从指定 URL 下载 shg.json 文件，提取包含 "key":、"name": 和 "type": 的行，并将结果写入到 ./out/11.txt 文件中
-#import datetime
 import json
-#import os
-#import requests
-#import sys
 from cls import LocalFile
 
 import re
@@ -39,7 +35,6 @@ def download_file():
     try:
         # 发送 HTTP GET 请求
         url = "https://raw.githubusercontent.com/qist/tvbox/master/dianshi.json"
-        headers = {'User-Agent': 'Mozilla/5.0'}
         response = requests.get(url, headers=headers)
         
         # 检查请求是否成功
