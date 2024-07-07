@@ -18,12 +18,9 @@ def download_file():
         url = "https://raw.githubusercontent.com/aliluya1977/TVBox/master/shg.json"
         response = requests.get(url, headers=headers)
         response.encoding = 'utf-8'
-        
-        match = re.search(r'[A-Za-z0]{8}\*\*(.*)', response.text)
 
-        tvbox = match
         spare = ''
-        for j in tvbox.split('\n'):
+        for j in response.split('\n'):
             try:
                 if j != '' and j.find('"key":') > -1 and j.find('"name":') > -1 and j.find('"type":') > -1 == -1:
                     # 过滤重复的电影网站
