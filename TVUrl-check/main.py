@@ -20,8 +20,12 @@ def download_file():
         headers = {'User-Agent': 'Mozilla/5.0'}
         response = requests.get(url, headers=headers)
 
-        with open("./jar/spider.jar", "wb") as f:
-            f.write(response.content)
+        # 从response.text数据中提取包含jar文件和md5值的"spider"字段
+        jar = response.text
+        if j != '' and j.find('spider.jar') > -1
+            with open("./jar/spider.jar", "wb") as f:
+                f.write(response.jar)
+                print(f"jar文件已下载到：{./jar/spider.jar")
 
         # 检查请求是否成功
         response.raise_for_status()
