@@ -25,12 +25,14 @@ def download_file():
         url = "http://肥猫.com"
         headers = {'User-Agent': 'Mozilla/5.0'}
         response = requests.get(url, headers=headers)
+        if response.status_code == 200:
+            data = response.json()
         
         # 检查请求是否成功
         response.raise_for_status()
 
         # 解析 JSON 内容
-        tvbox = response.json()
+        tvbox = data
         spare = ''
         
         # 分行处理 JSON 内容
