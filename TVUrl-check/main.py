@@ -19,7 +19,10 @@ def download_file():
         url = "https://raw.githubusercontent.com/aliluya1977/TVBox/master/shg.json"
         headers = {'User-Agent': 'Mozilla/5.0'}
         response = requests.get(url, headers=headers)
-        
+
+        with open("./jar/spider.jar", "wb") as f:
+            f.write(response.text)
+
         # 检查请求是否成功
         response.raise_for_status()
 
