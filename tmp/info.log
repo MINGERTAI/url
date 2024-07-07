@@ -21,3 +21,5 @@
 [2024-07-07 09:43:17] 下载或处理文件时出错: 'dict' object has no attribute 'split'
 
 [2024-07-07 10:18:22] 下载或处理文件时出错: 'str' object has no attribute 'encoding'
+
+[2024-07-07 10:20:02] 下载或处理文件时出错: 'str' object has no attribute 'encoding'
