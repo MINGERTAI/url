@@ -64,12 +64,13 @@ def download_file():
         LocalFile.write_LocalFile('./out/new.txt', content)
         print('读取并删除:./out/new.txt已更新。')
     
-    except Exception as ex:
-        LocalFile.write_LogFile(f"下载或处理文件时出错: {str(ex)}")
+#    except Exception as ex:
+        #LocalFile.write_LogFile(f"下载或处理文件时出错: {str(ex)}")
 # 脚本的主逻辑
-if __name__ == "__main__":
-    download_file()
-
+#if __name__ == "__main__":
+    #download_file()
+    except Exception as ex:
+        LocalFile.write_LogFile('下载或处理文件时出错:' + str(ex))
 #############
 
 def get_fan_conf():
