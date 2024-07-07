@@ -14,7 +14,7 @@ def download_file():
         response = requests.get(url, headers=headers)
         if response.status_code == 200:
             # 转换响应的 JSON 数据为字符串
-            tvbox = json.dumps(response.json())
+            tvbox = response.json()
             spare = []
             for item in tvbox:
                 try:
@@ -27,7 +27,7 @@ def download_file():
                     LocalFile.write_LogFile(f"解析项目时出错: {str(ex)} 项目内容: {item}")
    
             # 将处理后的内容转换为JSON字符串
-            content = ',\n'.join(json.dumps(item, ensure_ascii=False) for item in spare)
+            content = ',\n'.json(json.dumps(item, ensure_ascii=False) for item in spare)
             LocalFile.write_LocalFile('./out/10.txt', content)
             print('读取并删除: ./out/10.txt 已更新。')
     
