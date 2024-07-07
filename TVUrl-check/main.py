@@ -9,7 +9,7 @@ from cls import LocalFile
 from cls import NetFile
 
 
-def download_file(url, save_path):
+def download_file():
     """
     从指定 URL 下载文件并保存到本地路径。
     """
@@ -22,8 +22,6 @@ def download_file(url, save_path):
         
         # 检查请求是否成功
         response.raise_for_status()
-        
-if __name__ == "__main__":
 
     try:
         tvbox = response
