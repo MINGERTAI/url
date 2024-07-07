@@ -14,19 +14,20 @@ def download_file():
         response = requests.get(url, headers=headers)
         if response.status_code == 200:
             # 转换响应的 JSON 数据为字符串
-            tvbox = json.dumps(response.json())
-            spare = ''
-            for j in tvbox.split('\n'):
+            tvbox = response.json()
+            spare = []
+            for item in tvbox:
                 try:
-                    if j != '' and j.find('"key":') > -1 and j.find('"name":') > -1 and j.find('"type":') > -1:
+                    if 'key' in item and 'name' in item and 'type' in item:
                         # 过滤重复的电影网站
-                        if spare.find(j) > -1:
+                        if any(existing_item['key'] == item['key'] for existing_item in spare):
                             continue
-                        spare += '\r\n' + j
+                        spare.append(item)
                 except Exception as ex:
-                    LocalFile.write_LogFile(f"解析行时出错: {str(ex)} 行内容: {j}")
+                    LocalFile.write_LogFile(f"解析项目时出错: {str(ex)} 项目内容: {item}")
    
-            content = spare
+            # 将处理后的内容转换为JSON字符串
+            content = ',\n'.join(json.dumps(item, ensure_ascii=False) for item in spare)
             LocalFile.write_LocalFile('./out/10.txt', content)
             print('读取并删除: ./out/10.txt 已更新。')
     
