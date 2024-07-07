@@ -6,8 +6,6 @@ headers = {'User-Agent': 'okhttp/3.15'}
 
 def get_dianshi():
     """
-    从指定 URL 下载文件并保存到本地路径。
-    """
     try:
         # 发送 HTTP GET 请求
         url = "https://raw.githubusercontent.com/qist/tvbox/master/dianshi.json"
