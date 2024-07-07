@@ -14,7 +14,7 @@ def download_file():
         response = requests.get(url, headers=headers)
         if response.status_code == 200:
             # 转换响应的 JSON 数据为字符串
-            tvbox = json.dumps(response.ensure_ascii=False())
+            tvbox = json.dumps(response.json())
             spare = ''
             for j in tvbox.split('\n'):
                 try:
@@ -30,9 +30,11 @@ def download_file():
                         #spare += '\r\n' + j
                 except Exception as ex:
                     LocalFile.write_LogFile(f"解析行时出错: {str(ex)} 行内容: {j}")
-            
+
+            data=json.dumps(spare,ensure_ascii=False)
+            print(data)            
             with open('./out/10.txt', 'w', newline='', encoding='utf-8') as f:
-                f.write(spare)
+                f.write(data)
             print(f"数据已以JSON格式保存到./out/10.txt")     
             #content = spare
             #LocalFile.write_LocalFile('./out/10.txt', content)
