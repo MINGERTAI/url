@@ -58,7 +58,7 @@ def download_file(url_del):
                     # 过滤重复的电影网站
                     if spare.find(j) > -1:
                         continue
-                    spare += '\r\n' + j
+                    spare += '\r\n' + j + ','
             except Exception as ex:
                 LocalFile.write_LogFile(f"解析行时出错: {str(ex)} 行内容: {j}")
         
