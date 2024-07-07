@@ -36,9 +36,9 @@ if result:
     fp.close()
     
 # 源5 唐三
-result = httpGetText('https://gh.t4tv.hz.cz/newtang.bmp')
+result = httpGetText('http://饭太硬.com/tv')
 if result:
-    result = re.findall('(?<=\*\*).*$', result)[0]
+    result = re.search(r'[A-Za-z0]{8}\*\*(.*)', response.text)
     # print(result)
     # Decode
     result = base64.b64decode(result).decode('utf-8')
