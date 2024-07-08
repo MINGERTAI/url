@@ -24,26 +24,17 @@ if(menu == 'check'):
     try:
         if(os.path.exists('./fatcat.json')):
             tvbox = LocalFile.read_LocalFile('./fatcat.json').replace('\r','').replace('\n\n','\n')
-        else:
-            tvbox = LocalFile.read_LocalFile('fatcat.json').replace('\r','').replace('\n\n','\n')
         addtv = ''
         nsfw = ''
         spare = ''
         tvbox = tvbox.replace('//{','\n{')
         for j in tvbox.split('\n'):
             try:
-                if(j != '' and j.find('"key":') > -1 and j.find('"name":') > -1 and j.find('"type":') > -1 and r_sites_err.find(j) == -1):
+                if(j != '' and j.find('"key":') > -1 and j.find('"name":') > -1 and j.find('"type":') > -1 == -1):
                     j = j.strip(',')
                     if(len(j.split('}')) > len(j.split('{'))):
                         j = j.strip(',')[:-1].strip(',')
-                    tv = json.loads(j)
-                    # 检查自定义Jar文件是否存在
-                    if('jar' in tv.keys()):
-                        jar = tv['jar']
-                        if(jar.find('http') == 0):
-                            ustat = NetFile.url_stat(jar, 60, 60)
-                            if(ustat == 404 or ustat == 0):
-                                j = j.replace(',"jar":"' + jar + '"', '')                         
+                    tv = json.loads(j)                     
                     # 过滤重复的电影网站
                     if((addtv + spare + nsfw).find(j) > -1):
                         continue
@@ -56,30 +47,12 @@ if(menu == 'check'):
                     if(id == 3):
                         if('ext' in tv.keys()):
                             ext = tv['ext']
-                            if((addtv + nsfw + r_sites_err).find(ext) > -1):
+                            if((addtv + nsfw).find(ext) > -1):
                                 continue
-                            else:
-                                if(ext.find('http') == 0):
-                                    ustat = NetFile.url_stat(ext, 60, 60)
-                                    if(ustat == 404 or ustat == 0):
-                                        r_sites_err += '\r\n[' + datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S") + '] ' + str(ustat) + ':' + j + ','
-                                        continue
                         else:
                             # 未配置Ext信息，让api值唯一
-                            if((addtv + nsfw + r_sites_err).find('"api":"' + tv['api'] + '"') > -1):
+                            if((addtv + nsfw).find('"api":"' + tv['api'] + '"') > -1):
                                 continue
-                        
-                    elif(id >= 0):
-                        api = tv['api']
-                        if((addtv + nsfw + r_sites_err).find(api) > -1):
-                            continue
-                        else:
-                            if(api.find('http') == 0):
-                                ustat = NetFile.url_stat(api, 60, 60)
-                                if(ustat == 404 or ustat == 0):
-                                    r_sites_err += '\r\n[' + datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S") + '] ' + str(ustat) + ':' + j + ','
-                                    continue
-
                     else:
                         spare += '\r\n' + j + ','
                     
@@ -91,17 +64,8 @@ if(menu == 'check'):
                     print('Main-Line-91-not-tvsite-url:' + j)
             except Exception as ex:
                 LocalFile.write_LogFile('Main-Line-93-Exception:' + str(ex) + '\ntvsite:' + j)
-        
-        LocalFile.write_LocalFile('./code/r_sites_err.txt', r_sites_err.strip('\r\n'))
-        print('Line-96:/res/r_sites_err.txt已更新。')
 
-        # r_pushagent = LocalFile.read_LocalFile("./res/r_pushagent.txt")
-        r_update = '{\r\n//Update:' + str(datetime.datetime.now()) + '\r\n'
-        # r_conf = LocalFile.read_LocalFile("./res/r_conf.txt")
-        # r_conf = '\r\n' + r_conf + '\r\n}'
 
-        # LocalFile.write_LocalFile('./out/tvbox.txt', r_update + '"sites":[' + addtv + '\r\n' + r_pushagent + '\r\n],' + r_conf)
-
-        LocalFile.write_LocalFile('./out/1121.txt', '"sites":[\r\n//Update:' + str(datetime.datetime.now()) + '\r\n' + addtv + '\r\n' + nsfw + '\r\n' + spare + '\r\n],')
+        LocalFile.write_LocalFile('./out/1121.txt', '\r\n' + addtv + '\r\n' + nsfw + '\r\n' + spare + '\r\n],')
     except Exception as ex:
         LocalFile.write_LogFile('Main-Line-108-Exception:' + str(ex))
