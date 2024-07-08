@@ -24,8 +24,6 @@ if(menu == 'check'):
     try:
         if(os.path.exists('./fatcat.json')):
             tvbox = LocalFile.read_LocalFile('./fatcat.json').replace('\r','').replace('\n\n','\n')
-        addtv = ''
-        nsfw = ''
         spare = ''
         tvbox = tvbox.replace('//{','\n{')
         new_string = tvbox.strip()
@@ -55,18 +53,13 @@ if(menu == 'check'):
                             if((addtv + nsfw).find('"api":"' + tv['api'] + '"') > -1):
                                 continue
                     else:
-                        spare += '\r\n' + j + ','
-                    
-                    if(tv['name'].find('*') > -1):
-                        nsfw += '\r\n' + j + ','
-                    elif(j.find('"key":') > -1 and j.find('"name":') > -1 and j.find('"type":') > -1):
-                        addtv += '\r\n' + j + ','
+                        spare += '\r\n' + j
                 else:
                     print('Main-Line-91-not-tvsite-url:' + j)
             except Exception as ex:
                 LocalFile.write_LogFile('Main-Line-93-Exception:' + str(ex) + '\ntvsite:' + j)
 
 
-        LocalFile.write_LocalFile('./out/1121.txt', '\r\n' + addtv + '\r\n' + nsfw + '\r\n' + spare + '\r\n],')
+        LocalFile.write_LocalFile('./out/1121.txt', '\r\n' spare'\r\n],')
     except Exception as ex:
         LocalFile.write_LogFile('Main-Line-108-Exception:' + str(ex))
