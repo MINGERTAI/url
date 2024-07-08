@@ -29,13 +29,9 @@ if(menu == 'check'):
         new1_string = new_string.replace('//{','\n{')
         for j in new1_string.split('\n'):
             try:
-                if(j != '' and j.find('"key":') > -1 and j.find('"name":') > -1 and j.find('"type":') > -1 == -1):
-                    j = j.strip(',')
-                    if(len(j.split('}')) > len(j.split('{'))):
-                        j = j.strip(',')[:-1].strip(',')
-                    tv = json.loads(j)                     
+                if j != '' and j.find('"key":') > -1 and j.find('"name":') > -1 and j.find('"type":') > -1 == -1:
                     # 过滤重复的电影网站
-                    if((addtv + spare + nsfw).find(j) > -1):
+                    if (spare).find(j) > -1:
                         continue
                     spare += '\r\n' + j
                     
