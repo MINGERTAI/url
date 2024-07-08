@@ -21,6 +21,7 @@ jobs:
           pip install requests
           pip install urllib3
           pip install pytz
+          pip install pprint
 
     - name: Run Python script
       run: python ./TVUrl-check/main.py
