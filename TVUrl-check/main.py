@@ -12,7 +12,7 @@ with open('./out/new_test.json', 'w', encoding='utf-8') as f:
         if line.strip():  # 如果该行非空（移除空白字符后有内容）
             if '},' in line:
                 line.strip('\r\n')
-                    f.write(line + '\n')  # 将非空行写入到文件中，记得在最后加上 '\n' 以保持原有的行分割
+                f.write(line + '\n')  # 将非空行写入到文件中，记得在最后加上 '\n' 以保持原有的行分割
 #with open("./out/new_test.json","wb") as f:
     #f.write(json.dumps(dic,ensure_ascii=False).encode("utf-8"))
     # f.write(json.dumps(dic,ensure_ascii=False,indent=4).encode("utf-8"))
