@@ -6,7 +6,7 @@ with open("fatcat.json","rb") as f:
     sites.remove(sites[-1])  ## 删除最后一行
     
 local_content = json.dumps(dic,ensure_ascii=False)
-fuhao = json.dumps( '},' )
+fuhao = json.dumps( ',' )
 with open('./out/new_test.json', 'w', encoding='utf-8') as f:
     for line in local_content.split(','):  # 将内容按行分割
         if line.strip():  # 如果该行非空（移除空白字符后有内容）
