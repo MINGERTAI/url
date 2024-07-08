@@ -29,7 +29,7 @@ jobs:
         git config --global user.name "GitHub Actions"
         git config --global user.email "actions@github.com"
         git add .
-        git commit --amend -m "update" --allow-empty
+        git commit -m "update" --allow-empty
 
     - name: Push changes
       if: steps.check.conclusion == 'success'
