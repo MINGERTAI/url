@@ -13,9 +13,13 @@ def download_file():
         url = "http://肥猫.com"
         response = requests.get(url, headers=headers)
         if response.status_code == 200:
-            # 转换响应的 JSON 数据为列表
-            tvbox = response.json()
-            
+            # 尝试解析 JSON 数据
+            try:
+                tvbox = response.json()
+            except json.JSONDecodeError:
+                LocalFile.write_LogFile("响应数据不是有效的 JSON 格式")
+                return
+
             # 检查 tvbox 是否为列表
             if not isinstance(tvbox, list):
                 LocalFile.write_LogFile("响应数据不是列表格式")
@@ -37,12 +41,12 @@ def download_file():
             # 检查 spare 列表的内容
             print(f"过滤后的数据：{spare}")
 
-            # 将处理后的内容转换为JSON字符串
+            # 将处理后的内容转换为 JSON 字符串
             content = ',\n'.join(json.dumps(item, ensure_ascii=False) for item in spare)
             LocalFile.write_LocalFile('./out/10.txt', content)
             print(f'读取并删除: ./out/10.txt 已更新。内容：{content}')
     
-    except Exception as ex:
+    except requests.exceptions.RequestException as ex:
         LocalFile.write_LogFile(f"下载或处理文件时出错: {str(ex)}")
 
 # 脚本的主逻辑
