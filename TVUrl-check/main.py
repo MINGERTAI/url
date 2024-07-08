@@ -48,8 +48,8 @@ if(menu == 'check'):
         
         content = spare
         content = remove_line(content)
-        LocalFile.write_LocalFile('./out/json.txt', content)
-        print('读取并删除&写入到:./out/json.txt已更新。')
+        LocalFile.write_LocalFile('./out/1102.txt', content)
+        print('读取并删除&写入到:./out/1102.txt已更新。')
 
     except Exception as ex:
         LocalFile.write_LogFile(str(ex))
