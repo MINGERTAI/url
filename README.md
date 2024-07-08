@@ -5,7 +5,7 @@
 - "flags": [] 用于VIP解释标识
 - "parses": [] 解释地址
 - "ijk": [] 解码配置
-- "wallpaper":"HTTPS://"
+- "wallpaper":"HTTPS://"  壁纸
 
 
 https://github.com/aliluya1977/TVBox/blob/master/shg.json
