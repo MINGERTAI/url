@@ -25,7 +25,7 @@ if(menu == 'check'):
         if(os.path.exists('./fatcat.json')):
             tvbox = LocalFile.read_LocalFile('./fatcat.json').replace('\r','').replace('\n\n','\n')
         else:
-            tvbox = LocalFile.read_LocalFile('./code/0821.json').replace('\r','').replace('\n\n','\n')
+            tvbox = LocalFile.read_LocalFile('fatcat.json').replace('\r','').replace('\n\n','\n')
         addtv = ''
         nsfw = ''
         spare = ''
