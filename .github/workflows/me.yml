@@ -23,7 +23,7 @@ jobs:
           pip install pytz
 
     - name: Run Python script
-      run: python ./scripts/tvboxSourceScript.py
+      run: python ./TVUrl-check/main.py
   
     - name: Run ls
       run: ls -l
