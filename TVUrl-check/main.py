@@ -41,26 +41,15 @@ if(menu == 'check'):
                     if((addtv + nsfw).find('"key":"' + tv['key'] + '"') > -1):
                         spare += '\r\n' + j + ','
                         continue
-                    # 分类去重
-                    id = tv['type']
-                    if(id == 3):
-                        if('ext' in tv.keys()):
-                            ext = tv['ext']
-                            if((addtv + nsfw).find(ext) > -1):
-                                continue
-                        else:
-                            # 未配置Ext信息，让api值唯一
-                            if((addtv + nsfw).find('"api":"' + tv['api'] + '"') > -1):
-                                continue
-                    else:
                     spare += '\r\n' + j
                     
             except Exception as ex:
                 LocalFile.write_LogFile(str(ex) + j)
         
         content = spare
-        LocalFile.write_LocalFile('./out/1102.txt', content)
-        print('读取并删除&写入到:./out/1102.txt已更新。')
+        content = remove_line(content)
+        LocalFile.write_LocalFile('./out/json.txt', content)
+        print('读取并删除&写入到:./out/json.txt已更新。')
 
     except Exception as ex:
         LocalFile.write_LogFile(str(ex))
