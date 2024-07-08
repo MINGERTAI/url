@@ -1,4 +1,5 @@
 import json
+import pprint
 with open("fatcat.json","rb") as f:
     dic = json.load(f)
     sites = dic["sites"]
