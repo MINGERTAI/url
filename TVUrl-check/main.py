@@ -1,40 +1,17 @@
 import json
-import requests
-from cls import LocalFile  # 假设这是你自定义的本地文件操作类
-
-headers = {'User-Agent': 'okhttp/3.15'}
-
-def download_file():
-    """
-    从指定 URL 下载文件并保存到本地路径。
-    """
-    try:
-        # 发送 HTTP GET 请求
-        url = "http://肥猫.com"
-        response = requests.get(url, headers=headers)
-        if response.status_code == 200:
-            # 转换响应的 JSON 数据为字符串
-            tvbox = json.dumps(response.json())
-            spare = ''
-            for j in tvbox.split('\n'):
-                try:
-                    if j != '' and j.find('"key":') > -1 and j.find('"name":') > -1 and j.find('"type":') > -1:
-                        # 过滤重复的电影网站
-                        if spare.find(j) > -1:
-                            continue
-                        spare += '\r\n' + j
-                except Exception as ex:
-                    LocalFile.write_LogFile(f"解析行时出错: {str(ex)} 行内容: {j}")
-   
-            content = spare
-            #LocalFile.write_LocalFile('./out/10.txt', content)
-            #print('读取并删除: ./out/10.txt 已更新。')
-            with open("./out/10.txt","wb") as f:
-                f.write(content,ensure_ascii=False)
+with open("fatcat.json","rb") as f:
+    dic = json.load(f)
+    sites = dic["sites"]
+    sites.append({'key': 'test', 'name': 'test', 'type': 3, 'api': 'csp_Douban', 'searchable': 0})  ## 新增
+    sites.remove(sites[-1])  ## 删除最后一行
     
-    except Exception as ex:
-        LocalFile.write_LogFile(f"下载或处理文件时出错: {str(ex)}")
-
-# 脚本的主逻辑
-if __name__ == "__main__":
-    download_file()
+local_content = json.dumps(dic,ensure_ascii=False)
+with open('./out/new_test.json', 'w', encoding='utf-8') as f:
+    for line in local_content.split('\n'):  # 将内容按行分割
+        if line.strip():  # 如果该行非空（移除空白字符后有内容）
+            if '},' in line:
+                line.strip('\r\n')
+                f.write(line + '\n')  # 将非空行写入到文件中，记得在最后加上 '\n' 以保持原有的行分割
+#with open("./out/new_test.json","wb") as f:
+    #f.write(json.dumps(dic,ensure_ascii=False).encode("utf-8"))
+    # f.write(json.dumps(dic,ensure_ascii=False,indent=4).encode("utf-8"))
