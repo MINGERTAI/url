@@ -53,13 +53,14 @@ if(menu == 'check'):
                             if((addtv + nsfw).find('"api":"' + tv['api'] + '"') > -1):
                                 continue
                     else:
-                        spare += '\r\n' + j
-                else:
-                    print('Main-Line-91-not-tvsite-url:' + j)
+                    spare += '\r\n' + j
+                    
             except Exception as ex:
-                LocalFile.write_LogFile('Main-Line-93-Exception:' + str(ex) + '\ntvsite:' + j)
+                LocalFile.write_LogFile(str(ex) + j)
+        
+        content = spare
+        LocalFile.write_LocalFile('./out/1102.txt', content)
+        print('读取并删除&写入到:./out/1102.txt已更新。')
 
-
-        LocalFile.write_LocalFile('./out/1121.txt', '\r\n' spare'\r\n],')
     except Exception as ex:
-        LocalFile.write_LogFile('Main-Line-108-Exception:' + str(ex))
+        LocalFile.write_LogFile(str(ex))
