@@ -7,6 +7,6 @@ data = {
     "type": 3,
     "api": "csp_Douban",
     "searchable": 0
-},
+}
 
 pprint.pprint(data)
