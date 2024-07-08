@@ -30,7 +30,7 @@ def download_file():
             #LocalFile.write_LocalFile('./out/10.txt', content)
             #print('读取并删除: ./out/10.txt 已更新。')
             with open("./out/10.txt","wb") as f:
-                f.write(json.dumps(content,ensure_ascii=False).encode("utf-8"))
+                f.write(content,ensure_ascii=False)
     
     except Exception as ex:
         LocalFile.write_LogFile(f"下载或处理文件时出错: {str(ex)}")
