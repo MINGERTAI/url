@@ -25,8 +25,7 @@ if(menu == 'check'):
         if(os.path.exists('./fatcat.json')):
             tvbox = LocalFile.read_LocalFile('./fatcat.json').replace('\r','').replace('\n\n','\n')
         spare = ''
-        new_string = tvbox.strip()
-        for j in new_string.split('\n'):
+        for j in tvbox.strip():
             try:
                 if j != '' and j.find('"key":') > -1 and j.find('"name":') > -1 and j.find('"type":') > -1 == -1:
                     # 过滤重复的电影网站
