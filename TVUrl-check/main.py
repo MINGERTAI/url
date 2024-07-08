@@ -24,10 +24,10 @@ if(menu == 'check'):
     try:
         if(os.path.exists('./fatcat.json')):
             tvbox = LocalFile.read_LocalFile('./fatcat.json').replace('\r','').replace('\n\n','\n')
-        tvbox = tvbox.replace('//{','\n{')
         new_string = tvbox.strip()
+        new1_string = new_string.replace('//{','\n{')
         spare = ''
-        for j in new_string.split('\n'):
+        for j in new1_string.split('\n'):
             try:
                 if(j != '' and j.find('"key":') > -1 and j.find('"name":') > -1 and j.find('"type":') > -1 == -1):
                     j = j.strip(',')
