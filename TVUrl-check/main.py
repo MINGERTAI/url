@@ -27,7 +27,8 @@ if(menu == 'check'):
         addtv = ''
         nsfw = ''
         spare = ''
-        tvbox = tvbox.replace('//{','\n{')
+        string = tvbox.replace('//{','\n{')
+        tvbox = string.lstrip()
         for j in tvbox.split('\n'):
             try:
                 if(j != '' and j.find('"key":') > -1 and j.find('"name":') > -1 and j.find('"type":') > -1 == -1):
