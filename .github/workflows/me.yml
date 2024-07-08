@@ -17,10 +17,7 @@ jobs:
 
     - name: Install dependencies
       run: |
-          pip install --upgrade pip
           pip install requests
-          pip install urllib3
-          pip install pytz
           pip install pprint
 
     - name: Run Python script
