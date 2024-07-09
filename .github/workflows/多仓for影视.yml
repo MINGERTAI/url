@@ -39,6 +39,18 @@ jobs:
          github_token: ${{ secrets.GITHUB_TOKEN }}
          branch: main
 
+    - name: 推送 配置到 Gitee
+      uses: ad-m/github-push-action@master
+      with:
+        github_token: ${{ secrets.GE_TOKEN }}
+        repository: ${{ secrets.GE_PATH }}
+        directory: .
+        branch: main
+        force: true
+        github_url: https://gitee.com
+      env:
+        GITHUB_ACTOR: ${{ secrets.GE_USER_NAME }}
+
     - name: Delete Workflow Runs
       uses: Mattraks/delete-workflow-runs@main
       continue-on-error: true
