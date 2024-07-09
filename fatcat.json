@@ -1,5 +1,5 @@
 {
-    "spider": "./fan/FatCat/PandaQ240706.jar;md5;384a04f3e3f53809edc4b5f4d08db447",
+    "spider": "./fan/FatCat/PandaQ240709.jar;md5;6000f27504f953030f0ac99e2d015085",
     "wallpaper": "http://like.xn--z7x900a.com/ppic/feimao.php",
     "logo": "http://like.xn--z7x900a.com/panda/0262.png",
     "sites": [
@@ -89,6 +89,15 @@
             "searchable": 1,
             "quickSearch": 1,
             "filterable": 1
+        },
+        {
+            "key": "csp_Netfixtv",
+            "name": "💌至臻┃影视",
+            "type": 3,
+            "api": "csp_Netfixtv",
+            "playerType": 2,
+            "filterable": 1,
+            "ext": ""
         },
         {
             "key": "csp_Panda_玩偶哥哥",
