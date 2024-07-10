@@ -1,42 +1,18 @@
-import json
-from cls import LocalFile
-import re
-import base64
 import requests
-import hashlib
-import configparser
-headers = {'User-Agent': 'okhttp/3.15'}
+from bs4 import BeautifulSoup
 
+def download_json(url):
+    response = requests.get(url)
+    if response.status_code == 200:
+        soup = BeautifulSoup(response.text, 'html.parser')
+        json_data = soup.find_all('script', type='application/json')[0].text.strip()
+        with open('./out/tvbox.json', 'w') as file:
+            file.write(json_data)
+        print("JSON文件已下载到当前目录下的'tvbox/tvbox.json'")
+    else:
+        print(f"请求失败，状态码：{response.status_code}")
 
-def get_dianshi():
+# 网页URL
+url = "http://tvbox.王二小放牛娃.xyz"
 
-    try:
-        # 发送 HTTP GET 请求
-        url = "https://raw.githubusercontent.com/ne7359/url/main/out/new_test.txt"
-        response = requests.get(url, headers=headers)
-        
-        # 检查请求是否成功
-        response.raise_for_status()
-
-        # 解析 JSON 内容
-        tvbox = response.text
-        spare = ''
-        
-        # 分行处理 JSON 内容
-        for j in tvbox.split('\n'):
-            try:
-                if j != '' and j.find('"key":') > -1 and j.find('"name":') > -1 and j.find('"type":') > -1:
-                    # 过滤重复的电影网站
-                    if spare.find(j) > -1:
-                        continue
-                    spare += '\r\n' + j
-            except Exception as ex:
-                LocalFile.write_LogFile(f"解析行时出错: {str(ex)} 行内容: {j}")
-   
-        content = spare
-        LocalFile.write_LocalFile('./out/11new.txt', content)
-        print('读取并删除:./out/new.txt已更新。')
-    
-    except Exception as ex:
-        LocalFile.write_LogFile(f"下载或处理文件时出错: {str(ex)}")
-get_dianshi()
+download_json(url)
