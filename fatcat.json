@@ -1,5 +1,5 @@
 {
-    "spider": "./fan/FatCat/PandaQ24070902.jar;md5;11996bd06b6692c6785adb899fc47fe3",
+    "spider": "./fan/FatCat/PandaQ240711.jar;md5;ba8110069297293eb2a9bdd190cff284",
     "wallpaper": "http://like.xn--z7x900a.com/ppic/feimao.php",
     "logo": "http://like.xn--z7x900a.com/panda/0262.png",
     "sites": [
@@ -51,6 +51,38 @@
             "filterable": 1
         },
         {
+            "key": "csp_SuBaiBai",
+            "name": "🏳️┃素白┃影视",
+            "type": 3,
+            "api": "csp_SuBaiBai"
+        },
+        {
+            "key": "csp_Zx1080",
+            "name": " 👰┃最新┃影视",
+            "type": 3,
+            "api": "csp_Zx1080",
+            "playerType": 2
+        },
+        {
+            "key": "csp_Ikan",
+            "name": "💕┃爱看┃影视",
+            "type": 3,
+            "api": "csp_Ikan",
+            "playerType": 2
+        },
+        {
+            "key": "csp_PTT",
+            "name": "🦨┃屁颠┃影视",
+            "type": 3,
+            "api": "csp_PTT"
+        },
+        {
+            "key": "csp_Taozi",
+            "name": "🍑┃桃子┃影视",
+            "type": 3,
+            "api": "csp_Taozi"
+        },
+        {
             "key": "哔嘀",
             "name": "😹┃哔嘀┃影视",
             "type": 3,
@@ -92,7 +124,7 @@
         },
         {
             "key": "csp_Netfixtv",
-            "name": "💌|至臻┃影视",
+            "name": "💌┃至臻┃影视",
             "type": 3,
             "api": "csp_Netfixtv",
             "playerType": 2,
