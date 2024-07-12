@@ -7,18 +7,24 @@ import requests
 import json
 import os
 
-# 使用确认的JSON数据URL
-json_url = "http://tvbox.王二小放牛娃.xyz/"
+# 目标URL
+url = "http://tvbox.王二小放牛娃.xyz/"  # 更新为实际的 JSON 数据 URL
 
 # 设置请求头，模拟浏览器请求
 headers = {
-    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.3"
+    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.3",
+    "Accept": "application/json,text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8",
+    "Accept-Encoding": "gzip, deflate, sdch, br",
+    "Accept-Language": "en-US,en;q=0.8,zh-CN;q=0.6,zh;q=0.4",
+    "Connection": "keep-alive"
 }
 
 # 发送GET请求
 try:
-    response = requests.get(json_url, headers=headers)
+    response = requests.get(url, headers=headers)
     response.raise_for_status()  # 检查请求是否成功
+    print(f"响应头: {response.headers}")
+    print(f"响应内容: {response.text[:1000]}")  # 打印响应内容的前1000个字符进行调试
 except requests.exceptions.RequestException as e:
     print(f"HTTP请求失败: {e}")
     exit(1)
