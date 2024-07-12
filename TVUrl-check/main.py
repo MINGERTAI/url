@@ -1,91 +1,44 @@
-# 目标URL
-# url = "https://www.xn--4kq62z5rby2qupq9ub.xyz/"  # 请确认此URL是否正确
-#url = "https://www.王小牛放牛娃.xyz/"  # 请确认此URL是否正确
-#url = "http://tvbox.王二小放牛娃.xyz/"  # 请确认此URL是否正确
-
+import requests
+from bs4 import BeautifulSoup
+import pyautogui
 import time
-import json
-import os
-from selenium import webdriver
-from selenium.webdriver.common.by import By
-from selenium.webdriver.chrome.service import Service
-from selenium.webdriver.chrome.options import Options
-from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
-from webdriver_manager.chrome import ChromeDriverManager
 
-# 设置解密网址和目标URL
-decrypt_url = "https://www.xn--sss604efuw.com/jm/"  # 替换为实际的解密网站URL
-target_url = "http://tvbox.王二小放牛娃.xyz/"
+# 解密网站地址
+decrypt_url = 'http://www.xn--sss604efuw.com/jm/'
 
-# 配置 Chrome 启动选项
-chrome_options = Options()
-chrome_options.add_argument('--headless')  # 无头模式
-chrome_options.add_argument('--no-sandbox')  # 禁用沙箱
-chrome_options.add_argument('--disable-dev-shm-usage')  # 禁用/dev/shm使用
-chrome_options.add_argument('--disable-gpu')  # 禁用GPU
+# 需要解密的网址
+target_url = 'http://tvbox.王二小放牛娃.xyz'
 
-# 启动 Chrome 浏览器
-service = Service(ChromeDriverManager().install())
-driver = webdriver.Chrome(service=service, options=chrome_options)
+# 请求解密页面
+response = requests.get(decrypt_url)
+soup = BeautifulSoup(response.text, 'html.parser')
 
-try:
-    # 打开解密网站
-    driver.get(decrypt_url)
+# 提取解密表单中的隐藏字段或必要的数据
+# 这里假设你需要提取的字段在表单中
+hidden_inputs = soup.find_all('input', type='hidden')
+form_data = {input.get('name'): input.get('value') for input in hidden_inputs}
 
-    # 增加调试信息
-    print("正在打开解密网站...")
-    
-    # 等待输入框加载完成
-    WebDriverWait(driver, 20).until(EC.presence_of_element_located((By.ID, "url")))
+# 添加目标网址到表单数据中
+form_data['url'] = target_url
 
-    # 找到输入框并输入目标URL
-    input_box = driver.find_element(By.ID, "url")
-    input_box.send_keys(target_url)
+# 提交解密请求
+response = requests.post(decrypt_url, data=form_data)
 
-    # 增加调试信息
-    print("输入目标URL...")
+# 解析解密后的结果
+soup = BeautifulSoup(response.text, 'html.parser')
+result = soup.find('textarea', id='result').text
 
-    # 找到解密按钮并点击
-    decrypt_button = driver.find_element(By.XPATH, "//button[contains(text(), '解密')]")
-    decrypt_button.click()
+# 将结果写入文件
+output_file_path = 'out/xy.txt'
+with open(output_file_path, 'w', encoding='utf-8') as file:
+    file.write(result)
 
-    # 增加调试信息
-    #print("点击解密按钮...")
-    print("解密")
+# 模拟点击复制操作
+# 这里假设复制功能在浏览器上已经可以通过一些快捷键完成
+pyautogui.hotkey('ctrl', 'a')  # 选择全部
+time.sleep(1)
+pyautogui.hotkey('ctrl', 'c')  # 复制到剪贴板
+time.sleep(1)
 
-    # 等待解密结果加载完成
-    WebDriverWait(driver, 20).until(EC.presence_of_element_located((By.ID, "result")))
-
-    # 获取解密后的JSON内容
-    result_area = driver.find_element(By.ID, "result")
-    decrypted_content = result_area.get_attribute('value')
-
-    # 增加调试信息
-    print("获取解密结果...")
-
-    # 解析JSON内容
-    try:
-        data = json.loads(decrypted_content)
-    except json.JSONDecodeError as e:
-        print(f"JSON解析失败: {e}")
-        print(f"解密内容: {decrypted_content[:1000]}")  # 打印内容的前1000个字符进行调试
-        exit(1)
-
-    # 创建输出目录
-    output_dir = 'out'
-    if not os.path.exists(output_dir):
-        os.makedirs(output_dir)
-
-    # 定义输出文件路径
-    output_file = os.path.join(output_dir, 'xyz.json')
-
-    # 将JSON内容写入文件
-    with open(output_file, 'w', encoding='utf-8') as f:
-        json.dump(data, f, ensure_ascii=False, indent=4)
-
-    print(f"JSON内容已保存到 {output_file}")
-
-finally:
-    # 关闭浏览器
-    driver.quit()
+# 确保复制完毕
+print(f"解密结果已保存到 {output_file_path}")
