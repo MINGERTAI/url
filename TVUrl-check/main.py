@@ -19,11 +19,11 @@ driver = webdriver.Chrome(options=chrome_options)
 driver.get("http://www.xn--sss604efuw.com/jm/")
 
 # 找到输入框，输入目标 URL
-input_box = driver.find_element(By.ID, "placeholder")  # 需要根据实际的 HTML 元素属性修改
+input_box = driver.find_element(By.ID, "url")  # 需要根据实际的 HTML 元素属性修改
 input_box.send_keys("http://tvbox.王二小放牛娃.xyz")
 
 # 点击解密按钮
-decrypt_button = driver.find_element(By.ID, "btn btn-warning")  # 需要根据实际的 HTML 元素属性修改
+decrypt_button = driver.find_element(By.ID, "result")  # 需要根据实际的 HTML 元素属性修改
 decrypt_button.click()
 
 # 等待解密完成
