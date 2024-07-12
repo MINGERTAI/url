@@ -13,7 +13,7 @@ from selenium.webdriver.chrome.options import Options
 from webdriver_manager.chrome import ChromeDriverManager
 
 # 设置解密网址和目标URL
-decrypt_url = "https://www.xn--sss604efuw.com/jm/"
+decrypt_url = "https://www.xn--sss604efuw.com/jm/"  # 替换为实际的解密网站URL
 target_url = "http://tvbox.王二小放牛娃.xyz/"
 
 # 配置 Chrome 启动选项
@@ -33,16 +33,16 @@ try:
     time.sleep(2)  # 等待页面加载
 
     # 找到输入框并输入目标URL
-    input_box = driver.find_element(By.TAG_NAME, "input")
+    input_box = driver.find_element(By.ID, "url")
     input_box.send_keys(target_url)
 
     # 找到解密按钮并点击
-    decrypt_button = driver.find_element(By.XPATH, "//button[contains(text(), '一键解密')]")
+    decrypt_button = driver.find_element(By.XPATH, "//button[contains(text(), '解密')]")
     decrypt_button.click()
     time.sleep(5)  # 等待解密结果加载
 
     # 获取解密后的JSON内容
-    result_area = driver.find_element(By.TAG_NAME, "textarea")
+    result_area = driver.find_element(By.ID, "result")
     decrypted_content = result_area.get_attribute('value')
 
     # 解析JSON内容
