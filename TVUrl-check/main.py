@@ -8,17 +8,24 @@ import json
 import os
 from selenium import webdriver
 from selenium.webdriver.common.by import By
-from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.chrome.service import Service
+from selenium.webdriver.chrome.options import Options
 from webdriver_manager.chrome import ChromeDriverManager
 
 # 设置解密网址和目标URL
 decrypt_url = "https://lige.chat/ua"
 target_url = "http://tvbox.王二小放牛娃.xyz/"
 
+# 配置 Chrome 启动选项
+chrome_options = Options()
+chrome_options.add_argument('--headless')  # 无头模式
+chrome_options.add_argument('--no-sandbox')  # 禁用沙箱
+chrome_options.add_argument('--disable-dev-shm-usage')  # 禁用/dev/shm使用
+chrome_options.add_argument('--disable-gpu')  # 禁用GPU
+
 # 启动 Chrome 浏览器
 service = Service(ChromeDriverManager().install())
-driver = webdriver.Chrome(service=service)
+driver = webdriver.Chrome(service=service, options=chrome_options)
 
 try:
     # 打开解密网站
