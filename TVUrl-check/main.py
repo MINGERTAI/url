@@ -10,6 +10,8 @@ from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
 from webdriver_manager.chrome import ChromeDriverManager
 
 # 设置解密网址和目标URL
@@ -30,7 +32,9 @@ driver = webdriver.Chrome(service=service, options=chrome_options)
 try:
     # 打开解密网站
     driver.get(decrypt_url)
-    time.sleep(2)  # 等待页面加载
+
+    # 等待输入框加载完成
+    WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.ID, "url")))
 
     # 找到输入框并输入目标URL
     input_box = driver.find_element(By.ID, "url")
@@ -39,7 +43,9 @@ try:
     # 找到解密按钮并点击
     decrypt_button = driver.find_element(By.XPATH, "//button[contains(text(), '解密')]")
     decrypt_button.click()
-    time.sleep(5)  # 等待解密结果加载
+
+    # 等待解密结果加载完成
+    WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.ID, "result")))
 
     # 获取解密后的JSON内容
     result_area = driver.find_element(By.ID, "result")
