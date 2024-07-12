@@ -25,4 +25,4 @@ def fetch_and_save(url, output_dir):
                 print(f"Failed to download {href}: {e}")
 
 if __name__ == '__main__':
-    fetch_and_save('http://www.饭太硬.com/', './out/test/')
+    fetch_and_save('http://www.饭太硬.com/jm/', './out/test/')
