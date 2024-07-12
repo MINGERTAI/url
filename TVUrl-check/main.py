@@ -3,7 +3,8 @@ import json
 import os
 
 # 目标URL
-url = "https://www.xn--4kq62z5rby2qupq9ub.xyz/"  # 请确认此URL是否正确
+# url = "https://www.xn--4kq62z5rby2qupq9ub.xyz/"  # 请确认此URL是否正确
+url = "https://www.王小牛放牛娃.xyz/"  # 请确认此URL是否正确
 
 # 设置请求头，模拟浏览器请求
 headers = {
