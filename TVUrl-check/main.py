@@ -13,7 +13,7 @@ from selenium.webdriver.chrome.options import Options
 from webdriver_manager.chrome import ChromeDriverManager
 
 # 设置解密网址和目标URL
-decrypt_url = "https://lige.chat/ua"
+decrypt_url = "https://www.xn--sss604efuw.com/jm/"
 target_url = "http://tvbox.王二小放牛娃.xyz/"
 
 # 配置 Chrome 启动选项
