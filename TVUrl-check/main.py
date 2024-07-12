@@ -1,44 +1,45 @@
 from selenium import webdriver
 from selenium.webdriver.common.by import By
+from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.keys import Keys
-import os
+from selenium.webdriver.common.action_chains import ActionChains
 import time
 
-# 解密网站地址
-decrypt_url = 'http://www.xn--sss604efuw.com/jm/'
+# 配置 Chrome 选项
+chrome_options = Options()
+chrome_options.add_argument("--headless")  # 无头模式
+chrome_options.add_argument("--no-sandbox")
+chrome_options.add_argument("--disable-dev-shm-usage")
+chrome_options.add_argument("--disable-gpu")
 
-# 需要解密的网址
-target_url = 'http://tvbox.王二小放牛娃.xyz'
+# 启动 Chrome 浏览器
+driver = webdriver.Chrome(options=chrome_options)
 
-# 设置WebDriver
-driver = webdriver.Chrome()  # 或使用其他浏览器驱动程序，如 Firefox、Edge 等
-driver.get(decrypt_url)
+# 打开解密网站
+driver.get("http://www.xn--sss604efuw.com/jm/")
 
-# 等待页面加载
-time.sleep(2)
+# 找到输入框，输入目标 URL
+input_box = driver.find_element(By.ID, "input")  # 需要根据实际的 HTML 元素属性修改
+input_box.send_keys("http://tvbox.王二小放牛娃.xyz")
 
-# 找到输入框并输入网址
-input_box = driver.find_element(By.ID, 'url_input')  # 假设输入框的ID是'url_input'
-input_box.send_keys(target_url)
-input_box.send_keys(Keys.RETURN)  # 提交表单
+# 点击解密按钮
+decrypt_button = driver.find_element(By.ID, "decrypt-button")  # 需要根据实际的 HTML 元素属性修改
+decrypt_button.click()
 
 # 等待解密完成
-time.sleep(5)  # 根据实际情况调整等待时间
+time.sleep(3)  # 根据实际情况调整等待时间
 
-# 获取解密结果
-result_area = driver.find_element(By.ID, 'result')  # 假设结果区域的ID是'result'
-result = result_area.text
+# 点击复制按钮
+copy_button = driver.find_element(By.ID, "copy-button")  # 需要根据实际的 HTML 元素属性修改
+copy_button.click()
 
-# 确保保存目录存在
-output_dir = 'out'
-os.makedirs(output_dir, exist_ok=True)
+# 获取剪贴板内容
+# 在无头浏览器中无法直接获取剪贴板内容，这里假设解密后的内容显示在页面上的某个元素中
+decrypted_content = driver.find_element(By.ID, "decrypted-content").text  # 需要根据实际的 HTML 元素属性修改
 
-# 将结果写入文件
-output_file_path = os.path.join(output_dir, 'xy.txt')
-with open(output_file_path, 'w', encoding='utf-8') as file:
-    file.write(result)
-
-print(f"解密结果已保存到 {output_file_path}")
+# 将内容保存到文件
+with open("out/xy.txt", "w", encoding="utf-8") as file:
+    file.write(decrypted_content)
 
 # 关闭浏览器
 driver.quit()
