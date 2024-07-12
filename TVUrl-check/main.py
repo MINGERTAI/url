@@ -8,23 +8,19 @@ import json
 import os
 import requests
 import sys
+from cls import LocalFile
 
 import re
 import base64
 import hashlib
 import configparser
+headers = {'User-Agent': 'okhttp/3.15'}
 
 # 目标URL
 url = "http://tvbox.王二小放牛娃.xyz/"  # 更新为实际的 JSON 数据 URL
 
 # 设置请求头，模拟浏览器请求
-headers = {
-    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.3",
-    "Accept": "application/json,text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8",
-    "Accept-Encoding": "gzip, deflate, sdch, br",
-    "Accept-Language": "en-US,en;q=0.8,zh-CN;q=0.6,zh;q=0.4",
-    "Connection": "keep-alive"
-}
+
 
 # 发送GET请求
 try:
