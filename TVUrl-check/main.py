@@ -30,7 +30,7 @@ decrypt_button.click()
 time.sleep(3)  # 根据实际情况调整等待时间
 
 # 点击复制按钮
-copy_button = driver.find_element(By.ID, "copy-button")  # 需要根据实际的 HTML 元素属性修改
+copy_button = driver.find_element(By.ID, "result")  # 需要根据实际的 HTML 元素属性修改
 copy_button.click()
 
 # 获取剪贴板内容
