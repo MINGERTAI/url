@@ -18,6 +18,7 @@ jobs:
     - name: Install dependencies
       run: |
           pip install requests beautifulsoup4
+          pip install selenium
           
     - name: Run Python script
       run: python ./TVUrl-check/main.py
