@@ -29,7 +29,7 @@ soup = BeautifulSoup(response.text, 'html.parser')
 result = soup.find('textarea', id='result').text
 
 # 将结果写入文件
-output_file_path = 'out/xy.txt'
+output_file_path = './out/xy.txt'
 with open(output_file_path, 'w', encoding='utf-8') as file:
     file.write(result)
 
