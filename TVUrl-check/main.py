@@ -52,7 +52,7 @@ try:
 
     # 增加调试信息
     #print("点击解密按钮...")
-    print("点击解密按钮...")
+    print("解密")
 
     # 等待解密结果加载完成
     WebDriverWait(driver, 20).until(EC.presence_of_element_located((By.ID, "result")))
