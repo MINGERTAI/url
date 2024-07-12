@@ -19,6 +19,7 @@ jobs:
       run: |
           pip install requests
           pip install beautifulsoup4
+          pip install selenium webdriver_manager
           # pip install pprint
 
     - name: Run Python script
