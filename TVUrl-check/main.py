@@ -15,7 +15,7 @@ from selenium.webdriver.support import expected_conditions as EC
 from webdriver_manager.chrome import ChromeDriverManager
 
 # 设置解密网址和目标URL
-decrypt_url = "https://example.com"  # 替换为实际的解密网站URL
+decrypt_url = "https://www.xn--sss604efuw.com/jm/"  # 替换为实际的解密网站URL
 target_url = "http://tvbox.王二小放牛娃.xyz/"
 
 # 配置 Chrome 启动选项
@@ -37,10 +37,10 @@ try:
     print("正在打开解密网站...")
     
     # 等待输入框加载完成
-    WebDriverWait(driver, 20).until(EC.presence_of_element_located((By.XPATH, "//input[@id='url']")))
+    WebDriverWait(driver, 20).until(EC.presence_of_element_located((By.ID, "url")))
 
     # 找到输入框并输入目标URL
-    input_box = driver.find_element(By.XPATH, "//input[@id='url']")
+    input_box = driver.find_element(By.ID, "url")
     input_box.send_keys(target_url)
 
     # 增加调试信息
@@ -54,10 +54,10 @@ try:
     print("点击解密按钮...")
 
     # 等待解密结果加载完成
-    WebDriverWait(driver, 20).until(EC.presence_of_element_located((By.XPATH, "//textarea[@id='result']")))
+    WebDriverWait(driver, 20).until(EC.presence_of_element_located((By.ID, "result")))
 
     # 获取解密后的JSON内容
-    result_area = driver.find_element(By.XPATH, "//textarea[@id='result']")
+    result_area = driver.find_element(By.ID, "result")
     decrypted_content = result_area.get_attribute('value')
 
     # 增加调试信息
