@@ -1,11 +1,14 @@
+# 目标URL
+# url = "https://www.xn--4kq62z5rby2qupq9ub.xyz/"  # 请确认此URL是否正确
+#url = "https://www.王小牛放牛娃.xyz/"  # 请确认此URL是否正确
+#url = "http://tvbox.王二小放牛娃.xyz/"  # 请确认此URL是否正确
+
 import requests
 import json
 import os
 
-# 目标URL
-# url = "https://www.xn--4kq62z5rby2qupq9ub.xyz/"  # 请确认此URL是否正确
-url = "https://www.王小牛放牛娃.xyz/"  # 请确认此URL是否正确
-url = "http://tvbox.王二小放牛娃.xyz/"  # 请确认此URL是否正确
+# 使用确认的JSON数据URL
+json_url = "http://tvbox.王二小放牛娃.xyz/"
 
 # 设置请求头，模拟浏览器请求
 headers = {
@@ -14,7 +17,7 @@ headers = {
 
 # 发送GET请求
 try:
-    response = requests.get(url, headers=headers)
+    response = requests.get(json_url, headers=headers)
     response.raise_for_status()  # 检查请求是否成功
 except requests.exceptions.RequestException as e:
     print(f"HTTP请求失败: {e}")
