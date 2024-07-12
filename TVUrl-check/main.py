@@ -3,24 +3,23 @@
 #url = "https://www.王小牛放牛娃.xyz/"  # 请确认此URL是否正确
 #url = "http://tvbox.王二小放牛娃.xyz/"  # 请确认此URL是否正确
 
-import datetime
+import requests
 import json
 import os
-import requests
 import sys
-from cls import LocalFile
-
 import re
 import base64
 import hashlib
 import configparser
-headers = {'User-Agent': 'okhttp/3.15'}
+from datetime import datetime
+
+# 设置请求头，模拟浏览器请求
+headers = {
+    'User-Agent': 'okhttp/3.15'
+}
 
 # 目标URL
 url = "http://tvbox.王二小放牛娃.xyz/"  # 更新为实际的 JSON 数据 URL
-
-# 设置请求头，模拟浏览器请求
-
 
 # 发送GET请求
 try:
@@ -30,6 +29,12 @@ try:
     print(f"响应内容: {response.text[:1000]}")  # 打印响应内容的前1000个字符进行调试
 except requests.exceptions.RequestException as e:
     print(f"HTTP请求失败: {e}")
+    exit(1)
+
+# 检查响应的Content-Type以确认是否为JSON
+content_type = response.headers.get('Content-Type')
+if 'application/json' not in content_type:
+    print(f"响应的Content-Type不是JSON: {content_type}")
     exit(1)
 
 # 尝试解析JSON内容
