@@ -27,7 +27,6 @@ def get_dianshi():
 
     try:
         # 删除原有的 ./out/new.txt 文件（如果存在）
-        live_content = LocalFile.read_LocalFile("./out/new.txt")
         if os.path.exists('./out/new.txt'):
             os.remove('./out/new.txt')
         else:
