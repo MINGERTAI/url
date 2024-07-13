@@ -21,7 +21,6 @@ jobs:
     - name: Install dependencies
       run: |
         pip install requests
-        rm -rf ./out/new.txt
 
     - name: Run Python script
       run: python ./fan/main.py
