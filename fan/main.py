@@ -25,6 +25,11 @@ def remove_url_key(content):
 def get_dianshi():
 
     try:
+        # 删除原有的 ./out/new.txt 文件（如果存在）
+        if os.path.exists('./out/new.txt'):
+            os.remove('./out/new.txt')
+            print('已删除原有的 ./out/new.txt 文件。')
+
         # 发送 HTTP GET 请求
         url = "https://raw.githubusercontent.com/qist/tvbox/master/dianshi.json"
         response = requests.get(url, headers=headers)
