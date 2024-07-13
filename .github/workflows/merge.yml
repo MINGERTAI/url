@@ -19,7 +19,9 @@ jobs:
         python-version: 3.x
 
     - name: Install dependencies
-      run: pip install requests
+      run: |
+        rm -rf ./out/new.txt
+        pip install requests
 
     - name: Run Python script
       run: python ./fan/main.py
