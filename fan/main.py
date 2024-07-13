@@ -1,5 +1,5 @@
 import json
-from cls import LocalFile
+from cls import LocalFile, NetFile
 import re
 import base64
 import requests
@@ -27,7 +27,8 @@ def get_dianshi():
     try:
         # 删除原有的 ./out/new.txt 文件（如果存在）
         if os.path.exists('./out/new.txt'):
-            os.remove('./out/new.txt')
+            deltxt = LocalFile.read_LocalFile('./out/new.txt')
+            os.remove('deltxt')
             print('已删除原有的 ./out/new.txt 文件。')
 
         # 发送 HTTP GET 请求
