@@ -30,6 +30,7 @@ def get_dianshi():
         if os.path.exists('./out/new.txt'):
             newtxt = LocalFile.read_LocalFile('./out/new.txt')
             os.remove('newtxt')
+        else:
             print('已删除原有的 ./out/new.txt 文件。')
 
         # 发送 HTTP GET 请求
