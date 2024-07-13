@@ -1,6 +1,6 @@
 import json
 from cls import LocalFile
-import os
+import os, sys
 import re
 import base64
 import requests
