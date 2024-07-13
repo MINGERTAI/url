@@ -20,8 +20,8 @@ jobs:
 
     - name: Install dependencies
       run: |
-        rm -rf ./out/new.txt
         pip install requests
+        rm -rf ./out/new.txt
 
     - name: Run Python script
       run: python ./fan/main.py
