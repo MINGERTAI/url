@@ -55,10 +55,6 @@
         {
             "name": "💦巧技",
             "url": "http://pandown.pro/tvbox/tvbox.json"
-        },
-        {
-            "name": "18+",
-            "url": "https://raw.githubusercontent.com/qist/tvbox/master/9918.json"
         }
     ]
 }
