@@ -26,7 +26,9 @@ jobs:
       run: python ./fan/main.py
   
     - name: Run ls
-      run: ls -l
+      run: |
+        ls -l
+        ls ./out -l
 
     - id: check
       name: Check for changes
