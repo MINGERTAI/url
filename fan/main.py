@@ -1,6 +1,5 @@
 import json
 from cls import LocalFile
-import os, sys
 import re
 import base64
 import requests
@@ -26,13 +25,6 @@ def remove_url_key(content):
 def get_dianshi():
 
     try:
-        # 删除原有的 ./out/new.txt 文件（如果存在）
-        file_exists = os.path.isfile('./out/new.txt')
-        if file_exists:
-            os.remove('./out/new.txt')
-        else:
-            print('已删除原有的 ./out/new.txt 文件。')
-
         # 发送 HTTP GET 请求
         url = "https://raw.githubusercontent.com/qist/tvbox/master/dianshi.json"
         response = requests.get(url, headers=headers)
