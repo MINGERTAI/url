@@ -22,13 +22,16 @@ jobs:
       run: |
         pip install requests
 
+    - id: delnew
+      name: Check for changes
+      run: |
+        rm -rf ./out/new.txt
+        git config --global user.name "GitHub Actions"
+        git config --global user.email "actions@github.com"
+        #git commit -m "update" --allow-empty
+
     - name: Run Python script
       run: python ./fan/main.py
-  
-    - name: Run ls
-      run: |
-        ls -l
-        ls ./out -l
 
     - id: check
       name: Check for changes
