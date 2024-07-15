@@ -27,7 +27,8 @@ def get_dianshi():
 
     try:
         # 删除原有的 ./out/new.txt 文件（如果存在）
-        if os.path.exists('./out/new.txt'):
+        file_exists = os.path.isfile('./out/new.txt')
+        if file_exists:
             os.remove('./out/new.txt')
         else:
             print('已删除原有的 ./out/new.txt 文件。')
