@@ -13,7 +13,6 @@ chrome_options.add_argument("--window-size=1920x1080")  # 设置窗口大小以�
 chrome_options.add Example
 
 # 启动 Chrome 浏览器
-Add Example
 driver = webdriver.Chrome(options=chrome_options)
 
 try:
