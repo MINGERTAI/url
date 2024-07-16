@@ -46,7 +46,13 @@ def get_dianshi():
                     spare += '\r\n' + j
             except Exception as ex:
                 LocalFile.write_LogFile(f"解析行时出错: {str(ex)} 行内容: {j}")
-   
+
+        # 删除原有的 ./out/new.txt 文件（如果存在）
+        output_path = "./out/new.txt"
+        if os.path.exists(output_path):
+            os.remove(output_path)
+            print('已删除原有的 ./out/new.txt 文件。')
+        
         content = spare
         content = remove_url_key(content)
         LocalFile.write_LocalFile('./out/new.txt', content)
