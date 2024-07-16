@@ -6,7 +6,7 @@ from selenium.webdriver.chrome.service import Service
  
 options = webdriver.ChromeOptions()
 options.add_argument('lang=zh_CN.UTF-8')
-self.driver = webdriver.Chrome(chrome_options=options)
+driverr = webdriver.Chrome(chrome_options=options)
 
 try:
     # 打开解密网站
