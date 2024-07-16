@@ -1,18 +1,23 @@
+
 from selenium import webdriver
-from selenium.webdriver.common.by import By
+from time import sleep
 from selenium.webdriver.chrome.options import Options
-import time
-
-# 配置 Chrome 选项
+from selenium.webdriver.chrome.service import Service
+ 
 chrome_options = Options()
-chrome_options.add_argument('headless')  # 无头模式
-chrome_options.add_argument('no-sandbox')
-chrome_options.add_argument('disable-dev-shm-usage')
-chrome_options.add_argument('disable-gpu')
-chrome_options.add_argument('window-size=1920x1080')  # 设置窗口大小以防止某些元素不可见
+# non visual interface
+chrome_options.add_argument('--headless')
+chrome_options.add_argument('--disable-gpu')
+# avoid detection risks
+chrome_options.add_experimental_option('excludeSwitches', ['enable-automation'])
+ 
+ 
+# 创建一个Service对象，指定ChromeDriver的路径
+service = Service('./chromedriver.exe')
+# 通过Service对象来初始化Chrome WebDriver
+driver = webdriver.Chrome(service=service, options=chrome_options)
 
-# 启动 Chrome 浏览器
-driver = webdriver.Chrome(options=chrome_options)
+
 
 try:
     # 打开解密网站
