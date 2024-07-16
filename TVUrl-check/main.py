@@ -12,6 +12,7 @@ chrome_options.add_argument("--disable-gpu")
 chrome_options.add_argument("--window-size=1920x1080")  # 设置窗口大小以防止某些元素不可见
 
 # 启动 Chrome 浏览器
+options.page_load_strategy = 'normal'
 driver = webdriver.Chrome(options=chrome_options)
 
 try:
