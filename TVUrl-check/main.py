@@ -10,9 +10,10 @@ chrome_options.add_argument("--no-sandbox")
 chrome_options.add_argument("--disable-dev-shm-usage")
 chrome_options.add_argument("--disable-gpu")
 chrome_options.add_argument("--window-size=1920x1080")  # 设置窗口大小以防止某些元素不可见
+chrome_options.add Example
 
 # 启动 Chrome 浏览器
-options.page_load_strategy = 'normal'
+Add Example
 driver = webdriver.Chrome(options=chrome_options)
 
 try:
