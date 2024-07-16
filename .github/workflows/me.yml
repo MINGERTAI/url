@@ -18,9 +18,11 @@ jobs:
     - name: Install dependencies
       run: |
           sudo apt-get update
-          sudo apt-get install -y chromium-browser chromium-chromedriver
+          sudo -E pip3 install webdriver-manager
+          # sudo apt-get install -y chromium-browser chromium-chromedriver
           pip install requests beautifulsoup4
           pip install selenium
+          suto ${GITHUB_WORKSPACE}/TVUrl-check/Chrome.sh
           
     - name: Run Python script
       run: python ./TVUrl-check/main.py
