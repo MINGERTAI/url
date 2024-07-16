@@ -22,7 +22,7 @@ jobs:
           # sudo apt-get install -y chromium-browser chromium-chromedriver
           pip install requests beautifulsoup4
           pip install selenium
-          suto ${GITHUB_WORKSPACE}/TVUrl-check/Chrome.sh
+          #suto ${GITHUB_WORKSPACE}/TVUrl-check/Chrome.sh
           
     - name: Run Python script
       run: python ./TVUrl-check/main.py
