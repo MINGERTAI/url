@@ -1,6 +1,7 @@
 import json
 from cls import LocalFile
 import re
+import os
 import base64
 import requests
 import hashlib
