@@ -4,20 +4,9 @@ from time import sleep
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.chrome.service import Service
  
-chrome_options = Options()
-# non visual interface
-chrome_options.add_argument('--headless')
-chrome_options.add_argument('--disable-gpu')
-# avoid detection risks
-chrome_options.add_experimental_option('excludeSwitches', ['enable-automation'])
- 
- 
-# 创建一个Service对象，指定ChromeDriver的路径
-service = Service('./chromedriver.exe')
-# 通过Service对象来初始化Chrome WebDriver
-driver = webdriver.Chrome(service=service, options=chrome_options)
-
-
+options = webdriver.ChromeOptions()
+options.add_argument('lang=zh_CN.UTF-8')
+self.driver = webdriver.Chrome(chrome_options=options)
 
 try:
     # 打开解密网站
