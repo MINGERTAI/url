@@ -2,17 +2,22 @@ from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.chrome.options import Options
 import time
+import os
 
 # 配置 Chrome 选项
 chrome_options = Options()
-chrome_options.add_argument('headless')  # 无头模式
-chrome_options.add_argument('no-sandbox')
-chrome_options.add_argument('disable-dev-shm-usage')
-chrome_options.add_argument('disable-gpu')
-chrome_options.add_argument('window-size=1920x1080')  # 设置窗口大小以防止某些元素不可见
+chrome_options.add_argument('--headless')  # 无头模式
+chrome_options.add_argument('--no-sandbox')
+chrome_options.add_argument('--disable-dev-shm-usage')
+chrome_options.add_argument('--disable-gpu')
+chrome_options.add_argument('--window-size=1920x1080')  # 设置窗口大小以防止某些元素不可见
+
+# 指定 ChromeDriver 的路径
+chrome_driver_path = '/usr/local/bin/chromedriver'  # 请确保路径正确
+chrome_options.binary_location = '/usr/bin/google-chrome'  # 请确保路径正确
 
 # 启动 Chrome 浏览器
-driver = webdriver.Chrome(options=chrome_options)
+driver = webdriver.Chrome(executable_path=chrome_driver_path, options=chrome_options)
 try:
     # 打开解密网站
     driver.get("http://www.xn--sss604efuw.com/jm/")
