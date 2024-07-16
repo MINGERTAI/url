@@ -1,13 +1,18 @@
-
 from selenium import webdriver
-from time import sleep
+from selenium.webdriver.common.by import By
 from selenium.webdriver.chrome.options import Options
-from selenium.webdriver.chrome.service import Service
- 
-options = webdriver.ChromeOptions()
-options.add_argument('lang=zh_CN.UTF-8')
-driverr = webdriver.Chrome(chrome_options=options)
+import time
 
+# 配置 Chrome 选项
+chrome_options = Options()
+chrome_options.add_argument('headless')  # 无头模式
+chrome_options.add_argument('no-sandbox')
+chrome_options.add_argument('disable-dev-shm-usage')
+chrome_options.add_argument('disable-gpu')
+chrome_options.add_argument('window-size=1920x1080')  # 设置窗口大小以防止某些元素不可见
+
+# 启动 Chrome 浏览器
+driver = webdriver.Chrome(options=chrome_options)
 try:
     # 打开解密网站
     driver.get("http://www.xn--sss604efuw.com/jm/")
