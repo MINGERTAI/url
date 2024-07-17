@@ -19,7 +19,7 @@ try:
 
     # 找到输入框，输入目标 URL
     input_box = driver.find_element(By.ID, "url")
-    input_box.send_keys("http://tvbox.王二小放牛娃.xyz")
+    input_box.send_keys("http://tvbox.王二小放牛娃.top")
 
     # 点击解密按钮
     decrypt_button = driver.find_element(By.XPATH, "//button[contains(text(),'解密')]")
