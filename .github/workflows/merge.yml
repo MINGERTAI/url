@@ -57,7 +57,7 @@ jobs:
         force: true
         github_url: https://gitee.com
       env:
-        GITHUB_ACTOR: ${{ secrets.GH_USER_NAME }}
+        GITHUB_ACTOR: ${{ secrets.GH_ACTOR }}
 
     # 利用action把build好的文件上传到服务器/var/www/app路径下,需要确认此目录已在服务端创建
     #- name: 上传文件
