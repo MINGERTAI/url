@@ -52,12 +52,16 @@ jobs:
         git add ./c.json ./fatcat.json ./jar ./js ./json ./lib
         git commit -m "更新完成" || echo "No changes to commit"
 
-    - name: Force Push to Gitee
-      run: |
-        git remote add gitee https://gitee.com/MINGERTAI/tvbox-json
-        git push -f gitee main
+    - name: Push Config To Github
+      uses: ad-m/github-push-action@master
+      with:
+        github_token: ${{ secrets.GE_TOKEN }}
+        repository: MINGERTAI/tvbox-json
+        directory: .
+        branch: main
+        force: true
       env:
-        GITHUB_TOKEN: ${{ secrets.GE_TOKEN }}
+        GITHUB_ACTOR: GH_ACTOR
 
     - name: Delete Workflow Runs
       uses: Mattraks/delete-workflow-runs@main
