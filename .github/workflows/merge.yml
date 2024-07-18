@@ -42,30 +42,22 @@ jobs:
          github_token: ${{ secrets.GITHUB_TOKEN }}
          branch: main
 
-    - name: Push Gitee
+    - name: Configure Git
       run: |
         git config --global user.name "GitHub Actions"
         git config --global user.email "actions@github.com"
-        git add ./c.json
-        git add ./fatcat.json
-        git add ./jar
-        git add ./js
-        git add ./json
-        git add ./lib
-        git commit  ./c.json ./fatcat.json ./jar ./json ./lib -m [更新完成]
-        git push -f origin
 
-    - name: Push JS Config Changes To Gitee
-      uses: ad-m/github-push-action@master
-      with:
-        github_token: ${{ secrets.GE_TOKEN }}
-        repository: ${{ secrets.GE_TVBOX }}
-        directory: .
-        branch: main
-        force: true
-        github_url: https://gitee.com
+    - name: Add changes to git
+      run: |
+        git add ./c.json ./fatcat.json ./jar ./js ./json ./lib
+        git commit -m "更新完成" || echo "No changes to commit"
+
+    - name: Force Push to Gitee
+      run: |
+        git remote add gitee https://gitee.com/${{ secrets.GE_TVBOX }}
+        git push -f gitee main
       env:
-        GITHUB_ACTOR: ${{ secrets.GH_ACTOR }}
+        GITHUB_TOKEN: ${{ secrets.GE_TOKEN }}
 
     - name: Delete Workflow Runs
       uses: Mattraks/delete-workflow-runs@main
