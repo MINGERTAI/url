@@ -54,7 +54,7 @@ jobs:
 
     - name: Force Push to Gitee
       run: |
-        git remote add gitee https://gitee.com/${{ secrets.GE_TVBOX_JSON }}
+        git remote add gitee https://gitee.com/MINGERTAI/tvbox-json
         git push -f gitee main
       env:
         GITHUB_TOKEN: ${{ secrets.GE_TOKEN }}
