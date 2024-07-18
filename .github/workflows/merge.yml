@@ -15,7 +15,6 @@ jobs:
       
     - name: Set Git Identity
       run : |
-        set +e
         sudo timedatectl set-timezone "Asia/Shanghai"
         git config --global user.name "GitHub Actions"
         git config --global user.email "actions@github.com"
