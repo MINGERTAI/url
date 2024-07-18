@@ -1,5 +1,5 @@
 {
-    "spider": "./fan/FatCat/PandaQ240715.jar;md5;5726820db7171fd98050c34db7639dfa",
+    "spider": "./fan/FatCat/PandaQ240718.jar;md5;c055fe55449cac6eb7d7ce2286e507d1",
     "wallpaper": "http://like.xn--z7x900a.com/ppic/feimao.php",
     "logo": "http://like.xn--z7x900a.com/panda/0262.png",
     "sites": [
@@ -207,6 +207,15 @@
             "name": "👯┃兄弟┃影视",
             "type": 3,
             "api": "csp_Xdys",
+            "searchable": 1,
+            "quickSearch": 1,
+            "filterable": 1
+        },
+        {
+            "key": "达达龟",
+            "name": "👯┃达达龟┃影视",
+            "type": 3,
+            "api": "csp_Dadag",
             "searchable": 1,
             "quickSearch": 1,
             "filterable": 1
