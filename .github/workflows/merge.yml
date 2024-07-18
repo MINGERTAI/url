@@ -47,13 +47,13 @@ jobs:
          github_token: ${{ secrets.GITHUB_TOKEN }}
          branch: main
 
-    - name: 推送 配置到 Gitee
+    - name: Push JS Config Changes To Gitee
       uses: ad-m/github-push-action@master
       with:
         github_token: ${{ secrets.GE_TOKEN }}
         repository: MINGERTAI/new
         directory: .
-        branch: main
+        branch: master
         force: true
         github_url: https://gitee.com
       env:
