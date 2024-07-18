@@ -48,13 +48,6 @@ jobs:
          github_token: ${{ secrets.GITHUB_TOKEN }}
          branch: main
 
-    - name: Push Gitee
-      run: |
-        cp ./b.json ./new
-        cp ./fatcat.json ./new
-        commit_msg="* 发布 更新"
-        git commit -a -m "$commit_msg"
-
     - name: Push JS Config Changes To Gitee
       uses: ad-m/github-push-action@master
       with:
