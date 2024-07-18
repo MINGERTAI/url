@@ -12,6 +12,13 @@ jobs:
     steps:
     - name: Checkout code
       uses: actions/checkout@v4
+      
+    - name: Set Git Identity
+      run : |
+        set +e
+        sudo timedatectl set-timezone "Asia/Shanghai"
+        git config --global user.name "GitHub Actions"
+        git config --global user.email "actions@github.com"
 
     - name: Set up Python
       uses: actions/setup-python@v5 
@@ -30,8 +37,6 @@ jobs:
       run: |
         rm -rf tmp
         rm -rf ./fan/cls/__pycache__
-        git config --global user.name "GitHub Actions"
-        git config --global user.email "actions@github.com"
         git add .
         git commit -m "update" --allow-empty
 
@@ -42,17 +47,19 @@ jobs:
          github_token: ${{ secrets.GITHUB_TOKEN }}
          branch: main
 
-    - name: Configure Git
+    - name: 暂存提交
       run: |
-        git config --global user.name "GitHub Actions"
-        git config --global user.email "actions@github.com"
-
-    - name: Add changes to git
-      run: |
+        # git config --global user.name ${{ secrets.GIT_USER_NAME }}
+        # git config --global user.email ${{ secrets.GIT_USER_EMAIL }}
+        export TZ='Asia/Shanghai'
         git add ./c.json ./fatcat.json ./jar ./js ./json ./lib
-        git commit -m "更新完成" || echo "No changes to commit"
+        git commit -m "update" -a
+    - name: 推送
+      uses: ad-m/github-push-action@master
+      with:
+        github_token: ${{ secrets.MY_TOKEN }}
 
-    - name: Push Config To Github
+    - name: 推送 配置到 Gitee
       uses: ad-m/github-push-action@master
       with:
         github_token: ${{ secrets.GE_TOKEN }}
@@ -60,8 +67,22 @@ jobs:
         directory: .
         branch: main
         force: true
+        github_url: https://gitee.com
       env:
-        GITHUB_ACTOR: GH_ACTOR
+        GITHUB_ACTOR: ${{ secrets.GH_USER_NAME }}
+
+    # 利用action把build好的文件上传到服务器/var/www/app路径下,需要确认此目录已在服务端创建
+    #- name: 上传文件
+      #uses: wlixcc/SFTP-Deploy-Action@v1.2.4
+      #with:
+          #username: ${{ secrets.FTP_USERNAME }}   # ssh user name  root
+          #server: ${{ secrets.FTP_SERVER }}       # 引用之前创建好的secret
+          ## ssh_private_key: ${{ secrets.SSH_PRIVATE_KEY }} #引用之前创建好的secret
+          #port: ${{ secrets.FTP_PORT }}
+          #local_path: './tv/0/*'                  # 对应我们项目build的文件夹路径
+          #remote_path: '${{ secrets.FTP_TV }}'             # 远程路径
+          #sftp_only: true
+          #password: ${{ secrets.FTP_PASSWORD }}   # ssh 密码
 
     - name: Delete Workflow Runs
       uses: Mattraks/delete-workflow-runs@main
