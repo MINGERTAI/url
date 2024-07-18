@@ -58,7 +58,7 @@ jobs:
       uses: ad-m/github-push-action@master
       with:
         github_token: ${{ secrets.GE_TOKEN }}
-        repository: ${{ secrets.GE_PATH }}
+        repository: ${{ secrets.GE_TVBOX }}
         directory: .
         branch: main
         force: true
