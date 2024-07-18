@@ -50,14 +50,15 @@ jobs:
 
     - name: Push Gitee
       run: |
-        git add ./b.json
-        git add ./fatcat.json
-        git add ./jar
-        git add ./js
-        git add ./json
-        git add ./lib
-        git commit ./b.json ./fatcat.json ./jar ./json ./lib -m [更新完成]
-        git push -f origin
+        cp ./b.json ./
+        cp ./fatcat.json ./
+        cp ./jar ./
+        cp ./js ./
+        cp ./json ./
+        cp ./lib ./
+        git app ./
+        commit_msg="* 发布 更新"
+        git commit -a -m "$commit_msg"
 
     - name: Push JS Config Changes To Gitee
       uses: ad-m/github-push-action@master
