@@ -50,13 +50,13 @@ jobs:
 
     - name: Push Gitee
       run: |
-        cp ./b.json ./
-        cp ./fatcat.json ./
-        cp ./jar ./
-        cp ./js ./
-        cp ./json ./
-        cp ./lib ./
-        git app ./
+        cp ./b.json ./new
+        cp ./fatcat.json ./new
+        cp ./jar ./new
+        cp ./js ./new
+        cp ./json ./new
+        cp ./lib ./new
+        git app ./new
         commit_msg="* 发布 更新"
         git commit -a -m "$commit_msg"
 
