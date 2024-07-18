@@ -51,7 +51,7 @@ jobs:
       uses: ad-m/github-push-action@master
       with:
         github_token: ${{ secrets.GE_TOKEN }}
-        repository: MINGERTAI/tvbox-json
+        repository: MINGERTAI/new
         directory: .
         branch: main
         force: true
