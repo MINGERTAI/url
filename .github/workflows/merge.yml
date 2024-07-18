@@ -54,10 +54,6 @@ jobs:
         export TZ='Asia/Shanghai'
         git add ./c.json ./fatcat.json ./jar ./js ./json ./lib
         git commit -m "update" -a
-    - name: 推送
-      uses: ad-m/github-push-action@master
-      with:
-        github_token: ${{ secrets.MY_TOKEN }}
 
     - name: 推送 配置到 Gitee
       uses: ad-m/github-push-action@master
