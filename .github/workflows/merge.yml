@@ -52,7 +52,7 @@ jobs:
         git add ./js
         git add ./json
         git add ./lib
-        git commit -m
+        git commit  ./c.json ./fatcat.json ./jar ./json ./lib -m [更新完成]
 
     - name: Push JS Config Changes To Gitee
       uses: ad-m/github-push-action@master
