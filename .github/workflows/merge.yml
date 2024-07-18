@@ -52,11 +52,6 @@ jobs:
       run: |
         cp ./b.json ./new
         cp ./fatcat.json ./new
-        cp ./jar ./new
-        cp ./js ./new
-        cp ./json ./new
-        cp ./lib ./new
-        git app ./new
         commit_msg="* 发布 更新"
         git commit -a -m "$commit_msg"
 
