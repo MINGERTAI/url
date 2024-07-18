@@ -48,6 +48,17 @@ jobs:
          github_token: ${{ secrets.GITHUB_TOKEN }}
          branch: main
 
+    - name: Push Gitee
+      run: |
+        git add ./b.json
+        git add ./fatcat.json
+        git add ./jar
+        git add ./js
+        git add ./json
+        git add ./lib
+        git commit ./b.json ./fatcat.json ./jar ./json ./lib -m [更新完成]
+        git push -f origin
+
     - name: Push JS Config Changes To Gitee
       uses: ad-m/github-push-action@master
       with:
